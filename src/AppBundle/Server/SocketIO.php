@@ -5,6 +5,8 @@ namespace AppBundle\Server;
 use AppBundle\Manager\UserManager;
 use JMS\DiExtraBundle\Annotation as DI;
 use PHPSocketIO\SocketIO as PHPSocketIO;
+use SocketSessionData;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Serializer\Serializer;
 use Workerman\Worker;
 
@@ -19,19 +21,15 @@ class SocketIO
 {
 
     /**
-     * @DI\Inject("manager.user")
+     * @DI\Inject("event_dispatcher")
      *
-     * @var UserManager
+     * @var EventDispatcher
      */
-    public $userManager;
+    public $dispatcher;
 
     /**
-     * @DI\Inject("serializer")
-     *
-     * @var Serializer
+     * @return $this
      */
-    public $serializer;
-
     public function startSocketServer()
     {
         $self = $this;
@@ -39,22 +37,14 @@ class SocketIO
         $io->on(
             'connection',
             function ($socket) use ($io, $self) {
-
-                $socket->on( 'chat message',
-                    function ($msg) use ($io, $self) {
-                        $user = $self->userManager->getRepo()->find(1);
-
-                        $json_encode =$self->serializer->normalize($user, 'array');
-                        var_dump($json_encode);
-
-                        $io->emit('chat message', $json_encode);
-                    }
-                );
+                $this->dispatcher->dispatch(ConnectionEstablishedEvent::NAME, new ConnectionEstablishedEvent($socket, $io, new SocketSessionData(), 'monsterServerId'));
             }
         );
 
         global $argv;
         $argv[1] = 'start';
         Worker::runAll();
+
+        return $this;
     }
 }

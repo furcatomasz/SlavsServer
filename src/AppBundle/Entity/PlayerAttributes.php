@@ -17,13 +17,6 @@ class PlayerAttributes
      * @var int
      */
     protected $id;
-    /**
-     **
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Player", inversedBy="attributes")
-     *
-     * @var Player
-     */
-    protected $player;
 
     /**
      * @ORM\Column(type="integer")
@@ -83,26 +76,6 @@ class PlayerAttributes
     public function setId(int $id): PlayerAttributes
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * @return Player
-     */
-    public function getPlayer(): Player
-    {
-        return $this->player;
-    }
-
-    /**
-     * @param Player $player
-     *
-     * @return PlayerAttributes
-     */
-    public function setPlayer(Player $player): PlayerAttributes
-    {
-        $this->player = $player;
 
         return $this;
     }

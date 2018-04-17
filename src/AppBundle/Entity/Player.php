@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,13 +18,34 @@ class Player
      * @var int
      */
     protected $id;
+
     /**
-     **
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="players")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      *
      * @var User
      */
     protected $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Room")
+     *
+     * @var Room
+     */
+    protected $room;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PlayerAttributes")
+     *
+     * @var PlayerAttributes
+     */
+    protected $attributes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerSpecialItems", mappedBy="player", fetch="EAGER")
+     *
+     * @var PlayerSpecialItems
+     */
+    protected $specialItems;
 
     /**
      * @ORM\Column(type="string")
@@ -111,6 +133,46 @@ class Player
     public function setUser(User $user): Player
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Room
+     */
+    public function getRoom(): Room
+    {
+        return $this->room;
+    }
+
+    /**
+     * @param Room $room
+     *
+     * @return Player
+     */
+    public function setRoom(Room $room): Player
+    {
+        $this->room = $room;
+
+        return $this;
+    }
+
+    /**
+     * @return PlayerAttributes
+     */
+    public function getAttributes(): PlayerAttributes
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * @param PlayerAttributes $attributes
+     *
+     * @return Player
+     */
+    public function setAttributes(PlayerAttributes $attributes): Player
+    {
+        $this->attributes = $attributes;
 
         return $this;
     }
@@ -254,5 +316,26 @@ class Player
 
         return $this;
     }
+
+    /**
+     * @return Collection|PlayerSpecialItems
+     */
+    public function getSpecialItems(): Collection
+    {
+        return $this->specialItems;
+    }
+
+    /**
+     * @param PlayerSpecialItems $specialItems
+     *
+     * @return Player
+     */
+    public function setSpecialItems(PlayerSpecialItems $specialItems): Player
+    {
+        $this->specialItems = $specialItems;
+
+        return $this;
+    }
+
 
 }

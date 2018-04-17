@@ -17,6 +17,7 @@ class PlayerSpecialItems
      * @var int
      */
     protected $id;
+
     /**
      **
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Player", inversedBy="specialItems")

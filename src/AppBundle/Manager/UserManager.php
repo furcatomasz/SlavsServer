@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use JMS\DiExtraBundle\Annotation as DI;
 
 /**
- * @DI\Service("manager.user", public=true)
+ * @DI\Service("manager.user")
  */
 class UserManager extends AbstractManager
 {
