@@ -2,13 +2,12 @@
 
 namespace AppBundle\Server;
 
-use AppBundle\Manager\UserManager;
 use JMS\DiExtraBundle\Annotation as DI;
 use PHPSocketIO\SocketIO as PHPSocketIO;
-use SocketSessionData;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\Serializer\Serializer;
 use Workerman\Worker;
+use AppBundle\Storage\SocketSessionData;
+
 
 /**
  * Class SocketIO
@@ -28,16 +27,23 @@ class SocketIO
     public $dispatcher;
 
     /**
+     * @var array
+     */
+    public $rooms;
+
+    /**
      * @return $this
      */
     public function startSocketServer()
     {
         $self = $this;
-        $io   = new PHPSocketIO(2021);
+        $io   = new PHPSocketIO(5000);
         $io->on(
             'connection',
             function ($socket) use ($io, $self) {
                 $this->dispatcher->dispatch(ConnectionEstablishedEvent::NAME, new ConnectionEstablishedEvent($socket, $io, new SocketSessionData(), 'monsterServerId'));
+
+                $socket->emit("chat message", $self->rooms);
             }
         );
 

@@ -4,10 +4,11 @@ namespace AppBundle\ServerEvents;
 
 
 use AppBundle\Entity\Player;
-use AppBundle\Entity\User;
 use AppBundle\Manager\PlayerManager;
-use AppBundle\Manager\UserManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
+use AppBundle\Server\SocketIO;
+use GameBundle\Rooms\Room;
+use GameBundle\Scenes\Factory;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -25,7 +26,7 @@ class OnChangeScenePre extends AbstractEvent
      *
      * @var PlayerManager
      */
-    public $userManager;
+    public $playerManager;
 
     /**
      * @DI\Inject("serializer")
@@ -33,6 +34,13 @@ class OnChangeScenePre extends AbstractEvent
      * @var Serializer
      */
     public $serializer;
+
+    /**
+     * @DI\Inject("app.server.socket")
+     *
+     * @var SocketIO
+     **/
+    public $socketIOServer;
 
     /**
      * @DI\Observe("connection.established.event")
@@ -43,34 +51,48 @@ class OnChangeScenePre extends AbstractEvent
     public function registerEvent(ConnectionEstablishedEvent $event): AbstractEvent
     {
         $socket = $event->getSocket();
-        $self = $this;
+        $self   = $this;
         $socket->on(
             'changeScenePre',
-            function ($data) use ($self, $event) {
+            function ($data) use ($self, $event, $socket) {
                 $io                = $event->getIo();
-                $sceneType         = $data['sceneType'];
                 $socketSessionData = $event->getSocketSessionData();
-                $roomId            = $socketSessionData->getActivePlayer()->getRoom()->getId();
-                $socketSessionData->setPosition([
-                    'x' => 0,
-                    'y' => 0,
-                    'z' => 0,
-                ]);
-                /** @var Player $user */
-                $user = $self->userManager->getRepo()->find(1);
+                $playerSceneType   = $data['sceneType'];
+                $scene             = Factory::createSceneByType($playerSceneType);
 
-                $encoder    = new JsonEncoder();
-                $normalizer = new ObjectNormalizer();
-                $normalizer->setCircularReferenceHandler(
-                    function ($object) {
-                        return $object->getId();
-                    }
+                $newRoom = (new Room())
+                    ->setId($socket->id)
+                    ->setMonsters($scene->monsters);
+                $socketSessionData->setActiveRoom($newRoom);
+                $this->socketIOServer->rooms[] = $newRoom;
+                $roomId                        = $socketSessionData->getActiveRoom()->getId();
+                $socketSessionData->setPosition(
+                    [
+                        'x' => 0,
+                        'y' => 0,
+                        'z' => 0,
+                    ]
                 );
 
-                $serializer = new Serializer(array($normalizer), array($encoder));
-                $userData   = $serializer->normalize($user, 'array');
+                /*
+                * TODO: monster server call
+                   $io->to(
+                       $socketSessionData->getMonsterServerId(),
+                       [
+                        'enemies' => $newRoom->getEnemies(),
+                        'roomId'  => $roomId
+                       ]
+                   );
+                   */
 
-                $socket->emit('chat message', $userData);
+                /** @var Player $user */
+                $player     = $self->playerManager->getRepo()->find(1);
+                $serializer = $this->getSerializerWithNormalizer();
+                $playerData = $serializer->normalize($player, 'array');
+var_dump('showplayer');
+                $socket->emit('showPlayer', $playerData);
+
+
             }
         );
 

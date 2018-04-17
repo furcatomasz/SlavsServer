@@ -2,8 +2,8 @@
 
 namespace AppBundle\Server;
 
+use AppBundle\Storage\SocketSessionData;
 use PHPSocketIO\Socket;
-use SocketSessionData;
 use Symfony\Component\EventDispatcher\Event;
 use PHPSocketIO\SocketIO;
 

@@ -4,10 +4,11 @@ namespace AppBundle\ServerEvents;
 
 
 use AppBundle\Entity\Player;
-use AppBundle\Entity\User;
 use AppBundle\Manager\PlayerManager;
-use AppBundle\Manager\UserManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
+use AppBundle\Server\SocketIO;
+use GameBundle\Rooms\Room;
+use GameBundle\Scenes\Factory;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -17,7 +18,7 @@ use Symfony\Component\Serializer\Serializer;
 /**
  * @DI\Service
  */
-class ChatMessage extends AbstractEvent
+class OnChangeScenePost extends AbstractEvent
 {
 
     /**
@@ -35,6 +36,13 @@ class ChatMessage extends AbstractEvent
     public $serializer;
 
     /**
+     * @DI\Inject("app.server.socket")
+     *
+     * @var SocketIO
+     **/
+    public $socketIOServer;
+
+    /**
      * @DI\Observe("connection.established.event")
      * @param ConnectionEstablishedEvent $event
      *
@@ -43,25 +51,19 @@ class ChatMessage extends AbstractEvent
     public function registerEvent(ConnectionEstablishedEvent $event): AbstractEvent
     {
         $socket = $event->getSocket();
-        $io     = $event->getIo();
         $self   = $this;
-
         $socket->on(
-            'chat message',
-            function ($msg) use ($io, $self, $socket) {
-                /** @var Player $user */
-                $user = $self->userManager->getRepo()->find(1);
+            'changeScenePost',
+            function ($data) use ($self, $event, $socket) {
+                $io                = $event->getIo();
+                $playerSceneType   = $data['sceneType'];
+                $socketSessionData = $event->getSocketSessionData();
+                $socketSessionData->setActiveScene($playerSceneType);
 
-                $encoder = new JsonEncoder();
-                $normalizer = new ObjectNormalizer();
-                $normalizer->setCircularReferenceHandler(function ($object) {
-                    return $object->getId();
-                });
-
-                $serializer = new Serializer(array($normalizer), array($encoder));
-                $userData = $serializer->normalize($user, 'array');
-
-                $socket->emit('chat message', $userData);
+                $monsteres = $socketSessionData->getActiveRoom()->getMonsters();
+                var_dump($monsteres);
+                //$io->to(self.monsterServerSocketId).emit('showPlayer', player);
+                $socket->emit('showEnemies', $monsteres);
             }
         );
 

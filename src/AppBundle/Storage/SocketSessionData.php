@@ -1,5 +1,9 @@
 <?php
 
+namespace AppBundle\Storage;
+
+use GameBundle\Rooms\Room;
+
 class SocketSessionData
 {
 
@@ -27,6 +31,11 @@ class SocketSessionData
      * @var int
      */
     public $monsterServerId;
+
+    /**
+     * @var Room
+     */
+    public $activeRoom;
 
     /**
      * @return \AppBundle\Entity\Player
@@ -127,5 +136,26 @@ class SocketSessionData
 
         return $this;
     }
+
+    /**
+     * @return Room
+     */
+    public function getActiveRoom(): Room
+    {
+        return $this->activeRoom;
+    }
+
+    /**
+     * @param Room $activeRoom
+     *
+     * @return SocketSessionData
+     */
+    public function setActiveRoom(Room $activeRoom): SocketSessionData
+    {
+        $this->activeRoom = $activeRoom;
+
+        return $this;
+    }
+
 
 }

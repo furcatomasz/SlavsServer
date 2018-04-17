@@ -2,44 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="581b9ded-2e00-4765-b4c8-39d1ffb2643d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Room.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Manager/PlayerManager.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Manager/RoomManager.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Manager/SpecialItemManager.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Repository/PlayerRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Repository/RoomRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Server/ConnectionEstablishedEvent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/ServerEvents/AbstractEvent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/ServerEvents/ChatMessage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePre.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Storage/SocketSessionData.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/GameBundle.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Gateways/AbstractGateway.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Gateways/EntraceForestHouse.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Gateways/EntraceForestHouseTomb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Gateways/EntraceHouse.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Gateways/ForestHouseTombExit.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Monsters/AbstractMonster.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Monsters/Skeleton.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonBoss.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonWarrior.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Scenes/AbstractScene.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouse.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseStart.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseTomb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/SpecialItems/AbstractSpecialItem.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/SpecialItems/Gold.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/SpecialItems/KeyToChest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameBundle/Statistics/Statistics.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePost.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GameBundle/Rooms/Room.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GameBundle/Scenes/Factory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AppKernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AppKernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Player.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Player.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/PlayerAttributes.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/PlayerAttributes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/PlayerSpecialItems.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/PlayerSpecialItems.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Manager/UserManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Manager/UserManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Server/ConnectionEstablishedEvent.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Server/ConnectionEstablishedEvent.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Server/SocketIO.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Server/SocketIO.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/ServerEvents/AbstractEvent.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/ServerEvents/AbstractEvent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/ServerEvents/ChatMessage.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePre.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePre.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Storage/SocketSessionData.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Storage/SocketSessionData.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameBundle/Scenes/AbstractScene.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Scenes/AbstractScene.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,6 +25,18 @@
   <component name="ComposerSettings" doNotAsk="true" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="AbstractEvent.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/AbstractEvent.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+              <folding>
+                <element signature="e#42#90#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AbstractGateway.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/Gateways/AbstractGateway.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -72,8 +58,11 @@
       <file leaf-file-name="AbstractScene.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/AbstractScene.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+            <state relative-caret-position="320">
+              <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+              <folding>
+                <element signature="e#37#77#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,11 +79,32 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="AppBundle.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/AppBundle.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AppKernel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+            <state relative-caret-position="414">
+              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+              <folding>
+                <element signature="e#7#66#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/composer.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -102,38 +112,38 @@
       <file leaf-file-name="ConnectionEstablishedEvent.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/ConnectionEstablishedEvent.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="759">
-              <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+            <state relative-caret-position="504">
+              <caret line="72" column="55" selection-start-line="72" selection-start-column="55" selection-end-line="72" selection-end-column="55" />
               <folding>
-                <element signature="e#36#59#0#PHP" expanded="true" />
+                <element signature="e#36#75#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EntraceForestHouse.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Gateways/EntraceForestHouse.php">
+      <file leaf-file-name="dev.log" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/var/logs/dev.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="321">
+              <caret line="1906" column="109" selection-start-line="1906" selection-start-column="109" selection-end-line="1906" selection-end-column="109" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EntraceForestHouseTomb.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Gateways/EntraceForestHouseTomb.php">
+      <file leaf-file-name="Room.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Room.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="207">
+              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EntraceHouse.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Gateways/EntraceHouse.php">
+      <file leaf-file-name="Factory.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/Factory.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="322">
+              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -141,8 +151,8 @@
       <file leaf-file-name="ForestHouse.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouse.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="27" column="75" selection-start-line="27" selection-start-column="75" selection-end-line="27" selection-end-column="75" />
+            <state relative-caret-position="313">
+              <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
               <folding>
                 <element signature="e#37#84#0#PHP" expanded="true" />
               </folding>
@@ -165,8 +175,8 @@
       <file leaf-file-name="ForestHouseTomb.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseTomb.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="23" column="72" selection-start-line="23" selection-start-column="72" selection-end-line="23" selection-end-column="72" />
+            <state relative-caret-position="460">
+              <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
               <folding>
                 <element signature="e#37#81#0#PHP" expanded="true" />
               </folding>
@@ -174,29 +184,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ForestHouseTombExit.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Gateways/ForestHouseTombExit.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GameBundle.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/GameBundle.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="138">
+              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gold.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Gold.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/SpecialItems/Gold.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="805">
-              <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+            <state relative-caret-position="621">
+              <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
               <folding>
                 <element signature="e#43#71#0#PHP" expanded="true" />
               </folding>
@@ -213,20 +214,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractMonster.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/AbstractMonster.php">
+      <file leaf-file-name="OnChangeScenePost.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePost.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="2" column="29" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="29" />
+            <state relative-caret-position="642">
+              <caret line="62" column="33" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OnChangeScenePre.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OnChangeScenePre.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePre.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="57" column="19" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
+            <state relative-caret-position="665">
+              <caret line="85" column="21" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
+              <folding>
+                <element signature="e#43#71#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -235,38 +239,28 @@
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/PlayerManager.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="412">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+              <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Room.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Room.php">
+        <entry file="file://$PROJECT_DIR$/src/GameBundle/Rooms/Room.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+            <state relative-caret-position="-161">
+              <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RoomManager.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/RoomManager.php">
+      <file leaf-file-name="SocketIO.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/SocketIO.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+            <state relative-caret-position="366">
+              <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
               <folding>
-                <element signature="e#37#65#0#PHP" expanded="true" />
-                <element signature="e#410#426#1#PHP" expanded="true" />
+                <element signature="e#36#75#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RoomRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/RoomRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -275,7 +269,7 @@
         <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/Skeleton.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="460">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
@@ -298,23 +292,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SocketIO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/SocketIO.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="596">
-              <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-              <folding>
-                <element signature="e#36#70#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SocketSessionData.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Storage/SocketSessionData.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+            <state relative-caret-position="619">
+              <caret line="152" column="61" selection-start-line="152" selection-start-column="61" selection-end-line="152" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -332,20 +314,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="SocketIO.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/workerman/phpsocket.io/src/SocketIO.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="365">
+              <caret line="151" column="20" selection-start-line="151" selection-start-column="20" selection-end-line="151" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="standard_8.php" pinned="false" current-in-tab="false">
         <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_8.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="321">
               <caret line="786" column="9" selection-start-line="786" selection-start-column="9" selection-end-line="786" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Statistics.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Statistics/Statistics.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -361,6 +343,11 @@
       <find>serializer</find>
       <find>SpecialItems .</find>
       <find>Gold</find>
+      <find>Apbundle\Storage</find>
+      <find>Attempted to load class &quot;SocketSessionData&quot; from namespace &quot;AppBundle\Server&quot;</find>
+      <find>AppBundle\Server</find>
+      <find>SocketSessionData</find>
+      <find>getActivePlayer()</find>
     </findStrings>
     <replaceStrings>
       <replace>new Gold</replace>
@@ -372,19 +359,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/User.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/UserRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Command/ServerStartCommand.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/PlayerSkills.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/PlayerItems.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Server/ConnectionnotEstablishedEvent.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/AbstractEvent.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/PlayerRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Manager/UserManager.php" />
-        <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/PlayerAttributes.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/PlayerSpecialItems.php" />
@@ -392,8 +374,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/ChatMessage.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Manager/RoomManager.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/RoomRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Server/ConnectionEstablishedEvent.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Server/SocketIO.php" />
         <option value="$PROJECT_DIR$/app/AppKernel.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/GameBundle.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Gateways/ForestHouse.php" />
@@ -403,12 +383,9 @@
         <option value="$PROJECT_DIR$/src/GameBundle/Gateways/EntraceForestHouseTomb.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Gateways/EntraceHouse.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Gateways/ForestHouseTombExit.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Storage/SocketSessionData.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePre.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Statistics/AbstractStatistics.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Statistics/Statistics.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Monsters/Factory.php" />
-        <option value="$PROJECT_DIR$/src/GameBundle/Scenes/AbstractScene.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Monsters/AbstractMonster.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Monsters/Skeleton.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonBoss.php" />
@@ -423,6 +400,16 @@
         <option value="$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseTomb.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouse.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/SpecialItems/Gold.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Server/ConnectionEstablishedEvent.php" />
+        <option value="$PROJECT_DIR$/src/GameBundle/Scenes/Factory.php" />
+        <option value="$PROJECT_DIR$/src/GameBundle/Scenes/AbstractScene.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/AbstractEvent.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Storage/SocketSessionData.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePost.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Server/SocketIO.php" />
+        <option value="$PROJECT_DIR$/src/GameBundle/Rooms/Room.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePre.php" />
       </list>
     </option>
   </component>
@@ -461,6 +448,11 @@
             <path>
               <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -487,14 +479,21 @@
               <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="GameBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="ServerEvents" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Storage" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="GameBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Monsters" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
@@ -508,7 +507,7 @@
               <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="GameBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="SpecialItems" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Statistics" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
@@ -535,11 +534,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/AppBundle/ServerEvents" />
+      <recent name="$PROJECT_DIR$/src/GameBundle/Scenes" />
+      <recent name="$PROJECT_DIR$/src/GameBundle/Rooms" />
       <recent name="$PROJECT_DIR$/src/GameBundle/SpecialItems" />
       <recent name="$PROJECT_DIR$/src/AppBundle/Manager" />
-      <recent name="$PROJECT_DIR$/src/GameBundle" />
-      <recent name="$PROJECT_DIR$/src/GameBundle/Monsters" />
-      <recent name="$PROJECT_DIR$/src/GameBundle/Statistics" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -567,12 +566,20 @@
       <workItem from="1523945293364" duration="3187000" />
       <workItem from="1523948504335" duration="283000" />
       <workItem from="1523949133132" duration="46000" />
-      <workItem from="1523949206945" duration="24546000" />
+      <workItem from="1523949206945" duration="28203000" />
     </task>
+    <task id="LOCAL-00001" summary="+ monsters&#10;+ special items&#10;+ scenes&#10;+ statistics&#10;+ gateways">
+      <created>1523985448757</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1523985448757</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28062000" />
+    <option name="totallyTimeSpent" value="31719000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1918" y="-3" width="1924" height="1087" extended-state="6" />
@@ -608,6 +615,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="+ monsters&#10;+ special items&#10;+ scenes&#10;+ statistics&#10;+ gateways" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ monsters&#10;+ special items&#10;+ scenes&#10;+ statistics&#10;+ gateways" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -616,61 +627,11 @@
           <line>26</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/src/AppBundle/ServerEvents/ChatMessage.php</url>
-          <line>52</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
       </breakpoints>
       <option name="time" value="12" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/PlayerSkills.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/AbstractEvent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/UserManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/UserRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-414">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/PlayerRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/PlayerItems.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="734">
@@ -703,13 +664,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
           <caret line="641" column="30" selection-start-line="641" selection-start-column="30" selection-end-line="641" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -747,54 +701,10 @@
     <entry file="file://$PROJECT_DIR$/vendor/workerman/phpsocket.io/src/Socket.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/ChatMessage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-          <folding>
-            <element signature="e#43#71#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/RoomRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/SocketIO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="596">
-          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-          <folding>
-            <element signature="e#36#70#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/ConnectionEstablishedEvent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
-          <folding>
-            <element signature="e#36#59#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="21" column="37" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/GameBundle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
@@ -812,31 +722,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/Gateways/AbstractGateway.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Gateways/ForestHouseTombExit.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Storage/SocketSessionData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePre.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="57" column="19" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -861,13 +750,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/AbstractScene.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/AbstractMonster.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -875,29 +757,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonWarrior.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonBoss.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/SpecialItems/Skeleton.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Room.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/RoomManager.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -941,14 +802,7 @@
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/PlayerManager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="412">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/Skeleton.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
@@ -959,13 +813,181 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/SpecialItems/KeyToChest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="35" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/SpecialItems/Gold.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+          <folding>
+            <element signature="e#43#71#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonBoss.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonWarrior.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/Skeleton.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/workerman/phpsocket.io/src/SocketIO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="151" column="20" selection-start-line="151" selection-start-column="20" selection-end-line="151" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/Gateways/AbstractGateway.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/GameBundle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+          <folding>
+            <element signature="e#7#66#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/AppBundle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/var/logs/dev.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="1906" column="109" selection-start-line="1906" selection-start-column="109" selection-end-line="1906" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/ChatMessage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="52" column="63" selection-start-line="52" selection-start-column="63" selection-end-line="52" selection-end-column="63" />
+          <folding>
+            <element signature="e#43#71#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Room.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseTomb.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="72" selection-start-line="23" selection-start-column="72" selection-end-line="23" selection-end-column="72" />
+        <state relative-caret-position="460">
+          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
           <folding>
             <element signature="e#37#81#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/Factory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/AbstractScene.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+          <folding>
+            <element signature="e#37#77#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/AbstractEvent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <folding>
+            <element signature="e#42#90#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/ConnectionEstablishedEvent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="72" column="55" selection-start-line="72" selection-start-column="55" selection-end-line="72" selection-end-column="55" />
+          <folding>
+            <element signature="e#36#75#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Storage/SocketSessionData.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="619">
+          <caret line="152" column="61" selection-start-line="152" selection-start-column="61" selection-end-line="152" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/SocketIO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+          <folding>
+            <element signature="e#36#75#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/Rooms/Room.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-161">
+          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -981,25 +1003,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouse.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="27" column="75" selection-start-line="27" selection-start-column="75" selection-end-line="27" selection-end-column="75" />
+        <state relative-caret-position="313">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
           <folding>
             <element signature="e#37#84#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/SpecialItems/KeyToChest.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePost.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="35" selection-end-column="5" />
+        <state relative-caret-position="642">
+          <caret line="62" column="33" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/SpecialItems/Gold.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePre.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+        <state relative-caret-position="665">
+          <caret line="85" column="21" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
           <folding>
             <element signature="e#43#71#0#PHP" expanded="true" />
           </folding>

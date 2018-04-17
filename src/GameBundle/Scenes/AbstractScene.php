@@ -2,6 +2,9 @@
 
 namespace GameBundle\Scenes;
 
+use GameBundle\Gateways\AbstractGateway;
+use GameBundle\Monsters\AbstractMonster;
+
 abstract class AbstractScene
 {
     const TYPE = 0;
@@ -28,5 +31,19 @@ abstract class AbstractScene
     {
         $this->type = static::TYPE;
     }
+
+    /**
+     * @return AbstractScene
+     */
+    public function refreshGatewaysData(): AbstractScene
+    {
+        foreach ($this->gateways as $gateway) {
+            /** @var AbstractGateway $gateway */
+            $gateway->verifyIsActive();
+        }
+
+        return $this;
+    }
+
 
 }
