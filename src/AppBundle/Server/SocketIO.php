@@ -2,6 +2,7 @@
 
 namespace AppBundle\Server;
 
+use AppBundle\Manager\PlayerManager;
 use JMS\DiExtraBundle\Annotation as DI;
 use PHPSocketIO\SocketIO as PHPSocketIO;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -41,9 +42,10 @@ class SocketIO
         $io->on(
             'connection',
             function ($socket) use ($io, $self) {
-                $this->dispatcher->dispatch(ConnectionEstablishedEvent::NAME, new ConnectionEstablishedEvent($socket, $io, new SocketSessionData(), 'monsterServerId'));
-
-                $socket->emit("chat message", $self->rooms);
+                $self->dispatcher->dispatch(
+                    ConnectionEstablishedEvent::NAME,
+                    new ConnectionEstablishedEvent($socket, $io, new SocketSessionData(), 'monsterServerId')
+                );
             }
         );
 
