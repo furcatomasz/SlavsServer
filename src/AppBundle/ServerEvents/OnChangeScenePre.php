@@ -3,15 +3,12 @@
 namespace AppBundle\ServerEvents;
 
 
-use AppBundle\Entity\Player;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
 use GameBundle\Rooms\Room;
 use GameBundle\Scenes\Factory;
 use JMS\DiExtraBundle\Annotation as DI;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 
@@ -55,17 +52,19 @@ class OnChangeScenePre extends AbstractEvent
         $socket->on(
             'changeScenePre',
             function ($data) use ($self, $event, $socket) {
-                $io                = $event->getIo();
                 $socketSessionData = $event->getSocketSessionData();
                 $playerSceneType   = $data['sceneType'];
                 $scene             = Factory::createSceneByType($playerSceneType);
 
                 $newRoom = (new Room())
                     ->setId($socket->id)
+                    ->setName('RoomTest')
                     ->setMonsters($scene->monsters);
-                $socketSessionData->setActiveRoom($newRoom);
-                $this->socketIOServer->rooms[] = $newRoom;
-                $roomId                        = $socketSessionData->getActiveRoom()->getId();
+                $socketSessionData
+                    ->setActiveRoom($newRoom)
+                    ->setActivePlayer($self->playerManager->getRepo()->find(1));
+
+                $self->socketIOServer->rooms[] = $newRoom;
                 $socketSessionData->setPosition(
                     [
                         'x' => 0,
@@ -76,6 +75,10 @@ class OnChangeScenePre extends AbstractEvent
 
                 /*
                 * TODO: monster server call
+                 *                 $io                = $event->getIo();
+
+                 *                 $roomId                        = $socketSessionData->getActiveRoom()->getId();
+
                    $io->to(
                        $socketSessionData->getMonsterServerId(),
                        [
@@ -85,14 +88,10 @@ class OnChangeScenePre extends AbstractEvent
                    );
                    */
 
-                /** @var Player $user */
-                $player     = $self->playerManager->getRepo()->find(1);
                 $serializer = $this->getSerializerWithNormalizer();
-                $playerData = $serializer->normalize($player, 'array');
-var_dump('showplayer');
-                $socket->emit('showPlayer', $playerData);
+                $playerSessionData = $serializer->normalize($socketSessionData, 'array');
 
-
+                $socket->emit('showPlayer', $playerSessionData);
             }
         );
 

@@ -51,14 +51,15 @@ class OnPlayerConnection extends AbstractEvent
     public function registerEvent(ConnectionEstablishedEvent $event): AbstractEvent
     {
         $socket = $event->getSocket();
-        $event->getSocketSessionData();
-        /** @var Player $user */
-        $player     = $this->playerManager->getRepo()->find(1);
-        $serializer = $this->getSerializerWithNormalizer();
-        $playerData = $serializer->normalize($player, 'array');
-var_dump('clientConnected');
-        $socket->emit('clientConnected', $playerData);
+        $playerSession = $event->getSocketSessionData();
+        $playerSession
+            ->setConnectionId($event->getSocket()->id)
+            ->setMonsterServerId($event->getMonsterServerId());
 
+        $serializer = $this->getSerializerWithNormalizer();
+        $playerSessionData = $serializer->normalize($playerSession, 'array');
+
+        $socket->emit('clientConnected', $playerSessionData);
 
         return $this;
     }

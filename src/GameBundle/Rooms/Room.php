@@ -9,7 +9,7 @@ class Room
      */
     protected $id;
     /**
-     * @var int
+     * @var string
      */
     protected $name;
     /**
@@ -38,19 +38,19 @@ class Room
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getName(): int
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @param int $name
+     * @param string $name
      *
      * @return Room
      */
-    public function setName(int $name): Room
+    public function setName(string $name): Room
     {
         $this->name = $name;
 

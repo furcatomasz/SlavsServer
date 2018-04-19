@@ -14,7 +14,7 @@ class PlayerManager extends AbstractManager
 {
 
     /**
-     * @return PlayerRepository
+     * @return PlayerRepository|EntityRepository
      */
     public function getRepo(): EntityRepository
     {

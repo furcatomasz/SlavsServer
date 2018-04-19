@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
+use GameBundle\Statistics\Statistics;
+use JMS\Serializer\Annotation as Serializer;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,13 +27,6 @@ class Player
      * @var User
      */
     protected $user;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Room")
-     *
-     * @var Room
-     */
-    protected $room;
 
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\PlayerAttributes")
@@ -133,26 +128,6 @@ class Player
     public function setUser(User $user): Player
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * @return Room
-     */
-    public function getRoom(): Room
-    {
-        return $this->room;
-    }
-
-    /**
-     * @param Room $room
-     *
-     * @return Player
-     */
-    public function setRoom(Room $room): Player
-    {
-        $this->room = $room;
 
         return $this;
     }
@@ -337,5 +312,21 @@ class Player
         return $this;
     }
 
+    /**
+     * @Serializer\VirtualProperty()
+     */
+    public function getStatistics()
+    {
+        return new Statistics(
+            100 + $this->getAttributes()->getHealth() * 5,
+            100 + $this->getAttributes()->getHealth()* 5,
+            100 + $this->getAttributes()->getAttackSpeed(),
+            15 + $this->getAttributes()->getDamage()* 5,
+            10 + $this->getAttributes()->getDefence() * 5,
+            2.9,
+            50 + $this->getAttributes()->getBlockChance(),
+            100
+        );
+    }
 
 }

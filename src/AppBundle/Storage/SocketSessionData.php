@@ -2,15 +2,21 @@
 
 namespace AppBundle\Storage;
 
+use AppBundle\Entity\Player;
 use GameBundle\Rooms\Room;
 
 class SocketSessionData
 {
 
     /**
-     * @var \AppBundle\Entity\Player
+     * @var Player
      */
     public $activePlayer;
+
+    /**
+     * @var string
+     */
+    public $connectionId;
 
     /**
      * @var int
@@ -28,7 +34,7 @@ class SocketSessionData
     public $position;
 
     /**
-     * @var int
+     * @var string
      */
     public $monsterServerId;
 
@@ -38,19 +44,19 @@ class SocketSessionData
     public $activeRoom;
 
     /**
-     * @return \AppBundle\Entity\Player
+     * @return Player|null
      */
-    public function getActivePlayer(): \AppBundle\Entity\Player
+    public function getActivePlayer(): ?Player
     {
         return $this->activePlayer;
     }
 
     /**
-     * @param \AppBundle\Entity\Player $activePlayer
+     * @param Player $activePlayer
      *
      * @return SocketSessionData
      */
-    public function setActivePlayer(\AppBundle\Entity\Player $activePlayer): SocketSessionData
+    public function setActivePlayer(Player $activePlayer): SocketSessionData
     {
         $this->activePlayer = $activePlayer;
 
@@ -58,9 +64,9 @@ class SocketSessionData
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getActiveScene(): int
+    public function getActiveScene(): ?int
     {
         return $this->activeScene;
     }
@@ -78,9 +84,9 @@ class SocketSessionData
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getLastPlayerAttack(): int
+    public function getLastPlayerAttack(): ?int
     {
         return $this->lastPlayerAttack;
     }
@@ -98,19 +104,19 @@ class SocketSessionData
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getMonsterServerId(): int
+    public function getMonsterServerId(): string
     {
         return $this->monsterServerId;
     }
 
     /**
-     * @param int $monsterServerId
+     * @param string $monsterServerId
      *
      * @return SocketSessionData
      */
-    public function setMonsterServerId(int $monsterServerId): SocketSessionData
+    public function setMonsterServerId(string $monsterServerId): SocketSessionData
     {
         $this->monsterServerId = $monsterServerId;
 
@@ -118,9 +124,9 @@ class SocketSessionData
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getPosition(): array
+    public function getPosition(): ?array
     {
         return $this->position;
     }
@@ -138,9 +144,9 @@ class SocketSessionData
     }
 
     /**
-     * @return Room
+     * @return Room|null
      */
-    public function getActiveRoom(): Room
+    public function getActiveRoom(): ?Room
     {
         return $this->activeRoom;
     }
@@ -157,5 +163,24 @@ class SocketSessionData
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getConnectionId(): string
+    {
+        return $this->connectionId;
+    }
+
+    /**
+     * @param string $connectionId
+     *
+     * @return SocketSessionData
+     */
+    public function setConnectionId(string $connectionId): SocketSessionData
+    {
+        $this->connectionId = $connectionId;
+
+        return $this;
+    }
 
 }

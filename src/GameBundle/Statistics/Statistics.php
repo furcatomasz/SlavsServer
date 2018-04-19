@@ -69,4 +69,69 @@ class Statistics
         $this->hitChance   = $hitChance;
     }
 
+    /**
+     * @return int
+     */
+    public function getHp(): int
+    {
+        return $this->hp;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHpMax(): int
+    {
+        return $this->hpMax;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAttackSpeed(): int
+    {
+        return $this->attackSpeed;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDamage(): int
+    {
+        return $this->damage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getArmor(): int
+    {
+        return $this->armor;
+    }
+
+    /**
+     * @return int
+     */
+    public function getWalkSpeed(): int
+    {
+        return $this->walkSpeed;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBlockChance(): int
+    {
+        return $this->blockChance;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHitChance(): int
+    {
+        return $this->hitChance;
+    }
+
+
 }
