@@ -54,16 +54,14 @@ class OnChangeScenePost extends AbstractEvent
         $self   = $this;
         $socket->on(
             'changeScenePost',
-            function ($data) use ($self, $event, $socket) {
+            function () use ($self, $event, $socket) {
                 $io                = $event->getIo();
-                $playerSceneType   = $data['sceneType'];
                 $socketSessionData = $event->getSocketSessionData();
-                $socketSessionData->setActiveScene($playerSceneType);
 
-                $monsteres = $socketSessionData->getActiveRoom()->getMonsters();
-                var_dump($monsteres);
+                $monsters = $socketSessionData->getActiveRoom()->getMonsters();
+
                 //$io->to(self.monsterServerSocketId).emit('showPlayer', player);
-                $socket->emit('showEnemies', $monsteres);
+                $socket->emit('showEnemies', $monsters);
             }
         );
 

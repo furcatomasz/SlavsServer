@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Serializer;
 /**
  * @DI\Service
  */
-class OnChangeScenePre extends AbstractEvent
+class OnChangeScene extends AbstractEvent
 {
 
     /**
@@ -50,9 +50,28 @@ class OnChangeScenePre extends AbstractEvent
         $socket = $event->getSocket();
         $self   = $this;
         $socket->on(
-            'changeScenePre',
-            function () use ($self, $event, $socket) {
+            'changeScene',
+            function ($sceneType) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
+                $scene             = Factory::createSceneByType($sceneType);
+
+                $newRoom = (new Room())
+                    ->setId($socket->id)
+                    ->setName('RoomTest')
+                    ->setMonsters($scene->monsters);
+                $socketSessionData
+                    ->setActiveScene($scene->type)
+                    ->setActiveRoom($newRoom)
+                    ->setActivePlayer($self->playerManager->getRepo()->find(1));
+
+                $self->socketIOServer->rooms[] = $newRoom;
+                $socketSessionData->setPosition(
+                    [
+                        'x' => 0,
+                        'y' => 0,
+                        'z' => 0,
+                    ]
+                );
 
                 /*
                 * TODO: monster server call
@@ -72,7 +91,7 @@ class OnChangeScenePre extends AbstractEvent
                 $serializer = $this->getSerializerWithNormalizer();
                 $playerSessionData = $serializer->normalize($socketSessionData, 'array');
 
-                $socket->emit('showPlayer', $playerSessionData);
+                $socket->emit('changeScene', $scene->type);
             }
         );
 
