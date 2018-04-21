@@ -25,7 +25,7 @@ class Statistics
      */
     protected $armor;
     /**
-     * @var int
+     * @var float
      */
     protected $walkSpeed;
     /**
@@ -45,7 +45,7 @@ class Statistics
      * @param int $attackSpeed
      * @param int $damage
      * @param int $armor
-     * @param int $walkSpeed
+     * @param float $walkSpeed
      * @param int $blockChance
      * @param int $hitChance
      */
@@ -55,7 +55,7 @@ class Statistics
         int $attackSpeed,
         int $damage,
         int $armor,
-        int $walkSpeed,
+        float $walkSpeed,
         int $blockChance,
         int $hitChance
     ) {
@@ -110,9 +110,9 @@ class Statistics
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getWalkSpeed(): int
+    public function getWalkSpeed(): float
     {
         return $this->walkSpeed;
     }

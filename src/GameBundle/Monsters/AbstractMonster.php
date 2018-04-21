@@ -51,7 +51,7 @@ abstract class AbstractMonster
     public $attack;
 
     /**
-     * @var int
+     * @var string
      */
     public $type;
 
@@ -169,9 +169,9 @@ abstract class AbstractMonster
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getType(): int
+    public function getType(): string
     {
         return $this->type;
     }
