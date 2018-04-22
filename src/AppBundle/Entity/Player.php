@@ -3,12 +3,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
+use GameBundle\Items\ItemFactory;
 use GameBundle\Statistics\Statistics;
 use JMS\Serializer\Annotation as Serializer;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PlayerRepository")
  */
 class Player
 {
@@ -38,9 +39,16 @@ class Player
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerSpecialItems", mappedBy="player", fetch="EAGER")
      *
-     * @var PlayerSpecialItems
+     * @var Collection|PlayerSpecialItems
      */
     protected $specialItems;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerItem", mappedBy="player", fetch="EAGER")
+     *
+     * @var Collection|PlayerItem
+     */
+    protected $items;
 
     /**
      * @ORM\Column(type="string")
@@ -301,21 +309,9 @@ class Player
     }
 
     /**
-     * @param PlayerSpecialItems $specialItems
-     *
-     * @return Player
-     */
-    public function setSpecialItems(PlayerSpecialItems $specialItems): Player
-    {
-        $this->specialItems = $specialItems;
-
-        return $this;
-    }
-
-    /**
      * @Serializer\VirtualProperty()
      */
-    public function getStatistics()
+    public function getStatistics(): Statistics
     {
         return new Statistics(
             100 + $this->getAttributes()->getHealth() * 5,
@@ -327,6 +323,16 @@ class Player
             50 + $this->getAttributes()->getBlockChance(),
             100
         );
+    }
+
+    /**
+     * @Serializer\VirtualProperty()
+     */
+    public function getItems(): Collection
+    {
+        return $this->items->map(function(PlayerItem $playerItem) use (&$return) {
+            return ItemFactory::create($playerItem);
+        });
     }
 
 }

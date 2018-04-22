@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity()
  */
-class PlayerItems
+class PlayerItem
 {
     /**
      * @ORM\Id
@@ -57,9 +57,9 @@ class PlayerItems
     /**
      * @param int $id
      *
-     * @return PlayerItems
+     * @return PlayerItem
      */
-    public function setId(int $id): PlayerItems
+    public function setId(int $id): PlayerItem
     {
         $this->id = $id;
 
@@ -77,9 +77,9 @@ class PlayerItems
     /**
      * @param Player $player
      *
-     * @return PlayerItems
+     * @return PlayerItem
      */
-    public function setPlayer(Player $player): PlayerItems
+    public function setPlayer(Player $player): PlayerItem
     {
         $this->player = $player;
 
@@ -97,9 +97,9 @@ class PlayerItems
     /**
      * @param int $itemId
      *
-     * @return PlayerItems
+     * @return PlayerItem
      */
-    public function setItemId(int $itemId): PlayerItems
+    public function setItemId(int $itemId): PlayerItem
     {
         $this->itemId = $itemId;
 
@@ -117,9 +117,9 @@ class PlayerItems
     /**
      * @param int $improvement
      *
-     * @return PlayerItems
+     * @return PlayerItem
      */
-    public function setImprovement(int $improvement): PlayerItems
+    public function setImprovement(int $improvement): PlayerItem
     {
         $this->improvement = $improvement;
 
@@ -137,9 +137,9 @@ class PlayerItems
     /**
      * @param int $equip
      *
-     * @return PlayerItems
+     * @return PlayerItem
      */
-    public function setEquip(int $equip): PlayerItems
+    public function setEquip(int $equip): PlayerItem
     {
         $this->equip = $equip;
 
