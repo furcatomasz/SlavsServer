@@ -42,10 +42,19 @@ class SocketIO
         $io->on(
             'connection',
             function ($socket) use ($io, $self) {
-                $self->dispatcher->dispatch(
-                    ConnectionEstablishedEvent::NAME,
-                    new ConnectionEstablishedEvent($socket, $io, new SocketSessionData(), 'monsterServerId')
-                );
+                $isMonsterServer = (array_key_exists('monsterServer', $socket->handshake['query'])) ? true : false;
+
+                if($isMonsterServer) {
+                    $self->dispatcher->dispatch(
+                        MonsterServerConnectionEstablishedEvent::NAME,
+                        new MonsterServerConnectionEstablishedEvent($socket, $io)
+                    );
+                } else {
+                    $self->dispatcher->dispatch(
+                        ConnectionEstablishedEvent::NAME,
+                        new ConnectionEstablishedEvent($socket, $io, new SocketSessionData(), 'monsterServerId')
+                    );
+                }
             }
         );
 

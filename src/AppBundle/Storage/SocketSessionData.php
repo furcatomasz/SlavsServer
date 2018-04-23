@@ -34,6 +34,11 @@ class SocketSessionData
     public $position;
 
     /**
+     * @var bool
+     */
+    public $attack;
+
+    /**
      * @var string
      */
     public $monsterServerId;
@@ -179,6 +184,26 @@ class SocketSessionData
     public function setConnectionId(string $connectionId): SocketSessionData
     {
         $this->connectionId = $connectionId;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getAttack(): ?bool
+    {
+        return $this->attack;
+    }
+
+    /**
+     * @param bool $attack
+     *
+     * @return SocketSessionData
+     */
+    public function setAttack(bool $attack): SocketSessionData
+    {
+        $this->attack = $attack;
 
         return $this;
     }
