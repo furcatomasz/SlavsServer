@@ -54,6 +54,7 @@ class OnChangeScene extends AbstractEvent
             function ($sceneType) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
                 $scene             = Factory::createSceneByType($sceneType);
+                $serializer        = $this->getSerializerWithNormalizer();
 
                 $newRoom = (new Room())
                     ->setId($socket->id)
@@ -73,23 +74,21 @@ class OnChangeScene extends AbstractEvent
                     ]
                 );
 
-                /*
-                * TODO: monster server call
-                 *                 $io                = $event->getIo();
-
-                 *                 $roomId                        = $socketSessionData->getActiveRoom()->getId();
-
-                   $io->to(
-                       $socketSessionData->getMonsterServerId(),
-                       [
-                        'enemies' => $newRoom->getEnemies(),
-                        'roomId'  => $roomId
-                       ]
-                   );
-                   */
-
-                $serializer = $this->getSerializerWithNormalizer();
-                $playerSessionData = $serializer->normalize($socketSessionData, 'array');
+                ///Call to monster server about create new room
+                $monsters = $serializer->normalize($newRoom->getMonsters(), 'array');
+                $socket
+                    ->to($self->socketIOServer->monsterServerId)
+                    ->emit('createRoom', $newRoom->getId());
+                ///Call to monster server about create enemies
+                $socket
+                    ->to($self->socketIOServer->monsterServerId)
+                    ->emit(
+                        'createEnemies',
+                        [
+                            'enemies' => $monsters,
+                            'roomId'  => $socketSessionData->getActiveRoom()->getId()
+                        ]
+                    );
 
                 $socket->emit('changeScene', $scene->type);
             }

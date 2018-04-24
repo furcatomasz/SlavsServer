@@ -47,7 +47,7 @@ class OnSetTargetPoint extends AbstractEvent
                 $socketSessionData
                     ->setAttack(false)
                     ->setPosition($data['position']);
-
+var_dump($socketSessionData->getPosition());
 //                serverIO.in(character.roomId).emit('updatePlayer', character);
 //                serverIO.to(self.monsterServerSocketId).emit('updatePlayer', character);
             }

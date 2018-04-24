@@ -54,21 +54,6 @@ class OnChangeScenePre extends AbstractEvent
             function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
 
-                /*
-                * TODO: monster server call
-                 *                 $io                = $event->getIo();
-
-                 *                 $roomId                        = $socketSessionData->getActiveRoom()->getId();
-
-                   $io->to(
-                       $socketSessionData->getMonsterServerId(),
-                       [
-                        'enemies' => $newRoom->getEnemies(),
-                        'roomId'  => $roomId
-                       ]
-                   );
-                   */
-
                 $serializer = $this->getSerializerWithNormalizer();
                 $playerSessionData = $serializer->normalize($socketSessionData, 'array');
 

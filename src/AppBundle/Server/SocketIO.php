@@ -2,7 +2,6 @@
 
 namespace AppBundle\Server;
 
-use AppBundle\Manager\PlayerManager;
 use JMS\DiExtraBundle\Annotation as DI;
 use PHPSocketIO\SocketIO as PHPSocketIO;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -33,6 +32,11 @@ class SocketIO
     public $rooms;
 
     /**
+     * @var string
+     */
+    public $monsterServerId;
+
+    /**
      * @return $this
      */
     public function startSocketServer()
@@ -45,15 +49,20 @@ class SocketIO
                 $isMonsterServer = (array_key_exists('monsterServer', $socket->handshake['query'])) ? true : false;
 
                 if($isMonsterServer) {
+                    $self->monsterServerId = $socket->id;
                     $self->dispatcher->dispatch(
                         MonsterServerConnectionEstablishedEvent::NAME,
                         new MonsterServerConnectionEstablishedEvent($socket, $io)
                     );
                 } else {
-                    $self->dispatcher->dispatch(
-                        ConnectionEstablishedEvent::NAME,
-                        new ConnectionEstablishedEvent($socket, $io, new SocketSessionData(), 'monsterServerId')
-                    );
+                    if(!$self->monsterServerId) {
+                        var_dump('Monster server is not ready!');
+                    } else {
+                        $self->dispatcher->dispatch(
+                            ConnectionEstablishedEvent::NAME,
+                            new ConnectionEstablishedEvent($socket, $io, new SocketSessionData(), 'monsterServerId')
+                        );
+                    }
                 }
             }
         );
