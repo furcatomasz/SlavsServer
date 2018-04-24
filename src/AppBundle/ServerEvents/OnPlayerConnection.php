@@ -10,6 +10,7 @@ use AppBundle\Server\SocketIO;
 use GameBundle\Rooms\Room;
 use GameBundle\Scenes\Factory;
 use JMS\DiExtraBundle\Annotation as DI;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -22,20 +23,6 @@ class OnPlayerConnection extends AbstractEvent
 {
 
     /**
-     * @DI\Inject("manager.player")
-     *
-     * @var PlayerManager
-     */
-    public $playerManager;
-
-    /**
-     * @DI\Inject("serializer")
-     *
-     * @var Serializer
-     */
-    public $serializer;
-
-    /**
      * @DI\Inject("app.server.socket")
      *
      * @var SocketIO
@@ -44,11 +31,12 @@ class OnPlayerConnection extends AbstractEvent
 
     /**
      * @DI\Observe("connection.established.event")
-     * @param ConnectionEstablishedEvent $event
+     * @param Event|ConnectionEstablishedEvent $event
      *
      * @return AbstractEvent
+     * @throws \Exception
      */
-    public function registerEvent(ConnectionEstablishedEvent $event): AbstractEvent
+    public function registerEvent(Event $event): AbstractEvent
     {
         $socket = $event->getSocket();
         $playerSession = $event->getSocketSessionData();
@@ -56,8 +44,7 @@ class OnPlayerConnection extends AbstractEvent
             ->setConnectionId($event->getSocket()->id)
             ->setMonsterServerId($event->getMonsterServerId());
 
-        $serializer = $this->getSerializerWithNormalizer();
-        $playerSessionData = $serializer->normalize($playerSession, 'array');
+        $playerSessionData = $this->serializer->normalize($playerSession, 'array');
 
         $socket->emit('clientConnected', $playerSessionData);
 

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Server;
 
+use GameBundle\Rooms\Room;
 use JMS\DiExtraBundle\Annotation as DI;
 use PHPSocketIO\SocketIO as PHPSocketIO;
 use Symfony\Component\EventDispatcher\EventDispatcher;

@@ -9,6 +9,7 @@ use AppBundle\Server\SocketIO;
 use GameBundle\Rooms\Room;
 use GameBundle\Scenes\Factory;
 use JMS\DiExtraBundle\Annotation as DI;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Serializer\Serializer;
 
 
@@ -26,26 +27,12 @@ class OnChangeScene extends AbstractEvent
     public $playerManager;
 
     /**
-     * @DI\Inject("serializer")
-     *
-     * @var Serializer
-     */
-    public $serializer;
-
-    /**
-     * @DI\Inject("app.server.socket")
-     *
-     * @var SocketIO
-     **/
-    public $socketIOServer;
-
-    /**
      * @DI\Observe("connection.established.event")
-     * @param ConnectionEstablishedEvent $event
+     * @param Event|ConnectionEstablishedEvent $event
      *
      * @return AbstractEvent
      */
-    public function registerEvent(ConnectionEstablishedEvent $event): AbstractEvent
+    public function registerEvent(Event $event): AbstractEvent
     {
         $socket = $event->getSocket();
         $self   = $this;
@@ -54,7 +41,6 @@ class OnChangeScene extends AbstractEvent
             function ($sceneType) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
                 $scene             = Factory::createSceneByType($sceneType);
-                $serializer        = $this->getSerializerWithNormalizer();
 
                 $newRoom = (new Room())
                     ->setId($socket->id)
@@ -65,7 +51,7 @@ class OnChangeScene extends AbstractEvent
                     ->setActiveRoom($newRoom)
                     ->setActivePlayer($self->playerManager->getRepo()->find(1));
 
-                $self->socketIOServer->rooms[] = $newRoom;
+                $self->socketIOServer->rooms[$newRoom->getId()] = $newRoom;
                 $socketSessionData->setPosition(
                     [
                         'x' => 0,
@@ -75,7 +61,7 @@ class OnChangeScene extends AbstractEvent
                 );
 
                 ///Call to monster server about create new room
-                $monsters = $serializer->normalize($newRoom->getMonsters(), 'array');
+                $monsters = $self->serializer->normalize($newRoom->getMonsters(), 'array');
                 $socket
                     ->to($self->socketIOServer->monsterServerId)
                     ->emit('createRoom', $newRoom->getId());

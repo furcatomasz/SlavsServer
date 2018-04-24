@@ -4,9 +4,8 @@ namespace AppBundle\ServerEvents;
 
 
 use AppBundle\Server\ConnectionEstablishedEvent;
-use AppBundle\Server\SocketIO;
 use JMS\DiExtraBundle\Annotation as DI;
-use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\EventDispatcher\Event;
 
 
 /**
@@ -16,39 +15,27 @@ class OnSetTargetPoint extends AbstractEvent
 {
 
     /**
-     * @DI\Inject("serializer")
-     *
-     * @var Serializer
-     */
-    public $serializer;
-
-    /**
-     * @DI\Inject("app.server.socket")
-     *
-     * @var SocketIO
-     **/
-    public $socketIOServer;
-
-    /**
      * @DI\Observe("connection.established.event")
-     * @param ConnectionEstablishedEvent $event
+     * @param Event|ConnectionEstablishedEvent $event
      *
      * @return AbstractEvent
      */
-    public function registerEvent(ConnectionEstablishedEvent $event): AbstractEvent
+    public function registerEvent(Event $event): AbstractEvent
     {
         $socket = $event->getSocket();
         $self   = $this;
         $socket->on(
             'setTargetPoint',
             function ($data) use ($self, $event, $socket) {
-                $io                = $event->getIo();
+
                 $socketSessionData = $event->getSocketSessionData();
                 $socketSessionData
                     ->setAttack(false)
-                    ->setPosition($data['position']);
-var_dump($socketSessionData->getPosition());
+                    ->setTargetPoint($data['position']);
+                $emitData = $self->serializer->normalize($socketSessionData, 'array');
+
 //                serverIO.in(character.roomId).emit('updatePlayer', character);
+                $socket->to($self->socketIOServer->monsterServerId)->emit('updatePlayer', $emitData);
 //                serverIO.to(self.monsterServerSocketId).emit('updatePlayer', character);
             }
         );

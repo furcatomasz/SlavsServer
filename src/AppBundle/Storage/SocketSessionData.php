@@ -34,6 +34,11 @@ class SocketSessionData
     public $position;
 
     /**
+     * @var array
+     */
+    public $targetPoint;
+
+    /**
      * @var bool
      */
     public $attack;
@@ -144,6 +149,26 @@ class SocketSessionData
     public function setPosition(array $position): SocketSessionData
     {
         $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getTargetPoint(): ?array
+    {
+        return $this->targetPoint;
+    }
+
+    /**
+     * @param array $targetPoint
+     *
+     * @return SocketSessionData
+     */
+    public function setTargetPoint(array $targetPoint): SocketSessionData
+    {
+        $this->targetPoint = $targetPoint;
 
         return $this;
     }

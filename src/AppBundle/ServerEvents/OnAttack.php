@@ -7,6 +7,7 @@ use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
 use GameBundle\Monsters\AbstractMonster;
 use JMS\DiExtraBundle\Annotation as DI;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Serializer\Serializer;
 
 
@@ -32,11 +33,11 @@ class OnAttack extends AbstractEvent
 
     /**
      * @DI\Observe("connection.established.event")
-     * @param ConnectionEstablishedEvent $event
+     * @param Event|ConnectionEstablishedEvent $event
      *
      * @return AbstractEvent
      */
-    public function registerEvent(ConnectionEstablishedEvent $event): AbstractEvent
+    public function registerEvent(Event $event): AbstractEvent
     {
         $socket = $event->getSocket();
         $self   = $this;
