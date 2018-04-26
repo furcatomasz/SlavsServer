@@ -56,6 +56,11 @@ abstract class AbstractMonster
     public $lastAttack;
 
     /**
+     * @var float
+     */
+    public $scale;
+
+    /**
      * @var string
      */
     public $type;
@@ -96,6 +101,7 @@ abstract class AbstractMonster
     {
         $this->id                             = $id;
         $this->position                       = $position;
+        $this->scale                          = 1;
         $this->itemsToDrop                    = $itemsToDrop;
         $this->specialItemsToDrop             = $specialItemsToDrop;
         $this->availableAttacksFromCharacters = [];
@@ -421,7 +427,6 @@ abstract class AbstractMonster
 
         return $this;
     }
-
 
 
 }
