@@ -43,5 +43,19 @@ class PlayerManager extends AbstractManager
         $this->update($player);
     }
 
+    /**
+     * @param Player $player
+     * @param int    $value
+     */
+    public function addExperience(Player $player, int $value)
+    {
+        $actualExp = $player->getExperience();
+        $newGold    = $actualExp + $value;
+
+        $player->setExperience($newGold);
+
+        $this->update($player);
+    }
+
 
 }

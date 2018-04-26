@@ -3,8 +3,10 @@
 namespace AppBundle\ServerEvents\MonsterServer;
 
 
+use AppBundle\Entity\Player;
 use AppBundle\Server\MonsterServerConnectionEstablishedEvent;
 use AppBundle\ServerEvents\AbstractEvent;
+use AppBundle\Storage\SocketSessionData;
 use GameBundle\Monsters\AbstractMonster;
 use GameBundle\Rooms\Room;
 use JMS\DiExtraBundle\Annotation as DI;
@@ -40,23 +42,43 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                     ->setPosition($data['position'])
                     ->setTarget($data['target'])
                     ->setAttack($data['attack']);
-                $enemy->availableAttacksFromCharacters[$data['target']] = $data['attack'];
-                $socket
-                    ->in($roomId)
-                    ->emit('updateEnemy', [
-                        'enemy' => $self->serializer->normalize($enemy, 'array'),
-                        'enemyKey' => $data['enemyKey']
-                    ]);
 
-//                $socketSessionData = $event->getSocketSessionData();
-//                $socketSessionData
-//                    ->setAttack(false)
-//                    ->setTargetPoint($data['position']);
-//                $emitData = $self->serializer->normalize($socketSessionData, 'array');
-//
-////                serverIO.in(character.roomId).emit('updatePlayer', character);
-//                $socket->to($self->socketIOServer->monsterServerId)->emit('updatePlayer', $emitData);
-////                serverIO.to(self.monsterServerSocketId).emit('updatePlayer', character);
+                if ($enemy->isAttack()) {
+                    $enemy->availableAttacksFromCharacters[$data['target']] = $data['attack'];
+                    if ($enemy->getLastAttack() < (time() - 1)) {
+                        $enemy->setLastAttack(time());
+                        $players = $room->getPlayers();
+                        foreach ($enemy->availableAttacksFromCharacters as $playerId => $attack) {
+                            /** @var SocketSessionData $playerSession */
+                            $playerSession = $players[$playerId];
+                            /** @var Player $player */
+                            $player = $playerSession->getActivePlayer();
+                            $damage = $enemy->getStatistics()->getDamage();
+                            $player->getStatistics()->setHp($player->getStatistics()->getHp() - $damage);
+                            $socket
+                                ->to($roomId)
+                                ->emit('updatePlayer', $self->serializer->normalize($playerSession, 'array'));
+                        }
+                    }
+                } else {
+                    if (array_key_exists($data['target'], $enemy->availableAttacksFromCharacters)) {
+                        unset($enemy->availableAttacksFromCharacters[$data['target']]);
+                    }
+                }
+
+                //emit for update enemy
+                $socket
+                    ->to($roomId)
+                    ->emit(
+                        'updateEnemy',
+                        [
+                            'enemy'          => $self->serializer->normalize($enemy, 'array'),
+                            'collisionEvent' => $data['collisionEvent'],
+                            'enemyKey'       => $data['enemyKey'],
+                        ]
+                    );
+
+                $enemy->setAttack(false);
             }
         );
 

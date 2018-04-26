@@ -51,6 +51,11 @@ abstract class AbstractMonster
     public $attack;
 
     /**
+     * @var int
+     */
+    public $lastAttack;
+
+    /**
      * @var string
      */
     public $type;
@@ -396,6 +401,27 @@ abstract class AbstractMonster
 
         return $this;
     }
+
+    /**
+     * @return int|null
+     */
+    public function getLastAttack(): ?int
+    {
+        return $this->lastAttack;
+    }
+
+    /**
+     * @param int $lastAttack
+     *
+     * @return AbstractMonster
+     */
+    public function setLastAttack(int $lastAttack): AbstractMonster
+    {
+        $this->lastAttack = $lastAttack;
+
+        return $this;
+    }
+
 
 
 }

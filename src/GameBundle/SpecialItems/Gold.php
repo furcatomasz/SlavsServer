@@ -45,6 +45,8 @@ class Gold extends AbstractSpecialItem
     public function addItem(Player $player, AbstractManager $manager): AbstractSpecialItem
     {
         $manager->addGold($player, $this->value);
+
+        return $this;
     }
 
 }

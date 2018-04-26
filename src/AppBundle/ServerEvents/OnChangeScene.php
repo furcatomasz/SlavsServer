@@ -41,15 +41,18 @@ class OnChangeScene extends AbstractEvent
             function ($sceneType) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
                 $scene             = Factory::createSceneByType($sceneType);
+                $activePlayer      = $self->playerManager->getRepo()->find(1);
 
                 $newRoom = (new Room())
                     ->setId($socket->id)
                     ->setName('RoomTest')
-                    ->setMonsters($scene->monsters);
+                    ->setMonsters($scene->monsters)
+                    ->setPlayers([$activePlayer->getId() => $socketSessionData]);
+
                 $socketSessionData
                     ->setActiveScene($scene->type)
                     ->setActiveRoom($newRoom)
-                    ->setActivePlayer($self->playerManager->getRepo()->find(1));
+                    ->setActivePlayer($activePlayer);
 
                 $self->socketIOServer->rooms[$newRoom->getId()] = $newRoom;
                 $socketSessionData->setPosition(

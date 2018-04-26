@@ -133,5 +133,100 @@ class Statistics
         return $this->hitChance;
     }
 
+    /**
+     * @param int $hp
+     *
+     * @return Statistics
+     */
+    public function setHp(int $hp): Statistics
+    {
+        $this->hp = $hp;
+
+        return $this;
+    }
+
+    /**
+     * @param int $hpMax
+     *
+     * @return Statistics
+     */
+    public function setHpMax(int $hpMax): Statistics
+    {
+        $this->hpMax = $hpMax;
+
+        return $this;
+    }
+
+    /**
+     * @param int $attackSpeed
+     *
+     * @return Statistics
+     */
+    public function setAttackSpeed(int $attackSpeed): Statistics
+    {
+        $this->attackSpeed = $attackSpeed;
+
+        return $this;
+    }
+
+    /**
+     * @param int $damage
+     *
+     * @return Statistics
+     */
+    public function setDamage(int $damage): Statistics
+    {
+        $this->damage = $damage;
+
+        return $this;
+    }
+
+    /**
+     * @param int $armor
+     *
+     * @return Statistics
+     */
+    public function setArmor(int $armor): Statistics
+    {
+        $this->armor = $armor;
+
+        return $this;
+    }
+
+    /**
+     * @param float $walkSpeed
+     *
+     * @return Statistics
+     */
+    public function setWalkSpeed(float $walkSpeed): Statistics
+    {
+        $this->walkSpeed = $walkSpeed;
+
+        return $this;
+    }
+
+    /**
+     * @param int $blockChance
+     *
+     * @return Statistics
+     */
+    public function setBlockChance(int $blockChance): Statistics
+    {
+        $this->blockChance = $blockChance;
+
+        return $this;
+    }
+
+    /**
+     * @param int $hitChance
+     *
+     * @return Statistics
+     */
+    public function setHitChance(int $hitChance): Statistics
+    {
+        $this->hitChance = $hitChance;
+
+        return $this;
+    }
 
 }

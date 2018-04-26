@@ -49,7 +49,11 @@ abstract class AbstractEvent
         $normalizer = new ObjectNormalizer();
         $normalizer->setCircularReferenceHandler(
             function ($object) {
-                return $object->getId();
+                if(method_exists($object, 'getId')) {
+                    return $object->getId();
+                } else {
+                    return null;
+                }
             }
         );
 

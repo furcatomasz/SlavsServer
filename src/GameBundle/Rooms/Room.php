@@ -16,6 +16,10 @@ class Room
      * @var array
      */
     protected $monsters;
+    /**
+     * @var array
+     */
+    protected $players;
 
     /**
      * @return string
@@ -77,7 +81,24 @@ class Room
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function getPlayers(): array
+    {
+        return $this->players;
+    }
 
+    /**
+     * @param array $players
+     *
+     * @return Room
+     */
+    public function setPlayers(array $players): Room
+    {
+        $this->players = $players;
 
+        return $this;
+    }
 
 }

@@ -4,6 +4,7 @@ namespace AppBundle\Server;
 
 use GameBundle\Rooms\Room;
 use JMS\DiExtraBundle\Annotation as DI;
+use PHPSocketIO\Socket;
 use PHPSocketIO\SocketIO as PHPSocketIO;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Workerman\Worker;
@@ -47,6 +48,7 @@ class SocketIO
         $io->on(
             'connection',
             function ($socket) use ($io, $self) {
+                /** @var Socket $socket */
                 $isMonsterServer = (array_key_exists('monsterServer', $socket->handshake['query'])) ? true : false;
 
                 if($isMonsterServer) {

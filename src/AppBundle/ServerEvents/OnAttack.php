@@ -3,12 +3,13 @@
 namespace AppBundle\ServerEvents;
 
 
+use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
 use GameBundle\Monsters\AbstractMonster;
+use GameBundle\SpecialItems\AbstractSpecialItem;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\Serializer\Serializer;
 
 
 /**
@@ -18,11 +19,11 @@ class OnAttack extends AbstractEvent
 {
 
     /**
-     * @DI\Inject("serializer")
+     * @DI\Inject("manager.player")
      *
-     * @var Serializer
+     * @var PlayerManager
      */
-    public $serializer;
+    public $playerManager;
 
     /**
      * @DI\Inject("app.server.socket")
@@ -44,29 +45,68 @@ class OnAttack extends AbstractEvent
         $socket->on(
             'attack',
             function ($data) use ($self, $event, $socket) {
-                $io                = $event->getIo();
                 $socketSessionData = $event->getSocketSessionData();
-
-                if($socketSessionData->getLastPlayerAttack() > time()-1) {
+                $roomId            = $socketSessionData->getActiveRoom()->getId();
+                $player            = $socketSessionData->getActivePlayer();
+                if ($socketSessionData->getLastPlayerAttack() > time() - 1) {
                     return;
                 }
 
                 $socketSessionData
                     ->setAttack($data['attack'])
-                    ->setPosition($data['targetPoint'])
+                    ->setTargetPoint($data['targetPoint'])
                     ->setLastPlayerAttack(time());
 
-                foreach($socketSessionData->getActiveRoom()->getMonsters() as $monster) {
+                foreach ($socketSessionData->getActiveRoom()->getMonsters() as $monsterKey => $monster) {
                     /** @var AbstractMonster $monster */
-                    foreach($monster->getAvailableAttacksFromCharacters() as $isAttacked) {
-                        if($isAttacked) {
-                            var_dump('attack');
+                    foreach ($monster->getAvailableAttacksFromCharacters() as $attackedPlayerId => $isAttacked) {
+                        if ($player->getId() == $attackedPlayerId) {
+                            $damage = $player->getStatistics()->getDamage();
+                            $monster->getStatistics()->setHp($monster->getStatistics()->getHp() - $damage);
+
+                            $emitData = [
+                                'enemy'    => $self->serializer->normalize($monster),
+                                'enemyKey' => $monsterKey,
+                                'roomId'   => $roomId,
+                            ];
+
+                            $socket
+//                                ->in($roomId)
+                                ->emit('updateEnemy', $emitData);
+                            $socket->to($self->socketIOServer->monsterServerId)->emit('updateEnemy', $emitData);
+
+                            if ($monster->getStatistics()->getHp() <= 0) {
+                                //Add special Item
+                                $specialItems = $monster->getSpecialItemsToDrop();
+                                if (count($specialItems)) {
+                                    foreach ($specialItems as $specialItem) {
+                                        /** @var AbstractSpecialItem $specialItem */
+                                        $specialItem->addItem(
+                                            $socketSessionData->getActivePlayer(),
+                                            $self->playerManager
+                                        );
+                                        $socket->emit('addSpecialItem', $specialItem);
+                                    }
+
+                                }
+
+                                $monster->setAvailableAttacksFromCharacters([]);
+
+                                $self->playerManager->addExperience($socketSessionData->getActivePlayer(), $monster->getExperience());
+                            }
                         }
 
                     }
                 }
-//                serverIO.in(activeCharacter.roomId).emit('updatePlayer', activeCharacter);
-//                serverIO.to(self.monsterServerSocketId).emit('updatePlayer', activeCharacter);
+                $socket
+//                    ->to($roomId)
+                    ->emit('updatePlayer', $self->serializer->normalize($socketSessionData, 'array'));
+                $socket
+                    ->to($self->socketIOServer->monsterServerId)
+                    ->emit('updatePlayer', $self->serializer->normalize($socketSessionData, 'array'));
+
+                $socketSessionData
+                    ->setAttack(false);
             }
         );
 

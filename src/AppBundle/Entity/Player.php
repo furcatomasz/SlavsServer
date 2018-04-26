@@ -101,6 +101,11 @@ class Player
     protected $freeAttributesPoints;
 
     /**
+     * @var Statistics
+     */
+    protected $statistics;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -309,30 +314,36 @@ class Player
     }
 
     /**
-     * @Serializer\VirtualProperty()
+     * @return Statistics
      */
     public function getStatistics(): Statistics
     {
-        return new Statistics(
-            100 + $this->getAttributes()->getHealth() * 5,
-            100 + $this->getAttributes()->getHealth()* 5,
-            100 + $this->getAttributes()->getAttackSpeed(),
-            15 + $this->getAttributes()->getDamage()* 5,
-            10 + $this->getAttributes()->getDefence() * 5,
-            2.9,
-            50 + $this->getAttributes()->getBlockChance(),
-            100
-        );
+        if(!$this->statistics) {
+            $this->statistics = new Statistics(
+                100 + $this->getAttributes()->getHealth() * 5,
+                100 + $this->getAttributes()->getHealth() * 5,
+                100 + $this->getAttributes()->getAttackSpeed(),
+                1 + $this->getAttributes()->getDamage() * 5,
+                10 + $this->getAttributes()->getDefence() * 5,
+                2.9,
+                50 + $this->getAttributes()->getBlockChance(),
+                100
+            );
+        }
+
+        return $this->statistics;
     }
 
     /**
-     * @Serializer\VirtualProperty()
+     * @return Collection
      */
     public function getItems(): Collection
     {
-        return $this->items->map(function(PlayerItem $playerItem) use (&$return) {
-            return ItemFactory::create($playerItem);
-        });
+        return $this->items->map(
+            function (PlayerItem $playerItem) use (&$return) {
+                return ItemFactory::create($playerItem);
+            }
+        );
     }
 
 }
