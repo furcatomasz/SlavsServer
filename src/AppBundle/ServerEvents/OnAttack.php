@@ -61,7 +61,7 @@ class OnAttack extends AbstractEvent
                     /** @var AbstractMonster $monster */
                     foreach ($monster->getAvailableAttacksFromCharacters() as $attackedPlayerId => $isAttacked) {
                         if ($player->getId() == $attackedPlayerId) {
-                            $damage = $player->getStatistics()->getDamage();
+                            $damage = $player->getAllStatistics()->getDamage();
                             $monster->getStatistics()->setHp($monster->getStatistics()->getHp() - $damage);
 
                             $emitData = [

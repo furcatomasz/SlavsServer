@@ -319,7 +319,7 @@ class Player
      */
     public function getStatistics(): Statistics
     {
-        if(!$this->statistics) {
+        if (!$this->statistics) {
             $this->statistics = new Statistics(
                 100 + $this->getAttributes()->getHealth() * 5,
                 100 + $this->getAttributes()->getHealth() * 5,
@@ -333,6 +333,33 @@ class Player
         }
 
         return $this->statistics;
+    }
+
+    /**
+     * @return Statistics
+     */
+    public function getAllStatistics(): Statistics
+    {
+        $allStatistics = clone $this->getStatistics();
+
+        $damage = 0;
+        $armor  = 0;
+
+        array_map(
+            function (AbstractItem $item) use (&$damage, &$armor) {
+                if($item->getEntity()->getEquip()) {
+                    $damage += $item->getStatistics()->getDamage();
+                    $armor  += $item->getStatistics()->getArmor();
+                }
+            },
+            $this->getItems()->toArray()
+        );
+
+        $allStatistics
+            ->setDamage($damage + $allStatistics->getDamage())
+            ->setArmor($armor + $allStatistics->getArmor());
+
+        return $allStatistics;
     }
 
     /**
