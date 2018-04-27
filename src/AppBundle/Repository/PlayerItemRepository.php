@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Player;
+use AppBundle\Entity\PlayerItem;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -23,4 +24,19 @@ class PlayerItemRepository extends AbstractRepository
      */
     protected static $_entityAlias = 'AppBundle:PlayerItem';
 
+    /**
+     * @param Player $player
+     * @param int    $id
+     *
+     * @return PlayerItem|object|null
+     */
+    public function findbyPlayerAndId(Player $player, int $id)
+    {
+        return $this->findOneBy(
+            [
+                'player' => $player,
+                'id'     => $id,
+            ]
+        );
+    }
 }

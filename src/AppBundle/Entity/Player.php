@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
+use GameBundle\Items\AbstractItem;
 use GameBundle\Items\ItemFactory;
 use GameBundle\Statistics\Statistics;
 use JMS\Serializer\Annotation as Serializer;
@@ -335,12 +336,12 @@ class Player
     }
 
     /**
-     * @return Collection
+     * @return Collection|AbstractItem
      */
     public function getItems(): Collection
     {
         return $this->items->map(
-            function (PlayerItem $playerItem) use (&$return) {
+            function (PlayerItem $playerItem) {
                 return ItemFactory::create($playerItem);
             }
         );
