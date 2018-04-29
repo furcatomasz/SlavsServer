@@ -6,6 +6,7 @@ use AppBundle\Entity\Player;
 use AppBundle\Repository\PlayerRepository;
 use Doctrine\ORM\EntityRepository;
 use JMS\DiExtraBundle\Annotation as DI;
+use ReflectionClass;
 
 /**
  * @DI\Service("manager.player")
@@ -31,7 +32,21 @@ class PlayerManager extends AbstractManager
 
     /**
      * @param Player $player
+     *
+     * @return $this
+     */
+    public function refreshStatistics(Player $player) {
+
+        $player->statistics = null;
+
+        return $this;
+    }
+
+    /**
+     * @param Player $player
      * @param int    $value
+     *
+     * @return PlayerManager
      */
     public function addGold(Player $player, int $value)
     {
@@ -41,11 +56,15 @@ class PlayerManager extends AbstractManager
         $player->setGold($newGold);
 
         $this->update($player);
+
+        return $this;
     }
 
     /**
      * @param Player $player
      * @param int    $value
+     *
+     * @return PlayerManager
      */
     public function addExperience(Player $player, int $value)
     {
@@ -55,6 +74,8 @@ class PlayerManager extends AbstractManager
         $player->setExperience($newGold);
 
         $this->update($player);
+
+        return $this;
     }
 
 

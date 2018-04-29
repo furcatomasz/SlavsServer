@@ -94,6 +94,30 @@ abstract class AbstractManager
     }
 
     /**
+     * @param $object
+     *
+     * @return $this
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function refresh($object) {
+
+        $this->em->refresh($object);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
+     */
+    public function clearAllCache() {
+
+        $this->em->clear();
+
+        return $this;
+    }
+
+    /**
      * @param int    $id
      * @param string $exceptionMessage
      *

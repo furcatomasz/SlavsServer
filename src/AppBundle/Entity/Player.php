@@ -104,7 +104,7 @@ class Player
     /**
      * @var Statistics
      */
-    protected $statistics;
+    public $statistics;
 
     /**
      * @return int
