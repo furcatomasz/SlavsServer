@@ -93,6 +93,10 @@ class OnAttack extends AbstractEvent
                                 $monster->setAvailableAttacksFromCharacters([]);
 
                                 $self->playerManager->addExperience($socketSessionData->getActivePlayer(), $monster->getExperience());
+                                $socket->emit('addExperience', [
+                                    'experience' => $monster->getExperience()
+                                ]);
+
                             }
                         }
 
