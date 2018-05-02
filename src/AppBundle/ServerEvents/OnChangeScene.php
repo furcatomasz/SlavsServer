@@ -41,14 +41,12 @@ class OnChangeScene extends AbstractEvent
             function ($sceneType) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
                 $scene             = Factory::createSceneByType($sceneType);
-
                 $self->playerManager->clearAllCache();
                 $activePlayer      = $self->playerManager->getRepo()->find(1);
 
                 $newRoom = (new Room())
                     ->setId($socket->id)
                     ->setName('RoomTest')
-                    ->setMonsters($scene->monsters)
                     ->setPlayers([$activePlayer->getId() => $socketSessionData]);
 
                 $socketSessionData
@@ -66,20 +64,10 @@ class OnChangeScene extends AbstractEvent
                 );
 
                 ///Call to monster server about create new room
-                $monsters = $self->serializer->normalize($newRoom->getMonsters(), 'array');
                 $socket
                     ->to($self->socketIOServer->monsterServerId)
                     ->emit('createRoom', $newRoom->getId());
-                ///Call to monster server about create enemies
-                $socket
-                    ->to($self->socketIOServer->monsterServerId)
-                    ->emit(
-                        'createEnemies',
-                        [
-                            'enemies' => $monsters,
-                            'roomId'  => $socketSessionData->getActiveRoom()->getId()
-                        ]
-                    );
+
 
                 $socket->emit('changeScene', $scene->type);
             }

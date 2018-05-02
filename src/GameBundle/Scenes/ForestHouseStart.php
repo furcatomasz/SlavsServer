@@ -5,6 +5,7 @@ namespace GameBundle\Scenes;
 use GameBundle\Gateways\EntraceForestHouse;
 use GameBundle\Gateways\EntraceForestHouseTomb;
 use GameBundle\Gateways\EntraceHouse;
+use GameBundle\Quests\SkeletonKing;
 
 class ForestHouseStart extends AbstractScene
 {
@@ -18,6 +19,10 @@ class ForestHouseStart extends AbstractScene
         parent::__construct();
         $this->gateways = [
             new EntraceForestHouse(),
+        ];
+
+        $this->quests = [
+            new SkeletonKing(),
         ];
     }
 

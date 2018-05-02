@@ -35,13 +35,17 @@ class OnChangeScenePost extends AbstractEvent
         $socket->on(
             'changeScenePost',
             function () use ($self, $event, $socket) {
-                $socketSessionData           = $event->getSocketSessionData();
-                $monsters                    = $socketSessionData->getActiveRoom()->getMonsters();
-                $monstersNormalized          = $self->serializer->normalize($monsters, 'array');
-                $socketSessionDataNormalized = $self->serializer->normalize($socketSessionData, 'array');
+                $socketSessionData = $event->getSocketSessionData();
+                $monsters          = $socketSessionData->getActiveRoom()->getMonsters();
 
-                $socket->to($self->socketIOServer->monsterServerId)->emit('showPlayer', $socketSessionDataNormalized);
-                $socket->emit('showEnemies', $monstersNormalized);
+                $socket->to($self->socketIOServer->monsterServerId)->emit(
+                    'showPlayer',
+                    $self->serializer->normalize($socketSessionData, 'array')
+                );
+                $socket->emit(
+                    'showEnemies',
+                    $self->serializer->normalize($monsters, 'array')
+                );
             }
         );
 

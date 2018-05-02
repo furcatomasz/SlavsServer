@@ -2,6 +2,8 @@
 
 namespace GameBundle\Gateways;
 
+use AppBundle\Storage\SocketSessionData;
+
 abstract class AbstractGateway
 {
     const TYPE = 0;
@@ -21,7 +23,11 @@ abstract class AbstractGateway
      */
     public $objectName;
 
-
-    abstract public function verifyIsActive(): AbstractGateway;
+    /**
+     * @param SocketSessionData $sessionData
+     *
+     * @return AbstractGateway
+     */
+    abstract public function verifyIsActive(SocketSessionData $sessionData): AbstractGateway;
 
 }

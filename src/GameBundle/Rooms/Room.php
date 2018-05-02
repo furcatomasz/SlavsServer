@@ -2,6 +2,8 @@
 
 namespace GameBundle\Rooms;
 
+use GameBundle\Quests\AbstractQuest;
+
 class Room
 {
     /**
@@ -20,6 +22,11 @@ class Room
      * @var array
      */
     protected $players;
+
+    /**
+     * @var AbstractQuest
+     */
+    protected $activeQuest;
 
     /**
      * @return string
@@ -62,9 +69,9 @@ class Room
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getMonsters(): array
+    public function getMonsters(): ?array
     {
         return $this->monsters;
     }
@@ -97,6 +104,26 @@ class Room
     public function setPlayers(array $players): Room
     {
         $this->players = $players;
+
+        return $this;
+    }
+
+    /**
+     * @return AbstractQuest|null
+     */
+    public function getActiveQuest(): ?AbstractQuest
+    {
+        return $this->activeQuest;
+    }
+
+    /**
+     * @param AbstractQuest $activeQuest
+     *
+     * @return Room
+     */
+    public function setActiveQuest(AbstractQuest $activeQuest): Room
+    {
+        $this->activeQuest = $activeQuest;
 
         return $this;
     }

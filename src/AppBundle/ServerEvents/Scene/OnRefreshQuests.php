@@ -14,7 +14,7 @@ use Symfony\Component\EventDispatcher\Event;
 /**
  * @DI\Service
  */
-class OnChangeScene extends AbstractEvent
+class OnRefreshQuests extends AbstractEvent
 {
 
     /**
@@ -28,28 +28,17 @@ class OnChangeScene extends AbstractEvent
         $socket = $event->getSocket();
         $self   = $this;
         $socket->on(
-            'changeSceneTrigger',
-            function ($sceneType) use ($self, $event, $socket) {
+            'refreshQuests',
+            function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $scene             = Factory::createSceneByType($sceneType);
-                $socketSessionData->setActiveScene($sceneType);
-
-                $socketSessionData->setPosition(
-                    [
-                        'x' => 0,
-                        'y' => 0,
-                        'z' => 0,
-                    ]
-                );
+                $scene             = Factory::createSceneByType($socketSessionData->getActiveScene());
 
                 $socket->emit(
-                    'changeScene',
-                    $sceneType
-                );
-
-                $socket->to($self->socketIOServer->monsterServerId)->emit(
-                    'removePlayer',
-                    $socketSessionData->getConnectionId()
+                    'refreshQuests',
+                    [
+                        'quests'      => $self->serializer->normalize($scene->quests, 'array'),
+                        'sessionData' => $self->serializer->normalize($socketSessionData, 'array'),
+                    ]
                 );
 
             }

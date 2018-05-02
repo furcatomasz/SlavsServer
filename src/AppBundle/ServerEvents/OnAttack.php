@@ -8,6 +8,9 @@ use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
 use GameBundle\Items\AbstractItem;
 use GameBundle\Monsters\AbstractMonster;
+use GameBundle\Quests\Chapter;
+use GameBundle\Quests\Requirements\AbstractRequirement;
+use GameBundle\Quests\Requirements\KillMonster;
 use GameBundle\SpecialItems\AbstractSpecialItem;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
@@ -115,6 +118,17 @@ class OnAttack extends AbstractEvent
 
                                 $monster->setAvailableAttacksFromCharacters([]);
                                 $self->playerManager->addExperience($player, $socket, $monster->getExperience());
+
+                                $quest = $socketSessionData->getActiveRoom()->getActiveQuest();
+                                if($quest) {
+                                    /** @var Chapter $actualChapter */
+                                    $actualChapter = $quest->chapters[$quest->actualChapter];
+                                    array_map(function(AbstractRequirement $requirement) use ($monster, $socket) {
+                                        if($requirement instanceof KillMonster && $requirement->monsterToKill->type == $monster->type) {
+                                            $requirement->passRequirement($socket);
+                                        }
+                                    }, $actualChapter->requirements);
+                                }
                             }
                         }
 

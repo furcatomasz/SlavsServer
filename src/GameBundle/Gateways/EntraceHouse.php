@@ -2,6 +2,7 @@
 
 namespace GameBundle\Gateways;
 
+use AppBundle\Storage\SocketSessionData;
 use GameBundle\Scenes\ForestHouseStart;
 
 class EntraceHouse extends AbstractGateway
@@ -15,7 +16,12 @@ class EntraceHouse extends AbstractGateway
         $this->openSceneType = ForestHouseStart::TYPE;
     }
 
-    public function verifyIsActive(): AbstractGateway
+    /**
+     * @param SocketSessionData $sessionData
+     *
+     * @return AbstractGateway
+     */
+    public function verifyIsActive(SocketSessionData $sessionData): AbstractGateway
     {
         return $this;
     }

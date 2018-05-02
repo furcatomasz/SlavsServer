@@ -6,6 +6,7 @@ namespace AppBundle\ServerEvents\Scene;
 use AppBundle\Entity\Player;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\ServerEvents\AbstractEvent;
+use GameBundle\Quests\AbstractQuest;
 use GameBundle\Scenes\Factory;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
@@ -14,7 +15,7 @@ use Symfony\Component\EventDispatcher\Event;
 /**
  * @DI\Service
  */
-class OnRefreshGateways extends AbstractEvent
+class OnAccepctQuest extends AbstractEvent
 {
 
     /**
@@ -28,17 +29,26 @@ class OnRefreshGateways extends AbstractEvent
         $socket = $event->getSocket();
         $self   = $this;
         $socket->on(
-            'refreshGateways',
-            function () use ($self, $event, $socket) {
+            'acceptQuest',
+            function ($questId) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
                 $scene             = Factory::createSceneByType($socketSessionData->getActiveScene());
-                $scene->refreshGatewaysData($socketSessionData);
+                $selectedQuest     = null;
+                foreach ($scene->quests as $quest) {
+                    /** @var AbstractQuest $quest */
+                    if ($quest::QUEST_ID == $questId) {
+                        $selectedQuest = $quest;
+                    }
+                }
+                $socketSessionData->getActiveRoom()->setActiveQuest($selectedQuest);
 
                 $socket->emit(
-                    'refreshGateways',
-                    $self->serializer->normalize($scene, 'array')
+                    'refreshQuests',
+                    [
+                        'quests'      => $self->serializer->normalize($scene->quests, 'array'),
+                        'sessionData' => $self->serializer->normalize($socketSessionData, 'array'),
+                    ]
                 );
-
             }
         );
 
