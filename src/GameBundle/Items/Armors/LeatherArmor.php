@@ -9,7 +9,7 @@ class LeatherArmor extends Armor
 {
     const ITEM_ID = 1;
 
-    public function __construct(PlayerItem $entity)
+    public function __construct(?PlayerItem $entity = null)
     {
         parent::__construct($entity);
 

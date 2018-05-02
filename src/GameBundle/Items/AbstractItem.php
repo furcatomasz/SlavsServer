@@ -58,9 +58,9 @@ abstract class AbstractItem
     }
 
     /**
-     * @return PlayerItem
+     * @return PlayerItem|null
      */
-    public function getEntity(): PlayerItem
+    public function getEntity(): ?PlayerItem
     {
         return $this->entity;
     }

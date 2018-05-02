@@ -6,6 +6,7 @@ namespace AppBundle\ServerEvents;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
+use GameBundle\Items\AbstractItem;
 use GameBundle\Monsters\AbstractMonster;
 use GameBundle\SpecialItems\AbstractSpecialItem;
 use JMS\DiExtraBundle\Annotation as DI;
@@ -86,6 +87,28 @@ class OnAttack extends AbstractEvent
                                             $self->playerManager
                                         );
                                         $socket->emit('addSpecialItem', $specialItem);
+                                    }
+
+                                }
+
+                                //Add Item
+                                $itemsToDrop = $monster->getItemsToDrop();
+                                if (count($itemsToDrop)) {
+                                    foreach ($itemsToDrop as $itemToDrop) {
+                                        if(!$socketSessionData->getItemsToDrop()) {
+                                            $socketSessionData->setItemsToDrop([$itemToDrop]);
+                                        } else {
+                                            $itemsToDrop = $socketSessionData->getItemsToDrop();
+                                            $itemsToDrop[] = $itemToDrop;
+                                            $socketSessionData->setItemsToDrop($itemsToDrop);
+                                            end($itemsToDrop);
+                                        }
+
+                                        $socket->emit('showDroppedItem', [
+                                                     'item' => $self->serializer->normalize($itemToDrop, 'array'),
+                                                     'itemKey' => key($itemsToDrop),
+                                                     'position' => $monster->getPosition(),
+                                                 ]);
                                     }
 
                                 }

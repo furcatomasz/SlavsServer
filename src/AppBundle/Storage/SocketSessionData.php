@@ -54,6 +54,11 @@ class SocketSessionData
     public $activeRoom;
 
     /**
+     * @var array
+     */
+    public $itemsToDrop;
+
+    /**
      * @return Player|null
      */
     public function getActivePlayer(): ?Player
@@ -232,5 +237,26 @@ class SocketSessionData
 
         return $this;
     }
+
+    /**
+     * @return array
+     */
+    public function getItemsToDrop(): ?array
+    {
+        return $this->itemsToDrop;
+    }
+
+    /**
+     * @param array $itemsToDrop
+     *
+     * @return SocketSessionData
+     */
+    public function setItemsToDrop(array $itemsToDrop)
+    {
+        $this->itemsToDrop = $itemsToDrop;
+
+        return $this;
+    }
+
 
 }

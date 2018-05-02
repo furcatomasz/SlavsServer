@@ -9,7 +9,7 @@ class Sword extends Weapon
 {
     const ITEM_ID = 7;
 
-    public function __construct(PlayerItem $entity)
+    public function __construct(?PlayerItem $entity = null)
     {
         parent::__construct($entity);
 

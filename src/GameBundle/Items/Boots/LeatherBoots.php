@@ -9,7 +9,7 @@ class LeatherBoots extends Boots
 {
     const ITEM_ID = 2;
 
-    public function __construct(PlayerItem $entity)
+    public function __construct(?PlayerItem $entity = null)
     {
         parent::__construct($entity);
 

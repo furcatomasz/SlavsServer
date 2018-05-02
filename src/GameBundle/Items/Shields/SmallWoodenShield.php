@@ -9,7 +9,7 @@ class SmallWoodenShield extends Shield
 {
     const ITEM_ID = 5;
 
-    public function __construct(PlayerItem $entity)
+    public function __construct(?PlayerItem $entity = null)
     {
         parent::__construct($entity);
 

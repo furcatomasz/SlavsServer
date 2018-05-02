@@ -9,9 +9,16 @@ class LongSword extends Weapon
 {
     const ITEM_ID = 8;
 
-    public function __construct(PlayerItem $entity)
+    /**
+     * LongSword constructor.
+     *
+     * @param PlayerItem|null $entity
+     */
+    public function __construct(?PlayerItem $entity = null)
     {
-        parent::__construct($entity);
+        if($entity) {
+            parent::__construct($entity);
+        }
 
         $this
             ->setName('swordLong')
