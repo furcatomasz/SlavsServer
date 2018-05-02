@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\Collection;
 use GameBundle\Items\AbstractItem;
 use GameBundle\Items\ItemFactory;
+use GameBundle\Lvls\Lvls;
 use GameBundle\Statistics\Statistics;
 use JMS\Serializer\Annotation as Serializer;
 use Doctrine\ORM\Mapping as ORM;
@@ -314,6 +315,10 @@ class Player
         return $this->specialItems;
     }
 
+    /***********
+     * Place for virtual properties
+     ***********/
+
     /**
      * @return Statistics
      */
@@ -372,6 +377,24 @@ class Player
                 return ItemFactory::create($playerItem);
             }
         );
+    }
+
+    /**
+     * @return float
+     */
+    public function getExperiencePercentages(): float {
+        if($this->experience < 1) {
+            return 0;
+        }
+
+        $experienceToActualLvl = Lvls::getExperienceForLvls()[($this->getLvl())];
+        $experienceRequired = Lvls::getExperienceForLvls()[($this->getLvl()+1)];
+
+        $percentageValue = ($this->getLvl()) ?
+            ((($this->getExperience()-$experienceToActualLvl ) * 100) / ($experienceRequired-$experienceToActualLvl)) :
+            ((($this->getExperience()) * 100) / ($experienceRequired));
+
+        return $percentageValue;
     }
 
 }

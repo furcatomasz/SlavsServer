@@ -82,7 +82,7 @@ class OnAttack extends AbstractEvent
                                     foreach ($specialItems as $specialItem) {
                                         /** @var AbstractSpecialItem $specialItem */
                                         $specialItem->addItem(
-                                            $socketSessionData->getActivePlayer(),
+                                            $player,
                                             $self->playerManager
                                         );
                                         $socket->emit('addSpecialItem', $specialItem);
@@ -91,12 +91,7 @@ class OnAttack extends AbstractEvent
                                 }
 
                                 $monster->setAvailableAttacksFromCharacters([]);
-
-                                $self->playerManager->addExperience($socketSessionData->getActivePlayer(), $monster->getExperience());
-                                $socket->emit('addExperience', [
-                                    'experience' => $monster->getExperience()
-                                ]);
-
+                                $self->playerManager->addExperience($player, $socket, $monster->getExperience());
                             }
                         }
 
