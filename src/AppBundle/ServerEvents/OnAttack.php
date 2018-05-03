@@ -123,9 +123,9 @@ class OnAttack extends AbstractEvent
                                 if($quest) {
                                     /** @var Chapter $actualChapter */
                                     $actualChapter = $quest->chapters[$quest->actualChapter];
-                                    array_map(function(AbstractRequirement $requirement) use ($monster, $socket) {
+                                    array_map(function(AbstractRequirement $requirement) use ($monster, $socket, $socketSessionData) {
                                         if($requirement instanceof KillMonster && $requirement->monsterToKill->type == $monster->type) {
-                                            $requirement->passRequirement($socket);
+                                            $requirement->passRequirement($socket, $socketSessionData);
                                         }
                                     }, $actualChapter->requirements);
                                 }

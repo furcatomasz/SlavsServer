@@ -15,7 +15,7 @@ class SkeletonBoss extends AbstractMonster
      * @param array $itemsToDrop
      * @param array $specialItemsToDrop
      */
-    public function __construct(int $id, array $position, array $itemsToDrop, array $specialItemsToDrop)
+    public function __construct(int $id = 0, array $position = [], array $itemsToDrop = [], array $specialItemsToDrop = [])
     {
         parent::__construct($id, $position, $itemsToDrop, $specialItemsToDrop);
 

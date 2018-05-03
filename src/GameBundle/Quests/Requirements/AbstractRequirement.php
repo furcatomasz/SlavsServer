@@ -2,6 +2,7 @@
 
 namespace GameBundle\Quests\Requirements;
 
+use GameBundle\Quests\Chapter;
 use PHPSocketIO\Socket;
 
 abstract class AbstractRequirement
@@ -21,15 +22,16 @@ abstract class AbstractRequirement
      */
     public $actualValue;
 
-    /**
+    /**        $this->actualChapter += 1;
+
      * @var string
      */
     public $isFinished;
 
     /**
-     * @param Socket $socket
-     *
-     * @return mixed
+     * @var Chapter
      */
-    abstract function passRequirement(Socket $socket);
+    public $chapter;
+
+//    abstract function passRequirement(Socket $socket);
 }

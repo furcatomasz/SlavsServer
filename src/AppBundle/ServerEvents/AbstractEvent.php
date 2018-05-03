@@ -2,11 +2,8 @@
 
 namespace AppBundle\ServerEvents;
 
-use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
 use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use JMS\DiExtraBundle\Annotation as DI;
 
@@ -29,9 +26,8 @@ abstract class AbstractEvent
      */
     public function __construct()
     {
-        $this->serializer = $this->getSerializerWithNormalizer();
+        $this->serializer = \AppBundle\Helper\Serializer::getSerializerWithNormalizer();
     }
-
 
     /**
      * @param Event $event
@@ -40,23 +36,4 @@ abstract class AbstractEvent
      */
     abstract public function registerEvent(Event $event): AbstractEvent;
 
-    /**
-     * @return Serializer
-     */
-    protected  function getSerializerWithNormalizer()
-    {
-        $encoder    = new JsonEncoder();
-        $normalizer = new ObjectNormalizer();
-        $normalizer->setCircularReferenceHandler(
-            function ($object) {
-                if(method_exists($object, 'getId')) {
-                    return $object->getId();
-                } else {
-                    return null;
-                }
-            }
-        );
-
-        return new Serializer([$normalizer], [$encoder]);
-    }
 }

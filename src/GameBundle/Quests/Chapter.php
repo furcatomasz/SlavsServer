@@ -2,8 +2,10 @@
 
 namespace GameBundle\Quests;
 
+use AppBundle\Storage\SocketSessionData;
 use GameBundle\Quests\Awards\AbstractAward;
 use GameBundle\Quests\Requirements\AbstractRequirement;
+use PHPSocketIO\Socket;
 
 class Chapter
 {
@@ -48,6 +50,8 @@ class Chapter
      */
     public function addRequrement(AbstractRequirement $requirement)
     {
+        $requirement->chapter = $this;
+
         $this->requirements[] = $requirement;
 
         return $this;
@@ -61,6 +65,38 @@ class Chapter
     public function addAward(AbstractAward $award)
     {
         $this->awards[] = $award;
+
+        return $this;
+    }
+
+    /**
+     * @param Socket            $socket
+     * @param SocketSessionData $sessionData
+     *
+     * @return $this
+     * @throws \Exception
+     */
+    public function checkRequirements(Socket $socket, SocketSessionData $sessionData)
+    {
+        $requirements              = $this->requirements;
+        $requirementsCount         = count($requirements);
+        $requirementsFinishedCount = 0;
+
+        foreach ($requirements as $requirement) {
+            /** @var AbstractRequirement $requirement */
+            if ($requirement->isFinished) {
+                $requirementsFinishedCount += 1;
+
+                $socket->emit(
+                    'questRequirementDoneInformation',
+                    'Quest requrement complete'
+                );
+            }
+        }
+
+        if ($requirementsCount == $requirementsFinishedCount) {
+            $this->quest->setNewChapter();
+        }
 
         return $this;
     }

@@ -2,6 +2,7 @@
 
 namespace GameBundle\Quests\Requirements;
 
+use AppBundle\Storage\SocketSessionData;
 use GameBundle\Monsters\AbstractMonster;
 use PHPSocketIO\Socket;
 
@@ -33,12 +34,12 @@ class KillMonster extends AbstractRequirement
      * @return mixed|void
      * @throws \Exception
      */
-    public function passRequirement(Socket $socket)
+    public function passRequirement(Socket $socket, SocketSessionData $sessionData)
     {
         $this->actualValue += 1;
 
         if ($this->requiredValue <= $this->actualValue) {
-            $this->isFinished;
+            $this->isFinished = true;
         }
 
         $message = 'Killed ' . $this->actualValue . '/' . $this->requiredValue . ' ' . $this->monsterToKill->getName();
@@ -47,7 +48,7 @@ class KillMonster extends AbstractRequirement
             $message
         );
 
-
+        $this->chapter->checkRequirements($socket, $sessionData);
     }
 
 

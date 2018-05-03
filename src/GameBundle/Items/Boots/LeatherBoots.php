@@ -11,7 +11,9 @@ class LeatherBoots extends Boots
 
     public function __construct(?PlayerItem $entity = null)
     {
-        parent::__construct($entity);
+        if($entity) {
+            parent::__construct($entity);
+        }
 
         $this
             ->setName('leatherBoots')

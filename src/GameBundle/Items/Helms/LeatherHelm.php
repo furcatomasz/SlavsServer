@@ -11,7 +11,9 @@ class LeatherHelm extends Helm
 
     public function __construct(?PlayerItem $entity = null)
     {
-        parent::__construct($entity);
+        if($entity) {
+            parent::__construct($entity);
+        }
 
         $this
             ->setName('leatherHelm')

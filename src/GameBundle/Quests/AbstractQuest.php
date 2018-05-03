@@ -2,6 +2,9 @@
 
 namespace GameBundle\Quests;
 
+use AppBundle\Storage\SocketSessionData;
+use PHPSocketIO\Socket;
+
 abstract class AbstractQuest
 {
     const QUEST_ID = 0;
@@ -32,11 +35,30 @@ abstract class AbstractQuest
     public $actualChapter;
 
     /**
+     * @var int
+     */
+    public $isFinished;
+
+    /**
      * @return int
      */
     public function getQuestId(): int
     {
         return static::QUEST_ID;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setNewChapter()
+    {
+        if($this->actualChapter == count($this->chapters)) {
+            $this->isFinished = true;
+        } else {
+            $this->actualChapter += 1;
+        }
+
+        return $this;
     }
 
 }

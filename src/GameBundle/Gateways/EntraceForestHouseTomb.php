@@ -3,6 +3,7 @@
 namespace GameBundle\Gateways;
 
 use AppBundle\Storage\SocketSessionData;
+use GameBundle\Quests\SkeletonKing;
 use GameBundle\Scenes\ForestHouseTomb;
 
 class EntraceForestHouseTomb extends AbstractGateway
@@ -12,7 +13,7 @@ class EntraceForestHouseTomb extends AbstractGateway
      */
     public function __construct()
     {
-        $this->objectName = 'Entrace_Tomb';
+        $this->objectName    = 'Entrace_Tomb';
         $this->openSceneType = ForestHouseTomb::TYPE;
     }
 
@@ -23,6 +24,9 @@ class EntraceForestHouseTomb extends AbstractGateway
      */
     public function verifyIsActive(SocketSessionData $sessionData): AbstractGateway
     {
+        $quest          = $sessionData->getActiveRoom()->getActiveQuest();
+        $this->isActive = ($quest && $quest->getQuestId() == SkeletonKing::QUEST_ID && $quest->actualChapter == 3);
+
         return $this;
     }
 
