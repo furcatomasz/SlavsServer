@@ -2,6 +2,7 @@
 
 namespace AppBundle\Server;
 
+use Doctrine\ORM\EntityManager;
 use GameBundle\Rooms\Room;
 use JMS\DiExtraBundle\Annotation as DI;
 use PHPSocketIO\Socket;
@@ -29,6 +30,13 @@ class SocketIO
     public $dispatcher;
 
     /**
+     * @DI\Inject("doctrine.orm.entity_manager")
+     *
+     * @var EntityManager
+     */
+    public $entityManager;
+
+    /**
      * @var array
      */
     public $rooms;
@@ -48,6 +56,11 @@ class SocketIO
         $io->on(
             'connection',
             function ($socket) use ($io, $self) {
+                if(false == $self->entityManager->getConnection()->ping()){
+                    $self->entityManager->getConnection()->close();
+                    $self->entityManager->getConnection()->connect();
+                }
+
                 /** @var Socket $socket */
                 $isMonsterServer = (array_key_exists('monsterServer', $socket->handshake['query'])) ? true : false;
 
