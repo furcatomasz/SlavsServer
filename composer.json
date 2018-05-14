@@ -5,7 +5,8 @@
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
-            "GameBundle\\": "src/GameBundle"
+            "GameBundle\\": "src/GameBundle",
+            "UserBundle\\": "src/UserBundle"
         },
         "classmap": [
             "app/AppKernel.php",
@@ -24,6 +25,7 @@
         "php": ">=7.2",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
         "incenteev/composer-parameter-handler": "^2.0",
         "jms/di-extra-bundle": "^1.8.2",
         "jms/serializer-bundle": "^2.3",
@@ -33,6 +35,7 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^2.6.4",
         "symfony/symfony": "3.4.*",
+        "symfony/templating": "^4.0",
         "twig/twig": "^1.0||^2.0",
         "workerman/phpsocket.io": "^1.1"
     },

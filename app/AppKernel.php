@@ -20,7 +20,8 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle(),
             new JMS\AopBundle\JMSAopBundle(),
             new GameBundle\GameBundle(),
-
+            new \FOS\UserBundle\FOSUserBundle(),
+            new UserBundle\UserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

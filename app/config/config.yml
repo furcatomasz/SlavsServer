@@ -30,6 +30,9 @@ framework:
     assets: ~
     php_errors:
         log: true
+    templating:
+        engines: ['twig']
+
 
 # Twig Configuration
 twig:
@@ -71,3 +74,11 @@ jms_di_extra:
         all_bundles: false
         bundles: [AppBundle]
         directories: ["%kernel.root_dir%/../src"]
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: UserBundle\Entity\User
+    from_email:
+        address: "%mailer_user%"
+        sender_name: "%mailer_user%"
