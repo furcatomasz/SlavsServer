@@ -2,12 +2,10 @@
 
 namespace UserBundle\Entity;
 
-use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -15,13 +13,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @UniqueEntity(fields={"email"}, groups={"Default", "register"}, message="This email is already used" )
  */
-class User extends BaseUser implements EncoderAwareInterface, UserInterface, \Serializable
+class User extends BaseUser implements UserInterface
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->addresses = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * @ORM\Column(type="integer")
@@ -35,8 +28,6 @@ class User extends BaseUser implements EncoderAwareInterface, UserInterface, \Se
     /**
      * @Assert\Email(groups={"Default", "register"}, checkHost = true)
      * @Assert\NotNull(groups={"Default", "register"})
-     *
-     * @BlacklistAssert\IsInBlacklistAccount(groups={"Default", "register"})
      *
      * @var string
      */
@@ -138,9 +129,9 @@ class User extends BaseUser implements EncoderAwareInterface, UserInterface, \Se
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -150,7 +141,7 @@ class User extends BaseUser implements EncoderAwareInterface, UserInterface, \Se
      *
      * @return User
      */
-    public function setEmail(string $email): User
+    public function setEmail($email): User
     {
         $this->email = $email;
 
@@ -158,9 +149,9 @@ class User extends BaseUser implements EncoderAwareInterface, UserInterface, \Se
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPlainPassword(): string
+    public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
@@ -170,7 +161,7 @@ class User extends BaseUser implements EncoderAwareInterface, UserInterface, \Se
      *
      * @return User
      */
-    public function setPlainPassword(string $plainPassword): User
+    public function setPlainPassword($plainPassword): User
     {
         $this->plainPassword = $plainPassword;
 

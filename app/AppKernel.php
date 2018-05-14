@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new GameBundle\GameBundle(),
             new \FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
+            new \FrontendBundle\FrontendBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

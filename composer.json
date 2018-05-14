@@ -6,7 +6,8 @@
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
             "GameBundle\\": "src/GameBundle",
-            "UserBundle\\": "src/UserBundle"
+            "UserBundle\\": "src/UserBundle",
+            "FrontendBundle\\": "src/FrontendBundle"
         },
         "classmap": [
             "app/AppKernel.php",

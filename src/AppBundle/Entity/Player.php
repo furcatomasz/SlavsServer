@@ -7,8 +7,8 @@ use GameBundle\Items\AbstractItem;
 use GameBundle\Items\ItemFactory;
 use GameBundle\Lvls\Lvls;
 use GameBundle\Statistics\Statistics;
-use JMS\Serializer\Annotation as Serializer;
 use Doctrine\ORM\Mapping as ORM;
+use UserBundle\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PlayerRepository")
@@ -25,7 +25,7 @@ class Player
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      *
      * @var User
      */
