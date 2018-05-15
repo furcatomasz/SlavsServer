@@ -24,12 +24,13 @@ class DefaultController extends SecurityController
     public $tokenManager;
 
     /**
-     * @Route("/home", name="homepage")
+     * @Route("/", name="homepage")
+
      * @param Request $request
      *
      * @return Response
      */
-    public function loginAction(Request $request)
+    public function homeAction(Request $request)
     {
         /** @var $session Session */
         $session = $request->getSession();

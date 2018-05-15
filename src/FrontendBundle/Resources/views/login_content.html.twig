@@ -10,18 +10,14 @@
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
     {% endif %}
 
-    <label for="username">{{ 'security.login.username'|trans }}</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="Username" class="form-control form-control-sm"/>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="Username"/>
 
-    <label for="password">{{ 'security.login.password'|trans }}</label>
-    <input type="password" id="password" name="_password" required="required" autocomplete="current-password" placeholder="Password" class="form-control form-control-sm" />
+    <input type="password" id="password" name="_password" required="required" autocomplete="current-password" placeholder="Password"/>
 
     <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+    <label for="remember_me">Remember me</label>
 
-    <div class="form-group text-center">
-        <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
-    </div>
+    <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
 
-    <input class="btn btn-primary btn-block" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+    <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="Login" />
 </form>

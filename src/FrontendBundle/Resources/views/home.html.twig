@@ -1,33 +1,23 @@
 {% extends "FrontendBundle::index.html.twig" %}
 
 {% block content %}
-    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-black">
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top navbar-black">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Play</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-
-                <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
-                    <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
-                    <li class="dropdown order-1">
-                        <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
-                        <ul class="dropdown-menu dropdown-menu-right mt-2">
-                            <li class="px-3 py-2">
-                                {{ include('FrontendBundle::login_content.html.twig') }}
-                            </li>
-                        </ul>
+                {% if app.user %}
+                    Logged as {{ app.user.username }}
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="{{ path('play_game') }}">Play</a>
                     </li>
-                </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_security_logout') }}">Logout</a>
+                    </li>
+                {% else %}
+                    {{ include('FrontendBundle::login_content.html.twig') }}
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -80,11 +70,6 @@
         </a>
     </div>
 
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
     <div class="container marketing">
 
 
@@ -100,14 +85,10 @@
         </div>
 
 
-        <!-- /END THE FEATURETTES -->
-
-
-        <!-- FOOTER -->
         <footer>
             <p class="float-right"><a href="#">Back to top</a></p>
             <p>&copy; 2018 WEBSTUDIO <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
         </footer>
 
-    </div><!-- /.container -->
+    </div>
 {% endblock %}

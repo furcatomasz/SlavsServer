@@ -19,7 +19,6 @@ class DefaultController extends Controller
     public $userManager;
 
     /**
-     * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     {

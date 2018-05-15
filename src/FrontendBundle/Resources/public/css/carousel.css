@@ -9,6 +9,10 @@ body {
   background-color: black;
 }
 
+.navbar-black {
+  color: #FFFFFF;
+  background-color: #0275d8;
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */

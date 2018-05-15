@@ -19,14 +19,15 @@ security:
         main:
             pattern: ^/
             form_login:
+                login_path: /
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
             logout:       true
             anonymous:    true
 
-
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/game/, role: ROLE_USER }
         - { path: ^/admin/, role: ROLE_ADMIN }
