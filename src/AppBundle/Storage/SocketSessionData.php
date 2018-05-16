@@ -4,9 +4,15 @@ namespace AppBundle\Storage;
 
 use AppBundle\Entity\Player;
 use GameBundle\Rooms\Room;
+use UserBundle\Entity\User;
 
 class SocketSessionData
 {
+
+    /**
+     * @var User
+     */
+    public $user;
 
     /**
      * @var Player
@@ -254,6 +260,26 @@ class SocketSessionData
     public function setItemsToDrop(array $itemsToDrop)
     {
         $this->itemsToDrop = $itemsToDrop;
+
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return SocketSessionData
+     */
+    public function setUser(User $user): SocketSessionData
+    {
+        $this->user = $user;
 
         return $this;
     }

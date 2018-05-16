@@ -7,6 +7,7 @@ use AppBundle\Entity\Player;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
+use FOS\UserBundle\Model\UserManager;
 use GameBundle\Rooms\Room;
 use GameBundle\Scenes\Factory;
 use JMS\DiExtraBundle\Annotation as DI;
@@ -30,6 +31,13 @@ class OnPlayerConnection extends AbstractEvent
     public $socketIOServer;
 
     /**
+     * @DI\Inject("fos_user.user_manager")
+     *
+     * @var UserManager
+     */
+    public $userManager;
+
+    /**
      * @DI\Observe("connection.established.event")
      * @param Event|ConnectionEstablishedEvent $event
      *
@@ -38,11 +46,13 @@ class OnPlayerConnection extends AbstractEvent
      */
     public function registerEvent(Event $event): AbstractEvent
     {
-        $socket = $event->getSocket();
+        $socket        = $event->getSocket();
+        $user          = $this->userManager->findUserByEmail('furcatomasz@gmail.com');
         $playerSession = $event->getSocketSessionData();
         $playerSession
             ->setConnectionId($event->getSocket()->id)
-            ->setMonsterServerId($event->getMonsterServerId());
+            ->setMonsterServerId($event->getMonsterServerId())
+            ->setUser($user);
 
         $playerSessionData = $this->serializer->normalize($playerSession, 'array');
 

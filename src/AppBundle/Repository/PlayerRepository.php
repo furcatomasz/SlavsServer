@@ -1,7 +1,9 @@
 <?php
+
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Player;
+use UserBundle\Entity\User;
 
 /**
  * Class PlayerRepository
@@ -21,4 +23,18 @@ class PlayerRepository extends AbstractRepository
      * @var string
      */
     protected static $_entityAlias = 'AppBundle:Player';
+
+    /**
+     * @param User $user
+     *
+     * @return array
+     */
+    public function findByUser(User $user)
+    {
+        return $this->findBy(
+            [
+                'user' => $user
+            ]
+        );
+    }
 }

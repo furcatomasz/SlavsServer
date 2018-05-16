@@ -5,12 +5,10 @@ namespace AppBundle\ServerEvents;
 
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
-use AppBundle\Server\SocketIO;
-use GameBundle\Rooms\Room;
 use GameBundle\Scenes\Factory;
+use GameBundle\Scenes\SelectCharacter;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\Serializer\Serializer;
 
 
 /**
@@ -18,6 +16,13 @@ use Symfony\Component\Serializer\Serializer;
  */
 class OnChangeScenePre extends AbstractEvent
 {
+
+    /**
+     * @DI\Inject("manager.player")
+     *
+     * @var PlayerManager
+     */
+    public $playerManager;
 
     /**
      * @DI\Observe("connection.established.event")
@@ -35,21 +40,31 @@ class OnChangeScenePre extends AbstractEvent
                 $socketSessionData = $event->getSocketSessionData();
                 $playerSessionData = $self->serializer->normalize($socketSessionData, 'array');
                 $scene             = Factory::createSceneByType($socketSessionData->getActiveScene());
-                $room              = $socketSessionData->getActiveRoom();
-                $room->setMonsters($scene->monsters);
 
-                $socket->emit('showPlayer', $playerSessionData);
+                if ($scene::TYPE == SelectCharacter::TYPE) {
+                    $user              = $socketSessionData->getUser();
+                    $players           = $self->playerManager->getRepo()->findByUser($user);
+                    $playersNormalized = $self->serializer->normalize($players, 'array');
 
-                ///Call to monster server about create enemies
-                $socket
-                    ->to($self->socketIOServer->monsterServerId)
-                    ->emit(
-                        'createEnemies',
-                        [
-                            'enemies' => $self->serializer->normalize($room->getMonsters(), 'array'),
-                            'roomId'  => $room->getId()
-                        ]
-                    );
+                    $socket->emit('showPlayersToSelect', $playersNormalized);
+                } else {
+                    $room = $socketSessionData->getActiveRoom();
+                    $room->setMonsters($scene->monsters);
+
+                    $socket->emit('showPlayer', $playerSessionData);
+
+                    ///Call to monster server about create enemies
+                    $socket
+                        ->to($self->socketIOServer->monsterServerId)
+                        ->emit(
+                            'createEnemies',
+                            [
+                                'enemies' => $self->serializer->normalize($room->getMonsters(), 'array'),
+                                'roomId'  => $room->getId()
+                            ]
+                        );
+                }
+
             }
         );
 

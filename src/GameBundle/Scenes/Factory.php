@@ -22,6 +22,9 @@ class Factory
         $scene = null;
 
         switch ($type) {
+            case SelectCharacter::TYPE:
+                $scene = new SelectCharacter();
+                break;
             case ForestHouse::TYPE:
                 $scene = new ForestHouse();
                 break;
