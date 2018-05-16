@@ -171,7 +171,7 @@ class User extends BaseUser implements UserInterface
     /**
      * @return string
      */
-    public function getFacebookId(): string
+    public function getFacebookId(): ?string
     {
         return $this->facebookId;
     }
@@ -191,7 +191,7 @@ class User extends BaseUser implements UserInterface
     /**
      * @return string
      */
-    public function getFacebookAccessToken(): string
+    public function getFacebookAccessToken(): ?string
     {
         return $this->facebookAccessToken;
     }
@@ -211,7 +211,7 @@ class User extends BaseUser implements UserInterface
     /**
      * @return string
      */
-    public function getGoogleId(): string
+    public function getGoogleId(): ?string
     {
         return $this->googleId;
     }
@@ -231,7 +231,7 @@ class User extends BaseUser implements UserInterface
     /**
      * @return string
      */
-    public function getGoogleAccessToken(): string
+    public function getGoogleAccessToken(): ?string
     {
         return $this->googleAccessToken;
     }
@@ -251,7 +251,7 @@ class User extends BaseUser implements UserInterface
     /**
      * @return string
      */
-    public function getTwitchId(): string
+    public function getTwitchId(): ?string
     {
         return $this->twitchId;
     }
@@ -271,7 +271,7 @@ class User extends BaseUser implements UserInterface
     /**
      * @return string
      */
-    public function getTwitchAccessToken(): string
+    public function getTwitchAccessToken(): ?string
     {
         return $this->twitchAccessToken;
     }

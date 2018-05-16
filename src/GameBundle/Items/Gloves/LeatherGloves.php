@@ -16,7 +16,7 @@ class LeatherGloves extends Gloves
         $this
             ->setName('leatherGloves')
             ->setMeshName('leatherGloves')
-            ->setImage('Gloves')
+            ->setImage('leatherGloves')
             ->setStatistics(new Statistics(0, 0, 0, 0, 5, 0, 0, 0));
 
     }

@@ -16,7 +16,7 @@ class SmallWoodenShield extends Shield
         $this
             ->setName('shieldWoodenSmall')
             ->setMeshName('shieldWoodenSmall')
-            ->setImage('Shield')
+            ->setImage('shieldWoodenSmall')
             ->setStatistics(new Statistics(0, 0, 0, 0, 5, 0, 0, 0));
 
     }

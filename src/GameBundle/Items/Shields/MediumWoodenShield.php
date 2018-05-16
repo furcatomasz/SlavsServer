@@ -14,9 +14,9 @@ class MediumWoodenShield extends Shield
         parent::__construct($entity);
 
         $this
-            ->setName('shieldWoodenSmall')
-            ->setMeshName('shieldWoodenSmall')
-            ->setImage('Shield')
+            ->setName('shieldWoodenMedium')
+            ->setMeshName('shieldWoodenMedium')
+            ->setImage('shieldWoodenMedium')
             ->setStatistics(new Statistics(0, 0, 0, 0, 5, 0, 0, 0));
 
     }

@@ -18,7 +18,7 @@ class LeatherBoots extends Boots
         $this
             ->setName('leatherBoots')
             ->setMeshName('leatherBoots')
-            ->setImage('Boots')
+            ->setImage('leatherBoots')
             ->setStatistics(new Statistics(0, 0, 0, 0, 5, 0, 0, 0));
 
     }

@@ -18,7 +18,7 @@ class LeatherHelm extends Helm
         $this
             ->setName('leatherHelm')
             ->setMeshName('leatherHelm')
-            ->setImage('Helm')
+            ->setImage('leatherHelm')
             ->setStatistics(new Statistics(0, 0, 0, 0, 5, 0, 0, 0));
 
     }
