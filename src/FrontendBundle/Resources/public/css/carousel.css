@@ -3,7 +3,6 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  padding-top: 3rem;
   padding-bottom: 3rem;
   color: #5a5a5a;
   background-color: black;
@@ -11,7 +10,7 @@ body {
 
 .navbar-black {
   color: #FFFFFF;
-  background-color: #4f1200;
+  background-color: black;
 }
 
 /* CUSTOMIZE THE CAROUSEL

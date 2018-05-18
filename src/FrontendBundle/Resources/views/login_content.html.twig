@@ -1,23 +1,47 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
 
-
-<form action="{{ path("fos_user_security_check") }}" method="post" class="form" role="form">
-    {% if csrf_token %}
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+<div class="container text-center">
+    <h1 class="my-5">Play the game</h1>
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
+    <div class="row">
+        <div class="col-sm">
+            <form action="{{ path("fos_user_security_check") }}" method="post" class="form" role="form">
+                {% if csrf_token %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                {% endif %}
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                            <input class="form-control" type="text" id="username" name="_username"
+                                   value="{{ last_username }}"
+                                   required="required" placeholder="Username"/>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                            <input class="form-control" type="password" id="password" name="_password"
+                                   required="required"
+                                   autocomplete="current-password" placeholder="Password"/>
+                        </div>
+                    </div>
+                </div>
 
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="Username"/>
+                <input class="form-control btn btn-danger my-2" type="submit" id="_submit" name="_submit" value="Login"/>
 
-    <input type="password" id="password" name="_password" required="required" autocomplete="current-password" placeholder="Password"/>
+                <p><small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small></p>
+                <h2><a href="#" data-toggle="modal" data-target="#modalPassword">Create new account</a></h2>
 
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">Remember me</label>
-
-    <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
-
-    <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="Login" />
-</form>
+            </form>
+        </div>
+        <div class="col-sm">
+            <h3>Login via social media</h3>
+            <a href="#" class="btn btn-danger"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="#" class="btn btn-danger"><i class="fab fa-google-plus-g"></i> Google+</a>
+        </div>
+    </div>
+</div>

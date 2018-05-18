@@ -43,7 +43,6 @@ class OnSelectCharacter extends AbstractEvent
         $socket->on(
             'selectCharacter',
             function ($playerId) use ($self, $event, $socket) {
-                var_dump($playerId);
                 $socketSessionData = $event->getSocketSessionData();
                 $activePlayer      = $self->playerManager->getRepo()->find($playerId);
                 $scene             = Factory::createSceneByType(ForestHouseStart::TYPE);
