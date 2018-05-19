@@ -53,7 +53,10 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                             $playerSession = $players[$playerId];
                             /** @var Player $player */
                             $player = $playerSession->getActivePlayer();
-                            $damage = $enemy->getStatistics()->getDamage();
+                            $damage = $enemy->getStatistics()->getDamage()-$player->getAllStatistics()->getArmor();
+                            if($damage < 1) {
+                                $damage = 1;
+                            }
                             $player->getStatistics()->setHp($player->getStatistics()->getHp() - $damage);
                             $socket
                                 ->to($roomId)

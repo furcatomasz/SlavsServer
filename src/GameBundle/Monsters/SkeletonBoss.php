@@ -22,12 +22,12 @@ class SkeletonBoss extends AbstractMonster
         $this->name               = 'Skeleton BOSS';
         $this->type               = 'skeletonBoss';
         $this->meshName           = 'skeletonBoss';
-        $this->scale              = 1.6;
+        $this->scale              = 1.5;
         $this->lvl                = 5;
         $this->experience         = 25;
         $this->attackAreaSize     = 2;
         $this->visibilityAreaSize = 15;
-        $this->statistics         = new Statistics(400, 400, 100, 15, 10, 8, 0, 100);
+        $this->statistics         = new Statistics(400, 400, 100, 25, 25, 8, 0, 100);
     }
 
 

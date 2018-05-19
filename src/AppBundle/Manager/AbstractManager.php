@@ -84,6 +84,8 @@ abstract class AbstractManager
      * @param object $object The object instance to remove.
      *
      * @return $this
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function remove($object)
     {

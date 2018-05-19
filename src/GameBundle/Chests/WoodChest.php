@@ -19,6 +19,7 @@ class WoodChest extends AbstractChest
         $this->objectName         = $objectName;
         $this->requirementKeyType = KeyToChest::TYPE;
         $this->name               = 'Wood Chest';
+        $this->awards             = $awards;
     }
 
 }

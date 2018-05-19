@@ -23,10 +23,10 @@ class Skeleton extends AbstractMonster
         $this->type               = 'skeleton';
         $this->meshName           = 'skeleton';
         $this->lvl                = 1;
-        $this->experience         = 1;
+        $this->experience         = 2;
         $this->attackAreaSize     = 2;
         $this->visibilityAreaSize = 15;
-        $this->statistics         = new Statistics(40, 40, 100, 3, 10, 4, 0, 100);
+        $this->statistics         = new Statistics(12, 12, 100, 6, 3, 4, 0, 100);
     }
 
 

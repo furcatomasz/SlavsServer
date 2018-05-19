@@ -21,10 +21,10 @@ class LongSword extends Weapon
         }
 
         $this
-            ->setName('swordLong')
+            ->setName('Long sword')
             ->setMeshName('swordLong')
             ->setImage('swordLong')
-            ->setStatistics(new Statistics(0, 0, 0, 15, 0, 0, 0, 0));
+            ->setStatistics(new Statistics(0, 0, 0, 20, 0, 0, 0, 0));
 
     }
 

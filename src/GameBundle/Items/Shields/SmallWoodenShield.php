@@ -11,13 +11,15 @@ class SmallWoodenShield extends Shield
 
     public function __construct(?PlayerItem $entity = null)
     {
-        parent::__construct($entity);
+        if($entity) {
+            parent::__construct($entity);
+        }
 
         $this
-            ->setName('shieldWoodenSmall')
+            ->setName('Small wooden shield')
             ->setMeshName('shieldWoodenSmall')
             ->setImage('shieldWoodenSmall')
-            ->setStatistics(new Statistics(0, 0, 0, 0, 5, 0, 0, 0));
+            ->setStatistics(new Statistics(0, 0, 0, 0, 2, 0, 0, 0));
 
     }
 

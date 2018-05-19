@@ -4,6 +4,7 @@ namespace AppBundle\ServerEvents;
 
 
 use AppBundle\Manager\PlayerManager;
+use AppBundle\Manager\SpecialItemManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
 use GameBundle\Items\AbstractItem;
@@ -12,6 +13,7 @@ use GameBundle\Quests\Chapter;
 use GameBundle\Quests\Requirements\AbstractRequirement;
 use GameBundle\Quests\Requirements\KillMonster;
 use GameBundle\SpecialItems\AbstractSpecialItem;
+use GameBundle\SpecialItems\Gold;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -28,6 +30,13 @@ class OnAttack extends AbstractEvent
      * @var PlayerManager
      */
     public $playerManager;
+
+    /**
+     * @DI\Inject("manager.special_item")
+     *
+     * @var SpecialItemManager
+     */
+    public $specialItemManager;
 
     /**
      * @DI\Inject("app.server.socket")
@@ -65,7 +74,10 @@ class OnAttack extends AbstractEvent
                     /** @var AbstractMonster $monster */
                     foreach ($monster->getAvailableAttacksFromCharacters() as $attackedPlayerId => $isAttacked) {
                         if ($player->getId() == $attackedPlayerId) {
-                            $damage = $player->getAllStatistics()->getDamage();
+                            $damage = $player->getAllStatistics()->getDamage()-$monster->getStatistics()->getArmor();
+                            if($damage < 1) {
+                                $damage = 1;
+                            }
                             $monster->getStatistics()->setHp($monster->getStatistics()->getHp() - $damage);
 
                             $emitData = [
@@ -84,10 +96,14 @@ class OnAttack extends AbstractEvent
                                 $specialItems = $monster->getSpecialItemsToDrop();
                                 if (count($specialItems)) {
                                     foreach ($specialItems as $specialItem) {
+                                        $manager = ($specialItem instanceof Gold) ?
+                                            $this->playerManager :
+                                            $this->specialItemManager;
+
                                         /** @var AbstractSpecialItem $specialItem */
                                         $specialItem->addItem(
                                             $player,
-                                            $self->playerManager
+                                            $manager
                                         );
                                         $socket->emit('addSpecialItem', $specialItem);
                                     }
@@ -97,23 +113,28 @@ class OnAttack extends AbstractEvent
                                 //Add Item
                                 $itemsToDrop = $monster->getItemsToDrop();
                                 if (count($itemsToDrop)) {
-                                    foreach ($itemsToDrop as $itemToDrop) {
-                                        if(!$socketSessionData->getItemsToDrop()) {
-                                            $socketSessionData->setItemsToDrop([$itemToDrop]);
+                                    $randomItem  = $itemsToDrop[array_rand($itemsToDrop)];
+                                    $droppedItem = $randomItem['item'];
+                                    $chance      = $randomItem['chance'];
+                                    if (rand(1, 100) < $chance) {
+                                        if (!$socketSessionData->getItemsToDrop()) {
+                                            $socketSessionData->setItemsToDrop([$droppedItem]);
                                         } else {
-                                            $itemsToDrop = $socketSessionData->getItemsToDrop();
-                                            $itemsToDrop[] = $itemToDrop;
+                                            $itemsToDrop   = $socketSessionData->getItemsToDrop();
+                                            $itemsToDrop[] = $droppedItem;
                                             $socketSessionData->setItemsToDrop($itemsToDrop);
                                             end($itemsToDrop);
                                         }
 
-                                        $socket->emit('showDroppedItem', [
-                                                     'item' => $self->serializer->normalize($itemToDrop, 'array'),
-                                                     'itemKey' => key($itemsToDrop),
-                                                     'position' => $monster->getPosition(),
-                                                 ]);
+                                        $socket->emit(
+                                            'showDroppedItem',
+                                            [
+                                                'item'     => $self->serializer->normalize($droppedItem, 'array'),
+                                                'itemKey'  => key($itemsToDrop),
+                                                'position' => $monster->getPosition(),
+                                            ]
+                                        );
                                     }
-
                                 }
 
                                 $monster->setAvailableAttacksFromCharacters([]);

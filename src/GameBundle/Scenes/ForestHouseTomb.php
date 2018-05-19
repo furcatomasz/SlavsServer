@@ -4,6 +4,7 @@ namespace GameBundle\Scenes;
 
 use GameBundle\Chests\WoodChest;
 use GameBundle\Gateways\ForestHouseTombExit;
+use GameBundle\Items\Weapons\LongSword;
 use GameBundle\Monsters\SkeletonBoss;
 use GameBundle\SpecialItems\Gold;
 use GameBundle\SpecialItems\KeyToChest;
@@ -12,7 +13,7 @@ class ForestHouseTomb extends AbstractScene
 {
     const TYPE = 3;
 
-    /**
+    /**createEnemies
      * AbstractScene constructor.
      */
     public function __construct()
@@ -27,7 +28,7 @@ class ForestHouseTomb extends AbstractScene
         ];
 
         $this->chests = [
-            new WoodChest('Chest', [new Gold(5)]),
+            new WoodChest('Chest', [new Gold(50), new LongSword()]),
         ];
     }
 
