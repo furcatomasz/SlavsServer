@@ -32,7 +32,7 @@ class KeyToChest extends AbstractSpecialItem
     {
         parent::__construct($value);
 
-        $this->name = 'Key to chest';
+        $this->name = 'Key to wood chest';
     }
 
 

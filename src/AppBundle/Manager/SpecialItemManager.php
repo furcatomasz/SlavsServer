@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityRepository;
 use JMS\DiExtraBundle\Annotation as DI;
 
 /**
- * @DI\Service("room.player")
+ * @DI\Service("manager.special_item")
  */
 class SpecialItemManager extends AbstractManager
 {

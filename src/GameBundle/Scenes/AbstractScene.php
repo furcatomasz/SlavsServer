@@ -21,6 +21,11 @@ abstract class AbstractScene
     public $quests;
 
     /**
+     * @var array
+     */
+    public $chests;
+
+    /**
      * @var int
      */
     public $type;
@@ -38,6 +43,7 @@ abstract class AbstractScene
         $this->monsters = [];
         $this->quests   = [];
         $this->gateways = [];
+        $this->chests   = [];
         $this->type     = static::TYPE;
     }
 

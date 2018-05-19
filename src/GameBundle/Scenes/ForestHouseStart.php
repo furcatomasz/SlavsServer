@@ -2,10 +2,12 @@
 
 namespace GameBundle\Scenes;
 
+use GameBundle\Chests\WoodChest;
 use GameBundle\Gateways\EntraceForestHouse;
 use GameBundle\Gateways\EntraceForestHouseTomb;
 use GameBundle\Gateways\EntraceHouse;
 use GameBundle\Quests\SkeletonKing;
+use GameBundle\SpecialItems\Gold;
 
 class ForestHouseStart extends AbstractScene
 {

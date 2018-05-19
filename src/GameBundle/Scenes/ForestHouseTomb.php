@@ -2,8 +2,10 @@
 
 namespace GameBundle\Scenes;
 
+use GameBundle\Chests\WoodChest;
 use GameBundle\Gateways\ForestHouseTombExit;
 use GameBundle\Monsters\SkeletonBoss;
+use GameBundle\SpecialItems\Gold;
 use GameBundle\SpecialItems\KeyToChest;
 
 class ForestHouseTomb extends AbstractScene
@@ -22,6 +24,10 @@ class ForestHouseTomb extends AbstractScene
 
         $this->monsters = [
             new SkeletonBoss(0, ['x' => 32, 'y' => 0, 'z' => -44], [], [new KeyToChest(1)]),
+        ];
+
+        $this->chests = [
+            new WoodChest('Chest', [new Gold(5)]),
         ];
     }
 
