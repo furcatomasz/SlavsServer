@@ -71,8 +71,8 @@ swiftmailer:
 
 jms_di_extra:
     locations:
-        all_bundles: false
-        bundles: [AppBundle]
+        all_bundles: true
+        bundles: [AppBundle, UserBundle]
         directories: ["%kernel.root_dir%/../src"]
 
 fos_user:
@@ -82,6 +82,11 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+    registration:
+        confirmation:
+            enabled: true
+        form:
+            type: UserBundle\Form\RegistrationFormType
 
 stof_doctrine_extensions:
     orm:

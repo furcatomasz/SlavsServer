@@ -2,9 +2,25 @@ frontend:
     resource: '@FrontendBundle/Controller/'
     type: annotation
 
+user:
+    resource: '@UserBundle/Controller/'
+    type: annotation
 
-#fos_user:
-#    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+fos_user_register:
+    prefix: /register
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+
+fos_user_registration_confirm:
+    path: /confirm/{token}
+    defaults: { _controller: fos_user.registration.controller:confirmAction }
+
+fos_user_registration_confirmed:
+    path: /confirmed
+    defaults: { _controller: fos_user.registration.controller:confirmedAction }
+
+fos_user_reset:
+    prefix: /reset
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
 
 fos_user_security_check:
     path:     /login_check

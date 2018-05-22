@@ -1,0 +1,52 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% if not app.user %}
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {
+        'class': 'fos_user_registration_register form',
+        'id':  'register-form',
+    } }) }}
+
+    {{ form_errors(form.email) }}
+    {{ form_errors(form.plainPassword.first) }}
+    {{ form_errors(form.plainPassword.second) }}
+    {{ form_errors(form) }}
+    {{ form_row(form._token) }}
+
+    <div class="my-2">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            {{ form_widget(form.email, {'attr': {
+                'class': 'form-control',
+                'type': 'email',
+                'id': 'email',
+                'placeholder': 'Email'
+            }} ) }}
+        </div>
+
+    </div>
+    <div class="my-2">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
+            {{ form_widget(form.plainPassword.first, {'attr': {
+                'class': 'form-control',
+                'type': 'password',
+                'id': 'password',
+                'placeholder': 'Password'
+            }} ) }}
+        </div>
+    </div>
+    <div class="my-2">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
+            {{ form_widget(form.plainPassword.second, {'attr': {
+                'class': 'form-control',
+                'type': 'password',
+                'id': 'repeatpassword',
+                'placeholder': 'Repeat password'
+            }} ) }}
+        </div>
+    </div>
+    <button class="btn btn-primary " type="submit">Register</button>
+    {{ form_end(form) }}
+
+{% endif %}
