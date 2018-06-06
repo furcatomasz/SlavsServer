@@ -23,7 +23,9 @@ class AppKernel extends Kernel
             new \FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
             new \FrontendBundle\FrontendBundle(),
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle()
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Http\HttplugBundle\HttplugBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

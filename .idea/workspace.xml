@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="581b9ded-2e00-4765-b4c8-39d1ffb2643d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Player.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Player.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Manager/AbstractManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Manager/AbstractManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/ServerEvents/MonsterServer/OnSetEnemyTargetPoint.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/ServerEvents/MonsterServer/OnSetEnemyTargetPoint.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnAttack.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnAttack.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnSelectCharacter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnSelectCharacter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/ServerEvents/Scene/OnOpenChest.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/ServerEvents/Scene/OnOpenChest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/ServerEvents/Temporary/FastSelect.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Chests/WoodChest.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Chests/WoodChest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Gateways/ForestHouseTombExit.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Gateways/ForestHouseTombExit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Items/Armors/LeatherArmor.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Items/Armors/LeatherArmor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Items/Boots/LeatherBoots.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Items/Boots/LeatherBoots.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Items/Gloves/LeatherGloves.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Items/Gloves/LeatherGloves.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Items/Helms/LeatherHelm.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Items/Helms/LeatherHelm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Items/Shields/MediumWoodenShield.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Items/Shields/MediumWoodenShield.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Items/Shields/SmallWoodenShield.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Items/Shields/SmallWoodenShield.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Items/Weapons/LongSword.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Items/Weapons/LongSword.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Lvls/Lvls.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Lvls/Lvls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Monsters/Skeleton.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Monsters/Skeleton.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonBoss.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonBoss.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonWarrior.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonWarrior.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Quests/SkeletonKing.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Quests/SkeletonKing.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouse.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouse.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseTomb.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseTomb.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/views/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/views/home.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -73,15 +50,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Factory.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/Factory.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="34" column="41" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ForestHouse.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouse.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -115,6 +83,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="home.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/FrontendBundle/Resources/views/home.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
+              <folding>
+                <element signature="e#12#43#0#Twig" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="LeatherArmor.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Armors/LeatherArmor.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -142,12 +122,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LeatherHelm.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LeatherHelm.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Helms/LeatherHelm.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+            <state relative-caret-position="322">
+              <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login_content.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/FrontendBundle/Resources/views/login_content.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-292" />
           </provider>
         </entry>
       </file>
@@ -277,15 +264,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Socket.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/workerman/phpsocket.io/src/Engine/Socket.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="171" column="54" selection-start-line="171" selection-start-column="54" selection-end-line="171" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Sword.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Weapons/Sword.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -377,7 +355,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnPlayerConnection.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePre.php" />
         <option value="$PROJECT_DIR$/src/FrontendBundle/Resources/views/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/FrontendBundle/Resources/views/home.html.twig" />
         <option value="$PROJECT_DIR$/src/FrontendBundle/Resources/public/css/carousel.css" />
         <option value="$PROJECT_DIR$/src/FrontendBundle/Resources/views/login_content.html.twig" />
         <option value="$PROJECT_DIR$/src/GameBundle/Chests/AbstractSpecialItem.php" />
@@ -413,6 +390,7 @@
         <option value="$PROJECT_DIR$/src/GameBundle/Monsters/Skeleton.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonBoss.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonWarrior.php" />
+        <option value="$PROJECT_DIR$/src/FrontendBundle/Resources/views/home.html.twig" />
       </list>
     </option>
   </component>
@@ -490,29 +468,30 @@
               <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="GameBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="FrontendBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="GameBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Items" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="FrontendBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="GameBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Items" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Helms" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="FrontendBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="GameBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Lvls" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="FrontendBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
@@ -665,7 +644,7 @@
       <workItem from="1526664532984" duration="8885000" />
       <workItem from="1526730019054" duration="5801000" />
       <workItem from="1526746707867" duration="4124000" />
-      <workItem from="1526758132697" duration="6043000" />
+      <workItem from="1526758132697" duration="7533000" />
     </task>
     <task id="LOCAL-00001" summary="+ monsters&#10;+ special items&#10;+ scenes&#10;+ statistics&#10;+ gateways">
       <created>1523985448757</created>
@@ -765,15 +744,21 @@
       <option name="project" value="LOCAL" />
       <updated>1526736737807</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="#master&#10; * rebalans monsters, items and character&#10; * chance to drop item after kill monster&#10; * allow to open chest with key&#10; * armor reduce retrieving damage">
+      <created>1526765889891</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1526765889891</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102913000" />
+    <option name="totallyTimeSpent" value="104403000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1918" y="-3" width="1924" height="1087" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" weight="0.32680413" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.52396166" side_tool="true" weight="0.29436326" />
@@ -822,7 +807,8 @@
     <MESSAGE value="#master&#10; * character select" />
     <MESSAGE value="#master&#10; * new main page of slavs" />
     <MESSAGE value="#master&#10; * chests" />
-    <option name="LAST_COMMIT_MESSAGE" value="#master&#10; * chests" />
+    <MESSAGE value="#master&#10; * rebalans monsters, items and character&#10; * chance to drop item after kill monster&#10; * allow to open chest with key&#10; * armor reduce retrieving damage" />
+    <option name="LAST_COMMIT_MESSAGE" value="#master&#10; * rebalans monsters, items and character&#10; * chance to drop item after kill monster&#10; * allow to open chest with key&#10; * armor reduce retrieving damage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -867,23 +853,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePre.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1081">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="e#43#79#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScene.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="31" column="6" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Storage/SocketSessionData.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -1217,8 +1186,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Helms/LeatherHelm.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="322">
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FrontendBundle/Resources/views/login_content.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-292" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FrontendBundle/Resources/views/home.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
+          <folding>
+            <element signature="e#12#43#0#Twig" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

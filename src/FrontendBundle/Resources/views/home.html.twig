@@ -35,13 +35,9 @@
 
     <div class="container marketing">
         {% if app.user %}
-            Logged as {{ app.user.username }}
-            <li class="nav-item">
-                <a class="nav-link" target="_blank" href="{{ path('play_game') }}">Play</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('fos_user_security_logout') }}">Logout</a>
-            </li>
+            <b>Logged as {{ app.user.username }}</b>
+            <a href="{{ path('play_game') }}" class="btn btn-danger"><i class="fab fa-game"></i> Play</a>
+            <a href="{{ path('fos_user_security_logout') }}" class="btn btn-danger"><i class="fab fa-logout"></i> Logout</a>
         {% else %}
             {{ include('FrontendBundle::login_content.html.twig') }}
         {% endif %}

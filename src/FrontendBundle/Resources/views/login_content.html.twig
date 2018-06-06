@@ -40,8 +40,8 @@
         </div>
         <div class="col-sm">
             <h3>Login via social media</h3>
-            <a href="#" class="btn btn-danger"><i class="fab fa-facebook"></i> Facebook</a>
-            <a href="#" class="btn btn-danger"><i class="fab fa-google-plus-g"></i> Google+</a>
+            <a href="{{ path('hwi_oauth_service_redirect', { service: 'facebook' }) }}" class="btn btn-danger"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="{{ path('hwi_oauth_service_redirect', { service: 'google' }) }}" class="btn btn-danger"><i class="fab fa-google-plus-g"></i> Google+</a>
         </div>
     </div>
 </div>

@@ -87,3 +87,20 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable:   true
+
+hwi_oauth:
+    firewall_names: [main]
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           122746138375707
+            client_secret:       162d13db40a78d940f6fa10522ef0a2b
+            scope:               "email"
+
+        google:
+            type:                google
+            client_id:           528195991592-823cl6kgpdb0h8bdu4oa4nkqrqnk9tbe.apps.googleusercontent.com
+            client_secret:       oXsQKpvAV3SipGIHYC2KcOBO
+            scope:               "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+
+
