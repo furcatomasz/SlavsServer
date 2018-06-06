@@ -151,6 +151,7 @@ class User extends BaseUser implements UserInterface
     public function setEmail($email): User
     {
         $this->email = $email;
+        $this->setUsername($email);
 
         return $this;
     }
