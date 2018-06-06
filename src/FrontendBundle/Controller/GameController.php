@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use UserBundle\Entity\User;
 
 class GameController extends Controller
 {
@@ -37,10 +38,15 @@ class GameController extends Controller
      *
      * @return Response
      */
-    public function loginAction(Request $request)
+    public function playAction(Request $request)
     {
         $gameTokenSessionManager = $this->gameTokenSessionManager;
+        /** @var User $user */
         $user                    = $this->getUser();
+        if(!$user->isAllowedToPlay()) {
+            $this->addFlash('error', 'You do not have access to alpha test');
+            return $this->redirect('/');
+        }
         $generatedToken          = $gameTokenSessionManager->generateToken();
 
         $gameTokenSessionManager->clearOldTokens($user);

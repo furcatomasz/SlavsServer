@@ -32,7 +32,7 @@ class DefaultController extends SecurityController
      */
     public function homeAction(Request $request)
     {
-        /** @var $session Session */
+       /** @var $session Session */
         $session = $request->getSession();
 
         $authErrorKey    = Security::AUTHENTICATION_ERROR;

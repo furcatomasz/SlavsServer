@@ -38,6 +38,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'FrontendBundle::form_error.html.twig'
 
 # Doctrine Configuration
 doctrine:

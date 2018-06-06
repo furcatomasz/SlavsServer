@@ -109,6 +109,13 @@ class User extends BaseUser implements UserInterface
     protected $twitchAccessToken;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     *
+     * @var boolean
+     */
+    protected $allowedToPlay;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -287,5 +294,26 @@ class User extends BaseUser implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return bool|null
+     */
+    public function isAllowedToPlay(): ?bool
+    {
+        return $this->allowedToPlay;
+    }
+
+    /**
+     * @param bool $allowedToPlay
+     *
+     * @return User
+     */
+    public function setAllowedToPlay(bool $allowedToPlay): User
+    {
+        $this->allowedToPlay = $allowedToPlay;
+
+        return $this;
+    }
+
 
 }

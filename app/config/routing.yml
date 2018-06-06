@@ -3,8 +3,8 @@ frontend:
     type: annotation
 
 
-#fos_user:
-#    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 fos_user_security_check:
     path:     /login_check

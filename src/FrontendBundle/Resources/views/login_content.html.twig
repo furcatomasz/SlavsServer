@@ -4,7 +4,9 @@
 <div class="container text-center">
     <h1 class="my-5">Play the game</h1>
     {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    <div class="alert alert-danger" role="alert">
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+    </div>
     {% endif %}
     <div class="row">
         <div class="col-sm">
@@ -33,15 +35,13 @@
 
                 <input class="form-control btn btn-danger my-2" type="submit" id="_submit" name="_submit" value="Login"/>
 
-                <p><small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small></p>
-                <h2><a href="#" data-toggle="modal" data-target="#modalPassword">Create new account</a></h2>
+                <p><small><a href="#">Forgot password?</a></small></p>
+                <h2><a href="{{ path("fos_user_registration_register") }}">Create new account</a></h2>
 
             </form>
         </div>
         <div class="col-sm">
-            <h3>Login via social media</h3>
-            <a href="{{ path('hwi_oauth_service_redirect', { service: 'facebook' }) }}" class="btn btn-danger"><i class="fab fa-facebook"></i> Facebook</a>
-            <a href="{{ path('hwi_oauth_service_redirect', { service: 'google' }) }}" class="btn btn-danger"><i class="fab fa-google-plus-g"></i> Google+</a>
+            {{ include('FrontendBundle::social_media.html.twig') }}
         </div>
     </div>
 </div>
