@@ -1,8 +1,9 @@
+{% trans_default_domain 'FOSUserBundle' %}
 {% extends "FrontendBundle::index.html.twig" %}
 
 {% block content %}
     <div class="container text-center alert alert-success">
-        Please check you mailbox and confirm Your email.
+        {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
     </div>
     <div class="container text-center">
         <h2><a href="/">Back to homepage</a></h2>

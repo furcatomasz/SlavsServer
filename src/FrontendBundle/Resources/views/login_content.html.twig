@@ -1,7 +1,7 @@
-{% trans_default_domain 'FOSUserBundle' %}
+{% trans_default_domain 'UserBundle' %}
 
 
-<div class="container text-center">
+<div class="text-center">
     <h1 class="my-5">Play the game</h1>
     {% if error %}
     <div class="alert alert-danger" role="alert">
@@ -9,7 +9,7 @@
     </div>
     {% endif %}
     <div class="row">
-        <div class="col-sm">
+        <div class="col-12 col-md-6">
             <form action="{{ path("fos_user_security_check") }}" method="post" class="form" role="form">
                 {% if csrf_token %}
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
@@ -35,12 +35,12 @@
 
                 <input class="form-control btn btn-danger my-2" type="submit" id="_submit" name="_submit" value="Login"/>
 
-                <p><small><a href="#">Forgot password?</a></small></p>
+                <p><small><a href="{{ path('fos_user_resetting_request') }}">Forgot password?</a></small></p>
                 <h2><a href="{{ path("fos_user_registration_register") }}">Create new account</a></h2>
 
             </form>
         </div>
-        <div class="col-sm">
+        <div class="col-12 col-md-6">
             {{ include('FrontendBundle::social_media.html.twig') }}
         </div>
     </div>

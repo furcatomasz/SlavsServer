@@ -57,29 +57,30 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <div class="container">
+    <div class="container my-5">
         {% block content %}{% endblock %}
     </div>
 
-    <div class="container marketing">
-        <div class="row featurette">
+    <div class="container my-5">
+        <div class="row">
             <div class="col-md-7">
-                <h2 class="featurette-heading">Slavs - pre-alpha</h2>
+                <h1>Slavs - pre-alpha</h1>
                 <p class="lead">Currently state of game is pre-alpha version. At this moment you can create only
                     account, but without access to play. Just create Your account to be up to date with Slavs! We have
                     plan to start with alpha demo in June.</p>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5 text-center">
                 <img class="featurette-image img-fluid mx-auto"
                      src="https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/20770458_787008951460098_6579751856148652717_n.png?_nc_cat=0&oh=ed62267263a279c28e002d0d4b53bed3&oe=5B4F1EE6"
                      alt="Generic placeholder image">
             </div>
         </div>
 
-        <footer>
-            <p>&copy; 2018 WEBSTUDIO</p>
-        </footer>
     </div>
+
+    <footer class="text-center mt-2 py-3 gray-background">
+        <b>&copy; 2018 WEBSTUDIO - Tomasz Furca</b>
+    </footer>
 
     <div id="flash-messages">
         {% for type, messages in app.session.flashbag.all() %}

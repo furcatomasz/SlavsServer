@@ -28,6 +28,7 @@ framework:
     fragments: ~
     http_method_override: true
     assets: ~
+    translator: { fallbacks: [en] }
     php_errors:
         log: true
     templating:

@@ -1,10 +1,14 @@
-{% extends "@FOSUser/layout.html.twig" %}
-
 {% trans_default_domain 'FOSUserBundle' %}
+{% extends "FrontendBundle::index.html.twig" %}
 
-{% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
-{% endblock fos_user_content %}
+{% block content %}
+    <div class="container text-center">
+        <h1 class="my-5">Account has been confirmed.</h1>
+    </div>
+
+    <script>
+        let timer = setTimeout(function() {
+            window.location='/';
+        }, 2000);
+    </script>
+{% endblock %}
