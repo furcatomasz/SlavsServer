@@ -2,53 +2,62 @@
 
 {% block content %}
     <div class="container text-center">
-    <h1 class="my-5">Register new account</h1>
-    <div class="row">
-        <div class="col-12 col-md-6">
-            {{ form_errors(form) }}
-            {{ form_errors(form.email) }}
-            {{ form_errors(form.plainPassword.first) }}
-            {{ form_errors(form.plainPassword.second) }}
-            <form action="{{ path("fos_user_registration_register") }}" method="post" class="form" role="form">
-                {{ form_row(form._token) }}
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                            <input class="form-control" type="text" name="fos_user_registration_form[email]"
-                                   required="required" placeholder="Email"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row m-3">
-                    <div class="col-sm-6">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fas fa-lock"></i></span>
-                            <input class="form-control" type="password"
-                                   name="fos_user_registration_form[plainPassword][first]"
-                                   required="required"
-                                   autocomplete="current-password" placeholder="Password"/>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fas fa-lock"></i></span>
-                            <input class="form-control" type="password"
-                                   name="fos_user_registration_form[plainPassword][second]"
-                                   required="required"
-                                   autocomplete="current-password" placeholder="Password confirmation"/>
-                        </div>
-                    </div>
-                </div>
+        <h1 class="my-5">Register new account</h1>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                {{ form_errors(form) }}
+                {{ form_errors(form.email) }}
+                {{ form_errors(form.plainPassword.first) }}
+                {{ form_errors(form.plainPassword.second) }}
+                <form action="{{ path("fos_user_registration_register") }}" method="post" class="form" role="form">
+                    {{ form_row(form._token) }}
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
 
-                <input class="form-control btn btn-danger my-2" type="submit" value="Register"/>
-                <h2><a href="/">Back to login</a></h2>
+                                <input class="form-control" type="text" name="fos_user_registration_form[email]"
+                                       required="required" placeholder="Email"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-3">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
 
-            </form>
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                </div>
+                                <input class="form-control" type="password"
+                                       name="fos_user_registration_form[plainPassword][first]"
+                                       required="required"
+                                       autocomplete="current-password" placeholder="Password"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                </div>
+                                <input class="form-control" type="password"
+                                       name="fos_user_registration_form[plainPassword][second]"
+                                       required="required"
+                                       autocomplete="current-password" placeholder="Password confirmation"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input class="form-control btn btn-danger my-2" type="submit" value="Register"/>
+                    <h2><a href="/">Back to login</a></h2>
+
+                </form>
+            </div>
+            <div class="col-12 col-md-6">
+                {{ include('FrontendBundle::social_media.html.twig') }}
+            </div>
+
         </div>
-        <div class="col-12 col-md-6">
-            {{ include('FrontendBundle::social_media.html.twig') }}
-        </div>
-
     </div>
 {% endblock %}

@@ -2,24 +2,25 @@
 
 {% block content %}
     <div class="container text-center">
-    <h1 class="my-5">Reset your password</h1>
+        <h1 class="my-5">Reset your password</h1>
         <form action="{{ path('fos_user_resetting_send_email') }}" method="POST">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input class="form-control" type="text" name="username"
+                               required="required" placeholder="Email"/>
+                    </div>
+                    <input class="form-control btn btn-danger my-2" type="submit" value="Reset password"/>
 
-        <div class="row">
-            <div class="col-12 col-md-6">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                <input class="form-control" type="text" name="username"
-                       required="required" placeholder="Email"/>
-            </div>
-                <input class="form-control btn btn-danger my-2" type="submit" value="Reset password"/>
+                </div>
+                <div class="col-12 col-md-6">
+                    <h2><a href="/">Back to login</a></h2>
+                </div>
 
             </div>
-            <div class="col-12 col-md-6">
-            <h2><a href="/">Back to login</a></h2>
-            </div>
-
-    </div>
         </form>
-
+    </div>
 {% endblock %}

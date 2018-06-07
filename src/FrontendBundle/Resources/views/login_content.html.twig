@@ -4,9 +4,9 @@
 <div class="text-center">
     <h1 class="my-5">Play the game</h1>
     {% if error %}
-    <div class="alert alert-danger" role="alert">
-        {{ error.messageKey|trans(error.messageData, 'security') }}
-    </div>
+        <div class="alert alert-danger" role="alert">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
     {% endif %}
     <div class="row">
         <div class="col-12 col-md-6">
@@ -17,7 +17,10 @@
                 <div class="row">
                     <div class="col-sm">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+
                             <input class="form-control" type="text" id="username" name="_username"
                                    value="{{ last_username }}"
                                    required="required" placeholder="Username"/>
@@ -25,7 +28,9 @@
                     </div>
                     <div class="col-sm">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            </div>
                             <input class="form-control" type="password" id="password" name="_password"
                                    required="required"
                                    autocomplete="current-password" placeholder="Password"/>
@@ -33,9 +38,12 @@
                     </div>
                 </div>
 
-                <input class="form-control btn btn-danger my-2" type="submit" id="_submit" name="_submit" value="Login"/>
+                <input class="form-control btn btn-danger my-2" type="submit" id="_submit" name="_submit"
+                       value="Login"/>
 
-                <p><small><a href="{{ path('fos_user_resetting_request') }}">Forgot password?</a></small></p>
+                <p>
+                    <small><a href="{{ path('fos_user_resetting_request') }}">Forgot password?</a></small>
+                </p>
                 <h2><a href="{{ path("fos_user_registration_register") }}">Create new account</a></h2>
 
             </form>

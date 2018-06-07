@@ -7,7 +7,7 @@
 
     <title>Slavs - Slavian RPG game in WebGL</title>
     <meta name="description" content="Slavs - WebGL rpg game">
-    <link type="text/css" href="{{ asset('bundles/frontend/css/bootstrap.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link type="text/css" href="{{ asset('bundles/frontend/css/carousel.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
           integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -75,8 +75,9 @@
                      alt="Generic placeholder image">
             </div>
         </div>
-
     </div>
+
+    {{ render(controller('FrontendBundle:Rank:players')) }}
 
     <footer class="text-center mt-2 py-3 gray-background">
         <b>&copy; 2018 WEBSTUDIO - Tomasz Furca</b>
@@ -85,7 +86,7 @@
     <div id="flash-messages">
         {% for type, messages in app.session.flashbag.all() %}
             {% for message in messages %}
-                <div id="inner-message" class="alert alert-warning font-weight-bold text-center">
+                <div id="inner-message" class="alert alert-light font-weight-bold text-center">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     {{ message }}
                 </div>
