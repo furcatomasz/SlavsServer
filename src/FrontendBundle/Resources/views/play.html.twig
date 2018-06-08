@@ -7,6 +7,30 @@
 
     <title>Slavs - Slavian RPG game in WebGL</title>
     <meta name="description" content="Slavs - WebGL rpg game">
+
+    <script src="{{ asset('bundles/frontend/js/babylon/babylon.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/babylon/babylon.inspector.bundle.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/babylon/babylon.gui.min.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/babylon/materialsLibrary/babylon.terrainMaterial.min.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/socket.io.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/game/slavs.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/game/parameters.js') }}"></script>
+
+    <style>
+        html, body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+    </style>
 <script>
     var SESSION_TOKEN = '{{ sessionToken }}';
     console.log(SESSION_TOKEN);
@@ -15,7 +39,14 @@
 </head>
 
 <body>
-    CANVAS - play slavs
+    <canvas id="renderCanvas"></canvas>
+    <script>
+        if (BABYLON.Engine.isSupported()) {
+            let htmlElement = document.getElementById('renderCanvas');
+            document.getElementsByTagName("body")[0].setAttribute("oncontextmenu", "return false");
 
+            new Game(htmlElement);
+        }
+    </script>
 </body>
 </html>

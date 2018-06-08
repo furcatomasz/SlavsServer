@@ -33,7 +33,7 @@ class GameController extends Controller
     public $gameTokenSessionManager;
 
     /**
-     * @Route("/game/play", name="play_game")
+     * @Route("/bundles/frontend/slavs", name="play_game")
      * @param Request $request
      *
      * @return Response
