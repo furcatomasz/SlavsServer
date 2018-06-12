@@ -23,7 +23,7 @@
         ]
     },
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.1",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/user-bundle": "~2.0@dev",

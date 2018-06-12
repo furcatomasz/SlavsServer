@@ -47,7 +47,7 @@ class OnSelectCharacter extends AbstractEvent
             function ($playerId) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
                 $activePlayer      = $self->playerManager->getRepo()->find($playerId);
-                $scene             = Factory::createSceneByType(ForestHouseStart::TYPE);
+                $scene             = Factory::createSceneByType(ForestHouse::TYPE);
 
                 $newRoom = (new Room())
                     ->setId($socket->id)

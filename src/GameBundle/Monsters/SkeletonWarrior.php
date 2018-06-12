@@ -22,7 +22,7 @@ class SkeletonWarrior extends AbstractMonster
         $this->name               = 'Skeleton Warrior';
         $this->type               = 'skeletonWarrior';
         $this->meshName           = 'skeletonWarrior';
-        $this->scale              = 1.2;
+        $this->scale              = 1;
         $this->lvl                = 3;
         $this->experience         = 5;
         $this->attackAreaSize     = 2;
