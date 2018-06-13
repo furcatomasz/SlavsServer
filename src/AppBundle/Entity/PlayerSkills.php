@@ -64,9 +64,9 @@ class PlayerSkills
     /**
      * @param int $id
      *
-     * @return PlayerSkkils
+     * @return PlayerSkills
      */
-    public function setId(int $id): PlayerSkkils
+    public function setId(int $id): PlayerSkills
     {
         $this->id = $id;
 
@@ -84,9 +84,9 @@ class PlayerSkills
     /**
      * @param Player $player
      *
-     * @return PlayerSkkils
+     * @return PlayerSkills
      */
-    public function setPlayer(Player $player): PlayerSkkils
+    public function setPlayer(Player $player): PlayerSkills
     {
         $this->player = $player;
 
@@ -104,9 +104,9 @@ class PlayerSkills
     /**
      * @param int $skillType
      *
-     * @return PlayerSkkils
+     * @return PlayerSkills
      */
-    public function setSkillType(int $skillType): PlayerSkkils
+    public function setSkillType(int $skillType): PlayerSkills
     {
         $this->skillType = $skillType;
 
@@ -124,9 +124,9 @@ class PlayerSkills
     /**
      * @param int $cooldown
      *
-     * @return PlayerSkkils
+     * @return PlayerSkills
      */
-    public function setCooldown(int $cooldown): PlayerSkkils
+    public function setCooldown(int $cooldown): PlayerSkills
     {
         $this->cooldown = $cooldown;
 
@@ -144,9 +144,9 @@ class PlayerSkills
     /**
      * @param int $damage
      *
-     * @return PlayerSkkils
+     * @return PlayerSkills
      */
-    public function setDamage(int $damage): PlayerSkkils
+    public function setDamage(int $damage): PlayerSkills
     {
         $this->damage = $damage;
 
@@ -164,9 +164,9 @@ class PlayerSkills
     /**
      * @param int $stock
      *
-     * @return PlayerSkkils
+     * @return PlayerSkills
      */
-    public function setStock(int $stock): PlayerSkkils
+    public function setStock(int $stock): PlayerSkills
     {
         $this->stock = $stock;
 

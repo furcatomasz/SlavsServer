@@ -1,8 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="581b9ded-2e00-4765-b4c8-39d1ffb2643d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/views/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/views/home.html.twig" afterDir="false" />
+    <list default="true" id="581b9ded-2e00-4765-b4c8-39d1ffb2643d" name="Default" comment="#master&#10; * fux">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Characters/Warrior/Character_texture.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Characters/Warrior/Hood1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Characters/Warrior/Skirt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Characters/Warrior/belt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Characters/Warrior/boots.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Characters/Warrior/realtexture.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Characters/Warrior/skirt1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Characters/Warrior/szkielet-1.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Environment/Plants/ground_plants3d.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/caveGround.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/pitcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/skeleton.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/skeletons2d.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/stone.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/stone1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/stone2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/stoneWall.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/stoneWallGate.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/woodSheet.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/Grass_seamless_saturation.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/beam.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/dirt.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/groundSeamless.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/ground_plants3d.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/spruce.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/stone.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/thatchGreen.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/forestStartHouse/beam.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/forestStartHouse/boar leather1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/forestStartHouse/hardEarth.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/forestStartHouse/pitcher.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/forestStartHouse/questLog1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/forestStartHouse/thatch.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/forestStartHouse/woodenSmallShieldLogo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AIServer/babylon.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AIServer/config.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AIServer/server.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/Forest_House_Tomb.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Environment/Plants/spruce.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Environment/Plants/spruce.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/stencil.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/stencil.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/stone.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/stone.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Bush1.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Bush1.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Bush3.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Bush3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Fance.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Fance.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Fern.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Fern.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Forest_ground1AO.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Forest_ground1AO.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Grass_slim.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Grass_slim.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Grass_small.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Grass_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Huba.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Huba.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Log.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Log.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Log_old.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Log_old.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Rock_big.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Rock_big.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Root_new.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Root_new.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Sage.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Sage.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Sage_rev.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Sage_rev.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Spider_web.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Spider_web.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Stone_large.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Stone_large.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Stone_medium.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Stone_medium.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Stone_small.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Stone_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Tent.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/Tent.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/korona2.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/korona2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/korona3.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/korona3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/root.png" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/root.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/PlayerSkills.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/PlayerSkills.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnSelectCharacter.php" afterPath="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnSelectCharacter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Characters/Warrior/Warrior.babylon" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Characters/Warrior/Warrior.babylon" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Characters/Warrior/Warrior.log" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Characters/Warrior/Warrior.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Environment/Plants/Plants.babylon" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Environment/Plants/Plants.babylon" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Environment/Plants/Plants.log" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/Environment/Plants/Plants.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/Forest_House_Tomb.babylon" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_House_Tomb/Forest_House_Tomb.babylon" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/Forest_house.babylon" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/Forest_house.babylon" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/Forest_house.log" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/Forest_house/Forest_house.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/forestStartHouse/forestHouseStart.babylon" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/forestStartHouse/forestHouseStart.babylon" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/forestStartHouse/forestHouseStart.log" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/forestStartHouse/forestHouseStart.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/map01.babylon" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/map01.babylon" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/map01.d.ts" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/map01.d.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/map01.js" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/map01.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/map01.log" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/assets/scenes/map01/map01.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/js/game/slavs.js" afterPath="$PROJECT_DIR$/src/FrontendBundle/Resources/public/js/game/slavs.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,40 +91,45 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings" doNotAsk="true" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AbstractItem.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/AbstractItem.php">
+      <file leaf-file-name="babylon.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AIServer/babylon.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractMonster.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/AbstractMonster.php">
+      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AIServer/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="99" column="20" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="20" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractSpecialItem.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/SpecialItems/AbstractSpecialItem.php">
+      <file leaf-file-name="ConnectionEstablishedEvent.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/ConnectionEstablishedEvent.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+            <state relative-caret-position="-273">
+              <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Client.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/workerman/phpsocket.io/src/Client.php">
+      <file leaf-file-name="Factory.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/Factory.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="183" selection-start-line="183" selection-end-line="183" />
+            <state relative-caret-position="273">
+              <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -53,8 +137,9 @@
       <file leaf-file-name="ForestHouse.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouse.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="654">
-              <caret line="81" column="70" selection-start-line="81" selection-start-column="70" selection-end-line="81" selection-end-column="70" />
+            <state relative-caret-position="546">
+              <caret line="77" column="52" lean-forward="false" selection-start-line="77" selection-start-column="52" selection-end-line="77" selection-end-column="52" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -62,123 +147,39 @@
       <file leaf-file-name="ForestHouseStart.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseStart.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
-              <folding>
-                <element signature="e#37#69#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="483">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ForestHouseTomb.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseTomb.php">
+      <file leaf-file-name="GameBundle.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GameBundle/GameBundle.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="688">
-              <caret line="30" column="68" selection-start-line="30" selection-start-column="68" selection-end-line="30" selection-end-column="68" />
-              <folding>
-                <element signature="e#37#69#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/FrontendBundle/Resources/views/home.html.twig">
+      <file leaf-file-name="OnChangeScene.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScene.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
-              <folding>
-                <element signature="e#12#43#0#Twig" expanded="true" />
-              </folding>
+            <state relative-caret-position="301">
+              <caret line="42" column="56" lean-forward="false" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LeatherArmor.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Armors/LeatherArmor.php">
+      <file leaf-file-name="OnChangeScenePre.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePre.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LeatherBoots.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Boots/LeatherBoots.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LeatherGloves.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Gloves/LeatherGloves.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LeatherHelm.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Helms/LeatherHelm.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login_content.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/FrontendBundle/Resources/views/login_content.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-292" />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LongSword.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Weapons/LongSword.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Lvls.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Lvls/Lvls.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MediumWoodenShield.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Shields/MediumWoodenShield.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OnAttack.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnAttack.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="77" column="28" selection-start-line="77" selection-start-column="28" selection-end-line="79" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OnOpenChest.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/Scene/OnOpenChest.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="77" column="29" selection-start-line="77" selection-start-column="29" selection-end-line="77" selection-end-column="29" />
+            <state relative-caret-position="441">
+              <caret line="48" column="35" lean-forward="false" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -186,62 +187,39 @@
       <file leaf-file-name="OnPlayerConnection.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnPlayerConnection.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+            <state relative-caret-position="420">
+              <caret line="58" column="38" lean-forward="false" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OnSelectCharacter.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OnSelectCharacter.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnSelectCharacter.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="44" column="20" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
+            <state relative-caret-position="320">
+              <caret line="40" column="62" lean-forward="true" selection-start-line="40" selection-start-column="62" selection-end-line="40" selection-end-column="62" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OnSetEnemyTargetPoint.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/MonsterServer/OnSetEnemyTargetPoint.php">
+      <file leaf-file-name="PlayerSkills.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/PlayerSkills.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="37" column="50" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
+            <state relative-caret-position="93">
+              <caret line="64" column="21" lean-forward="false" selection-start-line="63" selection-start-column="7" selection-end-line="64" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Player.php">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AIServer/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="327" column="26" selection-start-line="327" selection-start-column="26" selection-end-line="327" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Skeleton.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/Skeleton.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="28" column="57" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SkeletonBoss.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonBoss.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="667">
-              <caret line="29" column="68" selection-start-line="29" selection-start-column="68" selection-end-line="29" selection-end-column="68" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SkeletonKing.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Quests/SkeletonKing.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
+            <state relative-caret-position="210">
+              <caret line="172" column="10" lean-forward="false" selection-start-line="172" selection-start-column="10" selection-end-line="172" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -249,44 +227,19 @@
       <file leaf-file-name="SkeletonWarrior.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonWarrior.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+            <state relative-caret-position="525">
+              <caret line="25" column="38" lean-forward="false" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SmallWoodenShield.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Shields/SmallWoodenShield.php">
+      <file leaf-file-name="SocketIO.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/SocketIO.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Sword.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Weapons/Sword.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="19" column="52" lean-forward="true" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Weapon.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Weapons/Weapon.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WoodChest.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameBundle/Chests/WoodChest.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="21" column="44" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+            <state relative-caret-position="1491">
+              <caret line="78" column="55" lean-forward="false" selection-start-line="78" selection-start-column="55" selection-end-line="78" selection-end-column="55" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -295,9 +248,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>s</find>
-      <find>se</find>
-      <find>setAct</find>
       <find>setActi</find>
       <find>setActive</find>
       <find>setActiveP</find>
@@ -325,10 +275,15 @@
       <find>remove</find>
       <find>showEnemies</find>
       <find>change</find>
+      <find>showPlayersToSelect</find>
+      <find>PlayerSkkils</find>
+      <find>PlayerSkils</find>
     </findStrings>
     <replaceStrings>
       <replace>new Gold</replace>
       <replace>chance</replace>
+      <replace>PlayerSkils</replace>
+      <replace>PlayerSkills</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$USER_HOME$/www</dir>
@@ -340,8 +295,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/FrontendBundle/Controller/GameController.php" />
-        <option value="$PROJECT_DIR$/app/config/routing.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/src/FrontendBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
@@ -373,7 +326,6 @@
         <option value="$PROJECT_DIR$/src/GameBundle/Chests/WoodChest.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseTomb.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/Scene/OnOpenChest.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnSelectCharacter.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Player.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Items/Armors/LeatherArmor.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Items/Boots/LeatherBoots.php" />
@@ -385,12 +337,15 @@
         <option value="$PROJECT_DIR$/src/GameBundle/Items/Shields/MediumWoodenShield.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnAttack.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/MonsterServer/OnSetEnemyTargetPoint.php" />
-        <option value="$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouse.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Quests/SkeletonKing.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Monsters/Skeleton.php" />
         <option value="$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonBoss.php" />
-        <option value="$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonWarrior.php" />
         <option value="$PROJECT_DIR$/src/FrontendBundle/Resources/views/home.html.twig" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonWarrior.php" />
+        <option value="$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouse.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/PlayerSkills.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/ServerEvents/OnSelectCharacter.php" />
       </list>
     </option>
   </component>
@@ -413,10 +368,11 @@
       </server>
     </servers>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2242" />
-    <option name="width" value="1924" />
-    <option name="height" value="1163" />
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="312" />
+    <option name="width" value="1366" />
+    <option name="height" value="740" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -441,72 +397,55 @@
     </entry>
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
-          <expand>
-            <path>
-              <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="FrontendBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="FrontendBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="FrontendBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="public" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="FrontendBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="slavsServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="slavsServer" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="tests" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-          </expand>
-          <select />
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlavsServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlavsServer" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlavsServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SlavsServer" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AIServer" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="/var/www/BabylonGame" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="options.lastSelected" value="database.main" />
@@ -538,7 +477,9 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="SkeletonBoss.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/slavsServer/src/GameBundle/Monsters/SkeletonBoss.php" />
+    <configuration default="false" name="SkeletonBoss.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/slavsServer/src/GameBundle/Monsters/SkeletonBoss.php">
+      <method />
+    </configuration>
     <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings />
       <method />
@@ -577,6 +518,15 @@
       <PhpTestRunnerSettings />
       <method />
     </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run" />
       <scripts />
@@ -597,19 +547,12 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JavaScript Debug.SkeletonBoss.php" />
-      </list>
-    </recent_temporary>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.SkeletonBoss.php" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -645,6 +588,8 @@
       <workItem from="1526730019054" duration="5801000" />
       <workItem from="1526746707867" duration="4124000" />
       <workItem from="1526758132697" duration="7533000" />
+      <workItem from="1528783517001" duration="11757000" />
+      <workItem from="1528899808591" duration="653000" />
     </task>
     <task id="LOCAL-00001" summary="+ monsters&#10;+ special items&#10;+ scenes&#10;+ statistics&#10;+ gateways">
       <created>1523985448757</created>
@@ -751,44 +696,75 @@
       <option name="project" value="LOCAL" />
       <updated>1526765889891</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="#master&#10; * Skeleton warrior scale&#10; * enemies positions">
+      <created>1528815127832</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1528815127832</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104403000" />
+    <option name="totallyTimeSpent" value="116813000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1918" y="-3" width="1924" height="1087" extended-state="6" />
+    <frame x="0" y="312" width="1366" height="740" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="12" weight="0.32680413" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.52396166" side_tool="true" weight="0.29436326" />
-      <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
-      <window_info anchor="bottom" x="1400" y="416" width="1888" height="350" id="Run" order="2" weight="0.3329897" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.48136315" weight="0.4874739" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4978701" weight="0.32783505" />
-      <window_info anchor="right" id="Remote Host" order="5" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2518637" />
-      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="6" side_tool="true" weight="0.32960597" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48668796" weight="0.2275574" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.24973376" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.47603834" weight="0.37279335" />
-      <window_info id="Favorites" order="2" side_tool="true" weight="0.32960597" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24920128" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="MagicentoScripts" order="10" sideWeight="0.5553781" side_tool="true" weight="0.37787056" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="REST Client" order="11" sideWeight="0.47870076" weight="0.49072164" />
-      <window_info anchor="right" x="1364" y="-3" width="1924" height="1087" id="Documentation" order="4" type="FLOATING" />
-      <window_info anchor="bottom" id="Messages" order="6" sideWeight="0.485623" weight="0.32783505" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="3" side_tool="true" weight="0.32960597" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23716012" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32680413" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29436326" sideWeight="0.52396166" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3329897" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1400" y="416" width="1888" height="350" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48805815" sideWeight="0.48136315" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="MagicentoScripts" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3775216" sideWeight="0.5553781" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32783505" sideWeight="0.4978701" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4070981" sideWeight="0.47603834" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32783505" sideWeight="0.485623" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1364" y="-3" width="1924" height="1087" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49072164" sideWeight="0.47870076" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24920128" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2275574" sideWeight="0.48668796" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32680413" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32783505" sideWeight="0.485623" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29436326" sideWeight="0.52396166" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="1364" y="-3" width="1924" height="1087" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49072164" sideWeight="0.47870076" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3329897" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="1400" y="416" width="1888" height="350" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48805815" sideWeight="0.48136315" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32783505" sideWeight="0.4978701" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23382173" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24920128" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2275574" sideWeight="0.48668796" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="MagicentoScripts" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3775216" sideWeight="0.5553781" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4070981" sideWeight="0.47603834" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -808,7 +784,8 @@
     <MESSAGE value="#master&#10; * new main page of slavs" />
     <MESSAGE value="#master&#10; * chests" />
     <MESSAGE value="#master&#10; * rebalans monsters, items and character&#10; * chance to drop item after kill monster&#10; * allow to open chest with key&#10; * armor reduce retrieving damage" />
-    <option name="LAST_COMMIT_MESSAGE" value="#master&#10; * rebalans monsters, items and character&#10; * chance to drop item after kill monster&#10; * allow to open chest with key&#10; * armor reduce retrieving damage" />
+    <MESSAGE value="#master&#10; * Skeleton warrior scale&#10; * enemies positions" />
+    <option name="LAST_COMMIT_MESSAGE" value="#master&#10; * Skeleton warrior scale&#10; * enemies positions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -820,12 +797,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php</url>
-          <line>61</line>
+          <line>60</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Controller/RegistrationController.php</url>
-          <line>58</line>
+          <line>57</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -851,358 +828,389 @@
       </breakpoints>
       <option name="time" value="50" />
     </breakpoint-manager>
+    <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Storage/SocketSessionData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/Temporary/FastSelect.php" />
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/SpecialItems/KeyToChest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="47" column="31" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/SpecialItemManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/ConnectionEstablishedEvent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1518">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/MonsterServerConnectionEstablishedEvent.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/SocketIO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1633">
-          <caret line="78" column="116" selection-start-line="78" selection-start-column="116" selection-end-line="78" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Model/UserManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40296">
-          <caret line="1794" column="20" selection-start-line="1794" selection-start-column="20" selection-end-line="1794" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13455">
-          <caret line="609" column="20" selection-start-line="609" selection-start-column="20" selection-end-line="609" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/doctrine/collections/lib/Doctrine/Common/Collections/ArrayCollection.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1173">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
+          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/PlayerSpecialItems.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
-          <caret line="22" column="87" selection-start-line="22" selection-start-column="87" selection-end-line="22" selection-end-column="87" />
+          <caret line="22" column="87" lean-forward="false" selection-start-line="22" selection-start-column="87" selection-end-line="22" selection-end-column="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/AbstractManager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2047">
-          <caret line="91" selection-start-line="91" selection-end-line="91" />
+          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Chests/AbstractChest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1035">
-          <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
-          <folding>
-            <element signature="e#37#65#0#PHP" expanded="true" />
-          </folding>
+          <caret line="48" column="20" lean-forward="false" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/Scene/OnRefreshChests.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
-          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/Gateways/EntraceForestHouse.php">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Gateways/EntraceForestHouseTomb.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
-          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+          <caret line="15" column="38" lean-forward="false" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Gateways/ForestHouseTombExit.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="575">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/workerman/phpsocket.io/src/Event/Emitter.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
+          <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/workerman/phpsocket.io/src/Engine/Socket.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
-          <caret line="171" column="54" selection-start-line="171" selection-start-column="54" selection-end-line="171" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/Factory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="34" column="41" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
+          <caret line="171" column="54" lean-forward="false" selection-start-line="171" selection-start-column="54" selection-end-line="171" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Chests/WoodChest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="44" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+        <state relative-caret-position="441">
+          <caret line="21" column="44" lean-forward="false" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/SpecialItems/AbstractSpecialItem.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+        <state relative-caret-position="840">
+          <caret line="42" column="29" lean-forward="false" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/Scene/OnOpenChest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="77" column="29" selection-start-line="77" selection-start-column="29" selection-end-line="77" selection-end-column="29" />
+        <state relative-caret-position="1365">
+          <caret line="77" column="29" lean-forward="false" selection-start-line="77" selection-start-column="29" selection-end-line="77" selection-end-column="29" />
+          <folding>
+            <element signature="e#49#77#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Weapons/Weapon.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnPlayerConnection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnSelectCharacter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="44" column="20" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
+        <state relative-caret-position="189">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseTomb.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="30" column="68" selection-start-line="30" selection-start-column="68" selection-end-line="30" selection-end-column="68" />
-          <folding>
-            <element signature="e#37#69#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="630">
+          <caret line="30" column="68" lean-forward="false" selection-start-line="30" selection-start-column="68" selection-end-line="30" selection-end-column="68" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/AbstractMonster.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="99" column="20" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="20" />
+        <state relative-caret-position="2079">
+          <caret line="99" column="20" lean-forward="false" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Player.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="327" column="26" selection-start-line="327" selection-start-column="26" selection-end-line="327" selection-end-column="26" />
+        <state relative-caret-position="6741">
+          <caret line="327" column="26" lean-forward="false" selection-start-line="327" selection-start-column="26" selection-end-line="327" selection-end-column="26" />
+          <folding>
+            <element signature="e#36#79#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Weapons/LongSword.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="420">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Weapons/Sword.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="19" column="52" lean-forward="true" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
+        <state relative-caret-position="378">
+          <caret line="19" column="52" lean-forward="false" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Lvls/Lvls.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseStart.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="e#37#69#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="420">
+          <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/AbstractItem.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+        <state relative-caret-position="777">
+          <caret line="38" column="20" lean-forward="false" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Gloves/LeatherGloves.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        <state relative-caret-position="294">
+          <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Shields/MediumWoodenShield.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="210">
+          <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Boots/LeatherBoots.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="210">
+          <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Armors/LeatherArmor.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+        <state relative-caret-position="210">
+          <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/workerman/phpsocket.io/src/Client.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="183" selection-start-line="183" selection-end-line="183" />
+        <state relative-caret-position="3843">
+          <caret line="183" column="0" lean-forward="false" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Shields/SmallWoodenShield.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="315">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnAttack.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="77" column="28" selection-start-line="77" selection-start-column="28" selection-end-line="79" selection-end-column="29" />
+        <state relative-caret-position="1365">
+          <caret line="77" column="28" lean-forward="false" selection-start-line="77" selection-start-column="28" selection-end-line="79" selection-end-column="29" />
+          <folding>
+            <element signature="e#43#79#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/MonsterServer/OnSetEnemyTargetPoint.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="37" column="50" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouse.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="81" column="70" selection-start-line="81" selection-start-column="70" selection-end-line="81" selection-end-column="70" />
+        <state relative-caret-position="630">
+          <caret line="37" column="50" lean-forward="false" selection-start-line="37" selection-start-column="50" selection-end-line="37" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/Skeleton.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="28" column="57" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
+        <state relative-caret-position="588">
+          <caret line="28" column="57" lean-forward="false" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Quests/SkeletonKing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonWarrior.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+        <state relative-caret-position="693">
+          <caret line="36" column="14" lean-forward="false" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonBoss.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="667">
-          <caret line="29" column="68" selection-start-line="29" selection-start-column="68" selection-end-line="29" selection-end-column="68" />
+        <state relative-caret-position="609">
+          <caret line="29" column="68" lean-forward="false" selection-start-line="29" selection-start-column="68" selection-end-line="29" selection-end-column="68" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameBundle/Items/Helms/LeatherHelm.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        <state relative-caret-position="294">
+          <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FrontendBundle/Resources/views/login_content.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-292" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FrontendBundle/Resources/views/home.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
-          <folding>
-            <element signature="e#12#43#0#Twig" expanded="true" />
-          </folding>
+        <state relative-caret-position="441">
+          <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/GameBundle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouseStart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/SocketIO.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1491">
+          <caret line="78" column="55" lean-forward="false" selection-start-line="78" selection-start-column="55" selection-end-line="78" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/Factory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/Monsters/SkeletonWarrior.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="38" lean-forward="false" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameBundle/Scenes/ForestHouse.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="77" column="52" lean-forward="false" selection-start-line="77" selection-start-column="52" selection-end-line="77" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/PlayerSkills.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="64" column="21" lean-forward="false" selection-start-line="63" selection-start-column="7" selection-end-line="64" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AIServer/socket.io.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AIServer/babylon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AIServer/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AIServer/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="172" column="10" lean-forward="false" selection-start-line="172" selection-start-column="10" selection-end-line="172" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Server/ConnectionEstablishedEvent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-273">
+          <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScene.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="42" column="56" lean-forward="false" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnChangeScenePre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="48" column="35" lean-forward="false" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnPlayerConnection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="58" column="38" lean-forward="false" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/ServerEvents/OnSelectCharacter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="40" column="62" lean-forward="true" selection-start-line="40" selection-start-column="62" selection-end-line="40" selection-end-column="62" />
+          <folding />
         </state>
       </provider>
     </entry>
