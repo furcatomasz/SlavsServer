@@ -10,6 +10,7 @@ use PHPSocketIO\Socket;
 use ReflectionClass;
 use UserBundle\Entity\GameTokenSession;
 use UserBundle\Entity\User;
+use UserBundle\Repository\GameTokenSessionRepository;
 
 /**
  * @DI\Service("manager.game_token_session")
@@ -18,9 +19,9 @@ class GameTokenSessionManager extends AbstractManager
 {
 
     /**
-     * @return EntityRepository
+     * @return EntityRepository|GameTokenSessionRepository
      */
-    public function getRepo(): EntityRepository
+    public function getRepo(): GameTokenSessionRepository
     {
         return $this->em->getRepository('UserBundle:GameTokenSession');
     }

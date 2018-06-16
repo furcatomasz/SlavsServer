@@ -32,21 +32,21 @@ class Player
     protected $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PlayerAttributes")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\PlayerAttributes", cascade={"remove"})
      *
      * @var PlayerAttributes
      */
     protected $attributes;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerSpecialItems", mappedBy="player", fetch="EAGER", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerSpecialItems", mappedBy="player", fetch="EAGER", orphanRemoval=true, cascade={"remove"})
      *
      * @var Collection|PlayerSpecialItems
      */
     protected $specialItems;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerItem", mappedBy="player", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerItem", mappedBy="player", fetch="EAGER", cascade={"remove"})
      *
      * @var Collection|PlayerItem
      */

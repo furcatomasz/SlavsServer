@@ -467,8 +467,8 @@ var SocketIOClient = /** @class */ (function () {
     function SocketIOClient(game) {
         this.game = game;
     }
-    SocketIOClient.prototype.connect = function (socketUrl) {
-        this.socket = io.connect(socketUrl);
+    SocketIOClient.prototype.connect = function (socketUrl, accessToken) {
+        this.socket = io.connect(socketUrl, { query: 'gameToken=' + accessToken });
         this.playerConnected();
     };
     /**
@@ -996,11 +996,15 @@ var SocketIOClient = /** @class */ (function () {
 /// <reference path="scenes/Simple.ts"/>
 /// <reference path="socketIOClient.ts"/>
 var Game = /** @class */ (function () {
-    function Game(canvasElement) {
+    function Game(canvasElement, accessToken, isMobile) {
+        if (isMobile === void 0) { isMobile = false; }
         var self = this;
-        var serverUrl = window.location.hostname + ':' + gameServerPort;
+        var serverUrl = window.location.hostname + ':5000';
         self.canvas = canvasElement;
         self.engine = new BABYLON.Engine(self.canvas, false, null, false);
+        if (isMobile) {
+            self.engine.setHardwareScalingLevel(3);
+        }
         self.controller = new Mouse(self);
         self.client = new SocketIOClient(self);
         self.factories = [];
@@ -1011,7 +1015,7 @@ var Game = /** @class */ (function () {
         self.chests = [];
         self.activeScene = null;
         self.events = new Events();
-        self.client.connect(serverUrl);
+        self.client.connect(serverUrl, accessToken);
         self.animate();
     }
     Game.prototype.getScene = function () {

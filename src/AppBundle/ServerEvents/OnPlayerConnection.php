@@ -4,6 +4,7 @@ namespace AppBundle\ServerEvents;
 
 
 use AppBundle\Entity\Player;
+use AppBundle\Manager\GameTokenSessionManager;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
@@ -38,6 +39,13 @@ class OnPlayerConnection extends AbstractEvent
     public $userManager;
 
     /**
+     * @DI\Inject("manager.game_token_session")
+     *
+     * @var GameTokenSessionManager
+     */
+    public $gameTokenSessionManager;
+
+    /**
      * @DI\Observe("connection.established.event")
      * @param Event|ConnectionEstablishedEvent $event
      *
@@ -47,17 +55,26 @@ class OnPlayerConnection extends AbstractEvent
     public function registerEvent(Event $event): AbstractEvent
     {
         $socket        = $event->getSocket();
-        $user          = $this->userManager->findUserByEmail('furcatomasz@gmail.com');
-        $playerSession = $event->getSocketSessionData();
-        $playerSession
-            ->setConnectionId($event->getSocket()->id)
-            ->setMonsterServerId($event->getMonsterServerId())
-            ->setUser($user);
+        if(array_key_exists('gameToken', $socket->handshake['query'])) {
+            $token = $socket->handshake['query']['gameToken'];
+            if ($token) {
+                $tokenEntity = $this->gameTokenSessionManager->getRepo()->findByToken($token);
+                if($tokenEntity) {
+                    $user          = $tokenEntity->getUser();
+                    $this->gameTokenSessionManager->remove($tokenEntity);
 
-        $playerSessionData = $this->serializer->normalize($playerSession, 'array');
+                    $playerSession = $event->getSocketSessionData();
+                    $playerSession
+                        ->setConnectionId($event->getSocket()->id)
+                        ->setMonsterServerId($event->getMonsterServerId())
+                        ->setUser($user);
 
-        $socket->emit('clientConnected', $playerSessionData);
+                    $playerSessionData = $this->serializer->normalize($playerSession, 'array');
 
+                    $socket->emit('clientConnected', $playerSessionData);
+                }
+            }
+        }
         return $this;
     }
 

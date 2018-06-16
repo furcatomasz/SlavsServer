@@ -22,4 +22,18 @@ class GameTokenSessionRepository extends AbstractRepository
      * @var string
      */
     protected static $_entityAlias = 'UserBundle:GameTokenSession';
+
+    /**
+     * @param string $token
+     *
+     * @return null|object|GameTokenSession
+     */
+    public function findByToken($token)
+    {
+        return $this->findOneBy(
+            [
+                'token' => $token
+            ]
+        );
+    }
 }

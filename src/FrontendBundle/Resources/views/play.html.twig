@@ -14,7 +14,6 @@
     <script src="{{ asset('bundles/frontend/js/babylon/materialsLibrary/babylon.terrainMaterial.min.js') }}"></script>
     <script src="{{ asset('bundles/frontend/js/socket.io.js') }}"></script>
     <script src="{{ asset('bundles/frontend/js/game/slavs.js') }}"></script>
-    <script src="{{ asset('bundles/frontend/js/game/parameters.js') }}"></script>
 
     <style>
         html, body {
@@ -31,21 +30,22 @@
             touch-action: none;
         }
     </style>
-<script>
-    var SESSION_TOKEN = '{{ sessionToken }}';
-    console.log(SESSION_TOKEN);
-</script>
-
 </head>
 
 <body>
     <canvas id="renderCanvas"></canvas>
     <script>
+        let SESSION_TOKEN = '{{ sessionToken }}';
+        {% if mobile %}
+            let MOBILE = true;
+        {% else %}
+            let MOBILE = false;
+        {% endif %}
         if (BABYLON.Engine.isSupported()) {
             let htmlElement = document.getElementById('renderCanvas');
             document.getElementsByTagName("body")[0].setAttribute("oncontextmenu", "return false");
 
-            new Game(htmlElement);
+            new Game(htmlElement, SESSION_TOKEN, MOBILE);
         }
     </script>
 </body>

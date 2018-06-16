@@ -33,8 +33,10 @@ class GameController extends Controller
     public $gameTokenSessionManager;
 
     /**
-     * @Route("/bundles/frontend/slavs", name="play_game")
+     * @Route("/bundles/frontend/", name="play_game")
      * @param Request $request
+     *
+     * @param int     $mobile
      *
      * @return Response
      */
@@ -62,6 +64,7 @@ class GameController extends Controller
             'FrontendBundle::play.html.twig',
             [
                 'sessionToken' => $token->getToken(),
+                'mobile'       => $request->get('mobile')
             ]
         );
 
