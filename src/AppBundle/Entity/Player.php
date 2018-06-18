@@ -331,7 +331,7 @@ class Player
                 100 + $this->getAttributes()->getAttackSpeed(),
                 1 + $this->getAttributes()->getDamage(),
                 1 + $this->getAttributes()->getDefence(),
-                2.9,
+                3.3,
                 50 + $this->getAttributes()->getBlockChance(),
                 100
             );
