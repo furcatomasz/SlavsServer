@@ -1,8 +1,10 @@
-<div class="container my-5 text-center">
-    <h1>Rank</h1>
-    <p class="lead">There is ranking of the best players.</p>
-    <div class="row">
+{% extends "FrontendBundle::index.html.twig" %}
 
+{% block content %}
+<div class="container my-5 text-center">
+    <h1>Ranking</h1>
+    <p class="lead">It is ranking of the most experienced players.</p>
+    <div class="row">
         <table class="table table-dark">
             <thead class="text-center">
             <tr>
@@ -13,7 +15,7 @@
             </tr>
             </thead>
             <tbody class="text-center">
-            {% for player in players %}
+            {% for player in experiencedPlayers %}
                 <tr>
                     <th scope="row">{{ loop.index }}</th>
                     <td>{{ player.name }}</td>
@@ -23,7 +25,30 @@
             {% endfor %}
             </tbody>
         </table>
+    </div>
 
+    <p class="lead">It is ranking of the richest players.</p>
+    <div class="row">
+        <table class="table table-dark">
+            <thead class="text-center">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Level</th>
+                <th scope="col">Rank points</th>
+            </tr>
+            </thead>
+            <tbody class="text-center">
+            {% for player in richestPlayers %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.lvl }}</td>
+                    <td>0</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
-
+{% endblock %}

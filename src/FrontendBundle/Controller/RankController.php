@@ -32,12 +32,14 @@ class RankController extends SecurityController
      */
     public function playersAction(Request $request)
     {
-        $players = $this->playerManager->getRepo()->findAll();
+        $experiencedPlayers = $this->playerManager->getRepo()->findMostExperienced();
+        $richestPlayers = $this->playerManager->getRepo()->findRichest();
 
         return $this->render(
             'FrontendBundle:rank:players.html.twig',
             [
-                'players' => $players,
+                'experiencedPlayers' => $experiencedPlayers,
+                'richestPlayers' => $richestPlayers,
             ]
         );
 

@@ -37,4 +37,32 @@ class PlayerRepository extends AbstractRepository
             ]
         );
     }
+
+    /**
+     * @return array
+     */
+    public function findRichest()
+    {
+        return $this->findBy(
+            [],
+            [
+                'gold' => 'DESC'
+            ],
+            5
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function findMostExperienced()
+    {
+        return $this->findBy(
+            [],
+            [
+                'experience' => 'DESC'
+            ],
+            5
+        );
+    }
 }

@@ -1,0 +1,70 @@
+{% extends "FrontendBundle::index.html.twig" %}
+
+{% block content %}
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1>Items in game</h1>
+                <p class="lead">Additional power of item you can get in smithy!</p>
+            </div>
+            <div class="col-md-12 mt-5">
+                <h2>Weapons and shields</h2>
+                <div class="card-deck">
+                    <div class="card gray-background">
+                        <img class="card-img-top" src="{{ asset('bundles/frontend/assets/Miniatures/sword.png') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Sword</h5>
+                        </div>
+                    </div>
+                    <div class="card gray-background">
+                        <img class="card-img-top" src="{{ asset('bundles/frontend/assets/Miniatures/swordLong.png') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Long Sword</h5>
+                        </div>
+                    </div>
+                    <div class="card gray-background">
+                        <img class="card-img-top" src="{{ asset('bundles/frontend/assets/Miniatures/shieldWoodenMedium.png') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Medium Wooden Shield</h5>
+                        </div>
+                    </div>
+                    <div class="card gray-background">
+                        <img class="card-img-top" src="{{ asset('bundles/frontend/assets/Miniatures/shieldWoodenSmall1.png') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Small Wooden Shield</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-5">
+                <h2>Leather set</h2>
+                <div class="card-deck">
+                    <div class="card gray-background">
+                        <img class="card-img-top" src="{{ asset('bundles/frontend/assets/Miniatures/leatherArmor.png') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Leather Armor</h5>
+                        </div>
+                    </div>
+                    <div class="card gray-background">
+                        <img class="card-img-top" src="{{ asset('bundles/frontend/assets/Miniatures/leatherBoots.png') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Leather Boots</h5>
+                        </div>
+                    </div>
+                    <div class="card gray-background">
+                        <img class="card-img-top" src="{{ asset('bundles/frontend/assets/Miniatures/leatherGloves.png') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Leather Globes</h5>
+                        </div>
+                    </div>
+                    <div class="card gray-background">
+                        <img class="card-img-top" src="{{ asset('bundles/frontend/assets/Miniatures/leatherHelm.png') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Leather Helm</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+{% endblock %}

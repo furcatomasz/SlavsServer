@@ -3,6 +3,10 @@ body {
     background-color: black;
 }
 
+nav {
+    border-bottom: 4px solid black;
+}
+
 .gray-background {
     background-color: #222;
 }
