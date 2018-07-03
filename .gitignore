@@ -16,3 +16,6 @@
 /vendor/
 /web/bundles/
 .idea
+.env
+docker/logs
+docker/mysql

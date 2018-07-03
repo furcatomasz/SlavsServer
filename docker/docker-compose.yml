@@ -1,0 +1,62 @@
+version: '2.3'
+
+services:
+    db:
+        container_name: slavsServer_db
+        image: mysql
+        volumes:
+            - ${DATABASE_PATH}:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    php:
+        container_name: slavsServer_php
+        build:
+            context: php7-fpm
+            args:
+                TIMEZONE: ${TIMEZONE}
+        volumes:
+            - ${APP_PATH}:/var/www/app
+        links:
+          - "db"
+          - "redis"
+    nginx:
+        container_name: slavsServer_nginx
+        build: nginx
+        volumes_from:
+            - php
+        ports:
+            - "80:80"
+        volumes:
+            - ./logs/nginx/:/var/log/nginx
+    phpmyadmin:
+        container_name: slavsServer_phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - "3004:80"
+    redis:
+        container_name: slavsServer_redis
+        image: redis:alpine
+    php-socket:
+        container_name: slavsServer_php_socket
+        command: php /var/www/app/bin/console app:server-start
+        build:
+            context: php7-cli
+            args:
+                TIMEZONE: ${TIMEZONE}
+        volumes:
+            - ${APP_PATH}:/var/www/app
+        ports:
+            - "5000:5000"
+        links:
+          - "db"
+          - "redis"
+    node:
+        command: node /var/www/app/AIServer/server.js
+        container_name: slavsServer_node
+        build:
+            context: node
+        volumes:
+            - ${APP_PATH}:/var/www/app
