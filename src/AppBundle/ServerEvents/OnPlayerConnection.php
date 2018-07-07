@@ -55,18 +55,18 @@ class OnPlayerConnection extends AbstractEvent
     public function registerEvent(Event $event): AbstractEvent
     {
         $socket        = $event->getSocket();
-//
-//            $user          = $this->userManager->findUserByEmail('furcatomasz@gmail.com');
-//            $playerSession = $event->getSocketSessionData();
-//            $playerSession
-//                ->setConnectionId($event->getSocket()->id)
-//                ->setMonsterServerId($event->getMonsterServerId())
-//                ->setUser($user);
-//
-//            $playerSessionData = $this->serializer->normalize($playerSession, 'array');
-//
-//            $socket->emit('clientConnected', $playerSessionData);
-//        return $this;
+
+            $user          = $this->userManager->findUserByEmail('furcatomasz@gmail.com');
+            $playerSession = $event->getSocketSessionData();
+            $playerSession
+                ->setConnectionId($event->getSocket()->id)
+                ->setMonsterServerId($event->getMonsterServerId())
+                ->setUser($user);
+
+            $playerSessionData = $this->serializer->normalize($playerSession, 'array');
+
+            $socket->emit('clientConnected', $playerSessionData);
+        return $this;
 
         if(array_key_exists('gameToken', $socket->handshake['query'])) {
             $token = $socket->handshake['query']['gameToken'];
