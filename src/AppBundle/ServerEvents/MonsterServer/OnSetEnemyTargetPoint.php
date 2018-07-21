@@ -37,6 +37,7 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                 $room   = $self->socketIOServer->rooms[$roomId];
                 /** @var AbstractMonster $enemy */
                 $enemy = $room->getMonsters()[$data['enemyKey']];
+                $attackIsDone = false;
 
                 $enemy
                     ->setPosition($data['position'])
@@ -47,6 +48,7 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                     $enemy->availableAttacksFromCharacters[$data['target']] = $data['attack'];
                     if ($enemy->getLastAttack() < (time() - 1)) {
                         $enemy->setLastAttack(time());
+                        $attackIsDone = true;
                         $players = $room->getPlayers();
                         foreach ($enemy->availableAttacksFromCharacters as $playerId => $attack) {
                             /** @var SocketSessionData $playerSession */
@@ -78,7 +80,9 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                             'enemy'          => $self->serializer->normalize($enemy, 'array'),
                             'collisionEvent' => $data['collisionEvent'],
                             'enemyKey'       => $data['enemyKey'],
-                        ]
+                            'attackIsDone'  => $attackIsDone,
+
+                ]
                     );
 
                 $enemy->setAttack(false);

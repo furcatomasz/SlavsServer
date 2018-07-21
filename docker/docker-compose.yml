@@ -60,3 +60,5 @@ services:
             context: node
         volumes:
             - ${APP_PATH}:/var/www/app
+        depends_on:
+            - php-socket
