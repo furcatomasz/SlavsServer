@@ -45,7 +45,7 @@ class SocketSessionData
     public $targetPoint;
 
     /**
-     * @var bool
+     * @var int
      */
     public $attack;
 
@@ -205,9 +205,9 @@ class SocketSessionData
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getConnectionId(): string
+    public function getConnectionId(): ?string
     {
         return $this->connectionId;
     }
@@ -225,21 +225,21 @@ class SocketSessionData
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function getAttack(): ?bool
+    public function getAttack(): ?int
     {
         return $this->attack;
     }
 
     /**
-     * @param bool $attack
+     * @param int|null $monsterKey
      *
      * @return SocketSessionData
      */
-    public function setAttack(bool $attack): SocketSessionData
+    public function setAttack(?int $monsterKey): SocketSessionData
     {
-        $this->attack = $attack;
+        $this->attack = $monsterKey;
 
         return $this;
     }

@@ -70,90 +70,97 @@ class OnAttack extends AbstractEvent
                     ->setTargetPoint($data['targetPoint'])
                     ->setLastPlayerAttack(time());
 
-                foreach ($socketSessionData->getActiveRoom()->getMonsters() as $monsterKey => $monster) {
-                    /** @var AbstractMonster $monster */
-                    foreach ($monster->getAvailableAttacksFromCharacters() as $attackedPlayerId => $isAttacked) {
-                        if ($player->getId() == $attackedPlayerId) {
-                            $damage = $player->getAllStatistics()->getDamage()-$monster->getStatistics()->getArmor();
-                            if($damage < 1) {
-                                $damage = 1;
-                            }
-                            $monster->getStatistics()->setHp($monster->getStatistics()->getHp() - $damage);
+                $monsterKey = $data['attack'];
+                $monster    = $socketSessionData->getActiveRoom()->getMonsters()[$monsterKey];
+                /** @var AbstractMonster $monster */
+                foreach ($monster->getAvailableAttacksFromCharacters() as $attackedPlayerId => $isAttacked) {
+                    if ($player->getId() == $attackedPlayerId) {
+                        $damage = $player->getAllStatistics()->getDamage() - $monster->getStatistics()->getArmor();
+                        if ($damage < 1) {
+                            $damage = 1;
+                        }
+                        $monster->getStatistics()->setHp($monster->getStatistics()->getHp() - $damage);
 
-                            $emitData = [
-                                'enemy'    => $self->serializer->normalize($monster),
-                                'enemyKey' => $monsterKey,
-                                'roomId'   => $roomId,
-                            ];
+                        $emitData = [
+                            'enemy'    => $self->serializer->normalize($monster),
+                            'enemyKey' => $monsterKey,
+                            'roomId'   => $roomId,
+                        ];
 
-                            $socket
+                        $socket
 //                                ->in($roomId)
-                                ->emit('updateEnemy', $emitData);
-                            $socket->to($self->socketIOServer->monsterServerId)->emit('updateEnemy', $emitData);
+                            ->emit('updateEnemy', $emitData);
+                        $socket->to($self->socketIOServer->monsterServerId)->emit('updateEnemy', $emitData);
 
-                            if ($monster->getStatistics()->getHp() <= 0) {
-                                //Add special Item
-                                $specialItems = $monster->getSpecialItemsToDrop();
-                                if (count($specialItems)) {
-                                    foreach ($specialItems as $specialItem) {
-                                        $manager = ($specialItem instanceof Gold) ?
-                                            $this->playerManager :
-                                            $this->specialItemManager;
+                        if ($monster->getStatistics()->getHp() <= 0) {
+                            //Add special Item
+                            $specialItems = $monster->getSpecialItemsToDrop();
+                            if (count($specialItems)) {
+                                foreach ($specialItems as $specialItem) {
+                                    $manager = ($specialItem instanceof Gold) ?
+                                        $this->playerManager :
+                                        $this->specialItemManager;
 
-                                        /** @var AbstractSpecialItem $specialItem */
-                                        $specialItem->addItem(
-                                            $player,
-                                            $manager
-                                        );
-                                        $socket->emit('addSpecialItem', $specialItem);
-                                    }
-
+                                    /** @var AbstractSpecialItem $specialItem */
+                                    $specialItem->addItem(
+                                        $player,
+                                        $manager
+                                    );
+                                    $socket->emit('addSpecialItem', $specialItem);
                                 }
 
-                                //Add Item
-                                $itemsToDrop = $monster->getItemsToDrop();
-                                if (count($itemsToDrop)) {
-                                    $randomItem  = $itemsToDrop[array_rand($itemsToDrop)];
-                                    $droppedItem = $randomItem['item'];
-                                    $chance      = $randomItem['chance'];
-                                    if (rand(1, 100) < $chance) {
-                                        if (!$socketSessionData->getItemsToDrop()) {
-                                            $socketSessionData->setItemsToDrop([$droppedItem]);
-                                        } else {
-                                            $itemsToDrop   = $socketSessionData->getItemsToDrop();
-                                            $itemsToDrop[] = $droppedItem;
-                                            $socketSessionData->setItemsToDrop($itemsToDrop);
-                                            end($itemsToDrop);
-                                        }
+                            }
 
-                                        $socket->emit(
-                                            'showDroppedItem',
-                                            [
-                                                'item'     => $self->serializer->normalize($droppedItem, 'array'),
-                                                'itemKey'  => key($itemsToDrop),
-                                                'position' => $monster->getPosition(),
-                                            ]
-                                        );
+                            //Add Item
+                            $itemsToDrop = $monster->getItemsToDrop();
+                            if (count($itemsToDrop)) {
+                                $randomItem  = $itemsToDrop[array_rand($itemsToDrop)];
+                                $droppedItem = $randomItem['item'];
+                                $chance      = $randomItem['chance'];
+                                if (rand(1, 100) < $chance) {
+                                    if (!$socketSessionData->getItemsToDrop()) {
+                                        $socketSessionData->setItemsToDrop([$droppedItem]);
+                                    } else {
+                                        $itemsToDrop   = $socketSessionData->getItemsToDrop();
+                                        $itemsToDrop[] = $droppedItem;
+                                        $socketSessionData->setItemsToDrop($itemsToDrop);
+                                        end($itemsToDrop);
                                     }
+
+                                    $socket->emit(
+                                        'showDroppedItem',
+                                        [
+                                            'item'     => $self->serializer->normalize($droppedItem, 'array'),
+                                            'itemKey'  => key($itemsToDrop),
+                                            'position' => $monster->getPosition(),
+                                        ]
+                                    );
                                 }
+                            }
 
-                                $monster->setAvailableAttacksFromCharacters([]);
-                                $self->playerManager->addExperience($player, $socket, $monster->getExperience());
+                            $monster->setAvailableAttacksFromCharacters([]);
+                            $self->playerManager->addExperience($player, $socket, $monster->getExperience());
 
-                                $quest = $socketSessionData->getActiveRoom()->getActiveQuest();
-                                if($quest) {
-                                    /** @var Chapter $actualChapter */
-                                    $actualChapter = $quest->chapters[$quest->actualChapter];
-                                    array_map(function(AbstractRequirement $requirement) use ($monster, $socket, $socketSessionData) {
-                                        if($requirement instanceof KillMonster && $requirement->monsterToKill->type == $monster->type) {
+                            $quest = $socketSessionData->getActiveRoom()->getActiveQuest();
+                            if ($quest) {
+                                /** @var Chapter $actualChapter */
+                                $actualChapter = $quest->chapters[$quest->actualChapter];
+                                array_map(
+                                    function (AbstractRequirement $requirement) use (
+                                        $monster,
+                                        $socket,
+                                        $socketSessionData
+                                    ) {
+                                        if ($requirement instanceof KillMonster && $requirement->monsterToKill->type == $monster->type) {
                                             $requirement->passRequirement($socket, $socketSessionData);
                                         }
-                                    }, $actualChapter->requirements);
-                                }
+                                    },
+                                    $actualChapter->requirements
+                                );
                             }
                         }
-
                     }
+
                 }
                 $socket
 //                    ->to($roomId)
@@ -163,7 +170,7 @@ class OnAttack extends AbstractEvent
                     ->emit('updatePlayer', $self->serializer->normalize($socketSessionData, 'array'));
 
                 $socketSessionData
-                    ->setAttack(false);
+                    ->setAttack(null);
             }
         );
 

@@ -41,10 +41,13 @@ class OnDisconnect extends AbstractEvent
             'disconnect',
             function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $socket->to($self->socketIOServer->monsterServerId)->emit(
-                    'removePlayer',
-                    $socketSessionData->getConnectionId()
-                );}
+                if ($socketSessionData->getConnectionId()) {
+                    $socket->to($self->socketIOServer->monsterServerId)->emit(
+                        'removePlayer',
+                        $socketSessionData->getConnectionId()
+                    );
+                }
+            }
         );
 
         return $this;

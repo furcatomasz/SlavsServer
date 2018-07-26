@@ -56,7 +56,7 @@ class OnPlayerConnection extends AbstractEvent
     {
         $socket        = $event->getSocket();
 
-            $user          = $this->userManager->findUserByEmail('furcatomasz@gmail.com');
+            $user          = $this->userManager->findUserByEmail('ksiegowosc@knights.pl');
             $playerSession = $event->getSocketSessionData();
             $playerSession
                 ->setConnectionId($event->getSocket()->id)
