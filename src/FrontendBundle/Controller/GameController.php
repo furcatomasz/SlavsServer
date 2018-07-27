@@ -45,12 +45,11 @@ class GameController extends Controller
         $gameTokenSessionManager = $this->gameTokenSessionManager;
         /** @var User $user */
         $user                    = $this->getUser();
-        if(!$user->isAllowedToPlay()) {
-            $this->addFlash('error', 'You do not have access to alpha test');
-            return $this->redirect('/');
-        }
+//        if(!$user->isAllowedToPlay()) {
+//            $this->addFlash('error', 'You do not have access to alpha test');
+//            return $this->redirect('/');
+//        }
         $generatedToken          = $gameTokenSessionManager->generateToken();
-
         $gameTokenSessionManager->clearOldTokens($user);
 
         $token = $gameTokenSessionManager
@@ -64,7 +63,8 @@ class GameController extends Controller
             'FrontendBundle::play.html.twig',
             [
                 'sessionToken' => $token->getToken(),
-                'mobile'       => $request->get('mobile')
+                'mobile'       => $request->get('mobile'),
+                'debug'       => $request->get('debug')
             ]
         );
 

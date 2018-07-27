@@ -30,7 +30,7 @@ class OnSetTargetPoint extends AbstractEvent
 
                 $socketSessionData = $event->getSocketSessionData();
                 $socketSessionData
-                    ->setAttack(false)
+                    ->setAttack(null)
                     ->setTargetPoint($data['position']);
                 $emitData = $self->serializer->normalize($socketSessionData, 'array');
 
