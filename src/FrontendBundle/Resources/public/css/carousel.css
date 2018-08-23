@@ -1,14 +1,107 @@
+
+@font-face {
+    font-family: RuslanDisplay;
+    src: url('../images/layout/RuslanDisplay.ttf');
+}
+
 body {
     color: #5a5a5a;
     background-color: black;
+    background-image: url('../images/layout/background.jpg');
+    background-repeat: no-repeat;
 }
 
 nav {
-    border-bottom: 4px solid black;
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.gray-background {
-    background-color: #222;
+nav .navbar-brand {
+    width: 230px;
+    margin-top: 3.5%;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+nav .navbar-left {
+    position: absolute;
+    left: 0;
+    margin-top: 28px;
+}
+
+nav .navbar-right {
+    position: absolute;
+    right: 0;
+    margin-top: 28px;
+}
+
+nav .navbar-background {
+    position: absolute;
+    margin-top: 28px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+
+.button-background-slavs {
+    background-image: url('../images/layout/button1.png');
+    background-repeat: no-repeat;
+    background-size:     100% 100%;
+    background-position: center top;
+    font-family: RuslanDisplay;
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    color: rgba(255,255,255,.5) !important;
+}
+
+input.button-background-slavs {
+    background-color: transparent;
+    border: 0px;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+input[type='text'], input[type='password'],
+input[type='text']:focus, input[type='password']:focus {
+    background-image: url('../images/layout/input.png');
+    background-repeat: no-repeat;
+    background-size:     100% 100%;
+    background-position: center top;
+    font-family: RuslanDisplay;
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    background-color: transparent;
+    border: 0;
+    text-align: center;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.button-background-slavs-red {
+    background-image: url('../images/layout/button.png') !important;
+}
+
+.button-background-slavs:hover {
+    color: rgba(255,255,255,.75) !important;
+    text-decoration: none;
+}
+
+.header-ruslan {
+    font-family: RuslanDisplay;
 }
 
 #flash-messages {
@@ -22,28 +115,35 @@ nav {
     margin: 4px auto;
 }
 
-.carousel-caption {
-    z-index: 10;
-    bottom: 3rem;
+.navbar-buttons {
+    z-index: 5;
+    width: 100%;
 }
 
-.carousel-item {
-    height: 32rem;
-    background-color: #777;
+.fab {
+    line-height: 1.5 !important;
 }
 
-.carousel-item > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    height: 32rem;
+.container-background-slavs {
+    background-image: url('../images/layout/content.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    color: black !important;
+    padding-left: 8%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-right: 8%;
+    font-family: RuslanDisplay;
 }
 
-@media (min-width: 40em) {
-    /* Bump up size of carousel content */
-    .featurette-heading {
-        font-size: 50px;
-    }
+.container-banners {
+    margin-top: 61px;
+    height: 271px;
+    width: 100%;
+    text-align: center;
+}
+.container-banners img {
+    height: 80%;
+    width: 80%;
 }
 

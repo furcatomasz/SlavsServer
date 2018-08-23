@@ -1,55 +1,49 @@
 {% trans_default_domain 'UserBundle' %}
-
-
 <div class="text-center">
-    <h1 class="my-5">Play the game</h1>
+
+    <h1 class="my-5 header-ruslan">Play the game</h1>
     {% if error %}
         <div class="alert alert-danger" role="alert">
             {{ error.messageKey|trans(error.messageData, 'security') }}
         </div>
     {% endif %}
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <form action="{{ path("fos_user_security_check") }}" method="post" class="form" role="form">
-                {% if csrf_token %}
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
-                {% endif %}
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
 
-                            <input class="form-control" type="text" id="username" name="_username"
-                                   value="{{ last_username }}"
-                                   required="required" placeholder="Username"/>
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            </div>
-                            <input class="form-control" type="password" id="password" name="_password"
-                                   required="required"
-                                   autocomplete="current-password" placeholder="Password"/>
-                        </div>
-                    </div>
+    <form action="{{ path("fos_user_security_check") }}" method="post" class="form" role="form">
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+        {% endif %}
+        <div class="row  justify-content-center">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input class="form-control" type="text" id="username" name="_username"
+                           value="{{ last_username }}"
+                           required="required" placeholder="Username"/>
                 </div>
-
-                <input class="form-control btn btn-danger my-2" type="submit" id="_submit" name="_submit"
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input class="form-control" type="password" id="password" name="_password"
+                           required="required"
+                           autocomplete="current-password" placeholder="Password"/>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center my-3">
+            <div class="col-md-4">
+                <input class=" button-background-slavs" type="submit" id="_submit" name="_submit"
                        value="Login"/>
-
-                <p>
-                    <small><a href="{{ path('fos_user_resetting_request') }}">Forgot password?</a></small>
-                </p>
-                <h2><a href="{{ path("fos_user_registration_register") }}">Create new account</a></h2>
-
-            </form>
+            </div>
+            <div class="col-md-4">
+                <a class="btn button-background-slavs" href="{{ path('fos_user_resetting_request') }}">Forgot
+                    password?</a>
+            </div>
         </div>
-        <div class="col-12 col-md-6">
-            {{ include('FrontendBundle::social_media.html.twig') }}
+        <div class="row  justify-content-center">
+            <div class="col-md-12">
+                <h2><a class="btn button-background-slavs button-background-slavs-red"
+                       href="{{ path("fos_user_registration_register") }}">Create new account</a></h2>
+            </div>
         </div>
-    </div>
+        {{ include('FrontendBundle::social_media.html.twig') }}
+    </form>
 </div>

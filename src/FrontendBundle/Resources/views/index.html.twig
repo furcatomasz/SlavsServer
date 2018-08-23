@@ -22,93 +22,46 @@
 </head>
 
 <body>
-    <nav class="navbar fixed-top  navbar-expand-sm  navbar-dark  gray-background">
+    <nav class="navbar fixed-top navbar-expand-sm navbar-dark">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".navbar-collapse">
             ☰
         </button>
-        <a class="navbar-brand" href="{{ path("homepage") }}">
-            <img src="{{ asset('bundles/frontend/images/logo.png') }}" width="200" height="40" class="d-inline-block align-top" alt="">
-        </a>
-        <div class="navbar-collapse collapse">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path("homepage") }}">Homepage</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Scenario</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path("rank_players") }}">Ranking</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path("game_items") }}">Items</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Bestiary</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path("homepage") }}">Play the game</a>
-                </li>
-            </ul>
+
+        <div class="navbar-buttons text-center">
+            <a class="button-background-slavs" href="{{ path("homepage") }}">Homepage</a>
+            <a class="button-background-slavs" href="#">Scenario</a>
+            <a class="button-background-slavs" href="{{ path("rank_players") }}">Gameplay</a>
+            <a class="button-background-slavs" href="{{ path("game_items") }}">Items</a>
+            <a class="button-background-slavs" href="#">Bestiary</a>
+            <a class="button-background-slavs button-background-slavs-red" href="{{ path("homepage") }}">Play the game</a>
         </div>
+
+        <img class="navbar-background" src="{{ asset('bundles/frontend/images/layout/wood.png') }}">
+        <img class="navbar-left" src="{{ asset('bundles/frontend/images/layout/leftMetal.png') }}">
+        <img class="navbar-right" src="{{ asset('bundles/frontend/images/layout/rightMetal.png') }}">
+        <img class="navbar-brand" src="{{ asset('bundles/frontend/images/layout/logo.png') }}">
     </nav>
 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active" style="background-color: black;">
-                <img class="second-slide" src="{{ asset('bundles/frontend/images/2.png') }}" alt="First slide">
-                <div class="container">
-                    <div class="carousel-caption d-none d-md-block text-center">
-                    </div>
-                </div>
-
-            </div>
-            <div class="carousel-item">
-                <img class="second-slide"
-                     src="{{ asset('bundles/frontend/images/1.png') }}"
-                     alt="Second slide">
-            </div>
-            <div class="carousel-item">
-                <img class="third-slide"
-                     src="{{ asset('bundles/frontend/images/3.png') }}"
-                     alt="Third slide">
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+    <div class="container container-banners">
+            <img src="{{ asset('bundles/frontend/images/layout/banner.png') }}">
     </div>
+
     <div class="container my-5">
         {% block content %}{% endblock %}
     </div>
 
-    <div class="container my-5">
+    <div class="container container-background-slavs">
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
                 <h1>Slavs - pre-alpha</h1>
                 <p class="lead">Currently state of game is alpha version. At this moment you can create
                     account and play in small alpha test. Just create Your account to be up to date with Slavs!</p>
-            </div>
-            <div class="col-md-5 text-center">
-                <img class="featurette-image img-fluid mx-auto"
-                     src="{{ asset('bundles/frontend/images/warrior.png') }}"
-                     alt="Warrior">
             </div>
         </div>
     </div>
 
     <footer class="text-center mt-2 py-3 gray-background">
-        <b>&copy; 2018 WEBSTUDIO - Tomasz Furca</b>
+        <b>&copy; 2018 Slavs</b>
     </footer>
 
     <div id="flash-messages">
