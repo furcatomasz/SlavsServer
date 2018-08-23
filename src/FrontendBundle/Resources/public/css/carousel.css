@@ -8,7 +8,6 @@ body {
     color: #5a5a5a;
     background-color: black;
     background-image: url('../images/layout/background.jpg');
-    background-repeat: no-repeat;
 }
 
 nav {
@@ -128,12 +127,12 @@ input[type='text']:focus, input[type='password']:focus {
     background-image: url('../images/layout/content.png');
     background-repeat: no-repeat;
     background-position: center top;
+    background-size: 100%;
     color: black !important;
-    padding-left: 8%;
+    padding-left: 11%;
     padding-top: 3%;
     padding-bottom: 3%;
-    padding-right: 8%;
-    font-family: RuslanDisplay;
+    padding-right: 11%;
 }
 
 .container-banners {

@@ -3,26 +3,32 @@
 {% block content %}
     {% if app.user %}
         <div class="row text-center">
-            <div class="col-md-12">
-                <p><b>Logged as {{ app.user.username }}</b></p>
-                <a href="{{ path('play_game') }}" class="btn btn-danger">
-                    <i class="fab fa-game"></i>Play
-                </a>
-                <a href="{{ path('play_game', { 'debug': 1 }) }}" class="btn btn-danger">
+            <div class="col-md-4">
+                <br>
+                <br>
+                <a href="{{ path('play_game', { 'debug': 1 }) }}" class="btn button-background-slavs button-background-slavs-red">
                     <i class="fab fa-game"></i>Play in debug mode
                 </a>
-                <a href="{{ path('play_game', { 'mobile': 1 }) }}" class="btn btn-danger">
+                <br>
+                <a href="{{ path('play_game', { 'mobile': 1 }) }}" class="btn button-background-slavs button-background-slavs-red">
                     <i class="fab fa-game"></i>Play mobile version
                 </a>
-                <a href="{{ path('fos_user_change_password') }}" class="btn btn-danger">
+                <br>
+                <a href="{{ path('fos_user_change_password') }}" class="btn button-background-slavs button-background-slavs-red">
                     <i class="fab fa-game"></i>Change password
                 </a>
-                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-danger">
+                <br>
+
+                <a href="{{ path('play_game') }}" class="btn button-background-slavs button-background-slavs-red">
+                    <i class="fab fa-game"></i>Play
+                </a>
+                <br>
+                <a href="{{ path('fos_user_security_logout') }}" class="btn button-background-slavs button-background-slavs-red">
                     <i class="fab fa-logout"></i>Logout
                 </a>
             </div>
-            <div class="col-md-12 mt-4">
-                <h2>Alpha test</h2>
+            <div class="col-md-8 container-background-slavs">
+                <h2 class="header-ruslan">Alpha test</h2>
                 <p>In alpha test we want to show You some functionality of game. The next chapter, beta version will have greater world and more functionalities. We have a lot of work in our project, but to keep in good condition we need some feedback from users. Would be great to fill public board in Trello. If you saw any bug please crete task in bug board, also if you think about something new or what is broken in game create task in features board. Thanks for your help, Slavs Team!</p>
                 <p><a href="https://trello.com/b/biYBl6PG/html5devforum-alpha" class="btn btn-primary" target="_blank">
                     <i class="fab fa-game"></i>Bug & Features board
