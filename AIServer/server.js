@@ -90,7 +90,7 @@ var Server;
                     var enemy = self.enemies[roomId][key];
                     if (enemyData.statistics.hp > 0 && !enemy) {
                         var box = BABYLON.Mesh.CreateBox(data.id, 3, scene, false);
-                        box.checkCollisions = true;
+                        box.checkCollisions = false;
                         box.position = new BABYLON.Vector3(enemyData.position.x, enemyData.position.y, enemyData.position.z);
                         var visibilityArea = BABYLON.MeshBuilder.CreateBox('enemy_visivilityArea', {
                             width: 30,
@@ -143,7 +143,7 @@ var Server;
                 if (playerData.connectionId !== self.socket.id) {
                     //if user not exists create scene and box with action manager
                     var box = BABYLON.Mesh.CreateBox(activeCharacter.id, 3, scene, false);
-                    box.checkCollisions = true;
+                    box.checkCollisions = false;
                     box.position = new BABYLON.Vector3(playerData.position.x, playerData.position.y, playerData.position.z);
                     box.actionManager = new BABYLON.ActionManager(scene);
                     var remotePlayer = {
