@@ -1,10 +1,13 @@
 {% extends "FrontendBundle::index.html.twig" %}
 
 {% block content %}
-    <div class="container text-center alert alert-success">
-        Please check you mailbox and confirm Your email.
-    </div>
-    <div class="container text-center">
-        <h2><a href="/">Back to homepage</a></h2>
+    <div class="text-center">
+        <h1 class="my-5 header-ruslan">Register new account</h1>
+        <div class="container text-center container-background-slavs">
+            <p class="mt-5">Please check you mailbox and confirm Your email.</p>
+        </div>
+        <div class="container text-center">
+            <a class="btn my-2 button-background-slavs" href="{{ path("homepage") }}">Back to homepage</a>
+        </div>
     </div>
 {% endblock %}

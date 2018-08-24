@@ -12,7 +12,7 @@
         {% if csrf_token %}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
         {% endif %}
-        <div class="row  justify-content-center">
+        <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="input-group">
                     <input class="form-control" type="text" id="username" name="_username"
@@ -30,7 +30,7 @@
         </div>
         <div class="row justify-content-center my-3">
             <div class="col-md-4">
-                <input class=" button-background-slavs" type="submit" id="_submit" name="_submit"
+                <input class="button-background-slavs" type="submit" id="_submit" name="_submit"
                        value="Login"/>
             </div>
             <div class="col-md-4">
@@ -38,7 +38,7 @@
                     password?</a>
             </div>
         </div>
-        <div class="row  justify-content-center">
+        <div class="row justify-content-center">
             <div class="col-md-12">
                 <h2><a class="btn button-background-slavs button-background-slavs-red"
                        href="{{ path("fos_user_registration_register") }}">Create new account</a></h2>
