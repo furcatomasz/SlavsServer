@@ -8,6 +8,7 @@ use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
 use GameBundle\Rooms\Room;
+use GameBundle\Scenes\Battleground;
 use GameBundle\Scenes\Factory;
 use GameBundle\Scenes\ForestHouse;
 use GameBundle\Scenes\ForestHouseStart;
@@ -53,7 +54,7 @@ class OnSelectCharacter extends AbstractEvent
                     $activePlayer->statistics = null;
                 }
 
-                $scene             = Factory::createSceneByType(ForestHouseStart::TYPE);
+                $scene             = Factory::createSceneByType(Battleground::TYPE);
 
                 $newRoom = (new Room())
                     ->setId($socket->id)

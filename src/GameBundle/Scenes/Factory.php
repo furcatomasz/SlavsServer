@@ -34,6 +34,9 @@ class Factory
             case ForestHouseTomb::TYPE:
                 $scene = new ForestHouseTomb();
                 break;
+            case Battleground::TYPE:
+                $scene = new Battleground();
+                break;
         }
 
         if (!$scene) {
