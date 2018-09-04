@@ -37,7 +37,7 @@ class PlayerAttributesManager extends AbstractManager
      */
     public function addAttribute(PlayerAttributes $playerAttributes, int $type)
     {
-        if ($type < 1 || $type > 5) {
+        if ($type < 1 || $type > 4) {
             return $this;
         }
 
@@ -52,10 +52,7 @@ class PlayerAttributesManager extends AbstractManager
                 $playerAttributes->setHealth($playerAttributes->getHealth() + 1);
                 break;
             case 4:
-                $playerAttributes->setAttackSpeed($playerAttributes->getAttackSpeed() + 1);
-                break;
-            case 5:
-                $playerAttributes->setBlockChance($playerAttributes->getBlockChance() + 1);
+                $playerAttributes->setEnergy($playerAttributes->getEnergy() + 1);
                 break;
         }
 

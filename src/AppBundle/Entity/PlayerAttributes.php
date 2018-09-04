@@ -51,14 +51,7 @@ class PlayerAttributes
      *
      * @var integer
      */
-    protected $critic;
-
-    /**
-     * @ORM\Column(type="integer")
-     *
-     * @var integer
-     */
-    protected $blockChance;
+    protected $energy;
 
     /**
      * @return int
@@ -163,42 +156,21 @@ class PlayerAttributes
     /**
      * @return int
      */
-    public function getCritic(): int
+    public function getEnergy(): int
     {
-        return $this->critic;
+        return $this->energy;
     }
 
     /**
-     * @param int $critic
+     * @param int $energy
      *
      * @return PlayerAttributes
      */
-    public function setCritic(int $critic): PlayerAttributes
+    public function setEnergy(int $energy): PlayerAttributes
     {
-        $this->critic = $critic;
+        $this->energy = $energy;
 
         return $this;
     }
-
-    /**
-     * @return int
-     */
-    public function getBlockChance(): int
-    {
-        return $this->blockChance;
-    }
-
-    /**
-     * @param int $blockChance
-     *
-     * @return PlayerAttributes
-     */
-    public function setBlockChance(int $blockChance): PlayerAttributes
-    {
-        $this->blockChance = $blockChance;
-
-        return $this;
-    }
-
 
 }

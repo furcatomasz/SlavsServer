@@ -19,7 +19,7 @@ class LeatherBoots extends Boots
             ->setName('Leather Boots')
             ->setMeshName('leatherBoots')
             ->setImage('leatherBoots')
-            ->setStatistics(new Statistics(0, 0, 0, 0, 1, 0, 0, 0));
+            ->setStatistics(new Statistics(0, 0, 0, 0, 0, 1, 0, 0, 0));
 
     }
 

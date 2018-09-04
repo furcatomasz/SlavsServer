@@ -19,7 +19,7 @@ class SmallWoodenShield extends Shield
             ->setName('Small wooden shield')
             ->setMeshName('shieldWoodenSmall')
             ->setImage('shieldWoodenSmall')
-            ->setStatistics(new Statistics(0, 0, 0, 0, 2, 0, 0, 0));
+            ->setStatistics(new Statistics(0, 0, 0, 0, 0, 2, 0, 0, 0));
 
     }
 

@@ -27,7 +27,7 @@ class SkeletonWarrior extends AbstractMonster
         $this->experience         = 5;
         $this->attackAreaSize     = 2;
         $this->visibilityAreaSize = 15;
-        $this->statistics         = new Statistics(80, 80, 100, 10, 10, 6, 0, 100);
+        $this->statistics         = new Statistics(80, 80, 100, 100, 10, 10, 9, 0, 100);
     }
 
 

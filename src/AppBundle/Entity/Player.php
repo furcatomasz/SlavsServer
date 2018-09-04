@@ -326,13 +326,14 @@ class Player
     {
         if (!$this->statistics) {
             $this->statistics = new Statistics(
-                100 + $this->getAttributes()->getHealth()*3,
-                100 + $this->getAttributes()->getHealth()*3,
-                100 + $this->getAttributes()->getAttackSpeed(),
+                100 + $this->getAttributes()->getHealth()*5,
+                100 + $this->getAttributes()->getHealth()*5,
+                100 + $this->getAttributes()->getEnergy(),
+                100 + $this->getAttributes()->getEnergy(),
                 1 + $this->getAttributes()->getDamage(),
                 1 + $this->getAttributes()->getDefence(),
                 4.0,
-                50 + $this->getAttributes()->getBlockChance(),
+                0,
                 100
             );
         }

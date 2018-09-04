@@ -15,7 +15,11 @@ class Statistics
     /**
      * @var int
      */
-    protected $attackSpeed;
+    protected $energy;
+    /**
+     * @var int
+     */
+    protected $energyMax;
     /**
      * @var int
      */
@@ -40,19 +44,21 @@ class Statistics
     /**
      * Statistics constructor.
      *
-     * @param int $hp
-     * @param int $hpMax
-     * @param int $attackSpeed
-     * @param int $damage
-     * @param int $armor
+     * @param int   $hp
+     * @param int   $hpMax
+     * @param int   $energy
+     * @param int   $energyMax
+     * @param int   $damage
+     * @param int   $armor
      * @param float $walkSpeed
-     * @param int $blockChance
-     * @param int $hitChance
+     * @param int   $blockChance
+     * @param int   $hitChance
      */
     public function __construct(
         int $hp,
         int $hpMax,
-        int $attackSpeed,
+        int $energy,
+        int $energyMax,
         int $damage,
         int $armor,
         float $walkSpeed,
@@ -61,7 +67,8 @@ class Statistics
     ) {
         $this->hp          = $hp;
         $this->hpMax       = $hpMax;
-        $this->attackSpeed = $attackSpeed;
+        $this->energy      = $energy;
+        $this->energyMax   = $energyMax;
         $this->damage      = $damage;
         $this->armor       = $armor;
         $this->walkSpeed   = $walkSpeed;
@@ -83,14 +90,6 @@ class Statistics
     public function getHpMax(): int
     {
         return $this->hpMax;
-    }
-
-    /**
-     * @return int
-     */
-    public function getAttackSpeed(): int
-    {
-        return $this->attackSpeed;
     }
 
     /**
@@ -158,18 +157,6 @@ class Statistics
     }
 
     /**
-     * @param int $attackSpeed
-     *
-     * @return Statistics
-     */
-    public function setAttackSpeed(int $attackSpeed): Statistics
-    {
-        $this->attackSpeed = $attackSpeed;
-
-        return $this;
-    }
-
-    /**
      * @param int $damage
      *
      * @return Statistics
@@ -228,5 +215,46 @@ class Statistics
 
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getEnergy(): int
+    {
+        return $this->energy;
+    }
+
+    /**
+     * @param int $energy
+     *
+     * @return Statistics
+     */
+    public function setEnergy(int $energy): Statistics
+    {
+        $this->energy = $energy;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEnergyMax(): int
+    {
+        return $this->energyMax;
+    }
+
+    /**
+     * @param int $energyMax
+     *
+     * @return Statistics
+     */
+    public function setEnergyMax(int $energyMax): Statistics
+    {
+        $this->energyMax = $energyMax;
+
+        return $this;
+    }
+
 
 }

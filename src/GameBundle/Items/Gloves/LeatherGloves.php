@@ -19,7 +19,7 @@ class LeatherGloves extends Gloves
             ->setName('Leather Gloves')
             ->setMeshName('leatherGloves')
             ->setImage('leatherGloves')
-            ->setStatistics(new Statistics(0, 0, 0, 0, 1, 0, 0, 0));
+            ->setStatistics(new Statistics(0, 0, 0, 0,  0, 1, 0, 0, 0));
 
     }
 

@@ -17,7 +17,7 @@ class Sword extends Weapon
             ->setName('Sword')
             ->setMeshName('sword')
             ->setImage('sword')
-            ->setStatistics(new Statistics(0, 0, 0, 5, 0, 0, 0, 0));
+            ->setStatistics(new Statistics(0, 0, 0, 0, 5, 0, 0, 0, 0));
 
     }
 

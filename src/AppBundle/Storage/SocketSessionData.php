@@ -50,6 +50,11 @@ class SocketSessionData
     public $attack;
 
     /**
+     * @var int
+     */
+    public $activeSkill;
+
+    /**
      * @var string
      */
     public $monsterServerId;
@@ -284,5 +289,24 @@ class SocketSessionData
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
+    public function getActiveSkill(): ?int
+    {
+        return $this->activeSkill;
+    }
+
+    /**
+     * @param int $activeSkill
+     *
+     * @return SocketSessionData
+     */
+    public function setActiveSkill(int $activeSkill): SocketSessionData
+    {
+        $this->activeSkill = $activeSkill;
+
+        return $this;
+    }
 
 }
