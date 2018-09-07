@@ -37,6 +37,9 @@ class Factory
             case Battleground::TYPE:
                 $scene = new Battleground();
                 break;
+            case MountainsPass::TYPE:
+                $scene = new MountainsPass();
+                break;
         }
 
         if (!$scene) {

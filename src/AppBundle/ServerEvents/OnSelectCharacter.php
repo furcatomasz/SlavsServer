@@ -13,6 +13,7 @@ use GameBundle\Scenes\Factory;
 use GameBundle\Scenes\ForestHouse;
 use GameBundle\Scenes\ForestHouseStart;
 use GameBundle\Scenes\ForestHouseTomb;
+use GameBundle\Scenes\MountainsPass;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -54,7 +55,7 @@ class OnSelectCharacter extends AbstractEvent
                     $activePlayer->statistics = null;
                 }
 
-                $scene             = Factory::createSceneByType(Battleground::TYPE);
+                $scene             = Factory::createSceneByType(ForestHouse::TYPE);
 
                 $newRoom = (new Room())
                     ->setId($socket->id)
@@ -73,6 +74,13 @@ class OnSelectCharacter extends AbstractEvent
                         'y' => 0,
                         'z' => 0,
                     ]
+                    /*
+                     * [
+                        'x' => -143,
+                        'y' => 0,
+                        'z' => 142,
+                    ]
+                     */
                 );
 
                 $socket

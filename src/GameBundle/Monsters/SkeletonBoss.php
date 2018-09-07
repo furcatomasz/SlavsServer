@@ -27,7 +27,7 @@ class SkeletonBoss extends AbstractMonster
         $this->experience         = 25;
         $this->attackAreaSize     = 2;
         $this->visibilityAreaSize = 15;
-        $this->statistics         = new Statistics(400, 400, 100, 100, 25, 25, 9, 0, 100);
+        $this->statistics         = new Statistics(400, 400, 100, 100, 25, 25, 4, 0, 100);
     }
 
 

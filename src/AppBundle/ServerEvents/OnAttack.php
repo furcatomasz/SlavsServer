@@ -61,9 +61,10 @@ class OnAttack extends AbstractEvent
                 $socketSessionData = $event->getSocketSessionData();
                 $roomId            = $socketSessionData->getActiveRoom()->getId();
                 $player            = $socketSessionData->getActivePlayer();
-                if ($socketSessionData->getLastPlayerAttack() > time() - 1) {
-                    return;
-                }
+                ///TODO: fix attack time
+//                if ($socketSessionData->getLastPlayerAttack() > time() - 0) {
+//                    return;
+//                }
 
                 $socketSessionData
                     ->setAttack($data['attack'])
