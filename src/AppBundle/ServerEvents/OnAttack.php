@@ -61,22 +61,44 @@ class OnAttack extends AbstractEvent
                 $socketSessionData = $event->getSocketSessionData();
                 $roomId            = $socketSessionData->getActiveRoom()->getId();
                 $player            = $socketSessionData->getActivePlayer();
+                $playerEnergy      = $socketSessionData->getActivePlayer()->getStatistics()->getEnergy();
+
                 ///TODO: fix attack time
 //                if ($socketSessionData->getLastPlayerAttack() > time() - 0) {
 //                    return;
 //                }
 
-                $socketSessionData
-                    ->setAttack($data['attack'])
-                    ->setTargetPoint($data['targetPoint'])
-                    ->setLastPlayerAttack(time());
+                if($socketSessionData->getActiveSkill() && !$socketSessionData->getActiveSkill()->used) {
+                    foreach ($socketSessionData->getActiveRoom()->getMonsters() as $monsterSceneKey => $monster) {
+                        foreach ($monster->getAvailableAttacksFromCharacters() as $attackedPlayerId => $isAttacked) {
+                            if ($player->getId() == $attackedPlayerId) {
+                                $monsterKey = $monsterSceneKey;
+                            }
+                        }
+                    }
+                } else {
+                    $socketSessionData
+                        ->setAttack($data['attack'])
+                        ->setTargetPoint($data['targetPoint'])
+                        ->setLastPlayerAttack(time());
 
-                $monsterKey = $data['attack'];
+                    if($playerEnergy+3 <= $socketSessionData->getActivePlayer()->getStatistics()->getEnergyMax()) {
+                        $socketSessionData->getActivePlayer()->getStatistics()->setEnergy($playerEnergy + 3);
+                    }
+
+                    $monsterKey = $data['attack'];
+                }
+
                 $monster    = $socketSessionData->getActiveRoom()->getMonsters()[$monsterKey];
                 /** @var AbstractMonster $monster */
                 foreach ($monster->getAvailableAttacksFromCharacters() as $attackedPlayerId => $isAttacked) {
                     if ($player->getId() == $attackedPlayerId) {
                         $damage = $player->getAllStatistics()->getDamage() - $monster->getStatistics()->getArmor();
+                        if($socketSessionData->getActiveSkill() && !$socketSessionData->getActiveSkill()->used) {
+                            $socketSessionData->getActiveSkill()->useSkill($damage);
+                            $socketSessionData->setActiveSkill(null);
+                        }
+
                         if ($damage < 1) {
                             $damage = 1;
                         }

@@ -4,6 +4,7 @@ namespace AppBundle\Storage;
 
 use AppBundle\Entity\Player;
 use GameBundle\Rooms\Room;
+use GameBundle\Skills\AbstractSkill;
 use UserBundle\Entity\User;
 
 class SocketSessionData
@@ -50,7 +51,7 @@ class SocketSessionData
     public $attack;
 
     /**
-     * @var int
+     * @var AbstractSkill
      */
     public $activeSkill;
 
@@ -290,19 +291,19 @@ class SocketSessionData
     }
 
     /**
-     * @return int|null
+     * @return AbstractSkill|null
      */
-    public function getActiveSkill(): ?int
+    public function getActiveSkill(): ?AbstractSkill
     {
         return $this->activeSkill;
     }
 
     /**
-     * @param int $activeSkill
+     * @param AbstractSkill|null $activeSkill
      *
      * @return SocketSessionData
      */
-    public function setActiveSkill(int $activeSkill): SocketSessionData
+    public function setActiveSkill(?AbstractSkill $activeSkill): SocketSessionData
     {
         $this->activeSkill = $activeSkill;
 

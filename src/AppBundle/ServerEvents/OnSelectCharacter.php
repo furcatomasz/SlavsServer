@@ -55,7 +55,7 @@ class OnSelectCharacter extends AbstractEvent
                     $activePlayer->statistics = null;
                 }
 
-                $scene             = Factory::createSceneByType(ForestHouse::TYPE);
+                $scene             = Factory::createSceneByType(Battleground::TYPE);
 
                 $newRoom = (new Room())
                     ->setId($socket->id)
@@ -74,13 +74,11 @@ class OnSelectCharacter extends AbstractEvent
                         'y' => 0,
                         'z' => 0,
                     ]
-                    /*
-                     * [
-                        'x' => -143,
-                        'y' => 0,
-                        'z' => 142,
-                    ]
-                     */
+//                      [
+//                        'x' => -143,
+//                        'y' => 0,
+//                        'z' => 142,
+//                    ]
                 );
 
                 $socket

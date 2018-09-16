@@ -9,6 +9,7 @@ use AppBundle\ServerEvents\AbstractEvent;
 use AppBundle\Storage\SocketSessionData;
 use GameBundle\Monsters\AbstractMonster;
 use GameBundle\Rooms\Room;
+use GameBundle\Skills\Block;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -56,9 +57,17 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                             /** @var Player $player */
                             $player = $playerSession->getActivePlayer();
                             $damage = $enemy->getStatistics()->getDamage()-$player->getAllStatistics()->getArmor();
+                            ///
+                            ///Block skill
+                            ///
+                            if($playerSession->getActiveSkill() instanceof Block) {
+                                $playerSession->getActiveSkill()->useSkill($damage);
+                            }
+
                             if($damage < 1) {
                                 $damage = 1;
                             }
+
                             $player->getStatistics()->setHp($player->getStatistics()->getHp() - $damage);
                             $socket
                                 ->to($roomId)
