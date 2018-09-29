@@ -19,7 +19,11 @@ use GameBundle\SpecialItems\Gold;
 class ForestHouse extends AbstractScene
 {
     const TYPE = 2;
-
+    const START_POSITION = [
+        'x' => 0,
+        'y' => 0,
+        'z' => 0,
+    ];
     /**
      * AbstractScene constructor.
      */
@@ -27,7 +31,6 @@ class ForestHouse extends AbstractScene
     {
         parent::__construct();
         $this->gateways = [
-            new EntraceHouse(),
             new EntraceForestHouseTomb(),
         ];
 

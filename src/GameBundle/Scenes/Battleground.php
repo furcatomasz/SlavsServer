@@ -13,7 +13,11 @@ use GameBundle\SpecialItems\KeyToChest;
 class Battleground extends AbstractScene
 {
     const TYPE = 99;
-
+    const START_POSITION = [
+        'x' => 0,
+        'y' => 0,
+        'z' => 0,
+    ];
     /**createEnemies
      * AbstractScene constructor.
      */

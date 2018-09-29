@@ -13,6 +13,7 @@ class EntraceForestHouse extends AbstractGateway
     public function __construct()
     {
         $this->objectName    = 'exitHouse';
+        $this->entranceName  = 'Entrance For forest';
         $this->openSceneType = ForestHouse::TYPE;
     }
 

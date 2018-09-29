@@ -19,6 +19,11 @@ use GameBundle\SpecialItems\Gold;
 class MountainsPass extends AbstractScene
 {
     const TYPE = 5;
+    const START_POSITION = [
+        'x' => -130,
+        'y' => 0,
+        'z' => 132,
+    ];
 
     /**
      * AbstractScene constructor.

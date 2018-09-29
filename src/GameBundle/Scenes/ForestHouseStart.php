@@ -12,6 +12,11 @@ use GameBundle\SpecialItems\Gold;
 class ForestHouseStart extends AbstractScene
 {
     const TYPE = 1;
+    const START_POSITION = [
+        'x' => 0,
+        'y' => 0,
+        'z' => 0,
+    ];
 
     /**
      * AbstractScene constructor.

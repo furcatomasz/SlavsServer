@@ -12,6 +12,11 @@ use GameBundle\SpecialItems\KeyToChest;
 class ForestHouseTomb extends AbstractScene
 {
     const TYPE = 3;
+    const START_POSITION = [
+        'x' => 0,
+        'y' => 0,
+        'z' => 0,
+    ];
 
     /**createEnemies
      * AbstractScene constructor.

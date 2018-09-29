@@ -9,6 +9,11 @@ use GameBundle\Monsters\AbstractMonster;
 abstract class AbstractScene
 {
     const TYPE = 0;
+    const START_POSITION = [
+        'x' => 0,
+        'y' => 0,
+        'z' => 0,
+    ];
 
     /**
      * @var array

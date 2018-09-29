@@ -14,6 +14,7 @@ class EntraceForestHouseTomb extends AbstractGateway
     public function __construct()
     {
         $this->objectName    = 'Entrace_Tomb';
+        $this->entranceName  = 'Entrance For Tombs';
         $this->openSceneType = ForestHouseTomb::TYPE;
     }
 

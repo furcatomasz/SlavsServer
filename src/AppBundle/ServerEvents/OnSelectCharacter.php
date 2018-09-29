@@ -14,6 +14,7 @@ use GameBundle\Scenes\ForestHouse;
 use GameBundle\Scenes\ForestHouseStart;
 use GameBundle\Scenes\ForestHouseTomb;
 use GameBundle\Scenes\MountainsPass;
+use GameBundle\Scenes\SelectCharacter;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -55,9 +56,9 @@ class OnSelectCharacter extends AbstractEvent
                     $activePlayer->statistics = null;
                 }
 
-                $scene             = Factory::createSceneByType(Battleground::TYPE);
-
-                $newRoom = (new Room())
+                $startScene = new ForestHouse();
+                $scene      = Factory::createSceneByType($startScene::TYPE);
+                $newRoom    = (new Room())
                     ->setId($socket->id)
                     ->setName('RoomTest')
                     ->setPlayers([$activePlayer->getId() => $socketSessionData]);
@@ -68,18 +69,7 @@ class OnSelectCharacter extends AbstractEvent
                     ->setActivePlayer($activePlayer);
 
                 $self->socketIOServer->rooms[$newRoom->getId()] = $newRoom;
-                $socketSessionData->setPosition(
-                    [
-                        'x' => 0,
-                        'y' => 0,
-                        'z' => 0,
-                    ]
-//                      [
-//                        'x' => -143,
-//                        'y' => 0,
-//                        'z' => 142,
-//                    ]
-                );
+                $socketSessionData->setPosition($startScene::START_POSITION);
 
                 $socket
                     ->to($self->socketIOServer->monsterServerId)

@@ -24,6 +24,11 @@ abstract class AbstractGateway
     public $objectName;
 
     /**
+     * @var int
+     */
+    public $entranceName;
+
+    /**
      * @param SocketSessionData $sessionData
      *
      * @return AbstractGateway

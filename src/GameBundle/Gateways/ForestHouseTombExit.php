@@ -13,7 +13,8 @@ class ForestHouseTombExit extends AbstractGateway
      */
     public function __construct()
     {
-        $this->objectName = 'exitForest';
+        $this->objectName    = 'exitForest';
+        $this->entranceName  = 'Back to forest';
         $this->openSceneType = ForestHouse::TYPE;
     }
 
