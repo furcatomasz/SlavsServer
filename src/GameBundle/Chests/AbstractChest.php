@@ -5,6 +5,7 @@ namespace GameBundle\Chests;
 use AppBundle\Entity\Player;
 use AppBundle\Entity\PlayerSpecialItems;
 use AppBundle\Manager\SpecialItemManager;
+use GameBundle\BabylonObjects\Vector3;
 use GameBundle\SpecialItems\AbstractSpecialItem;
 
 abstract class AbstractChest
@@ -22,9 +23,19 @@ abstract class AbstractChest
     public $opened = false;
 
     /**
-     * @var string
+     * @var Vector3
      */
-    public $objectName;
+    public $position;
+
+    /**
+     * @var Vector3
+     */
+    public $awardsPosition;
+
+    /**
+     * @var Vector3
+     */
+    public $rotation;
 
     /**
      * @var array
@@ -43,21 +54,24 @@ abstract class AbstractChest
      * @param SpecialItemManager $specialItemManger
      *
      * @return AbstractSpecialItem|null
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function openChest(Player $player, SpecialItemManager $specialItemManger): ?AbstractChest
     {
         $self = $this;
         $key  = null;
-        $player->getSpecialItems()->map(
-            function (PlayerSpecialItems $specialItem) use (&$key, $self, $specialItemManger) {
-                if ($specialItem->getType() == $self->requirementKeyType) {
-                    $specialItemManger->remove($specialItem);
-                    $self->opened = true;
+        $specialItems = $player->getSpecialItems();
 
-                    return;
-                }
+        /** @var PlayerSpecialItems $specialItem */
+        foreach($specialItems as $specialItem) {
+            if ($specialItem->getType() == $self->requirementKeyType) {
+                $specialItemManger->remove($specialItem);
+                $self->opened = true;
+
+                break;
             }
-        );
+        }
 
         return $this;
     }

@@ -8,6 +8,8 @@ use AppBundle\Manager\PlayerManager;
 use AppBundle\Manager\SpecialItemManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\ServerEvents\AbstractEvent;
+use GameBundle\BabylonObjects\Vector3;
+use GameBundle\BabylonObjects\VectorHelper;
 use GameBundle\Chests\AbstractChest;
 use GameBundle\Items\AbstractItem;
 use GameBundle\Quests\AbstractQuest;
@@ -43,6 +45,7 @@ class OnOpenChest extends AbstractEvent
      * @param Event|ConnectionEstablishedEvent $event
      *
      * @return AbstractEvent
+     * @throws \Exception
      */
     public function registerEvent(Event $event): AbstractEvent
     {
@@ -58,9 +61,18 @@ class OnOpenChest extends AbstractEvent
 
                 /** @var AbstractChest $chest */
                 $chest = $scene->chests[$chestKey];
-                if (!$chest) {
+                if (!$chest || ($chest && $chest->opened) ) {
                     return;
                 }
+
+                ///TODO: Check distance
+//                $playerPosition = $socketSessionData->getPosition();
+//                $playerPositionVector = new Vector3($playerPosition['x'], $playerPosition['y'], $playerPosition['z']);
+//                $distanceForChest = VectorHelper::distance($playerPositionVector, $chest->position);
+//
+//                if($distanceForChest > 1) {
+//                    return;
+//                }
 
                 $chest->openChest($player, $self->managerSpecialItem);
                 if ($chest->opened) {
@@ -80,11 +92,7 @@ class OnOpenChest extends AbstractEvent
                             $socket->emit('showDroppedItem', [
                                 'item' => $self->serializer->normalize($award, 'array'),
                                 'itemKey' => $itemKey,
-                                'position' => [
-                                    'x' => 36.3,
-                                    'y' => 0,
-                                    'z' => -28.8
-                                ]
+                                'position' => $chest->awardsPosition
                             ]);
                         } elseif($award instanceof AbstractSpecialItem) {
                             $manager = ($award instanceof Gold) ?

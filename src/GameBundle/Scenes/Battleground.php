@@ -2,6 +2,7 @@
 
 namespace GameBundle\Scenes;
 
+use GameBundle\BabylonObjects\Vector3;
 use GameBundle\Chests\WoodChest;
 use GameBundle\Gateways\ForestHouseTombExit;
 use GameBundle\Items\Weapons\LongSword;
@@ -25,7 +26,9 @@ class Battleground extends AbstractScene
     {
         parent::__construct();
         $this->gateways = [];
-        $this->chests = [];
+        $this->chests = [
+            new WoodChest(new Vector3(-19,0,20), new Vector3(0,1.5,0), new Vector3(-19,0,18), [new Gold(50), new KeyToChest(1), new LongSword()]),
+        ];
         $this->monsters = [
             new SkeletonWarrior(0, ['x' => 17, 'y' => 0, 'z' => 17], [], []),
         ];

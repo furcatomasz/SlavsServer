@@ -33,7 +33,6 @@ class ForestHouseTomb extends AbstractScene
         ];
 
         $this->chests = [
-            new WoodChest('Chest', [new Gold(50), new LongSword()]),
         ];
     }
 
