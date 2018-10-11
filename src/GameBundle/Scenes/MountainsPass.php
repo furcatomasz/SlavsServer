@@ -2,6 +2,8 @@
 
 namespace GameBundle\Scenes;
 
+use GameBundle\BabylonObjects\Vector3;
+use GameBundle\Chests\WoodChest;
 use GameBundle\Gateways\EntraceForestHouseTomb;
 use GameBundle\Gateways\EntraceHouse;
 use GameBundle\Items\Armors\LeatherArmor;
@@ -15,6 +17,7 @@ use GameBundle\Monsters\Skeleton;
 use GameBundle\Monsters\SkeletonBoss;
 use GameBundle\Monsters\SkeletonWarrior;
 use GameBundle\SpecialItems\Gold;
+use GameBundle\SpecialItems\KeyToChest;
 
 class MountainsPass extends AbstractScene
 {
@@ -32,6 +35,10 @@ class MountainsPass extends AbstractScene
     {
         parent::__construct();
         $this->gateways = [
+        ];
+
+        $this->chests = [
+            new WoodChest(new Vector3(-108, 0, 135), new Vector3(0, 1.7, 0), new Vector3(-108, 0, 132), [new Gold(50), new KeyToChest(1), new LongSword()]),
         ];
 
         $itemsToDrop = [

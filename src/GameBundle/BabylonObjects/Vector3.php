@@ -5,28 +5,28 @@ namespace GameBundle\BabylonObjects;
 class Vector3
 {
     /**
-     * @var int
+     * @var float
      */
     public $x;
 
     /**
-     * @var int
+     * @var float
      */
     public $y;
 
     /**
-     * @var int
+     * @var float
      */
     public $z;
 
     /**
      * Position constructor.
      *
-     * @param int $x
-     * @param int $y
-     * @param int $z
+     * @param float $x
+     * @param float $y
+     * @param float $z
      */
-    public function __construct(int $x, int $y, int $z)
+    public function __construct(float $x, float $y, float $z)
     {
         $this->x = $x;
         $this->y = $y;
@@ -34,25 +34,25 @@ class Vector3
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getX(): int
+    public function getX(): float
     {
         return $this->x;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getY(): int
+    public function getY(): float
     {
         return $this->y;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getZ(): int
+    public function getZ(): float
     {
         return $this->z;
     }
