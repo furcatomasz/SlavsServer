@@ -6,6 +6,7 @@ use GameBundle\BabylonObjects\Vector3;
 use GameBundle\Chests\WoodChest;
 use GameBundle\Gateways\ForestHouseTombExit;
 use GameBundle\Items\Weapons\LongSword;
+use GameBundle\Monsters\Skeleton;
 use GameBundle\Monsters\SkeletonBoss;
 use GameBundle\Monsters\SkeletonWarrior;
 use GameBundle\SpecialItems\Gold;
@@ -31,6 +32,8 @@ class Battleground extends AbstractScene
         ];
         $this->monsters = [
             new SkeletonWarrior(0, ['x' => 17, 'y' => 0, 'z' => 17], [], []),
+            new Skeleton(0, ['x' => 36, 'y' => 0, 'z' => -35], [], []),
+            new SkeletonWarrior(0, ['x' => 38, 'y' => 0, 'z' => -44], [], []),
         ];
     }
 
