@@ -332,7 +332,7 @@ class Player
                 100 + $this->getAttributes()->getEnergy(),
                 1 + $this->getAttributes()->getDamage(),
                 1 + $this->getAttributes()->getDefence(),
-                4.0,
+                4.5,
                 0,
                 100
             );

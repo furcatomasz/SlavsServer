@@ -40,6 +40,10 @@ class Factory
             case MountainsPass::TYPE:
                 $scene = new MountainsPass();
                 break;
+            case CaveExit::TYPE:
+                $scene = new CaveExit();
+                break;
+
         }
 
         if (!$scene) {
