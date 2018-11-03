@@ -1,26 +1,31 @@
 <?php
 
-namespace AppBundle\ServerEvents;
+namespace AppBundle\ServerEvents\SceneInit;
 
 
-use AppBundle\Entity\Player;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
+use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Rooms\Room;
 use GameBundle\Scenes\Factory;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 
 /**
  * @DI\Service
  */
-class OnChangeScenePost extends AbstractEvent
+class OnChangeScene extends AbstractEvent
 {
+
+    /**
+     * @DI\Inject("manager.player")
+     *
+     * @var PlayerManager
+     */
+    public $playerManager;
 
     /**
      * @DI\Observe("connection.established.event")
@@ -33,19 +38,13 @@ class OnChangeScenePost extends AbstractEvent
         $socket = $event->getSocket();
         $self   = $this;
         $socket->on(
-            'changeScenePost',
-            function () use ($self, $event, $socket) {
+            'changeScene',
+            function ($sceneType) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $monsters          = $socketSessionData->getActiveRoom()->getMonsters();
+                $scene             = Factory::createSceneByType($sceneType);
+                $socketSessionData->setActiveScene($scene->type);
 
-                $socket->to($self->socketIOServer->monsterServerId)->emit(
-                    'showPlayer',
-                    $self->serializer->normalize($socketSessionData, 'array')
-                );
-                $socket->emit(
-                    'showEnemies',
-                    $self->serializer->normalize($monsters, 'array')
-                );
+                $socket->emit('changeScene', $scene->type);
             }
         );
 

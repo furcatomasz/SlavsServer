@@ -1,9 +1,10 @@
 <?php
 
-namespace AppBundle\ServerEvents;
+namespace AppBundle\ServerEvents\Player;
 
 
 use AppBundle\Server\ConnectionEstablishedEvent;
+use AppBundle\ServerEvents\AbstractEvent;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 

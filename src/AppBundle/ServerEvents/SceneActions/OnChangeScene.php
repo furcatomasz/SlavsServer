@@ -1,7 +1,6 @@
 <?php
 
-namespace AppBundle\ServerEvents\Scene;
-
+namespace AppBundle\ServerEvents\SceneActions;
 
 use AppBundle\Entity\Player;
 use AppBundle\Server\ConnectionEstablishedEvent;

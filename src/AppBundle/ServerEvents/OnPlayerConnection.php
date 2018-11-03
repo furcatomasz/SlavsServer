@@ -3,20 +3,12 @@
 namespace AppBundle\ServerEvents;
 
 
-use AppBundle\Entity\Player;
 use AppBundle\Manager\GameTokenSessionManager;
-use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
 use FOS\UserBundle\Model\UserManager;
-use GameBundle\Rooms\Room;
-use GameBundle\Scenes\Factory;
-use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
-
+use JMS\DiExtraBundle\Annotation as DI;
 
 /**
  * @DI\Service

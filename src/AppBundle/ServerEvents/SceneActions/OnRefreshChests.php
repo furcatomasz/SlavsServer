@@ -1,7 +1,6 @@
 <?php
 
-namespace AppBundle\ServerEvents\Scene;
-
+namespace AppBundle\ServerEvents\SceneActions;
 
 use AppBundle\Entity\Player;
 use AppBundle\Server\ConnectionEstablishedEvent;
@@ -14,7 +13,7 @@ use Symfony\Component\EventDispatcher\Event;
 /**
  * @DI\Service
  */
-class OnRefreshGateways extends AbstractEvent
+class OnRefreshChests extends AbstractEvent
 {
 
     /**
@@ -28,17 +27,15 @@ class OnRefreshGateways extends AbstractEvent
         $socket = $event->getSocket();
         $self   = $this;
         $socket->on(
-            'refreshGateways',
+            'refreshChests',
             function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
                 $scene             = Factory::createSceneByType($socketSessionData->getActiveScene());
-                $scene->refreshGatewaysData($socketSessionData);
 
                 $socket->emit(
-                    'refreshGateways',
-                    $self->serializer->normalize($scene, 'array')
+                    'refreshChests',
+                    $self->serializer->normalize($scene->chests, 'array')
                 );
-
             }
         );
 

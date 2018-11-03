@@ -9,8 +9,6 @@ use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Items\Weapons\Sword;
-use GameBundle\Scenes\Factory;
-use GameBundle\Scenes\SelectCharacter;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 use UserBundle\Entity\User;

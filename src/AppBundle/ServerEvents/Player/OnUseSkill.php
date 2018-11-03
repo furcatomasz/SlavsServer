@@ -1,20 +1,14 @@
 <?php
 
-namespace AppBundle\ServerEvents;
+namespace AppBundle\ServerEvents\Player;
 
 
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Manager\SpecialItemManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
-use GameBundle\Items\AbstractItem;
-use GameBundle\Monsters\AbstractMonster;
-use GameBundle\Quests\Chapter;
-use GameBundle\Quests\Requirements\AbstractRequirement;
-use GameBundle\Quests\Requirements\KillMonster;
+use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Skills\Factory;
-use GameBundle\SpecialItems\AbstractSpecialItem;
-use GameBundle\SpecialItems\Gold;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 

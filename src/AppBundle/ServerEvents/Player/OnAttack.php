@@ -1,13 +1,13 @@
 <?php
 
-namespace AppBundle\ServerEvents;
+namespace AppBundle\ServerEvents\Player;
 
 
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Manager\SpecialItemManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
-use GameBundle\Items\AbstractItem;
+use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Monsters\AbstractMonster;
 use GameBundle\Quests\Chapter;
 use GameBundle\Quests\Requirements\AbstractRequirement;

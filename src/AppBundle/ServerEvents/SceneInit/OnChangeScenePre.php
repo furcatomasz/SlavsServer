@@ -1,10 +1,11 @@
 <?php
 
-namespace AppBundle\ServerEvents;
+namespace AppBundle\ServerEvents\SceneInit;
 
 
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
+use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Scenes\Factory;
 use GameBundle\Scenes\SelectCharacter;
 use JMS\DiExtraBundle\Annotation as DI;

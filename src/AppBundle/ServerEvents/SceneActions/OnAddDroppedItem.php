@@ -1,16 +1,14 @@
 <?php
 
-namespace AppBundle\ServerEvents;
+namespace AppBundle\ServerEvents\SceneActions;
 
 
 use AppBundle\Manager\ItemManager;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
+use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Items\AbstractItem;
-use GameBundle\Items\ItemFactory;
-use GameBundle\Monsters\AbstractMonster;
-use GameBundle\SpecialItems\AbstractSpecialItem;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 

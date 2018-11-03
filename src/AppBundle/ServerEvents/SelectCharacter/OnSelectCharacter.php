@@ -1,26 +1,16 @@
 <?php
 
-namespace AppBundle\ServerEvents;
+namespace AppBundle\ServerEvents\SelectCharacter;
 
 
-use AppBundle\Entity\Player;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
-use AppBundle\Server\SocketIO;
+use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Rooms\Room;
-use GameBundle\Scenes\Battleground;
 use GameBundle\Scenes\CaveExit;
 use GameBundle\Scenes\Factory;
-use GameBundle\Scenes\ForestHouse;
-use GameBundle\Scenes\ForestHouseStart;
-use GameBundle\Scenes\ForestHouseTomb;
-use GameBundle\Scenes\MountainsPass;
-use GameBundle\Scenes\SelectCharacter;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 
 /**

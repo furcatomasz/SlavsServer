@@ -61,6 +61,9 @@ services:
         links:
           - "db"
           - "redis"
+        environment:
+            XDEBUG_CONFIG: "idekey=PHPSTORM"
+            PHP_IDE_CONFIG: "serverName=SlavsServer"
     node:
         command: node /var/www/app/AIServer/server.js
         container_name: slavsServer_node

@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use GameBundle\Items\AbstractItem;
 use GameBundle\Items\ItemFactory;
 use GameBundle\Lvls\Lvls;
+use GameBundle\Player\PlayerTrait;
 use GameBundle\Statistics\Statistics;
 use Doctrine\ORM\Mapping as ORM;
 use UserBundle\Entity\User;
@@ -15,6 +16,7 @@ use UserBundle\Entity\User;
  */
 class Player
 {
+    use PlayerTrait;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -101,11 +103,6 @@ class Player
      * @var integer
      */
     protected $freeAttributesPoints;
-
-    /**
-     * @var Statistics
-     */
-    public $statistics;
 
     /**
      * @return int
@@ -313,89 +310,6 @@ class Player
     public function getSpecialItems(): Collection
     {
         return $this->specialItems;
-    }
-
-    /***********
-     * Place for virtual properties
-     ***********/
-
-    /**
-     * @return Statistics
-     */
-    public function getStatistics(): Statistics
-    {
-        if (!$this->statistics) {
-            $this->statistics = new Statistics(
-                100 + $this->getAttributes()->getHealth()*5,
-                100 + $this->getAttributes()->getHealth()*5,
-                100 + $this->getAttributes()->getEnergy(),
-                100 + $this->getAttributes()->getEnergy(),
-                1 + $this->getAttributes()->getDamage(),
-                1 + $this->getAttributes()->getDefence(),
-                4.5,
-                0,
-                100
-            );
-        }
-
-        return $this->statistics;
-    }
-
-    /**
-     * @return Statistics
-     */
-    public function getAllStatistics(): Statistics
-    {
-        $allStatistics = clone $this->getStatistics();
-
-        $damage = 0;
-        $armor  = 0;
-
-        array_map(
-            function (AbstractItem $item) use (&$damage, &$armor) {
-                if($item->getEntity()->getEquip()) {
-                    $damage += $item->getStatistics()->getDamage();
-                    $armor  += $item->getStatistics()->getArmor();
-                }
-            },
-            $this->getItems()->toArray()
-        );
-
-        $allStatistics
-            ->setDamage($damage + $allStatistics->getDamage())
-            ->setArmor($armor + $allStatistics->getArmor());
-
-        return $allStatistics;
-    }
-
-    /**
-     * @return Collection|AbstractItem
-     */
-    public function getItems(): Collection
-    {
-        return $this->items->map(
-            function (PlayerItem $playerItem) {
-                return ItemFactory::create($playerItem);
-            }
-        );
-    }
-
-    /**
-     * @return float
-     */
-    public function getExperiencePercentages(): float {
-        if($this->experience < 1) {
-            return 0;
-        }
-
-        $experienceToActualLvl = Lvls::getExperienceForLvls()[($this->getLvl())];
-        $experienceRequired = Lvls::getExperienceForLvls()[($this->getLvl()+1)];
-
-        $percentageValue = ($this->getLvl()) ?
-            ((($this->getExperience()-$experienceToActualLvl ) * 100) / ($experienceRequired-$experienceToActualLvl)) :
-            ((($this->getExperience()) * 100) / ($experienceRequired));
-
-        return $percentageValue;
     }
 
 }

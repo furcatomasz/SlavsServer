@@ -3,13 +3,11 @@
 namespace AppBundle\ServerEvents\Player;
 
 
-use AppBundle\Manager\ItemManager;
 use AppBundle\Manager\PlayerAttributesManager;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
 use AppBundle\ServerEvents\AbstractEvent;
-use GameBundle\Items\ItemFactory;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 

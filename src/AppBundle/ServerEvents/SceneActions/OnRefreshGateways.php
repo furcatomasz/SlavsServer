@@ -1,30 +1,20 @@
 <?php
 
-namespace AppBundle\ServerEvents;
+namespace AppBundle\ServerEvents\SceneActions;
 
-
-use AppBundle\Manager\PlayerManager;
+use AppBundle\Entity\Player;
 use AppBundle\Server\ConnectionEstablishedEvent;
-use AppBundle\Server\SocketIO;
-use GameBundle\Rooms\Room;
+use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Scenes\Factory;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\Serializer\Serializer;
 
 
 /**
  * @DI\Service
  */
-class OnChangeScene extends AbstractEvent
+class OnRefreshGateways extends AbstractEvent
 {
-
-    /**
-     * @DI\Inject("manager.player")
-     *
-     * @var PlayerManager
-     */
-    public $playerManager;
 
     /**
      * @DI\Observe("connection.established.event")
@@ -37,13 +27,17 @@ class OnChangeScene extends AbstractEvent
         $socket = $event->getSocket();
         $self   = $this;
         $socket->on(
-            'changeScene',
-            function ($sceneType) use ($self, $event, $socket) {
+            'refreshGateways',
+            function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $scene             = Factory::createSceneByType($sceneType);
-                $socketSessionData->setActiveScene($scene->type);
+                $scene             = Factory::createSceneByType($socketSessionData->getActiveScene());
+                $scene->refreshGatewaysData($socketSessionData);
 
-                $socket->emit('changeScene', $scene->type);
+                $socket->emit(
+                    'refreshGateways',
+                    $self->serializer->normalize($scene, 'array')
+                );
+
             }
         );
 
