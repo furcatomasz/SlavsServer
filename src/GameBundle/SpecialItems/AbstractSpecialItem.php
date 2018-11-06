@@ -14,10 +14,12 @@ abstract class AbstractSpecialItem
      * @var string
      */
     public $name;
+
     /**
      * @var int
      */
     public $value;
+
     /**
      * @var int
      */

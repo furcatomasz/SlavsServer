@@ -5,6 +5,7 @@ namespace GameBundle\Scenes;
 use AppBundle\Storage\SocketSessionData;
 use GameBundle\Gateways\AbstractGateway;
 use GameBundle\Monsters\AbstractMonster;
+use GameBundle\SpecialItems\AbstractSpecialItem;
 
 abstract class AbstractScene
 {
@@ -41,15 +42,21 @@ abstract class AbstractScene
     public $monsters;
 
     /**
+     * @var array|AbstractSpecialItem
+     */
+    public $randomSpecialItems;
+
+    /**
      * AbstractScene constructor.
      */
     public function __construct()
     {
-        $this->monsters = [];
-        $this->quests   = [];
-        $this->gateways = [];
-        $this->chests   = [];
-        $this->type     = static::TYPE;
+        $this->monsters           = [];
+        $this->quests             = [];
+        $this->gateways           = [];
+        $this->chests             = [];
+        $this->randomSpecialItems = [];
+        $this->type               = static::TYPE;
     }
 
     /**

@@ -7,6 +7,7 @@ use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Rooms\Room;
+use GameBundle\Scenes\Battleground;
 use GameBundle\Scenes\CaveExit;
 use GameBundle\Scenes\Factory;
 use JMS\DiExtraBundle\Annotation as DI;
@@ -47,7 +48,7 @@ class OnSelectCharacter extends AbstractEvent
                     $activePlayer->statistics = null;
                 }
 
-                $startScene = new CaveExit();
+                $startScene = new Battleground();
                 $scene      = Factory::createSceneByType($startScene::TYPE);
                 $newRoom    = (new Room())
                     ->setId($socket->id)
