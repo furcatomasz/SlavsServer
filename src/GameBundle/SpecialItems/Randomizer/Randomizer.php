@@ -18,13 +18,26 @@ class Randomizer
      */
     static function createSpecialItem(AbstractSpecialItem $abstractSpecialItem, array $positions, int $chance): array
     {
-        return array_merge([], array_map(function(Vector3 $position) use ($chance, $abstractSpecialItem) {
-            if(random_int(1,100) < $chance) {
-                return (new RandomSpecialItem())
-                    ->setPosition($position)
-                    ->setSpecialItem($abstractSpecialItem);
-            }
-        }, $positions));
+        return array_values(
+            array_filter(
+                array_merge(
+                    [],
+                    array_map(
+                        function (Vector3 $position) use ($chance, $abstractSpecialItem) {
+                            if (random_int(1, 100) < $chance) {
+                                return (new RandomSpecialItem())
+                                    ->setPosition($position)
+                                    ->setSpecialItem($abstractSpecialItem);
+                            }
+                        },
+                        $positions
+                    )
+                ),
+                function ($value) {
+                    return $value != null;
+                }
+            )
+        );
 
     }
 

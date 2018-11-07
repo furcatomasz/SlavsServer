@@ -30,7 +30,7 @@ class OnRefreshMushrooms extends AbstractEvent
             'refreshMushrooms',
             function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $scene             = Factory::createSceneByType($socketSessionData->getActiveScene());
+                $scene             = $socketSessionData->getActiveScene();
 
                 $socket->emit(
                     'refreshMushrooms',

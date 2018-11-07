@@ -56,7 +56,7 @@ class OnSelectCharacter extends AbstractEvent
                     ->setPlayers([$activePlayer->getId() => $socketSessionData]);
 
                 $socketSessionData
-                    ->setActiveScene($scene->type)
+                    ->setActiveScene($scene)
                     ->setActiveRoom($newRoom)
                     ->setActivePlayer($activePlayer);
 

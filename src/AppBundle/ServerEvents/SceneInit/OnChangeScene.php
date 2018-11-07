@@ -11,7 +11,6 @@ use GameBundle\Rooms\Room;
 use GameBundle\Scenes\Factory;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\Serializer\Serializer;
 
 
 /**
@@ -42,7 +41,7 @@ class OnChangeScene extends AbstractEvent
             function ($sceneType) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
                 $scene             = Factory::createSceneByType($sceneType);
-                $socketSessionData->setActiveScene($scene->type);
+                $socketSessionData->setActiveScene($scene);
 
                 $socket->emit('changeScene', $scene->type);
             }

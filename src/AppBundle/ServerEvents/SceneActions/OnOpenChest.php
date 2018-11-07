@@ -54,7 +54,7 @@ class OnOpenChest extends AbstractEvent
             'openChest',
             function ($chestKey) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $scene             = Factory::createSceneByType($socketSessionData->getActiveScene());
+                $scene             = $socketSessionData->getActiveScene();
                 $player            = $socketSessionData->getActivePlayer();
                 $self->managerSpecialItem->refresh($player);
 
