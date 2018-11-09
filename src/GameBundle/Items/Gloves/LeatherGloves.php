@@ -15,11 +15,12 @@ class LeatherGloves extends Gloves
             parent::__construct($entity);
         }
 
+        $statistics = (new Statistics())->setArmor(1);
         $this
             ->setName('Leather Gloves')
             ->setMeshName('leatherGloves')
             ->setImage('leatherGloves')
-            ->setStatistics(new Statistics(0, 0, 0, 0,  0, 1, 0, 0, 0));
+            ->setStatistics($statistics);
 
     }
 

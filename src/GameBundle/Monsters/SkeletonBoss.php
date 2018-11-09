@@ -10,7 +10,7 @@ class SkeletonBoss extends AbstractMonster
     /**
      * AbstractMonster constructor.
      *
-     * @param int   $id
+     * @param int $id
      * @param array $position
      * @param array $itemsToDrop
      * @param array $specialItemsToDrop
@@ -19,15 +19,23 @@ class SkeletonBoss extends AbstractMonster
     {
         parent::__construct($id, $position, $itemsToDrop, $specialItemsToDrop);
 
-        $this->name               = 'Skeleton BOSS';
-        $this->type               = 'skeletonBoss';
-        $this->meshName           = 'skeletonBoss';
-        $this->scale              = 1.5;
-        $this->lvl                = 5;
-        $this->experience         = 25;
-        $this->attackAreaSize     = 2;
+        $this->name = 'Skeleton BOSS';
+        $this->type = 'skeletonBoss';
+        $this->meshName = 'skeletonBoss';
+        $this->scale = 1.5;
+        $this->lvl = 5;
+        $this->experience = 25;
+        $this->attackAreaSize = 2;
         $this->visibilityAreaSize = 15;
-        $this->statistics         = new Statistics(400, 400, 100, 100, 25, 25, 4, 0, 100);
+        $this->statistics = (new Statistics())
+            ->setHp(400)
+            ->setHpMax(400)
+            ->setDamageMin(15)
+            ->setDamageMax(25)
+            ->setArmor(25)
+            ->setWalkSpeed(4)
+            ->setBlockChance(0)
+            ->setHitChance(100);
     }
 
 

@@ -15,11 +15,12 @@ class LeatherArmor extends Armor
             parent::__construct($entity);
         }
 
+        $statistics = (new Statistics())->setArmor(3);
         $this
             ->setName('Leather Armor')
             ->setMeshName('leatherArmor')
             ->setImage('leatherArmor')
-            ->setStatistics(new Statistics(0, 0, 0, 0, 0, 3, 0, 0, 0));
+            ->setStatistics($statistics);
 
     }
 

@@ -13,11 +13,14 @@ class Sword extends Weapon
     {
         parent::__construct($entity);
 
+        $statistics = (new Statistics())
+            ->setDamageMin(2)
+            ->setDamageMax(4);
         $this
             ->setName('Sword')
             ->setMeshName('sword')
             ->setImage('sword')
-            ->setStatistics(new Statistics(0, 0, 0, 0, 5, 0, 0, 0, 0));
+            ->setStatistics($statistics);
 
     }
 

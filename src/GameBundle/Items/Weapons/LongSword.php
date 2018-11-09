@@ -20,11 +20,15 @@ class LongSword extends Weapon
             parent::__construct($entity);
         }
 
+        $statistics = (new Statistics())
+            ->setDamageMin(4)
+            ->setDamageMax(8);
+
         $this
             ->setName('Long sword')
             ->setMeshName('swordLong')
             ->setImage('swordLong')
-            ->setStatistics(new Statistics(0, 0, 0, 0, 20, 0, 0, 0, 0));
+            ->setStatistics($statistics);
 
     }
 

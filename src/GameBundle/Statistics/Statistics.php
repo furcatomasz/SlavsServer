@@ -7,74 +7,44 @@ class Statistics
     /**
      * @var int
      */
-    protected $hp;
+    protected $hp = 0;
     /**
      * @var int
      */
-    protected $hpMax;
+    protected $hpMax = 0;
     /**
      * @var int
      */
-    protected $energy;
+    protected $energy = 0;
     /**
      * @var int
      */
-    protected $energyMax;
+    protected $energyMax = 0;
     /**
      * @var int
      */
-    protected $damage;
+    protected $damageMin = 0;
     /**
      * @var int
      */
-    protected $armor;
+    protected $damageMax = 0;
+    /**
+     * @var int
+     */
+    protected $armor = 0;
     /**
      * @var float
      */
-    protected $walkSpeed;
+    protected $walkSpeed = 0;
     /**
      * @var int
      */
-    protected $blockChance;
+    protected $blockChance = 0;
     /**
      * @var int
      */
-    protected $hitChance;
+    protected $hitChance = 0;
 
-    /**
-     * Statistics constructor.
-     *
-     * @param int   $hp
-     * @param int   $hpMax
-     * @param int   $energy
-     * @param int   $energyMax
-     * @param int   $damage
-     * @param int   $armor
-     * @param float $walkSpeed
-     * @param int   $blockChance
-     * @param int   $hitChance
-     */
-    public function __construct(
-        int $hp,
-        int $hpMax,
-        int $energy,
-        int $energyMax,
-        int $damage,
-        int $armor,
-        float $walkSpeed,
-        int $blockChance,
-        int $hitChance
-    ) {
-        $this->hp          = $hp;
-        $this->hpMax       = $hpMax;
-        $this->energy      = $energy;
-        $this->energyMax   = $energyMax;
-        $this->damage      = $damage;
-        $this->armor       = $armor;
-        $this->walkSpeed   = $walkSpeed;
-        $this->blockChance = $blockChance;
-        $this->hitChance   = $hitChance;
-    }
 
     /**
      * @return int
@@ -90,14 +60,6 @@ class Statistics
     public function getHpMax(): int
     {
         return $this->hpMax;
-    }
-
-    /**
-     * @return int
-     */
-    public function getDamage(): int
-    {
-        return $this->damage;
     }
 
     /**
@@ -152,18 +114,6 @@ class Statistics
     public function setHpMax(int $hpMax): Statistics
     {
         $this->hpMax = $hpMax;
-
-        return $this;
-    }
-
-    /**
-     * @param int $damage
-     *
-     * @return Statistics
-     */
-    public function setDamage(int $damage): Statistics
-    {
-        $this->damage = $damage;
 
         return $this;
     }
@@ -256,5 +206,40 @@ class Statistics
         return $this;
     }
 
+    /**
+     * @return int
+     */
+    public function getDamageMin(): int
+    {
+        return $this->damageMin;
+    }
+
+    /**
+     * @param int $damageMin
+     * @return Statistics
+     */
+    public function setDamageMin(int $damageMin): Statistics
+    {
+        $this->damageMin = $damageMin;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDamageMax(): int
+    {
+        return $this->damageMax;
+    }
+
+    /**
+     * @param int $damageMax
+     * @return Statistics
+     */
+    public function setDamageMax(int $damageMax): Statistics
+    {
+        $this->damageMax = $damageMax;
+        return $this;
+    }
 
 }

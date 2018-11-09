@@ -30,17 +30,17 @@ trait PlayerTrait
     public function getStatistics(): Statistics
     {
         if (!$this->statistics) {
-            $this->statistics = new Statistics(
-                100 + $this->getAttributes()->getHealth()*5,
-                100 + $this->getAttributes()->getHealth()*5,
-                100 + $this->getAttributes()->getEnergy(),
-                100 + $this->getAttributes()->getEnergy(),
-                1 + $this->getAttributes()->getDamage(),
-                1 + $this->getAttributes()->getDefence(),
-                4.5,
-                0,
-                100
-            );
+            $this->statistics = (new Statistics())
+                ->setHp(100 + $this->getAttributes()->getHealth() * 5)
+                ->setHpMax(100 + $this->getAttributes()->getHealth() * 5)
+                ->setEnergy(100 + $this->getAttributes()->getEnergy())
+                ->setEnergyMax(100 + $this->getAttributes()->getEnergy())
+                ->setDamageMin(1 + $this->getAttributes()->getDamage())
+                ->setDamageMax(1 + $this->getAttributes()->getDamage())
+                ->setArmor(1 + $this->getAttributes()->getDefence())
+                ->setWalkSpeed(4.5)
+                ->setBlockChance(0)
+                ->setHitChance(100);
         }
 
         return $this->statistics;
@@ -53,21 +53,24 @@ trait PlayerTrait
     {
         $allStatistics = clone $this->getStatistics();
 
-        $damage = 0;
-        $armor  = 0;
+        $damageMin = 0;
+        $damageMax = 0;
+        $armor = 0;
 
         array_map(
-            function (AbstractItem $item) use (&$damage, &$armor) {
-                if($item->getEntity()->getEquip()) {
-                    $damage += $item->getStatistics()->getDamage();
-                    $armor  += $item->getStatistics()->getArmor();
+            function (AbstractItem $item) use (&$damageMin, &$damageMax, &$armor) {
+                if ($item->getEntity()->getEquip()) {
+                    $damageMin += $item->getStatistics()->getDamageMin();
+                    $damageMax += $item->getStatistics()->getDamageMax();
+                    $armor += $item->getStatistics()->getArmor();
                 }
             },
             $this->getItems()->toArray()
         );
 
         $allStatistics
-            ->setDamage($damage + $allStatistics->getDamage())
+            ->setDamageMin($damageMin + $allStatistics->getDamageMin())
+            ->setEnergyMax($damageMax + $allStatistics->getDamageMax())
             ->setArmor($armor + $allStatistics->getArmor());
 
         return $allStatistics;

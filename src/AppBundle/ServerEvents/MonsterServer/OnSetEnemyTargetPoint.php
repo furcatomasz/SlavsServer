@@ -56,7 +56,9 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                             $playerSession = $players[$playerId];
                             /** @var Player $player */
                             $player = $playerSession->getActivePlayer();
-                            $damage = $enemy->getStatistics()->getDamage()-$player->getAllStatistics()->getArmor();
+
+                            $randomDamage = random_int($enemy->getStatistics()->getDamageMin(), $enemy->getStatistics()->getDamageMax());
+                            $damage = $randomDamage-$player->getAllStatistics()->getArmor();
                             ///
                             ///Block skill
                             ///

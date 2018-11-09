@@ -93,7 +93,8 @@ class OnAttack extends AbstractEvent
                 /** @var AbstractMonster $monster */
                 foreach ($monster->getAvailableAttacksFromCharacters() as $attackedPlayerId => $isAttacked) {
                     if ($player->getId() == $attackedPlayerId) {
-                        $damage = $player->getAllStatistics()->getDamage() - $monster->getStatistics()->getArmor();
+                        $randomDamage = random_int($player->getAllStatistics()->getDamageMin(), $player->getAllStatistics()->getDamageMax());
+                        $damage = $randomDamage - $monster->getStatistics()->getArmor();
                         if($socketSessionData->getActiveSkill() && !$socketSessionData->getActiveSkill()->used) {
                             $socketSessionData->getActiveSkill()->useSkill($damage);
                             $socketSessionData->setActiveSkill(null);
