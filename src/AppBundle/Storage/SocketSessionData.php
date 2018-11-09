@@ -4,6 +4,7 @@ namespace AppBundle\Storage;
 
 use AppBundle\Entity\Player;
 use GameBundle\Rooms\Room;
+use GameBundle\Scenes\AbstractScene;
 use GameBundle\Skills\AbstractSkill;
 use UserBundle\Entity\User;
 
@@ -26,7 +27,7 @@ class SocketSessionData
     public $connectionId;
 
     /**
-     * @var int
+     * @var AbstractScene
      */
     public $activeScene;
 
@@ -91,19 +92,19 @@ class SocketSessionData
     }
 
     /**
-     * @return int|null
+     * @return AbstractScene|null
      */
-    public function getActiveScene(): ?int
+    public function getActiveScene(): ?AbstractScene
     {
         return $this->activeScene;
     }
 
     /**
-     * @param int $activeScene
+     * @param AbstractScene $activeScene
      *
      * @return SocketSessionData
      */
-    public function setActiveScene(int $activeScene): SocketSessionData
+    public function setActiveScene(AbstractScene $activeScene): SocketSessionData
     {
         $this->activeScene = $activeScene;
 

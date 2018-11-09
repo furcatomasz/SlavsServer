@@ -40,7 +40,7 @@ class OnChangeScenePre extends AbstractEvent
             function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
                 $playerSessionData = $self->serializer->normalize($socketSessionData, 'array');
-                $scene             = Factory::createSceneByType($socketSessionData->getActiveScene());
+                $scene             = $socketSessionData->getActiveScene();
 
                 if ($scene::TYPE == SelectCharacter::TYPE) {
                     $user              = $socketSessionData->getUser();

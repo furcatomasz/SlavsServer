@@ -6,6 +6,7 @@ use AppBundle\Storage\SocketSessionData;
 use GameBundle\Gateways\AbstractGateway;
 use GameBundle\Monsters\AbstractMonster;
 use GameBundle\SpecialItems\AbstractSpecialItem;
+use GameBundle\SpecialItems\Randomizer\RandomSpecialItem;
 
 abstract class AbstractScene
 {
@@ -42,7 +43,7 @@ abstract class AbstractScene
     public $monsters;
 
     /**
-     * @var array|AbstractSpecialItem
+     * @var array|RandomSpecialItem
      */
     public $randomSpecialItems;
 

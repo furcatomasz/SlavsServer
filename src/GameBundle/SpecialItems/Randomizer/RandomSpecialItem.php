@@ -19,6 +19,11 @@ class RandomSpecialItem
     private $position;
 
     /**
+     * @var bool
+     */
+    private $isPicked = false;
+
+    /**
      * @return AbstractSpecialItem
      */
     public function getSpecialItem(): AbstractSpecialItem
@@ -54,6 +59,26 @@ class RandomSpecialItem
     public function setPosition($position)
     {
         $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPicked(): bool
+    {
+        return $this->isPicked;
+    }
+
+    /**
+     * @param bool $isPicked
+     *
+     * @return $this
+     */
+    public function setIsPicked($isPicked)
+    {
+        $this->isPicked = $isPicked;
 
         return $this;
     }

@@ -31,7 +31,7 @@ class OnAccepctQuest extends AbstractEvent
             'acceptQuest',
             function ($questId) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $scene             = Factory::createSceneByType($socketSessionData->getActiveScene());
+                $scene             = $socketSessionData->getActiveScene();
                 $selectedQuest     = null;
                 foreach ($scene->quests as $quest) {
                     /** @var AbstractQuest $quest */
