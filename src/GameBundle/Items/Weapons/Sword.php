@@ -21,7 +21,6 @@ class Sword extends Weapon
             ->setMeshName('sword')
             ->setImage('sword')
             ->setStatistics($statistics);
-
     }
 
 }
