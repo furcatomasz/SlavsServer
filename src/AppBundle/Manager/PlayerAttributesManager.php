@@ -43,16 +43,16 @@ class PlayerAttributesManager extends AbstractManager
 
         switch ($type) {
             case 1:
-                $playerAttributes->setDamage($playerAttributes->getDamage() + 1);
+                $playerAttributes->setStrength($playerAttributes->getStrength() + 1);
                 break;
             case 2:
-                $playerAttributes->setDefence($playerAttributes->getDefence() + 1);
+                $playerAttributes->setDurability($playerAttributes->getDurability() + 1);
                 break;
             case 3:
-                $playerAttributes->setHealth($playerAttributes->getHealth() + 1);
+                $playerAttributes->setVitality($playerAttributes->getVitality() + 1);
                 break;
             case 4:
-                $playerAttributes->setEnergy($playerAttributes->getEnergy() + 1);
+                $playerAttributes->setStamina($playerAttributes->getStamina() + 1);
                 break;
         }
 

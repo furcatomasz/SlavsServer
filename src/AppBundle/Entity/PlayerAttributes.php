@@ -23,35 +23,28 @@ class PlayerAttributes
      *
      * @var integer
      */
-    protected $attackSpeed;
+    protected $strength;
 
     /**
      * @ORM\Column(type="integer")
      *
      * @var integer
      */
-    protected $defence;
+    protected $durability;
 
     /**
      * @ORM\Column(type="integer")
      *
      * @var integer
      */
-    protected $damage;
+    protected $vitality;
 
     /**
      * @ORM\Column(type="integer")
      *
      * @var integer
      */
-    protected $health;
-
-    /**
-     * @ORM\Column(type="integer")
-     *
-     * @var integer
-     */
-    protected $energy;
+    protected $stamina;
 
     /**
      * @return int
@@ -76,19 +69,19 @@ class PlayerAttributes
     /**
      * @return int
      */
-    public function getAttackSpeed(): int
+    public function getStrength(): int
     {
-        return $this->attackSpeed;
+        return $this->strength;
     }
 
     /**
-     * @param int $attackSpeed
+     * @param int $strength
      *
      * @return PlayerAttributes
      */
-    public function setAttackSpeed(int $attackSpeed): PlayerAttributes
+    public function setStrength(int $strength): PlayerAttributes
     {
-        $this->attackSpeed = $attackSpeed;
+        $this->strength = $strength;
 
         return $this;
     }
@@ -96,19 +89,19 @@ class PlayerAttributes
     /**
      * @return int
      */
-    public function getDefence(): int
+    public function getDurability(): int
     {
-        return $this->defence;
+        return $this->durability;
     }
 
     /**
-     * @param int $defence
+     * @param int $durability
      *
      * @return PlayerAttributes
      */
-    public function setDefence(int $defence): PlayerAttributes
+    public function setDurability(int $durability): PlayerAttributes
     {
-        $this->defence = $defence;
+        $this->durability = $durability;
 
         return $this;
     }
@@ -116,19 +109,19 @@ class PlayerAttributes
     /**
      * @return int
      */
-    public function getDamage(): int
+    public function getVitality(): int
     {
-        return $this->damage;
+        return $this->vitality;
     }
 
     /**
-     * @param int $damage
+     * @param int $vitality
      *
      * @return PlayerAttributes
      */
-    public function setDamage(int $damage): PlayerAttributes
+    public function setVitality(int $vitality): PlayerAttributes
     {
-        $this->damage = $damage;
+        $this->vitality = $vitality;
 
         return $this;
     }
@@ -136,39 +129,19 @@ class PlayerAttributes
     /**
      * @return int
      */
-    public function getHealth(): int
+    public function getStamina(): int
     {
-        return $this->health;
+        return $this->stamina;
     }
 
     /**
-     * @param int $health
+     * @param int $stamina
      *
      * @return PlayerAttributes
      */
-    public function setHealth(int $health): PlayerAttributes
+    public function setStamina(int $stamina): PlayerAttributes
     {
-        $this->health = $health;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getEnergy(): int
-    {
-        return $this->energy;
-    }
-
-    /**
-     * @param int $energy
-     *
-     * @return PlayerAttributes
-     */
-    public function setEnergy(int $energy): PlayerAttributes
-    {
-        $this->energy = $energy;
+        $this->stamina = $stamina;
 
         return $this;
     }

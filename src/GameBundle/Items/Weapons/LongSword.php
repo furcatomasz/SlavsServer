@@ -3,6 +3,8 @@
 namespace GameBundle\Items\Weapons;
 
 use AppBundle\Entity\PlayerItem;
+use GameBundle\Items\ItemFactory;
+use GameBundle\Items\ItemImprovments;
 use GameBundle\Statistics\Statistics;
 
 class LongSword extends Weapon
@@ -25,11 +27,12 @@ class LongSword extends Weapon
             ->setDamageMax(8);
 
         $this
-            ->setName('Long sword')
+            ->setName(ItemFactory::createName('Long sword', $entity))
             ->setMeshName('swordLong')
             ->setImage('swordLong')
             ->setStatistics($statistics);
 
+        ItemImprovments::improveItem($this);
     }
 
 }

@@ -31,13 +31,13 @@ trait PlayerTrait
     {
         if (!$this->statistics) {
             $this->statistics = (new Statistics())
-                ->setHp(100 + $this->getAttributes()->getHealth() * 5)
-                ->setHpMax(100 + $this->getAttributes()->getHealth() * 5)
-                ->setEnergy(100 + $this->getAttributes()->getEnergy())
-                ->setEnergyMax(100 + $this->getAttributes()->getEnergy())
-                ->setDamageMin(1 + $this->getAttributes()->getDamage())
-                ->setDamageMax(1 + $this->getAttributes()->getDamage())
-                ->setArmor(1 + $this->getAttributes()->getDefence())
+                ->setHp(100 + $this->getAttributes()->getVitality() * 5)
+                ->setHpMax(100 + $this->getAttributes()->getVitality() * 5)
+                ->setEnergy(100 + $this->getAttributes()->getStamina())
+                ->setEnergyMax(100 + $this->getAttributes()->getStamina())
+                ->setDamageMin(1 + $this->getAttributes()->getStrength())
+                ->setDamageMax(1 + $this->getAttributes()->getStrength())
+                ->setArmor(1 + $this->getAttributes()->getDurability())
                 ->setWalkSpeed(4.5)
                 ->setBlockChance(0)
                 ->setHitChance(100);
@@ -70,7 +70,7 @@ trait PlayerTrait
 
         $allStatistics
             ->setDamageMin($damageMin + $allStatistics->getDamageMin())
-            ->setEnergyMax($damageMax + $allStatistics->getDamageMax())
+            ->setDamageMax($damageMax + $allStatistics->getDamageMax())
             ->setArmor($armor + $allStatistics->getArmor());
 
         return $allStatistics;

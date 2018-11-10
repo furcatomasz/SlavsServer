@@ -57,4 +57,17 @@ class ItemFactory
 
         return $newItem;
     }
+
+    /**
+     * @param String          $name
+     *
+     * @param PlayerItem|null $playerItem
+     *
+     * @return string
+     */
+    static public function createName(String $name, ?PlayerItem $playerItem): string {
+        return ($playerItem) ?
+            sprintf($name.' +%s', $playerItem->getImprovement()) :
+            $name;
+    }
 }
