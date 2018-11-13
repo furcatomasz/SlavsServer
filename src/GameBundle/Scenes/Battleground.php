@@ -18,6 +18,7 @@ use GameBundle\Monsters\Skeleton;
 use GameBundle\Monsters\SkeletonBoss;
 use GameBundle\Monsters\SkeletonWarrior;
 use GameBundle\SpecialItems\Gold;
+use GameBundle\SpecialItems\Herbs;
 use GameBundle\SpecialItems\KeyToChest;
 use GameBundle\SpecialItems\Mushrooms;
 use GameBundle\SpecialItems\Randomizer\Randomizer;
@@ -84,17 +85,31 @@ class Battleground extends AbstractScene
             new SkeletonWarrior(0, ['x' => 38, 'y' => 0, 'z' => -44], $itemsToDrop, []),
         ];
 
-        $this->randomSpecialItems = Randomizer::createSpecialItem(
-            new Mushrooms(1),
-            [
-                new Vector3(10, 0, 0),
-                new Vector3(20, 0, 0),
-                new Vector3(30, 0, 0),
-                new Vector3(0, 0, 10),
-                new Vector3(0, 0, 20),
-                new Vector3(0, 0, 30),
-            ],
-            50
+        $this->randomSpecialItems = array_merge(
+            Randomizer::createSpecialItem(
+                new Mushrooms(1),
+                [
+                    new Vector3(10, 0, 0),
+                    new Vector3(20, 0, 0),
+                    new Vector3(30, 0, 0),
+                    new Vector3(0, 0, 10),
+                    new Vector3(0, 0, 20),
+                    new Vector3(0, 0, 30),
+                ],
+                50
+            ),
+            Randomizer::createSpecialItem(
+                new Herbs(1),
+                [
+                    new Vector3(15, 0, 0),
+                    new Vector3(25, 0, 0),
+                    new Vector3(35, 0, 0),
+                    new Vector3(0, 0, 15),
+                    new Vector3(0, 0, 25),
+                    new Vector3(0, 0, 35),
+                ],
+                50
+            )
         );
     }
 

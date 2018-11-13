@@ -7,9 +7,9 @@ use AppBundle\Manager\AbstractManager;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Manager\SpecialItemManager;
 
-class Mushrooms extends AbstractSpecialItem
+class Herbs extends AbstractSpecialItem
 {
-    const TYPE = 3;
+    const TYPE = 4;
 
     /**
      * KeyToChest constructor.
@@ -20,8 +20,8 @@ class Mushrooms extends AbstractSpecialItem
     {
         parent::__construct($value);
 
-        $this->name = 'Mushrooms';
-        $this->meshName = 'mushrooms';
+        $this->name = 'Herbs';
+        $this->meshName = 'ground_plants';
     }
 
 

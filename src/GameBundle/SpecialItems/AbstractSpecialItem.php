@@ -16,6 +16,11 @@ abstract class AbstractSpecialItem
     public $name;
 
     /**
+     * @var string
+     */
+    public $meshName;
+
+    /**
      * @var int
      */
     public $value;

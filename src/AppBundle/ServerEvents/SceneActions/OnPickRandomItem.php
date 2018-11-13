@@ -82,7 +82,7 @@ class OnPickRandomItem extends AbstractEvent
                 );
                 $socket->emit('addSpecialItem', $randomSpecialItem->getSpecialItem());
                 $socket->emit(
-                    'refreshMushrooms',
+                    'refreshRandomSpecialItems',
                     $self->serializer->normalize($scene->randomSpecialItems, 'array')
                 );
             }
