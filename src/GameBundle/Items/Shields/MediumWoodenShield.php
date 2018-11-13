@@ -3,25 +3,34 @@
 namespace GameBundle\Items\Shields;
 
 use AppBundle\Entity\PlayerItem;
+use GameBundle\Items\ItemFactory;
+use GameBundle\Items\ItemImprovments;
 use GameBundle\Statistics\Statistics;
 
 class MediumWoodenShield extends Shield
 {
     const ITEM_ID = 6;
 
-    public function __construct(?PlayerItem $entity = null)
+    /**
+     * LongSword constructor.
+     *
+     * @param PlayerItem|null $entity
+     * @param Int             $improvement
+     */
+    public function __construct(?PlayerItem $entity = null, Int $improvement = 0)
     {
-        if($entity) {
-            parent::__construct($entity);
-        }
+        parent::__construct($entity);
+        $itemImprovement = ($entity) ? $entity->getImprovement() : $improvement;
 
-        $statistics = (new Statistics())->setArmor(4);
+        $statistics = (new Statistics())
+            ->setArmor(4);
+
         $this
-            ->setName('Medium wooden shield')
+            ->setName(ItemFactory::createName('Medium wooden shield', $itemImprovement))
             ->setMeshName('shieldWoodenMedium')
             ->setImage('shieldWoodenMedium')
-            ->setStatistics($statistics);
-
+            ->setImprovement($itemImprovement)
+            ->setStatistics(ItemImprovments::improveItemStatistics($statistics, $itemImprovement));
     }
 
 }

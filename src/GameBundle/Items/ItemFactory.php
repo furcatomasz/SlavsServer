@@ -59,15 +59,14 @@ class ItemFactory
     }
 
     /**
-     * @param String          $name
-     *
-     * @param PlayerItem|null $playerItem
+     * @param String $name
+     * @param Int    $improvement
      *
      * @return string
      */
-    static public function createName(String $name, ?PlayerItem $playerItem): string {
-        return ($playerItem) ?
-            sprintf($name.' +%s', $playerItem->getImprovement()) :
+    static public function createName(String $name, Int $improvement): string {
+        return ($improvement) ?
+            sprintf($name.' +%s', $improvement) :
             $name;
     }
 }

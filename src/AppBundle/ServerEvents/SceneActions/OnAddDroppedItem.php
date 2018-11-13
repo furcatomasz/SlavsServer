@@ -9,6 +9,7 @@ use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Items\AbstractItem;
+use GameBundle\Items\DropItem;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -54,17 +55,15 @@ class OnAddDroppedItem extends AbstractEvent
             'addDroppedItem',
             function ($itemKey) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $droppedItems      = $socketSessionData->getItemsToDrop();
-                if ($droppedItems && array_key_exists($itemKey, $droppedItems)) {
-                    /** @var AbstractItem $droppedItem */
-                    $dropppedItem = $droppedItems[$itemKey];
-                    $player       = $socketSessionData->getActivePlayer();
+                $droppedItem      = DropItem::getDroppedItem($socketSessionData->getActiveScene(), $itemKey);
 
+                if ($droppedItem) {
+                    $player  = $socketSessionData->getActivePlayer();
                     $newItem = $self->itemManager->create()
                         ->setPlayer($player)
-                        ->setItemId($dropppedItem::ITEM_ID)
+                        ->setItemId($droppedItem->getItemId())
                         ->setEquip(0)
-                        ->setImprovement(0);
+                        ->setImprovement($droppedItem->getImprovement());
                     $self->itemManager->update($newItem);
                     $self->playerManager->refresh($socketSessionData->getActivePlayer());
 

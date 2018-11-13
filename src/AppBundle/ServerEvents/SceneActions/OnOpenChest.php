@@ -11,6 +11,7 @@ use GameBundle\BabylonObjects\Vector3;
 use GameBundle\BabylonObjects\VectorHelper;
 use GameBundle\Chests\AbstractChest;
 use GameBundle\Items\AbstractItem;
+use GameBundle\Items\DropItem;
 use GameBundle\Quests\AbstractQuest;
 use GameBundle\Scenes\Factory;
 use GameBundle\SpecialItems\AbstractSpecialItem;
@@ -77,20 +78,9 @@ class OnOpenChest extends AbstractEvent
                 if ($chest->opened) {
                     foreach($chest->awards as $award) {
                         if($award instanceof AbstractItem) {
-                            if(!$socketSessionData->getItemsToDrop()) {
-                                $socketSessionData->setItemsToDrop([$award]);
-                                $itemKey = 0;
-                            } else {
-                                $itemsToDrop = $socketSessionData->getItemsToDrop();
-                                $itemsToDrop[] = $award;
-                                $socketSessionData->setItemsToDrop($itemsToDrop);
-                                end($itemsToDrop);
-                                $itemKey = key($itemsToDrop);
-                            }
-
                             $socket->emit('showDroppedItem', [
                                 'item' => $self->serializer->normalize($award, 'array'),
-                                'itemKey' => $itemKey,
+                                'itemKey' => DropItem::addDropItemToScene($scene, $award),
                                 'position' => $chest->awardsPosition
                             ]);
                         } elseif($award instanceof AbstractSpecialItem) {

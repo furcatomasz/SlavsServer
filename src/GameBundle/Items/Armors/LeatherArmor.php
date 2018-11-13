@@ -3,25 +3,34 @@
 namespace GameBundle\Items\Armors;
 
 use AppBundle\Entity\PlayerItem;
+use GameBundle\Items\ItemFactory;
+use GameBundle\Items\ItemImprovments;
 use GameBundle\Statistics\Statistics;
 
 class LeatherArmor extends Armor
 {
     const ITEM_ID = 1;
 
-    public function __construct(?PlayerItem $entity = null)
+    /**
+     * LongSword constructor.
+     *
+     * @param PlayerItem|null $entity
+     * @param Int             $improvement
+     */
+    public function __construct(?PlayerItem $entity = null, Int $improvement = 0)
     {
-        if($entity) {
-            parent::__construct($entity);
-        }
+        parent::__construct($entity);
+        $itemImprovement = ($entity) ? $entity->getImprovement() : $improvement;
 
-        $statistics = (new Statistics())->setArmor(3);
+        $statistics = (new Statistics())
+            ->setArmor(3);
+
         $this
-            ->setName('Leather Armor')
+            ->setName(ItemFactory::createName('Leather Armor', $itemImprovement))
             ->setMeshName('leatherArmor')
             ->setImage('leatherArmor')
-            ->setStatistics($statistics);
-
+            ->setImprovement($itemImprovement)
+            ->setStatistics(ItemImprovments::improveItemStatistics($statistics, $itemImprovement));
     }
 
 }

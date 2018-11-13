@@ -30,13 +30,17 @@ abstract class AbstractItem
      * @var Statistics
      */
     public $statistics;
+    /**
+     * @var int
+     */
+    public $improvement = 0;
 
     /**
      * AbstractItem constructor.
      *
      * @param PlayerItem $entity
      */
-    public function __construct(PlayerItem $entity)
+    public function __construct(?PlayerItem $entity)
     {
         $this->entity = $entity;
     }
@@ -157,5 +161,24 @@ abstract class AbstractItem
         return $this;
     }
 
+    /**
+     * @return int
+     */
+    public function getImprovement(): int
+    {
+        return $this->improvement;
+    }
+
+    /**
+     * @param int $improvement
+     *
+     * @return $this
+     */
+    public function setImprovement($improvement)
+    {
+        $this->improvement = $improvement;
+
+        return $this;
+    }
 
 }

@@ -8,6 +8,7 @@ use AppBundle\Manager\SpecialItemManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
 use AppBundle\ServerEvents\AbstractEvent;
+use GameBundle\Items\DropItem;
 use GameBundle\Monsters\AbstractMonster;
 use GameBundle\Quests\Chapter;
 use GameBundle\Quests\Requirements\AbstractRequirement;
@@ -62,7 +63,7 @@ class OnAttack extends AbstractEvent
                 $roomId            = $socketSessionData->getActiveRoom()->getId();
                 $player            = $socketSessionData->getActivePlayer();
                 $playerEnergy      = $socketSessionData->getActivePlayer()->getStatistics()->getEnergy();
-
+                $scene             = $socketSessionData->getActiveScene();
                 ///TODO: fix attack time
 //                if ($socketSessionData->getLastPlayerAttack() > time() - 0) {
 //                    return;
@@ -141,21 +142,12 @@ class OnAttack extends AbstractEvent
                                 $randomItem  = $itemsToDrop[array_rand($itemsToDrop)];
                                 $droppedItem = $randomItem['item'];
                                 $chance      = $randomItem['chance'];
-                                if (rand(1, 100) < $chance) {
-                                    if (!$socketSessionData->getItemsToDrop()) {
-                                        $socketSessionData->setItemsToDrop([$droppedItem]);
-                                    } else {
-                                        $itemsToDrop   = $socketSessionData->getItemsToDrop();
-                                        $itemsToDrop[] = $droppedItem;
-                                        $socketSessionData->setItemsToDrop($itemsToDrop);
-                                        end($itemsToDrop);
-                                    }
-
+                                if (random_int(1, 100) < $chance) {
                                     $socket->emit(
                                         'showDroppedItem',
                                         [
                                             'item'     => $self->serializer->normalize($droppedItem, 'array'),
-                                            'itemKey'  => key($itemsToDrop),
+                                            'itemKey'  => DropItem::addDropItemToScene($scene, $droppedItem),
                                             'position' => $monster->getPosition(),
                                         ]
                                     );

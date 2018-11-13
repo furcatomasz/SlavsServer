@@ -59,7 +59,6 @@ class ForestHouse extends AbstractScene
                 'chance' => 5,
                 'item'   => new MediumWoodenShield(),
             ],
-
         ];
 
         $this->monsters = [

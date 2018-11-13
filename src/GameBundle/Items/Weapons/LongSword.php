@@ -15,24 +15,23 @@ class LongSword extends Weapon
      * LongSword constructor.
      *
      * @param PlayerItem|null $entity
+     * @param Int             $improvement
      */
-    public function __construct(?PlayerItem $entity = null)
+    public function __construct(?PlayerItem $entity = null, Int $improvement = 0)
     {
-        if($entity) {
-            parent::__construct($entity);
-        }
+        parent::__construct($entity);
+        $itemImprovement = ($entity) ? $entity->getImprovement() : $improvement;
 
         $statistics = (new Statistics())
             ->setDamageMin(4)
             ->setDamageMax(8);
 
         $this
-            ->setName(ItemFactory::createName('Long sword', $entity))
+            ->setName(ItemFactory::createName('Long sword', $itemImprovement))
             ->setMeshName('swordLong')
             ->setImage('swordLong')
-            ->setStatistics($statistics);
-
-        ItemImprovments::improveItem($this);
+            ->setImprovement($itemImprovement)
+            ->setStatistics(ItemImprovments::improveItemStatistics($statistics, $itemImprovement));
     }
 
 }

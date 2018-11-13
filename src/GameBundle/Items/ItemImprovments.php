@@ -2,6 +2,8 @@
 
 namespace GameBundle\Items;
 
+use GameBundle\Statistics\Statistics;
+
 class ItemImprovments
 {
     /**
@@ -10,23 +12,17 @@ class ItemImprovments
     const IMPROVEMENT_POWER = 20;
 
     /**
-     * @param AbstractItem $item
+     * @param Statistics $itemStatistics
+     * @param Int        $improvement
      *
-     * @return AbstractItem
+     * @return Statistics
      */
-    static public function improveItem(AbstractItem $item): void
+    static public function improveItemStatistics(Statistics $itemStatistics, Int $improvement): Statistics
     {
-        if ($item->getEntity()) {
-            $improvement = $item->getEntity()->getImprovement();
-            $statistics  = $item->getStatistics();
-
-            $item->setStatistics(
-                $statistics
-                    ->setDamageMin(static::calculatePower($statistics->getDamageMin(), $improvement))
-                    ->setDamageMax(static::calculatePower($statistics->getDamageMax(), $improvement))
-                    ->setArmor(static::calculatePower($statistics->getArmor(), $improvement))
-            );
-        }
+        return $itemStatistics
+            ->setDamageMin(static::calculatePower($itemStatistics->getDamageMin(), $improvement))
+            ->setDamageMax(static::calculatePower($itemStatistics->getDamageMax(), $improvement))
+            ->setArmor(static::calculatePower($itemStatistics->getArmor(), $improvement));
     }
 
     /**
