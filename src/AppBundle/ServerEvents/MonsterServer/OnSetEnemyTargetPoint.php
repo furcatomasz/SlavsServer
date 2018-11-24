@@ -63,7 +63,7 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                             ///Block skill
                             ///
                             if($playerSession->getActiveSkill() instanceof Block) {
-                                $playerSession->getActiveSkill()->useSkill($damage);
+                                $playerSession->getActiveSkill()->useSkill($damage, $enemy, $player);
                             }
 
                             if($damage < 1) {

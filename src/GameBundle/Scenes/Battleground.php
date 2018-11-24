@@ -21,6 +21,7 @@ use GameBundle\SpecialItems\Gold;
 use GameBundle\SpecialItems\Herbs;
 use GameBundle\SpecialItems\KeyToChest;
 use GameBundle\SpecialItems\Mushrooms;
+use GameBundle\SpecialItems\Potion;
 use GameBundle\SpecialItems\Randomizer\Randomizer;
 
 class Battleground extends AbstractScene
@@ -44,7 +45,12 @@ class Battleground extends AbstractScene
                 new Vector3(-19, 0, 20),
                 new Vector3(0, 1.5, 0),
                 new Vector3(-19, 0, 18),
-                [new Gold(50), new KeyToChest(1), new LongSword(null, +3)]
+                [
+                    new Gold(50),
+                    new KeyToChest(1),
+                    new Potion(1),
+                    new LongSword(null, +3)
+                ]
             ),
         ];
 

@@ -9,6 +9,7 @@ use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\SocketIO;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Skills\Factory;
+use GameBundle\Skills\Heal;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -57,16 +58,19 @@ class OnUseSkill extends AbstractEvent
                 $playerEnergy      = $socketSessionData->getActivePlayer()->getStatistics()->getEnergy();
                 $skill             = ($skillType) ? Factory::getSkillByType($skillType) : null;
                 if ($playerEnergy - $skill->energy >= 0) {
-                    $socketSessionData
-                        ->setActiveSkill($skill)
-                        ->setAttack(null)
-                        ->getActivePlayer()->getStatistics()->setEnergy($playerEnergy - $skill->energy);
+                        $socketSessionData
+                            ->setActiveSkill($skill)
+                            ->setAttack(null)
+                            ->getActivePlayer()->getStatistics()->setEnergy($playerEnergy - $skill->energy);
+
+                        if($skill->getType() == Heal::TYPE) {
+                            $damage = 0;
+                            $skill->useSkill($damage, null, $socketSessionData->getActivePlayer());
+                            $socket->emit('updatePlayer', $self->serializer->normalize($socketSessionData, 'array'));
+                        }
 
                     $socket
 //                    ->to($roomId)
-                        ->emit('updatePlayerSkill', $self->serializer->normalize($socketSessionData, 'array'));
-                    $socket
-                        ->to($self->socketIOServer->monsterServerId)
                         ->emit('updatePlayerSkill', $self->serializer->normalize($socketSessionData, 'array'));
                 }
             }

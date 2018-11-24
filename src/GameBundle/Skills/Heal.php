@@ -5,9 +5,9 @@ namespace GameBundle\Skills;
 use AppBundle\Entity\Player;
 use GameBundle\Monsters\AbstractMonster;
 
-class StrongAttack extends AbstractSkill
+class Heal extends AbstractSkill
 {
-    const TYPE = 1;
+    const TYPE = 5;
 
     /**
      * StrongAttack constructor.
@@ -17,10 +17,10 @@ class StrongAttack extends AbstractSkill
         $this->activeTime   = time();
         $this->duration     = 1;
         $this->cooldownTime = 5;
-        $this->power        = 2;
-        $this->instant      = false;
-        $this->energy       = 5;
-        $this->used         = false;
+        $this->power        = 1;
+        $this->instant      = true;
+        $this->energy       = 0;
+        $this->used         = true;
     }
 
     /**
@@ -30,7 +30,16 @@ class StrongAttack extends AbstractSkill
      */
     public function useSkill(?int &$damage, ?AbstractMonster $monster, ?Player $player): void
     {
-        $damage = round($damage * $this->power);
+        $addHp = 25;
+        $maxHp = $player->getStatistics()->getHpMax();
+        $hp    = $player->getStatistics()->getHp();
+
+        $newHp = $hp + $addHp;
+        if ($newHp > $maxHp) {
+            $newHp = $maxHp;
+        }
+
+        $player->getStatistics()->setHp($newHp);
     }
 
 }

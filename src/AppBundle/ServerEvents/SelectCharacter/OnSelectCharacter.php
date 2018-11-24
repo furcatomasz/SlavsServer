@@ -10,6 +10,7 @@ use GameBundle\Rooms\Room;
 use GameBundle\Scenes\Battleground;
 use GameBundle\Scenes\CaveExit;
 use GameBundle\Scenes\Factory;
+use GameBundle\Scenes\MountainsPass;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -48,7 +49,7 @@ class OnSelectCharacter extends AbstractEvent
                     $activePlayer->statistics = null;
                 }
 
-                $startScene = new Battleground();
+                $startScene = new MountainsPass();
                 $scene      = Factory::createSceneByType($startScene::TYPE);
                 $newRoom    = (new Room())
                     ->setId($socket->id)

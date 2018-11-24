@@ -64,8 +64,10 @@ class OnAttack extends AbstractEvent
                 $player            = $socketSessionData->getActivePlayer();
                 $playerEnergy      = $socketSessionData->getActivePlayer()->getStatistics()->getEnergy();
                 $scene             = $socketSessionData->getActiveScene();
-                ///TODO: fix attack time
-//                if ($socketSessionData->getLastPlayerAttack() > time() - 0) {
+                $monsterKey        = null;
+
+                //TODO: check time
+//                if ($socketSessionData->getLastPlayerAttack() > time() - 200) {
 //                    return;
 //                }
 
@@ -76,6 +78,10 @@ class OnAttack extends AbstractEvent
                                 $monsterKey = $monsterSceneKey;
                             }
                         }
+                    }
+
+                    if($monsterKey === null) {
+                        return;
                     }
                 } else {
                     $socketSessionData
@@ -97,7 +103,7 @@ class OnAttack extends AbstractEvent
                         $randomDamage = random_int($player->getAllStatistics()->getDamageMin(), $player->getAllStatistics()->getDamageMax());
                         $damage = $randomDamage - $monster->getStatistics()->getArmor();
                         if($socketSessionData->getActiveSkill() && !$socketSessionData->getActiveSkill()->used) {
-                            $socketSessionData->getActiveSkill()->useSkill($damage);
+                            $socketSessionData->getActiveSkill()->useSkill($damage, $monster, $player);
                             $socketSessionData->setActiveSkill(null);
                         }
 

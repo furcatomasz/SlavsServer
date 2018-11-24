@@ -5,9 +5,9 @@ namespace GameBundle\Skills;
 use AppBundle\Entity\Player;
 use GameBundle\Monsters\AbstractMonster;
 
-class StrongAttack extends AbstractSkill
+class FastAttack extends AbstractSkill
 {
-    const TYPE = 1;
+    const TYPE = 3;
 
     /**
      * StrongAttack constructor.
@@ -16,10 +16,10 @@ class StrongAttack extends AbstractSkill
     {
         $this->activeTime   = time();
         $this->duration     = 1;
-        $this->cooldownTime = 5;
-        $this->power        = 2;
-        $this->instant      = false;
-        $this->energy       = 5;
+        $this->cooldownTime = 3;
+        $this->power        = 1.5;
+        $this->instant      = true;
+        $this->energy       = 10;
         $this->used         = false;
     }
 

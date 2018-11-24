@@ -13,22 +13,31 @@ class Factory
      */
     static public function getSkillByType(int $type): AbstractSkill
     {
-        $scene = null;
+        $skill = null;
 
         switch ($type) {
             case StrongAttack::TYPE:
-                $scene = new StrongAttack();
+                $skill = new StrongAttack();
                 break;
             case Block::TYPE:
-                $scene = new Block();
+                $skill = new Block();
+                break;
+            case FastAttack::TYPE:
+                $skill = new FastAttack();
+                break;
+            case ShieldAttack::TYPE:
+                $skill = new ShieldAttack();
+                break;
+            case Heal::TYPE:
+                $skill = new Heal();
                 break;
         }
 
-        if (!$scene) {
+        if (!$skill) {
             throw new Exception('Can not find skill');
         }
 
-        return $scene;
+        return $skill;
 
     }
 
