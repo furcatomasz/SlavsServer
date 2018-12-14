@@ -38,6 +38,10 @@ class OnChangeScenePost extends AbstractEvent
                     'showEnemies',
                     $self->serializer->normalize($monsters, 'array')
                 );
+
+                $socket
+                    ->in($socketSessionData->getActiveRoom()->getId())
+                    ->emit('updatePlayer', $socketSessionData);
             }
         );
 

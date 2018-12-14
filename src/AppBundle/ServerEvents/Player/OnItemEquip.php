@@ -59,9 +59,11 @@ class OnItemEquip extends AbstractEvent
 
                 $self->itemManager->equipItem($player, ItemFactory::create($item));
 
+                $normalize = $self->serializer->normalize($socketSessionData, 'array');
+                $socket->emit('updatePlayerEquip', $normalize);
                 $socket
-//                    ->to($roomId)
-                    ->emit('updatePlayerEquip', $self->serializer->normalize($socketSessionData, 'array'));
+                    ->in($socketSessionData->getActiveRoom()->getId())
+                    ->emit('updatePlayerEquip', $normalize);
 
 
             }

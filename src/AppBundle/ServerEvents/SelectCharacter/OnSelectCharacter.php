@@ -11,6 +11,7 @@ use GameBundle\Scenes\Battleground;
 use GameBundle\Scenes\CaveExit;
 use GameBundle\Scenes\Factory;
 use GameBundle\Scenes\MountainsPass;
+use GameBundle\Scenes\Town\Arena;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -42,7 +43,8 @@ class OnSelectCharacter extends AbstractEvent
             'selectCharacter',
             function ($playerId) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $activePlayer      = $self->playerManager->getRepo()->find($playerId);
+//                $activePlayer      = $self->playerManager->getRepo()->find($playerId);
+                $activePlayer      = $self->playerManager->getRepo()->find(rand(1,4));
 
                 //Reset stats after login
                 if($activePlayer->statistics) {
@@ -51,11 +53,13 @@ class OnSelectCharacter extends AbstractEvent
 
                 $startScene = new MountainsPass();
                 $scene      = Factory::createSceneByType($startScene::TYPE);
+
+                //TODO: ROOMS
                 $newRoom    = (new Room())
-                    ->setId($socket->id)
+                    ->setId('RoomTest')
                     ->setName('RoomTest')
                     ->setPlayers([$activePlayer->getId() => $socketSessionData]);
-
+                $socket->join('RoomTest');
                 $socketSessionData
                     ->setActiveScene($scene)
                     ->setActiveRoom($newRoom)

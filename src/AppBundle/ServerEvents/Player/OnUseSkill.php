@@ -63,15 +63,21 @@ class OnUseSkill extends AbstractEvent
                             ->setAttack(null)
                             ->getActivePlayer()->getStatistics()->setEnergy($playerEnergy - $skill->energy);
 
-                        if($skill->getType() == Heal::TYPE) {
+                    $normalizedData = $self->serializer->normalize($socketSessionData, 'array');
+                    if($skill->getType() == Heal::TYPE) {
                             $damage = 0;
                             $skill->useSkill($damage, null, $socketSessionData->getActivePlayer());
-                            $socket->emit('updatePlayer', $self->serializer->normalize($socketSessionData, 'array'));
-                        }
+                        $socket->emit('updatePlayer', $normalizedData);
+                        $socket
+                            ->broadcast
+                            ->in($socketSessionData->getActiveRoom()->getId())
+                            ->emit('updatePlayer', $normalizedData);
+                    }
 
+                    $socket->emit('updatePlayerSkill', $normalizedData);
                     $socket
-//                    ->to($roomId)
-                        ->emit('updatePlayerSkill', $self->serializer->normalize($socketSessionData, 'array'));
+                        ->in($socketSessionData->getActiveRoom()->getId())
+                        ->emit('updatePlayerSkill', $normalizedData);
                 }
             }
         );

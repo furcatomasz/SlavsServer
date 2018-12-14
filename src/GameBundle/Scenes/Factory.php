@@ -7,6 +7,7 @@ use GameBundle\Gateways\EntraceHouse;
 use GameBundle\Monsters\Skeleton;
 use GameBundle\Monsters\SkeletonBoss;
 use GameBundle\Monsters\SkeletonWarrior;
+use GameBundle\Scenes\Town\Arena;
 use GameBundle\SpecialItems\Gold;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
@@ -42,6 +43,9 @@ class Factory
                 break;
             case CaveExit::TYPE:
                 $scene = new CaveExit();
+                break;
+            case Arena::TYPE:
+                $scene = new Arena();
                 break;
 
         }

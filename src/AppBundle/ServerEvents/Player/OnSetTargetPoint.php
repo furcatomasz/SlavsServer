@@ -35,9 +35,11 @@ class OnSetTargetPoint extends AbstractEvent
                     ->setTargetPoint($data['position']);
                 $emitData = $self->serializer->normalize($socketSessionData, 'array');
 
-//                serverIO.in(character.roomId).emit('updatePlayer', character);
                 $socket->to($self->socketIOServer->monsterServerId)->emit('updatePlayer', $emitData);
-//                serverIO.to(self.monsterServerSocketId).emit('updatePlayer', character);
+                $socket
+                    ->in($socketSessionData->getActiveRoom()->getId())
+                    ->emit('updatePlayer', $emitData);
+
             }
         );
 
