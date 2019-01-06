@@ -4,19 +4,19 @@ namespace GameBundle\Gateways;
 
 use AppBundle\Storage\SocketSessionData;
 use GameBundle\Quests\SkeletonCamp;
-use GameBundle\Quests\SkeletonKing;
 use GameBundle\Scenes\ForestHouse;
+use GameBundle\Scenes\MountainsPass;
 
-class ForestHouseTombExit extends AbstractGateway
+class EntraceMountainPass extends AbstractGateway
 {
     /**
      * EntraceForestHouse constructor.
      */
     public function __construct()
     {
-        $this->objectName    = 'exitForest';
-        $this->entranceName  = 'Back to forest';
-        $this->openSceneType = ForestHouse::TYPE;
+        $this->objectName    = 'exit';
+        $this->entranceName  = 'Entrance For Mountain Pass';
+        $this->openSceneType = MountainsPass::TYPE;
     }
 
     /**

@@ -33,13 +33,7 @@ class OnChangeScene extends AbstractEvent
                 $scene             = Factory::createSceneByType($sceneType);
                 $socketSessionData->setActiveScene($scene);
 
-                $socketSessionData->setPosition(
-                    [
-                        'x' => 0,
-                        'y' => 0,
-                        'z' => 0,
-                    ]
-                );
+                $socketSessionData->setPosition($scene::START_POSITION);
 
                 $socket->emit(
                     'changeScene',

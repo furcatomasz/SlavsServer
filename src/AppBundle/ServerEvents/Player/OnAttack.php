@@ -13,6 +13,7 @@ use GameBundle\Monsters\AbstractMonster;
 use GameBundle\Quests\Chapter;
 use GameBundle\Quests\Requirements\AbstractRequirement;
 use GameBundle\Quests\Requirements\KillMonster;
+use GameBundle\Quests\SkeletonCamp;
 use GameBundle\SpecialItems\AbstractSpecialItem;
 use GameBundle\SpecialItems\Gold;
 use JMS\DiExtraBundle\Annotation as DI;
@@ -179,6 +180,17 @@ class OnAttack extends AbstractEvent
                                     },
                                     $actualChapter->requirements
                                 );
+
+                                if($quest->isFinished) {
+                                    $socketSessionData->getActiveRoom()->setActiveQuest(new SkeletonCamp());
+                                    $socket->emit(
+                                        'refreshQuests',
+                                        [
+                                            'quests'      => $self->serializer->normalize($scene->quests, 'array'),
+                                            'sessionData' => $self->serializer->normalize($socketSessionData, 'array'),
+                                        ]
+                                    );
+                                }
                             }
                         }
                     }

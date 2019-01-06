@@ -26,7 +26,7 @@ class EntraceForestHouseTomb extends AbstractGateway
     public function verifyIsActive(SocketSessionData $sessionData): AbstractGateway
     {
         $quest          = $sessionData->getActiveRoom()->getActiveQuest();
-        $this->isActive = ($quest && $quest->getQuestId() == SkeletonKing::QUEST_ID && $quest->actualChapter == 3);
+        $this->isActive = ($quest && $quest->getQuestId() == SkeletonKing::QUEST_ID && $quest->actualChapter == 2);
 
         return $this;
     }

@@ -4,7 +4,7 @@ namespace GameBundle\Monsters;
 
 use GameBundle\Statistics\Statistics;
 
-class SkeletonBoss extends AbstractMonster
+class BigSkeleton extends AbstractMonster
 {
 
     /**
@@ -19,21 +19,21 @@ class SkeletonBoss extends AbstractMonster
     {
         parent::__construct($id, $position, $itemsToDrop, $specialItemsToDrop);
 
-        $this->name = 'Skeleton BOSS';
-        $this->type = 'skeletonBoss';
-        $this->meshName = 'skeletonBoss';
-        $this->scale = 1.5;
-        $this->lvl = 5;
-        $this->experience = 25;
+        $this->name = 'Big Skeleton';
+        $this->type = 'skeleton';
+        $this->meshName = 'skeleton';
+        $this->lvl = 1;
+        $this->scale = 1.2;
+        $this->experience = 15;
         $this->attackAreaSize = 2;
         $this->visibilityAreaSize = 15;
         $this->statistics = (new Statistics())
-            ->setHp(300)
-            ->setHpMax(300)
-            ->setDamageMin(15)
-            ->setDamageMax(25)
-            ->setArmor(25)
-            ->setWalkSpeed(4)
+            ->setHp(160)
+            ->setHpMax(160)
+            ->setDamageMin(12)
+            ->setDamageMax(18)
+            ->setArmor(15)
+            ->setWalkSpeed(10)
             ->setBlockChance(0)
             ->setHitChance(100);
     }

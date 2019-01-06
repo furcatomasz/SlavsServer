@@ -2,6 +2,7 @@
 
 namespace GameBundle\Scenes;
 
+use GameBundle\BabylonObjects\Vector3;
 use GameBundle\Chests\WoodChest;
 use GameBundle\Gateways\ForestHouseTombExit;
 use GameBundle\Items\Weapons\LongSword;
@@ -33,6 +34,7 @@ class ForestHouseTomb extends AbstractScene
         ];
 
         $this->chests = [
+            new WoodChest(new Vector3(30.61, 0, -24.86), new Vector3(0, 1.7, 0), new Vector3(29.21, 0, -28.88), [new Gold(50), new LongSword()]),
         ];
     }
 

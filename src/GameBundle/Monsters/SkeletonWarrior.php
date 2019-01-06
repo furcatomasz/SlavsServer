@@ -24,7 +24,7 @@ class SkeletonWarrior extends AbstractMonster
         $this->meshName = 'skeletonWarrior';
         $this->scale = 1;
         $this->lvl = 3;
-        $this->experience = 5;
+        $this->experience = 10;
         $this->attackAreaSize = 2;
         $this->visibilityAreaSize = 15;
         $this->statistics = (new Statistics())

@@ -2,8 +2,11 @@
 
 namespace GameBundle\Scenes;
 
+use GameBundle\BabylonObjects\Vector3;
+use GameBundle\Gateways\EntraceForestHouseHouse;
 use GameBundle\Gateways\EntraceForestHouseTomb;
 use GameBundle\Gateways\EntraceHouse;
+use GameBundle\Gateways\EntraceMountainPass;
 use GameBundle\Items\Armors\LeatherArmor;
 use GameBundle\Items\Boots\LeatherBoots;
 use GameBundle\Items\Gloves\LeatherGloves;
@@ -11,10 +14,13 @@ use GameBundle\Items\Helms\LeatherHelm;
 use GameBundle\Items\Shields\MediumWoodenShield;
 use GameBundle\Items\Shields\SmallWoodenShield;
 use GameBundle\Items\Weapons\LongSword;
+use GameBundle\Items\Weapons\Sword;
 use GameBundle\Monsters\Skeleton;
 use GameBundle\Monsters\SkeletonBoss;
 use GameBundle\Monsters\SkeletonWarrior;
 use GameBundle\SpecialItems\Gold;
+use GameBundle\SpecialItems\Mushrooms;
+use GameBundle\SpecialItems\Randomizer\Randomizer;
 
 class ForestHouse extends AbstractScene
 {
@@ -32,32 +38,38 @@ class ForestHouse extends AbstractScene
         parent::__construct();
         $this->gateways = [
             new EntraceForestHouseTomb(),
+            new EntraceForestHouseHouse(),
+            new EntraceMountainPass(),
         ];
 
         $itemsToDrop = [
             [
-                'chance' => 5,
-                'item'   => new LeatherHelm(),
+                'chance' => 10,
+                'item'   => new LeatherHelm(null, random_int(0,5)),
             ],
             [
-                'chance' => 5,
-                'item'   => new LeatherBoots(),
+                'chance' => 10,
+                'item'   => new LeatherBoots(null, random_int(0,5)),
             ],
             [
-                'chance' => 5,
-                'item'   => new LeatherArmor(),
+                'chance' => 10,
+                'item'   => new LeatherArmor(null, random_int(0,5)),
             ],
             [
-                'chance' => 5,
-                'item'   => new LeatherGloves(),
+                'chance' => 10,
+                'item'   => new LeatherGloves(null, random_int(0,5)),
             ],
             [
-                'chance' => 5,
-                'item'   => new SmallWoodenShield(),
+                'chance' => 10,
+                'item'   => new SmallWoodenShield(null, random_int(0,5)),
             ],
             [
-                'chance' => 5,
-                'item'   => new MediumWoodenShield(),
+                'chance' => 10,
+                'item'   => new MediumWoodenShield(null, random_int(0,5)),
+            ],
+            [
+                'chance' => 10,
+                'item'   => new Sword(null, random_int(0,5)),
             ],
         ];
 
@@ -89,6 +101,23 @@ class ForestHouse extends AbstractScene
             new SkeletonWarrior(0, ['x' => 48, 'y' => 0, 'z' => -142], $itemsToDrop, []),
 
         ];
+
+        $this->randomSpecialItems = Randomizer::createSpecialItem(
+                new Mushrooms(1),
+                [
+                    new Vector3(7, 0, 37),
+                    new Vector3(-54, 0, 22),
+                    new Vector3(-125, 0, 30),
+                    new Vector3(54, 0, -84),
+                    new Vector3(8, 0, -130),
+                    new Vector3(0, 0, 30),
+                    new Vector3(-73, 0, -167),
+                    new Vector3(-78, 0, -95),
+                ],
+                50
+            );
+
+
     }
 
 }
