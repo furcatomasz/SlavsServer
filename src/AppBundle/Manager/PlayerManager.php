@@ -101,7 +101,8 @@ class PlayerManager extends AbstractManager
                 ->setLvl($player->getLvl()+1)
                 ->setFreeAttributesPoints($player->getFreeAttributesPoints()+5)
                 ->setFreeSkillPoints($player->getFreeSkillPoints()+1)
-            ;
+                ->getStatistics()->setHp($player->getStatistics()->getHpMax());
+
             $socket->emit('newLvl', [
                 'freeAttributesPoints' => $player->getFreeAttributesPoints(),
                 'freeSkillPoints' => $player->getFreeSkillPoints(),

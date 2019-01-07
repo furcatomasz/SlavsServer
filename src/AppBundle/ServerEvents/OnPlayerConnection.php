@@ -48,7 +48,7 @@ class OnPlayerConnection extends AbstractEvent
     {
         $socket        = $event->getSocket();
 
-            $user          = $this->userManager->findUserByEmail('ksiegowosc@knights.pl');
+            $user          = $this->userManager->findUserByEmail('sdasdasdas@wp.pl');
             $playerSession = $event->getSocketSessionData();
             $playerSession
                 ->setConnectionId($event->getSocket()->id)

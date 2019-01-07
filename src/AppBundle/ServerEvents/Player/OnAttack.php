@@ -67,11 +67,6 @@ class OnAttack extends AbstractEvent
                 $scene             = $socketSessionData->getActiveScene();
                 $monsterKey        = null;
 
-                //TODO: check time
-//                if ($socketSessionData->getLastPlayerAttack() > time() - 200) {
-//                    return;
-//                }
-
                 if($socketSessionData->getActiveSkill() && !$socketSessionData->getActiveSkill()->used) {
                     foreach ($socketSessionData->getActiveRoom()->getMonsters() as $monsterSceneKey => $monster) {
                         foreach ($monster->getAvailableAttacksFromCharacters() as $attackedPlayerId => $isAttacked) {
@@ -85,10 +80,15 @@ class OnAttack extends AbstractEvent
                         return;
                     }
                 } else {
+                    //TODO: check time
+                    if ($socketSessionData->getLastPlayerAttack()*1000 > microtime(true)*1000 - 400) {
+                        return;
+                    }
+
                     $socketSessionData
                         ->setAttack($data['attack'])
                         ->setTargetPoint($data['targetPoint'])
-                        ->setLastPlayerAttack(time());
+                        ->setLastPlayerAttack(microtime(true));
 
                     if($playerEnergy+3 <= $socketSessionData->getActivePlayer()->getStatistics()->getEnergyMax()) {
                         $socketSessionData->getActivePlayer()->getStatistics()->setEnergy($playerEnergy + 3);

@@ -83,11 +83,10 @@ class OnCharacterCreate extends AbstractEvent
     {
         $attributes = $this->playerAttributesManager
             ->create()
-            ->setAttackSpeed(0)
-            ->setHealth(0)
-            ->setDamage(0)
-            ->setDefence(0)
-            ->setEnergy(0);
+            ->setDurability(0)
+            ->setStamina(0)
+            ->setStrength(0)
+            ->setVitality(0);
 
         $newPlayer = $this->playerManager
             ->create()

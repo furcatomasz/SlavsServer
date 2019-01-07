@@ -32,7 +32,7 @@ class SocketSessionData
     public $activeScene;
 
     /**
-     * @var int
+     * @var float
      */
     public $lastPlayerAttack;
 
@@ -107,19 +107,19 @@ class SocketSessionData
     }
 
     /**
-     * @return int|null
+     * @return float|null
      */
-    public function getLastPlayerAttack(): ?int
+    public function getLastPlayerAttack(): ?float
     {
         return $this->lastPlayerAttack;
     }
 
     /**
-     * @param int $lastPlayerAttack
+     * @param float $lastPlayerAttack
      *
      * @return SocketSessionData
      */
-    public function setLastPlayerAttack(int $lastPlayerAttack): SocketSessionData
+    public function setLastPlayerAttack(float $lastPlayerAttack): SocketSessionData
     {
         $this->lastPlayerAttack = $lastPlayerAttack;
 
