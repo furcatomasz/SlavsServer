@@ -28,10 +28,10 @@ class BigSkeleton extends AbstractMonster
         $this->attackAreaSize = 2;
         $this->visibilityAreaSize = 15;
         $this->statistics = (new Statistics())
-            ->setHp(160)
-            ->setHpMax(160)
-            ->setDamageMin(12)
-            ->setDamageMax(18)
+            ->setHp(80)
+            ->setHpMax(80)
+            ->setDamageMin(8)
+            ->setDamageMax(12)
             ->setArmor(15)
             ->setWalkSpeed(10)
             ->setBlockChance(0)

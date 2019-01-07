@@ -81,7 +81,7 @@ class OnAttack extends AbstractEvent
                     }
                 } else {
                     //TODO: check time
-                    if ($socketSessionData->getLastPlayerAttack()*1000 > microtime(true)*1000 - 400) {
+                    if ($socketSessionData->getLastPlayerAttack()*1000 > microtime(true)*1000 - 650) {
                         return;
                     }
 

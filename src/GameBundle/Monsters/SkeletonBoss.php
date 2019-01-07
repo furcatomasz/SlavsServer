@@ -28,11 +28,11 @@ class SkeletonBoss extends AbstractMonster
         $this->attackAreaSize = 2;
         $this->visibilityAreaSize = 15;
         $this->statistics = (new Statistics())
-            ->setHp(300)
-            ->setHpMax(300)
-            ->setDamageMin(15)
-            ->setDamageMax(25)
-            ->setArmor(25)
+            ->setHp(120)
+            ->setHpMax(120)
+            ->setDamageMin(5)
+            ->setDamageMax(15)
+            ->setArmor(12)
             ->setWalkSpeed(4)
             ->setBlockChance(0)
             ->setHitChance(100);
