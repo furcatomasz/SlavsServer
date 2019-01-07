@@ -1,0 +1,536 @@
+Exporter version: 5.6.3, Blender version: 2.79 (sub 0)
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used :
+		export scope        :  ALL
+		inline textures     :  false
+		Positions Precision :  4
+		Normals Precision   :  3
+		UVs Precision       :  3
+		Vert Color Precision:  3
+		Mat Weight Precision:  2
+		texture directory   :  F:\Slavs\Babylon\Maps\MountainsPass\
+	Python World class constructor completed
+	processing begun of mesh:  abaits.003
+		processing begun of Standard material:  abaits
+			Diffuse texture found "Texture.015"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		num positions      :  1347
+		num normals        :  1347
+		num uvs            :  2694
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4092
+	processing begun of mesh:  ground_plants.051
+		processing begun of Standard material:  ground_plants
+			Diffuse texture found "ground_plants"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+				WARNING: Opacity non-std way to indicate opacity, use material alpha to also use Opacity texture
+		num positions      :  12
+		num normals        :  12
+		num uvs            :  24
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  18
+	processing begun of mesh:  ground_plants.050
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.049
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.048
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.047
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.046
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.045
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.044
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.043
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.042
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.041
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.040
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.039
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.038
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.037
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.036
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.035
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.034
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.033
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  spruce.064
+		processing begun of Standard material:  spruceRandom
+			Diffuse texture found "spruceRandom"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+				WARNING: Opacity non-std way to indicate opacity, use material alpha to also use Opacity texture
+		num positions      :  1339
+		num normals        :  1339
+		num uvs            :  2678
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4038
+	processing begun of mesh:  spruce.063
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.060
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.059
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  abaits.002
+		mesh is an instance of :  abaits.003.  Processing halted.
+	processing begun of mesh:  dam.008
+		processing begun of Standard material:  dam
+			Diffuse texture found "Texture.014"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		num positions      :  692
+		num normals        :  692
+		num uvs            :  1384
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  1998
+	processing begun of mesh:  dam.001
+		mesh is an instance of :  dam.008.  Processing halted.
+	processing begun of mesh:  barrel.008
+		processing begun of Standard material:  barrel
+			Diffuse texture found "Texture.013"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		num positions      :  107
+		num normals        :  107
+		num uvs            :  214
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  204
+	processing begun of mesh:  barrel.007
+		mesh is an instance of :  barrel.008.  Processing halted.
+	processing begun of mesh:  barrel.006
+		mesh is an instance of :  barrel.008.  Processing halted.
+	processing begun of mesh:  barrel.005
+		mesh is an instance of :  barrel.008.  Processing halted.
+	processing begun of mesh:  barrel.004
+		mesh is an instance of :  barrel.008.  Processing halted.
+	processing begun of mesh:  box.008
+		processing begun of Standard material:  box
+			Diffuse texture found "Texture.005"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		num positions      :  87
+		num normals        :  87
+		num uvs            :  174
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  108
+	processing begun of mesh:  box.007
+		mesh is an instance of :  box.008.  Processing halted.
+	processing begun of mesh:  box.006
+		mesh is an instance of :  box.008.  Processing halted.
+	processing begun of mesh:  box.005
+		mesh is an instance of :  box.008.  Processing halted.
+	processing begun of mesh:  box.004
+		mesh is an instance of :  box.008.  Processing halted.
+	processing begun of mesh:  ground_plants.032
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.031
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.030
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.029
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.028
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.027
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.026
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.025
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.024
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.023
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  Rock.044
+		processing begun of Standard material:  Rock
+			Diffuse texture found "Texture.001"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+		num positions      :  587
+		num normals        :  587
+		num uvs            :  1174
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  2268
+	processing begun of mesh:  spruce.058
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.057
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.056
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  Rock.043
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  spruce.055
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.054
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.053
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.052
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.051
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.050
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  Rock.042
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.041
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.040
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.039
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.038
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.037
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  spruce.049
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.048
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.047
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.046
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.045
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.044
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.043
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.042
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.041
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.040
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.039
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.038
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.037
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.036
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.035
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.034
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.033
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.032
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.005
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.004
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  Rock.036
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.035
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.034
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.033
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.032
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.031
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.030
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.029
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.028
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  barrel.003
+		mesh is an instance of :  barrel.008.  Processing halted.
+	processing begun of mesh:  barrel.002
+		mesh is an instance of :  barrel.008.  Processing halted.
+	processing begun of mesh:  spruce.003
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  Rock.027
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.026
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.025
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.024
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.023
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.022
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.021
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.020
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.019
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.018
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.017
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.016
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.015
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.014
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.013
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.012
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.011
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.010
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.009
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.008
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.007
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.006
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.005
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.004
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.003
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.002
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  Rock.001
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  ground_plants.022
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.021
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.020
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.019
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.018
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.017
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.016
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.015
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.014
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  spruce.031
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.030
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.029
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.028
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.027
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.026
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.025
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.024
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.023
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.022
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.021
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.020
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.019
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.018
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.017
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.015
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.014
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  ground_plants.013
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.012
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.011
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.010
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.009
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.008
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.007
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.006
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.005
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  box.003
+		mesh is an instance of :  box.008.  Processing halted.
+	processing begun of mesh:  box.000
+		mesh is an instance of :  box.008.  Processing halted.
+	processing begun of mesh:  spruce.012
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.011
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.009
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.007
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.006
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.002
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.001
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  ground_plants.004
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.003
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.002
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  ground_plants.001
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of mesh:  box.002
+		mesh is an instance of :  box.008.  Processing halted.
+	processing begun of mesh:  spruce.016
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.013
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.010
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.008
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  spruce.000
+		mesh is an instance of :  spruce.064.  Processing halted.
+	processing begun of mesh:  Rock.000
+		mesh is an instance of :  Rock.044.  Processing halted.
+	processing begun of mesh:  dam.007
+		mesh is an instance of :  dam.008.  Processing halted.
+	processing begun of mesh:  dam.006
+		mesh is an instance of :  dam.008.  Processing halted.
+	processing begun of mesh:  dam.005
+		mesh is an instance of :  dam.008.  Processing halted.
+	processing begun of mesh:  tentSmall.004
+		processing begun of Standard material:  tentSmall
+			Diffuse texture found "Texture.010"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+				WARNING: Opacity non-std way to indicate opacity, use material alpha to also use Opacity texture
+		num positions      :  1505
+		num normals        :  1505
+		num uvs            :  3010
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4068
+	processing begun of mesh:  fireplace.001
+		processing begun of Standard material:  hearth
+			Diffuse texture found "Texture.012"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+				WARNING: Opacity non-std way to indicate opacity, use material alpha to also use Opacity texture
+		num positions      :  1741
+		num normals        :  1741
+		num uvs            :  3482
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4344
+	processing begun of mesh:  dam.004
+		mesh is an instance of :  dam.008.  Processing halted.
+	processing begun of mesh:  dam.003
+		registered as also a user of material:  dam
+		num positions      :  691
+		num normals        :  691
+		num uvs            :  1382
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  1998
+	processing begun of mesh:  tentSmall.003
+		registered as also a user of material:  tentSmall
+		num positions      :  1505
+		num normals        :  1505
+		num uvs            :  3010
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4068
+	processing begun of mesh:  abaits.005
+		mesh is an instance of :  abaits.003.  Processing halted.
+	processing begun of mesh:  abaits.004
+		mesh is an instance of :  abaits.003.  Processing halted.
+	processing begun of mesh:  dam.002
+		mesh is an instance of :  dam.008.  Processing halted.
+	processing begun of mesh:  tentSmall.001
+		registered as also a user of material:  tentSmall
+		num positions      :  1505
+		num normals        :  1505
+		num uvs            :  3010
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4068
+	processing begun of mesh:  Ground
+		processing begun of baked material:  Ground
+			Internal baking texture, type: TEXTURE, mapped using: UVMap
+		num positions      :  16384
+		num normals        :  16384
+		num uvs            :  32768
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  96774
+	processing begun of camera (UniversalCamera):  Camera
+	processing begun of mesh:  abaits
+		mesh is an instance of :  abaits.003.  Processing halted.
+	processing begun of mesh:  barrel
+		mesh is an instance of :  barrel.008.  Processing halted.
+	processing begun of mesh:  dam
+		mesh is an instance of :  dam.008.  Processing halted.
+	processing begun of mesh:  fireplace
+		registered as also a user of material:  hearth
+		num positions      :  1741
+		num normals        :  1741
+		num uvs            :  3482
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4344
+	processing begun of mesh:  tentMedium
+		processing begun of Standard material:  tentMedium
+			Diffuse texture found "Texture.011"
+				Image texture found, type:  diffuseTexture, mapped using: "UVMap"
+				WARNING: Opacity non-std way to indicate opacity, use material alpha to also use Opacity texture
+		num positions      :  1229
+		num normals        :  1229
+		num uvs            :  2458
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  3294
+	processing begun of mesh:  tentSmall
+		registered as also a user of material:  tentSmall
+		num positions      :  1505
+		num normals        :  1505
+		num uvs            :  3010
+		num uvs2           :  0
+		num colors         :  0
+		num indices        :  4068
+	processing begun of mesh:  ground_plants.000
+		mesh is an instance of :  ground_plants.051.  Processing halted.
+	processing begun of light (SUN):  Lamp
+========= Writing of scene file started =========
+========= Writing of scene file completed =========
+========= end of processing =========
+elapsed time:  0 min, 29.859 secs
