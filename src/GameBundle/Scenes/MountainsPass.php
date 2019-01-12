@@ -4,8 +4,6 @@ namespace GameBundle\Scenes;
 
 use GameBundle\BabylonObjects\Vector3;
 use GameBundle\Chests\WoodChest;
-use GameBundle\Gateways\EntraceForestHouseTomb;
-use GameBundle\Gateways\EntraceHouse;
 use GameBundle\Items\Armors\LeatherArmor;
 use GameBundle\Items\Boots\LeatherBoots;
 use GameBundle\Items\Gloves\LeatherGloves;
@@ -13,6 +11,7 @@ use GameBundle\Items\Helms\LeatherHelm;
 use GameBundle\Items\Shields\MediumWoodenShield;
 use GameBundle\Items\Shields\SmallWoodenShield;
 use GameBundle\Items\Weapons\LongSword;
+use GameBundle\Items\Weapons\Sword;
 use GameBundle\Monsters\BigSkeleton;
 use GameBundle\Monsters\Skeleton;
 use GameBundle\Monsters\SkeletonBoss;
@@ -31,6 +30,8 @@ class MountainsPass extends AbstractScene
 
     /**
      * AbstractScene constructor.
+     *
+     * @throws \Exception
      */
     public function __construct()
     {
