@@ -17,6 +17,8 @@ abstract class AbstractScene
         'z' => 0,
     ];
 
+    const ENTRANCE_POSITION = [];
+
     /**
      * @var array
      */
@@ -79,6 +81,19 @@ abstract class AbstractScene
         }
 
         return $this;
+    }
+
+    /**
+     * @param AbstractScene $oldScene
+     *
+     * @return array
+     */
+    public function getPlayerLocation(AbstractScene $oldScene): array {
+        if(array_key_exists($oldScene->getType(), static::ENTRANCE_POSITION)) {
+            return static::ENTRANCE_POSITION[$oldScene->getType()];
+        }
+
+        return static::START_POSITION;
     }
 
     /**

@@ -2,12 +2,8 @@
 
 namespace GameBundle\Scenes;
 
-use GameBundle\Gateways\EntraceForestHouseTomb;
+use AppBundle\Storage\SocketSessionData;
 use GameBundle\Gateways\EntraceHouse;
-use GameBundle\Monsters\Skeleton;
-use GameBundle\Monsters\SkeletonBoss;
-use GameBundle\Monsters\SkeletonWarrior;
-use GameBundle\SpecialItems\Gold;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 class Factory
@@ -16,6 +12,7 @@ class Factory
      * @param int $type
      *
      * @return AbstractScene
+     * @throws \Exception
      */
     static public function createSceneByType(int $type): AbstractScene
     {
@@ -52,6 +49,48 @@ class Factory
 
         return $scene;
 
+    }
+
+    /**
+     * @param SocketSessionData $socketSessionData
+     * @param int               $type
+     *
+     * @return AbstractScene
+     * @throws \Exception
+     */
+    static public function getExistingScene(SocketSessionData $socketSessionData, int $type): ?AbstractScene
+    {
+        $scenes   = $socketSessionData->getStateScenes();
+        $newScene = null;
+
+        array_map(
+            function (AbstractScene $abstractScene) use ($type, &$newScene) {
+                if ($abstractScene->getType() == $type) {
+                    $newScene = $abstractScene;
+                }
+            },
+            $scenes
+        );
+
+        return $newScene;
+    }
+
+    /**
+     * @param SocketSessionData $socketSessionData
+     * @param int               $type
+     *
+     * @return AbstractScene
+     * @throws \Exception
+     */
+    static public function getExistingSceneOrCreateNew(SocketSessionData $socketSessionData, int $type): AbstractScene
+    {
+        $newScene = Factory::getExistingScene($socketSessionData, $type);
+
+        if (!$newScene) {
+            $newScene = Factory::createSceneByType($type);
+        }
+
+        return $newScene;
     }
 
 }

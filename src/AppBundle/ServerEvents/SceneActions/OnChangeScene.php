@@ -30,10 +30,17 @@ class OnChangeScene extends AbstractEvent
             'changeSceneTrigger',
             function ($sceneType) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $scene             = Factory::createSceneByType($sceneType);
-                $socketSessionData->setActiveScene($scene);
+                $oldScene          = $socketSessionData->getActiveScene();
+                $scene             = Factory::getExistingSceneOrCreateNew($socketSessionData, $sceneType);
 
-                $socketSessionData->setPosition($scene::START_POSITION);
+                $stateScenes = $socketSessionData->getStateScenes();
+                if (!Factory::getExistingScene($socketSessionData, $oldScene->getType())) {
+                    $stateScenes[] = $oldScene;
+                    $socketSessionData->setStateScenes($stateScenes);
+                }
+
+                $socketSessionData->setActiveScene($scene);
+                $socketSessionData->setPosition($scene->getPlayerLocation($oldScene));
 
                 $socket->emit(
                     'changeScene',

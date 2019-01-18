@@ -6,6 +6,8 @@ use GameBundle\Statistics\Statistics;
 
 class SkeletonBoss extends AbstractMonster
 {
+    const TYPE = 2;
+
 
     /**
      * AbstractMonster constructor.

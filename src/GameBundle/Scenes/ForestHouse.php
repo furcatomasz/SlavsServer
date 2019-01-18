@@ -13,12 +13,9 @@ use GameBundle\Items\Gloves\LeatherGloves;
 use GameBundle\Items\Helms\LeatherHelm;
 use GameBundle\Items\Shields\MediumWoodenShield;
 use GameBundle\Items\Shields\SmallWoodenShield;
-use GameBundle\Items\Weapons\LongSword;
 use GameBundle\Items\Weapons\Sword;
 use GameBundle\Monsters\Skeleton;
-use GameBundle\Monsters\SkeletonBoss;
 use GameBundle\Monsters\SkeletonWarrior;
-use GameBundle\SpecialItems\Gold;
 use GameBundle\SpecialItems\Mushrooms;
 use GameBundle\SpecialItems\Randomizer\Randomizer;
 
@@ -30,6 +27,15 @@ class ForestHouse extends AbstractScene
         'y' => 0,
         'z' => 0,
     ];
+
+    const ENTRANCE_POSITION = [
+        ForestHouseTomb::TYPE => [
+            'x' => 52,
+            'y' => 0,
+            'z' => -140,
+        ]
+    ];
+
     /**
      * AbstractScene constructor.
      */
@@ -44,31 +50,31 @@ class ForestHouse extends AbstractScene
 
         $itemsToDrop = [
             [
-                'chance' => 10,
+                'chance' => 25,
                 'item'   => new LeatherHelm(null, random_int(0,5)),
             ],
             [
-                'chance' => 10,
+                'chance' => 25,
                 'item'   => new LeatherBoots(null, random_int(0,5)),
             ],
             [
-                'chance' => 10,
+                'chance' => 25,
                 'item'   => new LeatherArmor(null, random_int(0,5)),
             ],
             [
-                'chance' => 10,
+                'chance' => 25,
                 'item'   => new LeatherGloves(null, random_int(0,5)),
             ],
             [
-                'chance' => 10,
+                'chance' => 25,
                 'item'   => new SmallWoodenShield(null, random_int(0,5)),
             ],
             [
-                'chance' => 10,
+                'chance' => 25,
                 'item'   => new MediumWoodenShield(null, random_int(0,5)),
             ],
             [
-                'chance' => 10,
+                'chance' => 25,
                 'item'   => new Sword(null, random_int(0,5)),
             ],
         ];

@@ -6,6 +6,7 @@ use GameBundle\Statistics\Statistics;
 
 class Skeleton extends AbstractMonster
 {
+    const TYPE = 1;
 
     /**
      * AbstractMonster constructor.
@@ -29,10 +30,10 @@ class Skeleton extends AbstractMonster
         $this->statistics = (new Statistics())
             ->setHp(12)
             ->setHpMax(12)
-            ->setDamageMin(4)
-            ->setDamageMax(6)
+            ->setDamageMin(2)
+            ->setDamageMax(3)
             ->setArmor(3)
-            ->setWalkSpeed(10)
+            ->setWalkSpeed(11)
             ->setBlockChance(0)
             ->setHitChance(100);
     }

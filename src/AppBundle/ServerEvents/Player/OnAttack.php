@@ -174,7 +174,7 @@ class OnAttack extends AbstractEvent
                                         $socket,
                                         $socketSessionData
                                     ) {
-                                        if ($requirement instanceof KillMonster && $requirement->monsterToKill->type == $monster->type) {
+                                        if ($requirement instanceof KillMonster && $requirement->monsterToKill::TYPE == $monster::TYPE) {
                                             $requirement->passRequirement($socket, $socketSessionData);
                                         }
                                     },

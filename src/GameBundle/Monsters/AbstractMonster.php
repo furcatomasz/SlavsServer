@@ -6,6 +6,8 @@ use GameBundle\Statistics\Statistics;
 
 abstract class AbstractMonster
 {
+    const TYPE = 0;
+
     /**
      * @var int
      */

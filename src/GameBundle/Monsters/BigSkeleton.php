@@ -6,6 +6,7 @@ use GameBundle\Statistics\Statistics;
 
 class BigSkeleton extends AbstractMonster
 {
+    const TYPE = 4;
 
     /**
      * AbstractMonster constructor.
@@ -33,7 +34,7 @@ class BigSkeleton extends AbstractMonster
             ->setDamageMin(8)
             ->setDamageMax(12)
             ->setArmor(15)
-            ->setWalkSpeed(10)
+            ->setWalkSpeed(11)
             ->setBlockChance(0)
             ->setHitChance(100);
     }

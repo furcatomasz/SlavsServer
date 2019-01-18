@@ -45,31 +45,31 @@ class MountainsPass extends AbstractScene
 
         $itemsToDrop = [
             [
-                'chance' => 10,
+                'chance' => 30,
                 'item'   => new LeatherHelm(null, random_int(0,10)),
             ],
             [
-                'chance' => 10,
+                'chance' => 30,
                 'item'   => new LeatherBoots(null, random_int(0,10)),
             ],
             [
-                'chance' => 10,
+                'chance' => 30,
                 'item'   => new LeatherArmor(null, random_int(0,10)),
             ],
             [
-                'chance' => 10,
+                'chance' => 30,
                 'item'   => new LeatherGloves(null, random_int(0,10)),
             ],
             [
-                'chance' => 10,
+                'chance' => 30,
                 'item'   => new SmallWoodenShield(null, random_int(0,10)),
             ],
             [
-                'chance' => 10,
+                'chance' => 30,
                 'item'   => new MediumWoodenShield(null, random_int(0,10)),
             ],
             [
-                'chance' => 10,
+                'chance' => 30,
                 'item'   => new Sword(null, random_int(0,10)),
             ],
         ];
