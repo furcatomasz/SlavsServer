@@ -1,7 +1,4 @@
-FROM php:7.2.6-cli
-
-#FROM php:7.2.6-cli-alpine
-#RUN apk --update add grep
+FROM php:7.3-cli
 
 ARG TIMEZONE
 RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone
@@ -11,7 +8,7 @@ RUN "date"
 # Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo pdo_mysql mysqli pcntl
 
-RUN pecl install xdebug
+RUN pecl install xdebug-beta
 RUN docker-php-ext-enable xdebug
 RUN echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini

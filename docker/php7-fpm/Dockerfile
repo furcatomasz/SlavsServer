@@ -1,6 +1,6 @@
- 
+
 # See https://github.com/docker-library/php/blob/master/7.1/fpm/Dockerfile
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 ARG TIMEZONE
 
 MAINTAINER Tomasz Furca <furcatomasz@gmail.com>
