@@ -5,7 +5,7 @@ namespace AppBundle\ServerEvents\SceneInit;
 
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
-use AppBundle\Server\SocketIO;
+use AppBundle\Server\ServerSocket;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Rooms\Room;
 use GameBundle\Scenes\Factory;

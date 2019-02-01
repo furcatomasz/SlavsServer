@@ -1,14 +1,6 @@
 version: '2.3'
 
 services:
-    composer:
-        container_name: slavsServer_composer
-        image: composer/composer:alpine
-        working_dir: /app
-        volumes:
-          - ./../:/app
-        command: "install --ignore-platform-reqs --no-scripts"
-
     db:
         container_name: slavsServer_db
         image: mysql:5.7

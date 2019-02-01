@@ -43,6 +43,7 @@
         "symfony/symfony": "^3.4",
         "symfony/templating": "^3.4",
         "twig/twig": "^1.0||^2.0",
+        "predis/predis": "dev-master",
         "workerman/phpsocket.io": "dev-master"
     },
     "require-dev": {

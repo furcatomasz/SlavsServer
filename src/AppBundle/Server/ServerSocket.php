@@ -19,7 +19,7 @@ use AppBundle\Storage\SocketSessionData;
  *
  * @DI\Service("app.server.socket")
  */
-class SocketIO
+class ServerSocket
 {
 
     /**

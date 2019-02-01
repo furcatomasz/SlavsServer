@@ -6,7 +6,7 @@ namespace AppBundle\ServerEvents\SceneActions;
 use AppBundle\Manager\ItemManager;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
-use AppBundle\Server\SocketIO;
+use AppBundle\Server\ServerSocket;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Items\AbstractItem;
 use GameBundle\Items\DropItem;
@@ -37,7 +37,7 @@ class OnAddDroppedItem extends AbstractEvent
     /**
      * @DI\Inject("app.server.socket")
      *
-     * @var SocketIO
+     * @var ServerSocket
      **/
     public $socketIOServer;
 

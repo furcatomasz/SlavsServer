@@ -6,7 +6,7 @@ namespace AppBundle\ServerEvents\Player;
 use AppBundle\Manager\PlayerAttributesManager;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
-use AppBundle\Server\SocketIO;
+use AppBundle\Server\ServerSocket;
 use AppBundle\ServerEvents\AbstractEvent;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
@@ -35,7 +35,7 @@ class OnAddAttribute extends AbstractEvent
     /**
      * @DI\Inject("app.server.socket")
      *
-     * @var SocketIO
+     * @var ServerSocket
      **/
     public $socketIOServer;
 

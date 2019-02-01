@@ -5,7 +5,7 @@ namespace AppBundle\ServerEvents;
 
 use AppBundle\Manager\GameTokenSessionManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
-use AppBundle\Server\SocketIO;
+use AppBundle\Server\ServerSocket;
 use FOS\UserBundle\Model\UserManager;
 use Symfony\Component\EventDispatcher\Event;
 use JMS\DiExtraBundle\Annotation as DI;
@@ -19,7 +19,7 @@ class OnPlayerConnection extends AbstractEvent
     /**
      * @DI\Inject("app.server.socket")
      *
-     * @var SocketIO
+     * @var ServerSocket
      **/
     public $socketIOServer;
 

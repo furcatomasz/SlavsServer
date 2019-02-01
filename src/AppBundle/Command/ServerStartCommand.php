@@ -3,7 +3,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Manager\UserManager;
-use AppBundle\Server\SocketIO;
+use AppBundle\Server\ServerSocket;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,7 +21,7 @@ class ServerStartCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /** @var SocketIO $socketServer */
+        /** @var ServerSocket $socketServer */
         $socketServer = $this->getContainer()->get('app.server.socket');
 
         $socketServer->startSocketServer();

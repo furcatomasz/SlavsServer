@@ -4,7 +4,7 @@ namespace AppBundle\ServerEvents\Player;
 
 
 use AppBundle\Server\ConnectionEstablishedEvent;
-use AppBundle\Server\SocketIO;
+use AppBundle\Server\ServerSocket;
 use AppBundle\ServerEvents\AbstractEvent;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
@@ -19,7 +19,7 @@ class OnDisconnect extends AbstractEvent
     /**
      * @DI\Inject("app.server.socket")
      *
-     * @var SocketIO
+     * @var ServerSocket
      **/
     public $socketIOServer;
 

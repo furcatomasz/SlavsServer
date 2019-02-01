@@ -6,7 +6,7 @@ namespace AppBundle\ServerEvents\Player;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Manager\SpecialItemManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
-use AppBundle\Server\SocketIO;
+use AppBundle\Server\ServerSocket;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Skills\Factory;
 use GameBundle\Skills\Heal;
@@ -37,7 +37,7 @@ class OnUseSkill extends AbstractEvent
     /**
      * @DI\Inject("app.server.socket")
      *
-     * @var SocketIO
+     * @var ServerSocket
      **/
     public $socketIOServer;
 

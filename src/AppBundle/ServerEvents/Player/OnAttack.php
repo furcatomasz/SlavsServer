@@ -6,7 +6,7 @@ namespace AppBundle\ServerEvents\Player;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Manager\SpecialItemManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
-use AppBundle\Server\SocketIO;
+use AppBundle\Server\ServerSocket;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Items\DropItem;
 use GameBundle\Monsters\AbstractMonster;
@@ -43,7 +43,7 @@ class OnAttack extends AbstractEvent
     /**
      * @DI\Inject("app.server.socket")
      *
-     * @var SocketIO
+     * @var ServerSocket
      **/
     public $socketIOServer;
 

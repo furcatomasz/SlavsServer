@@ -2,7 +2,7 @@
 
 namespace AppBundle\ServerEvents;
 
-use AppBundle\Server\SocketIO;
+use AppBundle\Server\ServerSocket;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Serializer\Serializer;
 use JMS\DiExtraBundle\Annotation as DI;
@@ -12,7 +12,7 @@ abstract class AbstractEvent
     /**
      * @DI\Inject("app.server.socket")
      *
-     * @var SocketIO
+     * @var ServerSocket
      **/
     public $socketIOServer;
 

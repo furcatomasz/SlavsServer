@@ -5,7 +5,7 @@ namespace AppBundle\ServerEvents\Player;
 use AppBundle\Manager\ItemManager;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
-use AppBundle\Server\SocketIO;
+use AppBundle\Server\ServerSocket;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Items\ItemFactory;
 use Symfony\Component\EventDispatcher\Event;
@@ -35,7 +35,7 @@ class OnItemEquip extends AbstractEvent
     /**
      * @DI\Inject("app.server.socket")
      *
-     * @var SocketIO
+     * @var ServerSocket
      **/
     public $socketIOServer;
 

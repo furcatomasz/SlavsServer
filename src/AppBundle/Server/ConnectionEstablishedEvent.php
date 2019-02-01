@@ -12,7 +12,7 @@ class ConnectionEstablishedEvent extends Event
     const NAME = 'connection.established.event';
 
     /**
-     * @var SocketIO
+     * @var ServerSocket
      */
     protected $io;
 
@@ -35,7 +35,7 @@ class ConnectionEstablishedEvent extends Event
      * ConnectionEstablishedEvent constructor.
      *
      * @param Socket            $socket
-     * @param SocketIO          $io
+     * @param ServerSocket          $io
      * @param SocketSessionData $socketSessionData
      * @param string            $monsterServerId
      */
@@ -52,7 +52,7 @@ class ConnectionEstablishedEvent extends Event
     }
 
     /**
-     * @return SocketIO
+     * @return ServerSocket
      */
     public function getIo(): SocketIO
     {
