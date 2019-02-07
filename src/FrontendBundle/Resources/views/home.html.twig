@@ -6,24 +6,20 @@
             <div class="col-md-4">
                 <br>
                 <br>
-                <a href="{{ path('play_game', { 'debug': 1 }) }}" class="btn button-background-slavs button-background-slavs-red">
-                    <i class="fab fa-game"></i>Play in debug mode
-                </a>
                 <br>
-                <a href="{{ path('play_game', { 'mobile': 1 }) }}" class="btn button-background-slavs button-background-slavs-red">
-                    <i class="fab fa-game"></i>Play mobile version
+                <a href="{{ path('play_game', { 'mobile': 1 }) }}" class="d-lg-none btn button-background-slavs button-background-slavs-red">
+                    <i class="fab fa-game"></i>Play mobile mode
+                    <br>
                 </a>
-                <br>
-                <a href="{{ path('fos_user_change_password') }}" class="btn button-background-slavs button-background-slavs-red">
+                <a href="{{ path('play_game') }}" class="d-none d-lg-block btn button-background-slavs button-background-slavs-red">
+                    <i class="fab fa-game"></i>Play desktop mode
+                    <br>
+                </a>
+                <a href="{{ path('fos_user_change_password') }}" class="btn button-background-slavs button-background-slavs">
                     <i class="fab fa-game"></i>Change password
                 </a>
                 <br>
-
-                <a href="{{ path('play_game') }}" class="btn button-background-slavs button-background-slavs-red">
-                    <i class="fab fa-game"></i>Play
-                </a>
-                <br>
-                <a href="{{ path('fos_user_security_logout') }}" class="btn button-background-slavs button-background-slavs-red">
+                <a href="{{ path('fos_user_security_logout') }}" class="btn button-background-slavs button-background-slavs">
                     <i class="fab fa-logout"></i>Logout
                 </a>
             </div>

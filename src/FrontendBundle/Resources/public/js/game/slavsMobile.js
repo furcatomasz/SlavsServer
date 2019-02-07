@@ -153,7 +153,7 @@ var Scene = /** @class */ (function () {
         scene.probesEnabled = false;
         scene.postProcessesEnabled = true;
         scene.spritesEnabled = true;
-        scene.audioEnabled = true;
+        scene.audioEnabled = false;
         return this;
     };
     Scene.prototype.initFactories = function (scene) {
@@ -3984,14 +3984,14 @@ var GUI;
             container.isPointerBlocker = true;
             this.container = container;
             this.guiTexture.addControl(container);
-            var image = new BABYLON.GUI.Image('gui.popup.image.', this.imageUrl);
+            var image = new BABYLON.GUI.Rectangle('gui.popup.image');
             image.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
             image.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
             image.width = 1;
+            image.thickness = 0;
             image.height = 1;
             container.addControl(image);
             this.container.addControl(image);
-            this.containerBackground = image;
             container.width = '685px';
             container.height = '100%';
             return this;
@@ -4000,7 +4000,7 @@ var GUI;
             var self = this;
             var inventoryPlayer = this.guiMain.game.player.mesh.createInstance('inventory_player');
             inventoryPlayer.layerMask = 1;
-            inventoryPlayer.position = new BABYLON.Vector3(-5, -2, 10);
+            inventoryPlayer.position = new BABYLON.Vector3(-5, -2, 12);
             inventoryPlayer.rotation = new BABYLON.Vector3(0, -0.2, 0);
             self.meshes.push(inventoryPlayer);
             this.guiMain.game.getScene().getCameraByName('gameCamera').position.y = 500;
@@ -4009,7 +4009,7 @@ var GUI;
                 if (item) {
                     var itemInstance = item.mesh.createInstance("itemInstance");
                     itemInstance.layerMask = 1;
-                    itemInstance.position = new BABYLON.Vector3(-5, -2, 10);
+                    itemInstance.position = new BABYLON.Vector3(-5, -2, 12);
                     itemInstance.rotation = new BABYLON.Vector3(0, -0.2, 0);
                     self.meshes.push(itemInstance);
                 }
