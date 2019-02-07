@@ -523,8 +523,8 @@ var SocketIOClient = /** @class */ (function () {
                 event.listen();
             });
         });
-        // this.socket.emit('changeScene', SelectCharacter.TYPE);
-        this.socket.emit('selectCharacter', 1);
+        this.socket.emit('changeScene', SelectCharacter.TYPE);
+        // this.socket.emit('selectCharacter', 1);
         return this;
     };
     return SocketIOClient;
@@ -654,6 +654,72 @@ var BounceAnimation = /** @class */ (function (_super) {
     };
     return BounceAnimation;
 }(AbstractAnimation));
+var Mouse = /** @class */ (function () {
+    function Mouse(game) {
+        this.game = game;
+    }
+    Mouse.prototype.registerControls = function (scene) {
+        var self = this;
+        var clickTrigger = false;
+        var lastUpdate = new Date().getTime() / 1000;
+        var game = this.game;
+        var clickParticleSystem = ClickParticles.getParticles(scene);
+        scene.onPointerUp = function (evt, pickResult) {
+            if (clickTrigger) {
+                clickTrigger = false;
+                var pickedMesh = pickResult.pickedMesh;
+                if (pickedMesh && (pickedMesh.name.search("Ground") >= 0)) {
+                    clickParticleSystem.start();
+                    if (game.goToMeshFunction) {
+                        scene.unregisterBeforeRender(game.goToMeshFunction);
+                        game.goToMeshFunction = null;
+                    }
+                }
+            }
+        };
+        scene.onPointerDown = function (evt, pickResult) {
+            var pickedMesh = pickResult.pickedMesh;
+            if (!self.game.player.isAlive || game.player.isAnySkillIsInUse()) {
+                return;
+            }
+            clickTrigger = true;
+            if (pickedMesh && (pickedMesh.name.search("Ground") >= 0)) {
+                game.player.attackActions.cancelCheckAttack();
+                self.attackPoint = null;
+                self.targetPoint = pickResult.pickedPoint;
+                self.targetPoint.y = 0;
+                clickParticleSystem.emitter = new BABYLON.Vector3(self.targetPoint.x, 0, self.targetPoint.z); // the starting location
+                self.game.player.runPlayerToPosition(self.targetPoint);
+                self.game.client.socket.emit('setTargetPoint', {
+                    position: self.targetPoint
+                });
+            }
+        };
+        scene.onPointerMove = function (evt, pickResult) {
+            if (clickTrigger) {
+                if (!self.game.player.isAlive) {
+                    return;
+                }
+                var pickedMesh = pickResult.pickedMesh;
+                if (pickedMesh && self.targetPoint) {
+                    if (self.game.player) {
+                        self.targetPoint = pickResult.pickedPoint;
+                        self.targetPoint.y = 0;
+                        clickParticleSystem.emitter = new BABYLON.Vector3(self.targetPoint.x, 0, self.targetPoint.z); // the starting location
+                        self.game.player.runPlayerToPosition(self.targetPoint);
+                        if (lastUpdate < (new Date().getTime() / 500) - 0.3) {
+                            lastUpdate = (new Date().getTime() / 500);
+                            self.game.client.socket.emit('setTargetPoint', {
+                                position: self.targetPoint
+                            });
+                        }
+                    }
+                }
+            }
+        };
+    };
+    return Mouse;
+}());
 var AbstractCharacter = /** @class */ (function () {
     function AbstractCharacter(name, game) {
         this.name = name;
@@ -807,72 +873,6 @@ var AbstractCharacter = /** @class */ (function () {
     AbstractCharacter.ANIMATION_SKILL_02 = 'Skill02';
     return AbstractCharacter;
 }());
-var Mouse = /** @class */ (function () {
-    function Mouse(game) {
-        this.game = game;
-    }
-    Mouse.prototype.registerControls = function (scene) {
-        var self = this;
-        var clickTrigger = false;
-        var lastUpdate = new Date().getTime() / 1000;
-        var game = this.game;
-        var clickParticleSystem = ClickParticles.getParticles(scene);
-        scene.onPointerUp = function (evt, pickResult) {
-            if (clickTrigger) {
-                clickTrigger = false;
-                var pickedMesh = pickResult.pickedMesh;
-                if (pickedMesh && (pickedMesh.name.search("Ground") >= 0)) {
-                    clickParticleSystem.start();
-                    if (game.goToMeshFunction) {
-                        scene.unregisterBeforeRender(game.goToMeshFunction);
-                        game.goToMeshFunction = null;
-                    }
-                }
-            }
-        };
-        scene.onPointerDown = function (evt, pickResult) {
-            var pickedMesh = pickResult.pickedMesh;
-            if (!self.game.player.isAlive || game.player.isAnySkillIsInUse()) {
-                return;
-            }
-            clickTrigger = true;
-            if (pickedMesh && (pickedMesh.name.search("Ground") >= 0)) {
-                game.player.attackActions.cancelCheckAttack();
-                self.attackPoint = null;
-                self.targetPoint = pickResult.pickedPoint;
-                self.targetPoint.y = 0;
-                clickParticleSystem.emitter = new BABYLON.Vector3(self.targetPoint.x, 0, self.targetPoint.z); // the starting location
-                self.game.player.runPlayerToPosition(self.targetPoint);
-                self.game.client.socket.emit('setTargetPoint', {
-                    position: self.targetPoint
-                });
-            }
-        };
-        scene.onPointerMove = function (evt, pickResult) {
-            if (clickTrigger) {
-                if (!self.game.player.isAlive) {
-                    return;
-                }
-                var pickedMesh = pickResult.pickedMesh;
-                if (pickedMesh && self.targetPoint) {
-                    if (self.game.player) {
-                        self.targetPoint = pickResult.pickedPoint;
-                        self.targetPoint.y = 0;
-                        clickParticleSystem.emitter = new BABYLON.Vector3(self.targetPoint.x, 0, self.targetPoint.z); // the starting location
-                        self.game.player.runPlayerToPosition(self.targetPoint);
-                        if (lastUpdate < (new Date().getTime() / 500) - 0.3) {
-                            lastUpdate = (new Date().getTime() / 500);
-                            self.game.client.socket.emit('setTargetPoint', {
-                                position: self.targetPoint
-                            });
-                        }
-                    }
-                }
-            }
-        };
-    };
-    return Mouse;
-}());
 var GodRay = /** @class */ (function () {
     function GodRay() {
     }
@@ -1014,361 +1014,6 @@ var TrailMesh = /** @class */ (function (_super) {
     };
     return TrailMesh;
 }(BABYLON.Mesh));
-var AbstractEnvironment = /** @class */ (function () {
-    function AbstractEnvironment() {
-        this.staticShadowObjects = [];
-        this.colliders = [];
-    }
-    AbstractEnvironment.prototype.createDefaultLight = function (scene) {
-        var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0), scene);
-        light.intensity = 0.6;
-        light.position = new BABYLON.Vector3(0, 50, 0);
-        light.direction = new BABYLON.Vector3(0.45, -2.5, 0);
-        light.shadowMaxZ = 500;
-        this.light = light;
-    };
-    AbstractEnvironment.prototype.registerColliders = function (scene) {
-        for (var i = 0; i < this.colliders.length; i++) {
-            var sceneMeshCollider = this.colliders[i];
-            Collisions.setCollider(scene, sceneMeshCollider);
-        }
-    };
-    AbstractEnvironment.prototype.freezeAllMeshes = function (scene) {
-        for (var i = 0; i < scene.meshes.length; i++) {
-            scene.meshes[i].freezeWorldMatrix();
-            scene.meshes[i].cullingStrategy = BABYLON.AbstractMesh.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY;
-        }
-    };
-    return AbstractEnvironment;
-}());
-var EnvironmentForestHouse = /** @class */ (function (_super) {
-    __extends(EnvironmentForestHouse, _super);
-    function EnvironmentForestHouse(game) {
-        var _this = _super.call(this) || this;
-        var scene = game.getScene();
-        var self = _this;
-        var spsTrees = [];
-        var spsPlants = [];
-        var spsStones = [];
-        var spsFern = [];
-        for (var i = 0; i < scene.meshes.length; i++) {
-            var sceneMesh = scene.meshes[i];
-            var meshName = scene.meshes[i]['name'];
-            if (meshName.search("Ground") >= 0) {
-                sceneMesh.actionManager = new BABYLON.ActionManager(scene);
-                sceneMesh.receiveShadows = true;
-                _this.ground = sceneMesh;
-                var terrainMaterial = new BABYLON.TerrainMaterial("terrainMaterial", scene);
-                terrainMaterial.specularColor = new BABYLON.Color3(0.5, 0.5, 0.5);
-                terrainMaterial.specularPower = 64;
-                terrainMaterial.mixTexture = new BABYLON.Texture("assets/scenes/Forest_house/stencil.png", scene);
-                terrainMaterial.diffuseTexture1 = new BABYLON.Texture("assets/scenes/Forest_house/Grass_seamless_saturation.jpg", scene);
-                terrainMaterial.diffuseTexture2 = new BABYLON.Texture("assets/scenes/Forest_house/dirt.jpg", scene);
-                terrainMaterial.diffuseTexture3 = new BABYLON.Texture("assets/scenes/Forest_house/groundSeamless.jpg", scene);
-                terrainMaterial.diffuseTexture1.uScale = terrainMaterial.diffuseTexture1.vScale = 10;
-                terrainMaterial.diffuseTexture2.uScale = terrainMaterial.diffuseTexture2.vScale = 10;
-                terrainMaterial.diffuseTexture3.uScale = terrainMaterial.diffuseTexture3.vScale = 15;
-                sceneMesh.material = terrainMaterial;
-            }
-            else if (meshName.search("Box_Cube") >= 0) {
-                _this.colliders.push(sceneMesh);
-            }
-            else if (meshName.search("sps_trees") >= 0) {
-                spsTrees.push(sceneMesh);
-            }
-            else if (meshName.search("sps_groundPlants") >= 0) {
-                spsPlants.push(sceneMesh);
-            }
-            else if (meshName.search("sps_stones") >= 0) {
-                spsStones.push(sceneMesh);
-            }
-            else if (meshName.search("sps_fern") >= 0) {
-                spsFern.push(sceneMesh);
-            }
-            else {
-                sceneMesh.isPickable = false;
-                self.staticShadowObjects.push(sceneMesh);
-            }
-        }
-        //SPS Nature
-        var spruce = game.factories['nature_grain'].createClone('spruce', false);
-        spruce.visibility = 0;
-        spruce.material.freeze();
-        var groundPlants = game.factories['nature_grain'].createClone('ground_plants', false);
-        groundPlants.visibility = 0;
-        groundPlants.material.freeze();
-        var fern = game.factories['nature_grain'].createClone('fern', false);
-        fern.visibility = 0;
-        fern.material.freeze();
-        var stone = game.factories['nature_grain'].createClone('stone', false);
-        stone.visibility = 0;
-        stone.material.freeze();
-        spsTrees.forEach(function (parentSPS) {
-            var spsSpruce = new Particles.SolidParticleSystem.Nature(game, parentSPS, spruce, false);
-            spsSpruce.buildSPS(67);
-            self.staticShadowObjects.push(spsSpruce.spsMesh);
-        });
-        spsPlants.forEach(function (parentSPS) {
-            var spsSpruce = new Particles.SolidParticleSystem.Nature(game, parentSPS, groundPlants, false);
-            spsSpruce.buildSPS(40);
-            self.staticShadowObjects.push(spsSpruce.spsMesh);
-        });
-        spsStones.forEach(function (parentSPS) {
-            var spsSpruce = new Particles.SolidParticleSystem.Nature(game, parentSPS, stone, false);
-            spsSpruce.buildSPS(67);
-            self.staticShadowObjects.push(spsSpruce.spsMesh);
-        });
-        spsFern.forEach(function (parentSPS) {
-            var spsSpruce = new Particles.SolidParticleSystem.Nature(game, parentSPS, fern, false);
-            spsSpruce.buildSPS(67);
-            self.staticShadowObjects.push(spsSpruce.spsMesh);
-        });
-        var spsToBlock = scene.getMeshByName("sps_border");
-        var spsSpruceBlock = new Particles.SolidParticleSystem.NatureBlock(game, spsToBlock, spruce);
-        spsSpruceBlock.buildSPS(500);
-        self.staticShadowObjects.push(spsSpruceBlock.spsMesh);
-        stone.dispose();
-        spruce.dispose();
-        groundPlants.dispose();
-        fern.dispose();
-        var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0), scene);
-        light.intensity = 0.4;
-        light.position = new BABYLON.Vector3(0, 50, 0);
-        light.direction = new BABYLON.Vector3(0.45, -2.5, 0);
-        light.shadowMaxZ = 500;
-        _this.light = light;
-        ///register colliders
-        _this.registerColliders(scene);
-        _this.freezeAllMeshes(scene);
-        new BABYLON.Sound("Forest night", "assets/sounds/fx/wind.mp3", scene, null, {
-            loop: true,
-            autoplay: true,
-            volume: 0.1
-        });
-        new BABYLON.Sound("Forest night", "assets/sounds/forest_night.mp3", scene, null, {
-            loop: true,
-            autoplay: true,
-            volume: 0.3
-        });
-        scene.getMeshByName('exit').dispose();
-        var exitPlane = scene.getMeshByName('Entrace_Tomb').clone("exit", null);
-        exitPlane.position = new BABYLON.Vector3(-196.78, 0, -95.6);
-        exitPlane.rotation = new BABYLON.Vector3(0, -1.5, 0);
-        return _this;
-    }
-    return EnvironmentForestHouse;
-}(AbstractEnvironment));
-var EnvironmentForestHouseStart = /** @class */ (function (_super) {
-    __extends(EnvironmentForestHouseStart, _super);
-    function EnvironmentForestHouseStart(game) {
-        var _this = _super.call(this) || this;
-        var scene = game.getScene();
-        for (var i = 0; i < scene.meshes.length; i++) {
-            var sceneMesh = scene.meshes[i];
-            var meshName = scene.meshes[i]['name'];
-            if (meshName.search("Ground") >= 0) {
-                sceneMesh.actionManager = new BABYLON.ActionManager(scene);
-                sceneMesh.receiveShadows = true;
-            }
-            else if (meshName.search("Box_Cube") >= 0) {
-                _this.colliders.push(sceneMesh);
-            }
-            else {
-                sceneMesh.isPickable = false;
-                _this.staticShadowObjects.push(sceneMesh);
-            }
-        }
-        var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0), scene);
-        light.position = new BABYLON.Vector3(0, 80, -210);
-        light.direction = new BABYLON.Vector3(0.45, -0.45, 0.45);
-        light.shadowMaxZ = 500;
-        light.autoUpdateExtends = false;
-        _this.light = light;
-        _this.freezeAllMeshes(scene);
-        _this.registerColliders(scene);
-        new BABYLON.Sound("Forest night", "assets/sounds/fx/wind.mp3", scene, null, {
-            loop: true,
-            autoplay: true,
-            volume: 0.3
-        });
-        return _this;
-    }
-    return EnvironmentForestHouseStart;
-}(AbstractEnvironment));
-var EnvironmentForestHouseTomb = /** @class */ (function () {
-    function EnvironmentForestHouseTomb(game, scene) {
-        var self = this;
-        this.colliders = [];
-        for (var i = 0; i < scene.meshes.length; i++) {
-            var sceneMesh = scene.meshes[i];
-            var meshName = scene.meshes[i]['name'];
-            if (meshName.search("Ground") >= 0) {
-                sceneMesh.actionManager = new BABYLON.ActionManager(scene);
-                sceneMesh.receiveShadows = true;
-                sceneMesh.material.diffuseTexture.uScale = 1.2;
-                sceneMesh.material.diffuseTexture.vScale = 1.2;
-                this.ground = sceneMesh;
-            }
-            else if (meshName.search("Box_Cube") >= 0) {
-                this.colliders.push(sceneMesh);
-            }
-            else {
-                sceneMesh.isPickable = false;
-                ///others
-            }
-        }
-        var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0), scene);
-        light.intensity = 0.4;
-        light.position = new BABYLON.Vector3(0, 80, -210);
-        light.direction = new BABYLON.Vector3(0.45, -0.45, 0.45);
-        ///register colliders
-        for (var i = 0; i < this.colliders.length; i++) {
-            var sceneMeshCollider = this.colliders[i];
-            Collisions.setCollider(scene, sceneMeshCollider);
-        }
-        //Freeze world matrix all static meshes
-        for (var i = 0; i < scene.meshes.length; i++) {
-            scene.meshes[i].freezeWorldMatrix();
-        }
-    }
-    return EnvironmentForestHouseTomb;
-}());
-var EnvironmentMountainsPass = /** @class */ (function (_super) {
-    __extends(EnvironmentMountainsPass, _super);
-    function EnvironmentMountainsPass(game) {
-        var _this = _super.call(this) || this;
-        var scene = game.getScene();
-        _this.colliders = [];
-        scene.gravity = new BABYLON.Vector3(0, -9.81, 0);
-        for (var i = 0; i < scene.meshes.length; i++) {
-            var sceneMesh = scene.meshes[i];
-            var meshName = scene.meshes[i]['name'];
-            if (meshName.search("Ground") >= 0) {
-                sceneMesh.actionManager = new BABYLON.ActionManager(scene);
-                sceneMesh.receiveShadows = true;
-                sceneMesh.alwaysSelectAsActiveMesh = true;
-                var terrainMaterial = new BABYLON.TerrainMaterial("terrainMaterial", scene);
-                terrainMaterial.specularColor = new BABYLON.Color3(0.5, 0.5, 0.5);
-                terrainMaterial.specularPower = 64;
-                terrainMaterial.mixTexture = new BABYLON.Texture("assets/scenes/MountainsPass/stencil.jpg", scene);
-                terrainMaterial.diffuseTexture1 = new BABYLON.Texture("assets/scenes/Forest_house/Grass_seamless_saturation.jpg", scene);
-                terrainMaterial.diffuseTexture2 = new BABYLON.Texture("assets/scenes/Forest_house/dirt.jpg", scene);
-                terrainMaterial.diffuseTexture3 = new BABYLON.Texture("assets/scenes/Forest_house/Grass_seamless_saturation.jpg", scene);
-                terrainMaterial.diffuseTexture1.uScale = terrainMaterial.diffuseTexture1.vScale = 20;
-                terrainMaterial.diffuseTexture2.uScale = terrainMaterial.diffuseTexture2.vScale = 20;
-                terrainMaterial.diffuseTexture3.uScale = terrainMaterial.diffuseTexture3.vScale = 20;
-                sceneMesh.material = terrainMaterial;
-            }
-            else if (meshName.search("Box_Cube") >= 0) {
-                _this.colliders.push(sceneMesh);
-            }
-            else {
-                sceneMesh.isPickable = false;
-                if (meshName.search("Rock") >= 0) {
-                    continue;
-                }
-                _this.staticShadowObjects.push(sceneMesh);
-            }
-        }
-        // let cone = scene.getMeshByName("fireplace.002");
-        // if (cone) {
-        //     let smokeSystem = new Particles.FireplaceSmoke(game, cone).particleSystem;
-        //     smokeSystem.start();
-        //
-        //     let fireSystem = new Particles.FireplaceFire(game, cone).particleSystem;
-        //     fireSystem.start();
-        //
-        //     let sfxFireplace = new BABYLON.Sound("Fire", "assets/sounds/fireplace.mp3", scene, null, { loop: true, autoplay: true });
-        //     sfxFireplace.attachToMesh(cone);
-        // }
-        //TODO: delete in bledner
-        // scene.getLightByName('Lamp').dispose();
-        var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0), scene);
-        light.intensity = 0.6;
-        light.position = new BABYLON.Vector3(0, 50, 0);
-        light.direction = new BABYLON.Vector3(0.45, -2.5, 0);
-        light.shadowMaxZ = 500;
-        _this.light = light;
-        _this.registerColliders(scene);
-        _this.freezeAllMeshes(scene);
-        return _this;
-    }
-    return EnvironmentMountainsPass;
-}(AbstractEnvironment));
-var EnvironmentSelectCharacter = /** @class */ (function () {
-    function EnvironmentSelectCharacter(game, scene) {
-        ////LIGHT
-        var light = game.getScene().lights[0];
-        light.dispose();
-        var fireplaceLight = new BABYLON.PointLight("fireplaceLight", new BABYLON.Vector3(0, 2.5, 0), scene);
-        fireplaceLight.diffuse = new BABYLON.Color3(1, 0.7, 0.3);
-        fireplaceLight.range = 50;
-        var intensityAnimation = new BABYLON.Animation("mainLightIntensity", "intensity", 50, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
-        intensityAnimation.setKeys([
-            {
-                frame: 0,
-                value: 0.85
-            },
-            {
-                frame: 5,
-                value: 0.9
-            },
-            {
-                frame: 10,
-                value: 0.82
-            }
-        ]);
-        var colorAnimation = new BABYLON.Animation("mainLightColor", "specular", 50, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
-        colorAnimation.setKeys([
-            {
-                frame: 20,
-                value: new BABYLON.Color3(1, 1, 1)
-            },
-            {
-                frame: 25,
-                value: new BABYLON.Color3(1, 0, 1)
-            },
-            {
-                frame: 30,
-                value: new BABYLON.Color3(1, 1, 1)
-            }
-        ]);
-        fireplaceLight.animations = [];
-        fireplaceLight.animations.push(intensityAnimation);
-        game.getScene().beginAnimation(fireplaceLight, 0, 10, true);
-        var shadowGenerator = new BABYLON.ShadowGenerator(1024, fireplaceLight);
-        shadowGenerator.getShadowMap().refreshRate = 0;
-        this.shadowGenerator = shadowGenerator;
-        for (var i = 0; i < scene.meshes.length; i++) {
-            var sceneMesh = scene.meshes[i];
-            var meshName = scene.meshes[i]['name'];
-            if (meshName.search("Forest_ground") >= 0) {
-                sceneMesh.actionManager = new BABYLON.ActionManager(scene);
-                sceneMesh.receiveShadows = true;
-                sceneMesh.material.emissiveColor = new BABYLON.Vector3(0.05, 0.05, 0.05);
-                continue;
-            }
-            shadowGenerator.getShadowMap().renderList.push(sceneMesh);
-        }
-        var cone = scene.getMeshByName("Fireplace");
-        if (cone) {
-            fireplaceLight.parent = cone;
-            var smokeSystem = new Particles.FireplaceSmoke(game, cone).particleSystem;
-            smokeSystem.start();
-            var fireSystem = new Particles.FireplaceFire(game, cone).particleSystem;
-            fireSystem.start();
-            var sfxFireplace = new BABYLON.Sound("Fire", "assets/sounds/fireplace.mp3", scene, null, { loop: true, autoplay: true });
-            sfxFireplace.attachToMesh(cone);
-        }
-        for (var i = 0; i < scene.meshes.length; i++) {
-            var sceneMesh = scene.meshes[i];
-            sceneMesh.freezeWorldMatrix();
-            sceneMesh.isPickable = false;
-        }
-        new BABYLON.Sound("Forest night", "assets/sounds/music/theme.mp3", scene, null, { loop: true, autoplay: true, volume: 1 });
-    }
-    return EnvironmentSelectCharacter;
-}());
 var Factories;
 (function (Factories) {
     var AbstractFactory = /** @class */ (function () {
@@ -1516,6 +1161,220 @@ var Factories;
     }(Factories.AbstractFactory));
     Factories.Characters = Characters;
 })(Factories || (Factories = {}));
+var Chest = /** @class */ (function () {
+    /**
+     *
+     * @param {Game} game
+     * @param chestData
+     * @param chestKey
+     */
+    function Chest(game, chestData, chestKey) {
+        var self = this;
+        var scene = game.getScene();
+        var tooltip;
+        var opened = chestData.opened;
+        var position = chestData.position;
+        var rotation = chestData.rotation;
+        var chestMesh = game.factories['chest'].createClone('chest', true);
+        var gameCamera = scene.getCameraByName('gameCamera');
+        if (!chestMesh) {
+            throw new TypeError('Wrong chest mesh name.');
+        }
+        chestMesh.position = new BABYLON.Vector3(position.x, position.y, position.z);
+        chestMesh.rotation = new BABYLON.Vector3(rotation.x, rotation.y, rotation.z);
+        chestMesh.isPickable = true;
+        chestMesh.checkCollisions = true;
+        chestMesh.material.backFaceCulling = false;
+        if (!opened) {
+            var hl = new BABYLON.HighlightLayer("highlightLayer", scene, { camera: gameCamera });
+            // scene.meshes.forEach((mesh) => {
+            //    hl.addExcludedMesh(mesh);
+            // });
+            // hl.removeExcludedMesh(chestMesh);
+            hl.addMesh(chestMesh, BABYLON.Color3.Magenta());
+            self.hightlightLayer = hl;
+        }
+        this.mesh = chestMesh;
+        this.mesh.actionManager = new BABYLON.ActionManager(game.getScene());
+        this.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger, function () {
+            tooltip = new TooltipMesh(chestMesh, chestData.name);
+        }));
+        this.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger, function () {
+            tooltip.container.dispose();
+        }));
+        this.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
+            game.goToMeshFunction = GoToMeshAndRunAction.execute(game, chestMesh, function () {
+                game.client.socket.emit('openChest', chestKey);
+            });
+        }));
+    }
+    return Chest;
+}());
+var Collisions = /** @class */ (function () {
+    function Collisions() {
+    }
+    Collisions.setCollider = function (scene, parent, scalingSize, freezeInWorld) {
+        if (scalingSize === void 0) { scalingSize = new BABYLON.Vector3(2, 3, 2); }
+        if (freezeInWorld === void 0) { freezeInWorld = true; }
+        // let collider = BABYLON.Mesh.CreateBox('collider_box_of_' + parent.name, 0, scene, false);
+        // let parentBoundBox = parent.getBoundingInfo();
+        // collider.scaling = new BABYLON.Vector3(parentBoundBox.boundingBox.maximum.x * 2, parentBoundBox.boundingBox.maximum.y * 2, parentBoundBox.boundingBox.maximum.z * 2);
+        // collider.parent = parent;
+        parent.isPickable = false;
+        if (Game.SHOW_COLLIDERS) {
+            // collider.material = new BABYLON.StandardMaterial("collidermat", scene);
+            // collider.material.alpha = 0.3;
+            parent.visibility = 1;
+        }
+        else {
+            parent.visibility = 0;
+        }
+        parent.checkCollisions = true;
+        if (freezeInWorld) {
+            parent.freezeWorldMatrix();
+        }
+        return parent;
+    };
+    return Collisions;
+}());
+var Gateway = /** @class */ (function () {
+    function Gateway(game, meshName, isActive, openSceneType, entranceName) {
+        var gateway = game.getScene().getMeshByName(meshName);
+        if (!gateway) {
+            throw new TypeError('Wrong gateway mesh name.');
+        }
+        this.mesh = gateway;
+        gateway.visibility = 0;
+        gateway.isPickable = true;
+        this.tooltip = new TooltipMesh(gateway, entranceName);
+        var gatewayParticleSystem = new Particles.Gateway(game, gateway, isActive).particleSystem;
+        gatewayParticleSystem.start();
+        this.particleSystem = gatewayParticleSystem;
+        gateway.actionManager = new BABYLON.ActionManager(game.getScene());
+        gateway.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger, function () {
+            game.gui.characterTopHp.showGateway(entranceName);
+        }));
+        gateway.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger, function () {
+            game.gui.characterTopHp.hideHpBar();
+        }));
+        var enterTheGateway = function () {
+            if (!isActive) {
+                game.gui.playerLogsQuests.addText('This gateway is locked!', 'yellow');
+                return;
+            }
+            game.goToMeshFunction = GoToMeshAndRunAction.execute(game, gateway, function () {
+                game.client.socket.emit('changeSceneTrigger', openSceneType);
+            });
+        };
+        gateway.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickDownTrigger, enterTheGateway));
+        gateway.actionManager.registerAction(new BABYLON.ExecuteCodeAction({
+            trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger,
+            parameter: game.player.mesh
+        }, enterTheGateway));
+    }
+    return Gateway;
+}());
+var Factories;
+(function (Factories) {
+    var Quests = /** @class */ (function () {
+        /**
+         *
+         * @param {Game} game
+         * @param serverData
+         * @param activeQuest
+         */
+        function Quests(game, serverData, activeQuest) {
+            var self = this;
+            var questPicker = game.getScene().getMeshByName(serverData.objectName);
+            if (!questPicker) {
+                throw new TypeError('Wrong quest mesh name.');
+            }
+            questPicker.isPickable = true;
+            this.game = game;
+            this.mesh = questPicker;
+            this.mesh.actionManager = new BABYLON.ActionManager(game.getScene());
+            self.createTooltip(serverData, activeQuest, questPicker);
+            self.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
+                var quest = new GUI.NewQuest(game.gui, serverData);
+                quest.open();
+            }));
+        }
+        Quests.prototype.refreshTooltipColor = function (serverData, activeQuest, questPicker) {
+            if (activeQuest && activeQuest.questId != serverData.questId) {
+                this.tooltipMesh.material.diffuseColor = new BABYLON.Color3(1, 0, 0);
+            }
+            else if (activeQuest && activeQuest.questId == serverData.questId) {
+                this.tooltipMesh.material.diffuseColor = new BABYLON.Color3(1, 1, 0);
+            }
+            else {
+                this.tooltipMesh.material.diffuseColor = new BABYLON.Color3(0, 1, 0);
+                this.tooltipGui = new TooltipMesh(questPicker, 'New quest', -45);
+            }
+            return this;
+        };
+        Quests.prototype.createTooltip = function (serverData, activeQuest, questPicker) {
+            var box = BABYLON.Mesh.CreateBox("quest_box", 0.4, this.game.getScene());
+            box.material = new BABYLON.StandardMaterial("quest_box_material", this.game.getScene());
+            box.parent = this.mesh;
+            box.position.y += 3;
+            if (this.game.sceneManager.octree) {
+                this.game.sceneManager.octree.dynamicContent.push(box);
+            }
+            var keys = [];
+            keys.push({
+                frame: 0,
+                value: 0
+            });
+            keys.push({
+                frame: 30,
+                value: -2
+            });
+            var animationBox = new BABYLON.Animation("rotation", "rotation.y", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_RELATIVE);
+            animationBox.setKeys(keys);
+            box.animations = [];
+            box.animations.push(animationBox);
+            this.tooltipMesh = box;
+            this.game.getScene().beginAnimation(box, 0, 30, true);
+            this.refreshTooltipColor(serverData, activeQuest, questPicker);
+        };
+        Quests.prototype.dispose = function () {
+            if (this.tooltipGui) {
+                this.tooltipGui.container.dispose();
+            }
+            this.tooltipMesh.dispose();
+        };
+        return Quests;
+    }());
+    Factories.Quests = Quests;
+})(Factories || (Factories = {}));
+var RandomSpecialItem = /** @class */ (function () {
+    /**
+     *
+     * @param {Game} game
+     * @param randomSpecialItemData
+     * @param randomSpecialItemKey
+     */
+    function RandomSpecialItem(game, randomSpecialItemData, randomSpecialItemKey) {
+        var scene = game.getScene();
+        var tooltip;
+        var position = randomSpecialItemData.position;
+        var randomItemMesh = game.factories['nature_grain'].createClone(randomSpecialItemData.specialItem.meshName);
+        randomItemMesh.position = new BABYLON.Vector3(position.x, position.y, position.z);
+        randomItemMesh.isPickable = true;
+        var particleSystem = new Particles.DroppedItem(game, randomItemMesh);
+        particleSystem.particleSystem.start();
+        this.mesh = randomItemMesh;
+        this.mesh.actionManager = new BABYLON.ActionManager(scene);
+        tooltip = new TooltipMesh(randomItemMesh, randomSpecialItemData.specialItem.name);
+        this.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
+            game.goToMeshFunction = GoToMeshAndRunAction.execute(game, randomItemMesh, function () {
+                game.client.socket.emit('pickRandomItem', randomSpecialItemKey);
+            });
+            tooltip.container.dispose();
+        }));
+    }
+    return RandomSpecialItem;
+}());
 var GUI;
 (function (GUI) {
     var Main = /** @class */ (function () {
@@ -1950,220 +1809,6 @@ var GUI;
     }());
     GUI.ShowHp = ShowHp;
 })(GUI || (GUI = {}));
-var Chest = /** @class */ (function () {
-    /**
-     *
-     * @param {Game} game
-     * @param chestData
-     * @param chestKey
-     */
-    function Chest(game, chestData, chestKey) {
-        var self = this;
-        var scene = game.getScene();
-        var tooltip;
-        var opened = chestData.opened;
-        var position = chestData.position;
-        var rotation = chestData.rotation;
-        var chestMesh = game.factories['chest'].createClone('chest', true);
-        var gameCamera = scene.getCameraByName('gameCamera');
-        if (!chestMesh) {
-            throw new TypeError('Wrong chest mesh name.');
-        }
-        chestMesh.position = new BABYLON.Vector3(position.x, position.y, position.z);
-        chestMesh.rotation = new BABYLON.Vector3(rotation.x, rotation.y, rotation.z);
-        chestMesh.isPickable = true;
-        chestMesh.checkCollisions = true;
-        chestMesh.material.backFaceCulling = false;
-        if (!opened) {
-            var hl = new BABYLON.HighlightLayer("highlightLayer", scene, { camera: gameCamera });
-            // scene.meshes.forEach((mesh) => {
-            //    hl.addExcludedMesh(mesh);
-            // });
-            // hl.removeExcludedMesh(chestMesh);
-            hl.addMesh(chestMesh, BABYLON.Color3.Magenta());
-            self.hightlightLayer = hl;
-        }
-        this.mesh = chestMesh;
-        this.mesh.actionManager = new BABYLON.ActionManager(game.getScene());
-        this.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger, function () {
-            tooltip = new TooltipMesh(chestMesh, chestData.name);
-        }));
-        this.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger, function () {
-            tooltip.container.dispose();
-        }));
-        this.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
-            game.goToMeshFunction = GoToMeshAndRunAction.execute(game, chestMesh, function () {
-                game.client.socket.emit('openChest', chestKey);
-            });
-        }));
-    }
-    return Chest;
-}());
-var Collisions = /** @class */ (function () {
-    function Collisions() {
-    }
-    Collisions.setCollider = function (scene, parent, scalingSize, freezeInWorld) {
-        if (scalingSize === void 0) { scalingSize = new BABYLON.Vector3(2, 3, 2); }
-        if (freezeInWorld === void 0) { freezeInWorld = true; }
-        // let collider = BABYLON.Mesh.CreateBox('collider_box_of_' + parent.name, 0, scene, false);
-        // let parentBoundBox = parent.getBoundingInfo();
-        // collider.scaling = new BABYLON.Vector3(parentBoundBox.boundingBox.maximum.x * 2, parentBoundBox.boundingBox.maximum.y * 2, parentBoundBox.boundingBox.maximum.z * 2);
-        // collider.parent = parent;
-        parent.isPickable = false;
-        if (Game.SHOW_COLLIDERS) {
-            // collider.material = new BABYLON.StandardMaterial("collidermat", scene);
-            // collider.material.alpha = 0.3;
-            parent.visibility = 1;
-        }
-        else {
-            parent.visibility = 0;
-        }
-        parent.checkCollisions = true;
-        if (freezeInWorld) {
-            parent.freezeWorldMatrix();
-        }
-        return parent;
-    };
-    return Collisions;
-}());
-var Gateway = /** @class */ (function () {
-    function Gateway(game, meshName, isActive, openSceneType, entranceName) {
-        var gateway = game.getScene().getMeshByName(meshName);
-        if (!gateway) {
-            throw new TypeError('Wrong gateway mesh name.');
-        }
-        this.mesh = gateway;
-        gateway.visibility = 0;
-        gateway.isPickable = true;
-        this.tooltip = new TooltipMesh(gateway, entranceName);
-        var gatewayParticleSystem = new Particles.Gateway(game, gateway, isActive).particleSystem;
-        gatewayParticleSystem.start();
-        this.particleSystem = gatewayParticleSystem;
-        gateway.actionManager = new BABYLON.ActionManager(game.getScene());
-        gateway.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger, function () {
-            game.gui.characterTopHp.showGateway(entranceName);
-        }));
-        gateway.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger, function () {
-            game.gui.characterTopHp.hideHpBar();
-        }));
-        var enterTheGateway = function () {
-            if (!isActive) {
-                game.gui.playerLogsQuests.addText('This gateway is locked!', 'yellow');
-                return;
-            }
-            game.goToMeshFunction = GoToMeshAndRunAction.execute(game, gateway, function () {
-                game.client.socket.emit('changeSceneTrigger', openSceneType);
-            });
-        };
-        gateway.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickDownTrigger, enterTheGateway));
-        gateway.actionManager.registerAction(new BABYLON.ExecuteCodeAction({
-            trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger,
-            parameter: game.player.mesh
-        }, enterTheGateway));
-    }
-    return Gateway;
-}());
-var Factories;
-(function (Factories) {
-    var Quests = /** @class */ (function () {
-        /**
-         *
-         * @param {Game} game
-         * @param serverData
-         * @param activeQuest
-         */
-        function Quests(game, serverData, activeQuest) {
-            var self = this;
-            var questPicker = game.getScene().getMeshByName(serverData.objectName);
-            if (!questPicker) {
-                throw new TypeError('Wrong quest mesh name.');
-            }
-            questPicker.isPickable = true;
-            this.game = game;
-            this.mesh = questPicker;
-            this.mesh.actionManager = new BABYLON.ActionManager(game.getScene());
-            self.createTooltip(serverData, activeQuest, questPicker);
-            self.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
-                var quest = new GUI.NewQuest(game.gui, serverData);
-                quest.open();
-            }));
-        }
-        Quests.prototype.refreshTooltipColor = function (serverData, activeQuest, questPicker) {
-            if (activeQuest && activeQuest.questId != serverData.questId) {
-                this.tooltipMesh.material.diffuseColor = new BABYLON.Color3(1, 0, 0);
-            }
-            else if (activeQuest && activeQuest.questId == serverData.questId) {
-                this.tooltipMesh.material.diffuseColor = new BABYLON.Color3(1, 1, 0);
-            }
-            else {
-                this.tooltipMesh.material.diffuseColor = new BABYLON.Color3(0, 1, 0);
-                this.tooltipGui = new TooltipMesh(questPicker, 'New quest', -45);
-            }
-            return this;
-        };
-        Quests.prototype.createTooltip = function (serverData, activeQuest, questPicker) {
-            var box = BABYLON.Mesh.CreateBox("quest_box", 0.4, this.game.getScene());
-            box.material = new BABYLON.StandardMaterial("quest_box_material", this.game.getScene());
-            box.parent = this.mesh;
-            box.position.y += 3;
-            if (this.game.sceneManager.octree) {
-                this.game.sceneManager.octree.dynamicContent.push(box);
-            }
-            var keys = [];
-            keys.push({
-                frame: 0,
-                value: 0
-            });
-            keys.push({
-                frame: 30,
-                value: -2
-            });
-            var animationBox = new BABYLON.Animation("rotation", "rotation.y", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_RELATIVE);
-            animationBox.setKeys(keys);
-            box.animations = [];
-            box.animations.push(animationBox);
-            this.tooltipMesh = box;
-            this.game.getScene().beginAnimation(box, 0, 30, true);
-            this.refreshTooltipColor(serverData, activeQuest, questPicker);
-        };
-        Quests.prototype.dispose = function () {
-            if (this.tooltipGui) {
-                this.tooltipGui.container.dispose();
-            }
-            this.tooltipMesh.dispose();
-        };
-        return Quests;
-    }());
-    Factories.Quests = Quests;
-})(Factories || (Factories = {}));
-var RandomSpecialItem = /** @class */ (function () {
-    /**
-     *
-     * @param {Game} game
-     * @param randomSpecialItemData
-     * @param randomSpecialItemKey
-     */
-    function RandomSpecialItem(game, randomSpecialItemData, randomSpecialItemKey) {
-        var scene = game.getScene();
-        var tooltip;
-        var position = randomSpecialItemData.position;
-        var randomItemMesh = game.factories['nature_grain'].createClone(randomSpecialItemData.specialItem.meshName);
-        randomItemMesh.position = new BABYLON.Vector3(position.x, position.y, position.z);
-        randomItemMesh.isPickable = true;
-        var particleSystem = new Particles.DroppedItem(game, randomItemMesh);
-        particleSystem.particleSystem.start();
-        this.mesh = randomItemMesh;
-        this.mesh.actionManager = new BABYLON.ActionManager(scene);
-        tooltip = new TooltipMesh(randomItemMesh, randomSpecialItemData.specialItem.name);
-        this.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
-            game.goToMeshFunction = GoToMeshAndRunAction.execute(game, randomItemMesh, function () {
-                game.client.socket.emit('pickRandomItem', randomSpecialItemKey);
-            });
-            tooltip.container.dispose();
-        }));
-    }
-    return RandomSpecialItem;
-}());
 var Particles;
 (function (Particles) {
     var AbstractParticle = /** @class */ (function () {
@@ -3332,6 +2977,361 @@ var SelectCharacter = /** @class */ (function (_super) {
     SelectCharacter.TYPE = 4;
     return SelectCharacter;
 }(Scene));
+var AbstractEnvironment = /** @class */ (function () {
+    function AbstractEnvironment() {
+        this.staticShadowObjects = [];
+        this.colliders = [];
+    }
+    AbstractEnvironment.prototype.createDefaultLight = function (scene) {
+        var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0), scene);
+        light.intensity = 0.6;
+        light.position = new BABYLON.Vector3(0, 50, 0);
+        light.direction = new BABYLON.Vector3(0.45, -2.5, 0);
+        light.shadowMaxZ = 500;
+        this.light = light;
+    };
+    AbstractEnvironment.prototype.registerColliders = function (scene) {
+        for (var i = 0; i < this.colliders.length; i++) {
+            var sceneMeshCollider = this.colliders[i];
+            Collisions.setCollider(scene, sceneMeshCollider);
+        }
+    };
+    AbstractEnvironment.prototype.freezeAllMeshes = function (scene) {
+        for (var i = 0; i < scene.meshes.length; i++) {
+            scene.meshes[i].freezeWorldMatrix();
+            scene.meshes[i].cullingStrategy = BABYLON.AbstractMesh.CULLINGSTRATEGY_BOUNDINGSPHERE_ONLY;
+        }
+    };
+    return AbstractEnvironment;
+}());
+var EnvironmentForestHouse = /** @class */ (function (_super) {
+    __extends(EnvironmentForestHouse, _super);
+    function EnvironmentForestHouse(game) {
+        var _this = _super.call(this) || this;
+        var scene = game.getScene();
+        var self = _this;
+        var spsTrees = [];
+        var spsPlants = [];
+        var spsStones = [];
+        var spsFern = [];
+        for (var i = 0; i < scene.meshes.length; i++) {
+            var sceneMesh = scene.meshes[i];
+            var meshName = scene.meshes[i]['name'];
+            if (meshName.search("Ground") >= 0) {
+                sceneMesh.actionManager = new BABYLON.ActionManager(scene);
+                sceneMesh.receiveShadows = true;
+                _this.ground = sceneMesh;
+                var terrainMaterial = new BABYLON.TerrainMaterial("terrainMaterial", scene);
+                terrainMaterial.specularColor = new BABYLON.Color3(0.5, 0.5, 0.5);
+                terrainMaterial.specularPower = 64;
+                terrainMaterial.mixTexture = new BABYLON.Texture("assets/scenes/Forest_house/stencil.png", scene);
+                terrainMaterial.diffuseTexture1 = new BABYLON.Texture("assets/scenes/Forest_house/Grass_seamless_saturation.jpg", scene);
+                terrainMaterial.diffuseTexture2 = new BABYLON.Texture("assets/scenes/Forest_house/dirt.jpg", scene);
+                terrainMaterial.diffuseTexture3 = new BABYLON.Texture("assets/scenes/Forest_house/groundSeamless.jpg", scene);
+                terrainMaterial.diffuseTexture1.uScale = terrainMaterial.diffuseTexture1.vScale = 10;
+                terrainMaterial.diffuseTexture2.uScale = terrainMaterial.diffuseTexture2.vScale = 10;
+                terrainMaterial.diffuseTexture3.uScale = terrainMaterial.diffuseTexture3.vScale = 15;
+                sceneMesh.material = terrainMaterial;
+            }
+            else if (meshName.search("Box_Cube") >= 0) {
+                _this.colliders.push(sceneMesh);
+            }
+            else if (meshName.search("sps_trees") >= 0) {
+                spsTrees.push(sceneMesh);
+            }
+            else if (meshName.search("sps_groundPlants") >= 0) {
+                spsPlants.push(sceneMesh);
+            }
+            else if (meshName.search("sps_stones") >= 0) {
+                spsStones.push(sceneMesh);
+            }
+            else if (meshName.search("sps_fern") >= 0) {
+                spsFern.push(sceneMesh);
+            }
+            else {
+                sceneMesh.isPickable = false;
+                self.staticShadowObjects.push(sceneMesh);
+            }
+        }
+        //SPS Nature
+        var spruce = game.factories['nature_grain'].createClone('spruce', false);
+        spruce.visibility = 0;
+        spruce.material.freeze();
+        var groundPlants = game.factories['nature_grain'].createClone('ground_plants', false);
+        groundPlants.visibility = 0;
+        groundPlants.material.freeze();
+        var fern = game.factories['nature_grain'].createClone('fern', false);
+        fern.visibility = 0;
+        fern.material.freeze();
+        var stone = game.factories['nature_grain'].createClone('stone', false);
+        stone.visibility = 0;
+        stone.material.freeze();
+        spsTrees.forEach(function (parentSPS) {
+            var spsSpruce = new Particles.SolidParticleSystem.Nature(game, parentSPS, spruce, false);
+            spsSpruce.buildSPS(67);
+            self.staticShadowObjects.push(spsSpruce.spsMesh);
+        });
+        spsPlants.forEach(function (parentSPS) {
+            var spsSpruce = new Particles.SolidParticleSystem.Nature(game, parentSPS, groundPlants, false);
+            spsSpruce.buildSPS(40);
+            self.staticShadowObjects.push(spsSpruce.spsMesh);
+        });
+        spsStones.forEach(function (parentSPS) {
+            var spsSpruce = new Particles.SolidParticleSystem.Nature(game, parentSPS, stone, false);
+            spsSpruce.buildSPS(67);
+            self.staticShadowObjects.push(spsSpruce.spsMesh);
+        });
+        spsFern.forEach(function (parentSPS) {
+            var spsSpruce = new Particles.SolidParticleSystem.Nature(game, parentSPS, fern, false);
+            spsSpruce.buildSPS(67);
+            self.staticShadowObjects.push(spsSpruce.spsMesh);
+        });
+        var spsToBlock = scene.getMeshByName("sps_border");
+        var spsSpruceBlock = new Particles.SolidParticleSystem.NatureBlock(game, spsToBlock, spruce);
+        spsSpruceBlock.buildSPS(500);
+        self.staticShadowObjects.push(spsSpruceBlock.spsMesh);
+        stone.dispose();
+        spruce.dispose();
+        groundPlants.dispose();
+        fern.dispose();
+        var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0), scene);
+        light.intensity = 0.4;
+        light.position = new BABYLON.Vector3(0, 50, 0);
+        light.direction = new BABYLON.Vector3(0.45, -2.5, 0);
+        light.shadowMaxZ = 500;
+        _this.light = light;
+        ///register colliders
+        _this.registerColliders(scene);
+        _this.freezeAllMeshes(scene);
+        new BABYLON.Sound("Forest night", "assets/sounds/fx/wind.mp3", scene, null, {
+            loop: true,
+            autoplay: true,
+            volume: 0.1
+        });
+        new BABYLON.Sound("Forest night", "assets/sounds/forest_night.mp3", scene, null, {
+            loop: true,
+            autoplay: true,
+            volume: 0.3
+        });
+        scene.getMeshByName('exit').dispose();
+        var exitPlane = scene.getMeshByName('Entrace_Tomb').clone("exit", null);
+        exitPlane.position = new BABYLON.Vector3(-196.78, 0, -95.6);
+        exitPlane.rotation = new BABYLON.Vector3(0, -1.5, 0);
+        return _this;
+    }
+    return EnvironmentForestHouse;
+}(AbstractEnvironment));
+var EnvironmentForestHouseStart = /** @class */ (function (_super) {
+    __extends(EnvironmentForestHouseStart, _super);
+    function EnvironmentForestHouseStart(game) {
+        var _this = _super.call(this) || this;
+        var scene = game.getScene();
+        for (var i = 0; i < scene.meshes.length; i++) {
+            var sceneMesh = scene.meshes[i];
+            var meshName = scene.meshes[i]['name'];
+            if (meshName.search("Ground") >= 0) {
+                sceneMesh.actionManager = new BABYLON.ActionManager(scene);
+                sceneMesh.receiveShadows = true;
+            }
+            else if (meshName.search("Box_Cube") >= 0) {
+                _this.colliders.push(sceneMesh);
+            }
+            else {
+                sceneMesh.isPickable = false;
+                _this.staticShadowObjects.push(sceneMesh);
+            }
+        }
+        var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0), scene);
+        light.position = new BABYLON.Vector3(0, 80, -210);
+        light.direction = new BABYLON.Vector3(0.45, -0.45, 0.45);
+        light.shadowMaxZ = 500;
+        light.autoUpdateExtends = false;
+        _this.light = light;
+        _this.freezeAllMeshes(scene);
+        _this.registerColliders(scene);
+        new BABYLON.Sound("Forest night", "assets/sounds/fx/wind.mp3", scene, null, {
+            loop: true,
+            autoplay: true,
+            volume: 0.3
+        });
+        return _this;
+    }
+    return EnvironmentForestHouseStart;
+}(AbstractEnvironment));
+var EnvironmentForestHouseTomb = /** @class */ (function () {
+    function EnvironmentForestHouseTomb(game, scene) {
+        var self = this;
+        this.colliders = [];
+        for (var i = 0; i < scene.meshes.length; i++) {
+            var sceneMesh = scene.meshes[i];
+            var meshName = scene.meshes[i]['name'];
+            if (meshName.search("Ground") >= 0) {
+                sceneMesh.actionManager = new BABYLON.ActionManager(scene);
+                sceneMesh.receiveShadows = true;
+                sceneMesh.material.diffuseTexture.uScale = 1.2;
+                sceneMesh.material.diffuseTexture.vScale = 1.2;
+                this.ground = sceneMesh;
+            }
+            else if (meshName.search("Box_Cube") >= 0) {
+                this.colliders.push(sceneMesh);
+            }
+            else {
+                sceneMesh.isPickable = false;
+                ///others
+            }
+        }
+        var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0), scene);
+        light.intensity = 0.4;
+        light.position = new BABYLON.Vector3(0, 80, -210);
+        light.direction = new BABYLON.Vector3(0.45, -0.45, 0.45);
+        ///register colliders
+        for (var i = 0; i < this.colliders.length; i++) {
+            var sceneMeshCollider = this.colliders[i];
+            Collisions.setCollider(scene, sceneMeshCollider);
+        }
+        //Freeze world matrix all static meshes
+        for (var i = 0; i < scene.meshes.length; i++) {
+            scene.meshes[i].freezeWorldMatrix();
+        }
+    }
+    return EnvironmentForestHouseTomb;
+}());
+var EnvironmentMountainsPass = /** @class */ (function (_super) {
+    __extends(EnvironmentMountainsPass, _super);
+    function EnvironmentMountainsPass(game) {
+        var _this = _super.call(this) || this;
+        var scene = game.getScene();
+        _this.colliders = [];
+        scene.gravity = new BABYLON.Vector3(0, -9.81, 0);
+        for (var i = 0; i < scene.meshes.length; i++) {
+            var sceneMesh = scene.meshes[i];
+            var meshName = scene.meshes[i]['name'];
+            if (meshName.search("Ground") >= 0) {
+                sceneMesh.actionManager = new BABYLON.ActionManager(scene);
+                sceneMesh.receiveShadows = true;
+                sceneMesh.alwaysSelectAsActiveMesh = true;
+                var terrainMaterial = new BABYLON.TerrainMaterial("terrainMaterial", scene);
+                terrainMaterial.specularColor = new BABYLON.Color3(0.5, 0.5, 0.5);
+                terrainMaterial.specularPower = 64;
+                terrainMaterial.mixTexture = new BABYLON.Texture("assets/scenes/MountainsPass/stencil.jpg", scene);
+                terrainMaterial.diffuseTexture1 = new BABYLON.Texture("assets/scenes/Forest_house/Grass_seamless_saturation.jpg", scene);
+                terrainMaterial.diffuseTexture2 = new BABYLON.Texture("assets/scenes/Forest_house/dirt.jpg", scene);
+                terrainMaterial.diffuseTexture3 = new BABYLON.Texture("assets/scenes/Forest_house/Grass_seamless_saturation.jpg", scene);
+                terrainMaterial.diffuseTexture1.uScale = terrainMaterial.diffuseTexture1.vScale = 20;
+                terrainMaterial.diffuseTexture2.uScale = terrainMaterial.diffuseTexture2.vScale = 20;
+                terrainMaterial.diffuseTexture3.uScale = terrainMaterial.diffuseTexture3.vScale = 20;
+                sceneMesh.material = terrainMaterial;
+            }
+            else if (meshName.search("Box_Cube") >= 0) {
+                _this.colliders.push(sceneMesh);
+            }
+            else {
+                sceneMesh.isPickable = false;
+                if (meshName.search("Rock") >= 0) {
+                    continue;
+                }
+                _this.staticShadowObjects.push(sceneMesh);
+            }
+        }
+        // let cone = scene.getMeshByName("fireplace.002");
+        // if (cone) {
+        //     let smokeSystem = new Particles.FireplaceSmoke(game, cone).particleSystem;
+        //     smokeSystem.start();
+        //
+        //     let fireSystem = new Particles.FireplaceFire(game, cone).particleSystem;
+        //     fireSystem.start();
+        //
+        //     let sfxFireplace = new BABYLON.Sound("Fire", "assets/sounds/fireplace.mp3", scene, null, { loop: true, autoplay: true });
+        //     sfxFireplace.attachToMesh(cone);
+        // }
+        //TODO: delete in bledner
+        // scene.getLightByName('Lamp').dispose();
+        var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(0, -1, 0), scene);
+        light.intensity = 0.6;
+        light.position = new BABYLON.Vector3(0, 50, 0);
+        light.direction = new BABYLON.Vector3(0.45, -2.5, 0);
+        light.shadowMaxZ = 500;
+        _this.light = light;
+        _this.registerColliders(scene);
+        _this.freezeAllMeshes(scene);
+        return _this;
+    }
+    return EnvironmentMountainsPass;
+}(AbstractEnvironment));
+var EnvironmentSelectCharacter = /** @class */ (function () {
+    function EnvironmentSelectCharacter(game, scene) {
+        ////LIGHT
+        var light = game.getScene().lights[0];
+        light.dispose();
+        var fireplaceLight = new BABYLON.PointLight("fireplaceLight", new BABYLON.Vector3(0, 2.5, 0), scene);
+        fireplaceLight.diffuse = new BABYLON.Color3(1, 0.7, 0.3);
+        fireplaceLight.range = 50;
+        var intensityAnimation = new BABYLON.Animation("mainLightIntensity", "intensity", 50, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+        intensityAnimation.setKeys([
+            {
+                frame: 0,
+                value: 0.85
+            },
+            {
+                frame: 5,
+                value: 0.9
+            },
+            {
+                frame: 10,
+                value: 0.82
+            }
+        ]);
+        var colorAnimation = new BABYLON.Animation("mainLightColor", "specular", 50, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+        colorAnimation.setKeys([
+            {
+                frame: 20,
+                value: new BABYLON.Color3(1, 1, 1)
+            },
+            {
+                frame: 25,
+                value: new BABYLON.Color3(1, 0, 1)
+            },
+            {
+                frame: 30,
+                value: new BABYLON.Color3(1, 1, 1)
+            }
+        ]);
+        fireplaceLight.animations = [];
+        fireplaceLight.animations.push(intensityAnimation);
+        game.getScene().beginAnimation(fireplaceLight, 0, 10, true);
+        var shadowGenerator = new BABYLON.ShadowGenerator(1024, fireplaceLight);
+        shadowGenerator.getShadowMap().refreshRate = 0;
+        this.shadowGenerator = shadowGenerator;
+        for (var i = 0; i < scene.meshes.length; i++) {
+            var sceneMesh = scene.meshes[i];
+            var meshName = scene.meshes[i]['name'];
+            if (meshName.search("Forest_ground") >= 0) {
+                sceneMesh.actionManager = new BABYLON.ActionManager(scene);
+                sceneMesh.receiveShadows = true;
+                sceneMesh.material.emissiveColor = new BABYLON.Vector3(0.05, 0.05, 0.05);
+                continue;
+            }
+            shadowGenerator.getShadowMap().renderList.push(sceneMesh);
+        }
+        var cone = scene.getMeshByName("Fireplace");
+        if (cone) {
+            fireplaceLight.parent = cone;
+            var smokeSystem = new Particles.FireplaceSmoke(game, cone).particleSystem;
+            smokeSystem.start();
+            var fireSystem = new Particles.FireplaceFire(game, cone).particleSystem;
+            fireSystem.start();
+            var sfxFireplace = new BABYLON.Sound("Fire", "assets/sounds/fireplace.mp3", scene, null, { loop: true, autoplay: true });
+            sfxFireplace.attachToMesh(cone);
+        }
+        for (var i = 0; i < scene.meshes.length; i++) {
+            var sceneMesh = scene.meshes[i];
+            sceneMesh.freezeWorldMatrix();
+            sceneMesh.isPickable = false;
+        }
+        new BABYLON.Sound("Forest night", "assets/sounds/music/theme.mp3", scene, null, { loop: true, autoplay: true, volume: 1 });
+    }
+    return EnvironmentSelectCharacter;
+}());
 var SocketEvent = /** @class */ (function () {
     function SocketEvent(game, socket) {
         this.game = game;
@@ -3755,84 +3755,6 @@ var SelectCharacter;
     }(AbstractCharacter));
     SelectCharacter.Warrior = Warrior;
 })(SelectCharacter || (SelectCharacter = {}));
-var TooltipButton = /** @class */ (function () {
-    function TooltipButton(baseControl, text, parentPosition) {
-        var panel = new BABYLON.GUI.Rectangle('tooltip');
-        panel.top = parentPosition.y;
-        panel.left = parentPosition.x;
-        panel.width = 0;
-        panel.height = 0;
-        panel.cornerRadius = 20;
-        panel.thickness = 1;
-        panel.background = "black";
-        panel.color = "white";
-        panel.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-        panel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-        panel.adaptHeightToChildren = true;
-        panel.adaptWidthToChildren = true;
-        panel.paddingRight = '-80px';
-        panel.paddingBottom = '-40px';
-        panel.alpha = 0.8;
-        panel.isHitTestVisible = false;
-        baseControl.addControl(panel);
-        this.container = panel;
-        var label = new BABYLON.GUI.TextBlock();
-        label.resizeToFit = true;
-        label.text = text;
-        label.fontFamily = "RuslanDisplay";
-        panel.addControl(label);
-    }
-    return TooltipButton;
-}());
-var TooltipHelper = /** @class */ (function () {
-    function TooltipHelper() {
-    }
-    TooltipHelper.createTooltipOnInventoryItemButton = function (texture, item, button, pickCallback) {
-        var tooltipButton = null;
-        button.onPointerEnterObservable.add(function () {
-            var text = item.name;
-            if (item.statistics.damageMin > 0) {
-                text += "\nDamage: " + item.statistics.damageMin + " - " + item.statistics.damageMax + "";
-            }
-            if (item.statistics.armor > 0) {
-                text += "\nArmor: " + item.statistics.armor + "";
-            }
-            tooltipButton = new TooltipButton(texture, text, new BABYLON.Vector2(button.centerX, button.centerY));
-        });
-        button.onPointerOutObservable.add(function () {
-            tooltipButton.container.dispose();
-        });
-        button.onPointerUpObservable.add(pickCallback);
-    };
-    return TooltipHelper;
-}());
-var TooltipMesh = /** @class */ (function () {
-    function TooltipMesh(mesh, text, linkOffsetY) {
-        if (linkOffsetY === void 0) { linkOffsetY = -80; }
-        var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
-        advancedTexture.layer.layerMask = 2;
-        this.container = advancedTexture;
-        var panel = new BABYLON.GUI.Rectangle('tooltip');
-        panel.cornerRadius = 20;
-        panel.thickness = 1;
-        panel.background = "black";
-        panel.color = "white";
-        panel.adaptHeightToChildren = true;
-        panel.adaptWidthToChildren = true;
-        panel.paddingRight = '-40px';
-        panel.paddingBottom = '-20px';
-        panel.alpha = 0.8;
-        advancedTexture.addControl(panel);
-        var label = new BABYLON.GUI.TextBlock();
-        label.resizeToFit = true;
-        label.text = text;
-        label.fontFamily = "RuslanDisplay";
-        panel.addControl(label);
-        panel.linkWithMesh(mesh);
-        panel.linkOffsetY = linkOffsetY;
-    }
-    return TooltipMesh;
-}());
 var GUI;
 (function (GUI) {
     var Attributes = /** @class */ (function (_super) {
@@ -4462,6 +4384,84 @@ var GUI;
     }(GUI.Popup));
     GUI.NewQuest = NewQuest;
 })(GUI || (GUI = {}));
+var TooltipButton = /** @class */ (function () {
+    function TooltipButton(baseControl, text, parentPosition) {
+        var panel = new BABYLON.GUI.Rectangle('tooltip');
+        panel.top = parentPosition.y;
+        panel.left = parentPosition.x;
+        panel.width = 0;
+        panel.height = 0;
+        panel.cornerRadius = 20;
+        panel.thickness = 1;
+        panel.background = "black";
+        panel.color = "white";
+        panel.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+        panel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+        panel.adaptHeightToChildren = true;
+        panel.adaptWidthToChildren = true;
+        panel.paddingRight = '-80px';
+        panel.paddingBottom = '-40px';
+        panel.alpha = 0.8;
+        panel.isHitTestVisible = false;
+        baseControl.addControl(panel);
+        this.container = panel;
+        var label = new BABYLON.GUI.TextBlock();
+        label.resizeToFit = true;
+        label.text = text;
+        label.fontFamily = "RuslanDisplay";
+        panel.addControl(label);
+    }
+    return TooltipButton;
+}());
+var TooltipHelper = /** @class */ (function () {
+    function TooltipHelper() {
+    }
+    TooltipHelper.createTooltipOnInventoryItemButton = function (texture, item, button, pickCallback) {
+        var tooltipButton = null;
+        button.onPointerEnterObservable.add(function () {
+            var text = item.name;
+            if (item.statistics.damageMin > 0) {
+                text += "\nDamage: " + item.statistics.damageMin + " - " + item.statistics.damageMax + "";
+            }
+            if (item.statistics.armor > 0) {
+                text += "\nArmor: " + item.statistics.armor + "";
+            }
+            tooltipButton = new TooltipButton(texture, text, new BABYLON.Vector2(button.centerX, button.centerY));
+        });
+        button.onPointerOutObservable.add(function () {
+            tooltipButton.container.dispose();
+        });
+        button.onPointerUpObservable.add(pickCallback);
+    };
+    return TooltipHelper;
+}());
+var TooltipMesh = /** @class */ (function () {
+    function TooltipMesh(mesh, text, linkOffsetY) {
+        if (linkOffsetY === void 0) { linkOffsetY = -80; }
+        var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+        advancedTexture.layer.layerMask = 2;
+        this.container = advancedTexture;
+        var panel = new BABYLON.GUI.Rectangle('tooltip');
+        panel.cornerRadius = 20;
+        panel.thickness = 1;
+        panel.background = "black";
+        panel.color = "white";
+        panel.adaptHeightToChildren = true;
+        panel.adaptWidthToChildren = true;
+        panel.paddingRight = '-40px';
+        panel.paddingBottom = '-20px';
+        panel.alpha = 0.8;
+        advancedTexture.addControl(panel);
+        var label = new BABYLON.GUI.TextBlock();
+        label.resizeToFit = true;
+        label.text = text;
+        label.fontFamily = "RuslanDisplay";
+        panel.addControl(label);
+        panel.linkWithMesh(mesh);
+        panel.linkOffsetY = linkOffsetY;
+    }
+    return TooltipMesh;
+}());
 var ClickParticles = /** @class */ (function () {
     function ClickParticles() {
     }
@@ -4487,159 +4487,6 @@ var ClickParticles = /** @class */ (function () {
     };
     return ClickParticles;
 }());
-var Particles;
-(function (Particles) {
-    var FastAttack = /** @class */ (function (_super) {
-        __extends(FastAttack, _super);
-        function FastAttack() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        FastAttack.prototype.initParticleSystem = function () {
-            var box = BABYLON.MeshBuilder.CreateBox("bx0", { size: 1 }, this.game.getScene());
-            box.visibility = 0;
-            box.scaling = new BABYLON.Vector3(1, 1, 0.1);
-            box.position = new BABYLON.Vector3(0, 0, 0.1);
-            box.parent = this.emitter;
-            box.attachToBone(this.emitter.skeleton.bones[25], this.emitter);
-            var fireSystem = new BABYLON.ParticleSystem("particles", 1000, this.game.getScene());
-            fireSystem.particleTexture = new BABYLON.Texture("assets/flare.png", this.game.getScene());
-            fireSystem.emitter = box;
-            fireSystem.minSize = 1;
-            fireSystem.maxSize = 1.5;
-            fireSystem.minEmitPower = 0;
-            fireSystem.maxEmitPower = 1;
-            fireSystem.minLifeTime = 0.15;
-            fireSystem.maxLifeTime = 0.25;
-            fireSystem.emitRate = 150;
-            fireSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
-            fireSystem.minEmitBox = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.maxEmitBox = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.gravity = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.direction1 = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.direction2 = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.color1 = new BABYLON.Color4(1, 1, 1, 1);
-            fireSystem.color2 = new BABYLON.Color4(1, 1, 1, 1);
-            this.particleSystem = fireSystem;
-        };
-        return FastAttack;
-    }(Particles.AbstractParticle));
-    Particles.FastAttack = FastAttack;
-})(Particles || (Particles = {}));
-var Particles;
-(function (Particles) {
-    var Heal = /** @class */ (function (_super) {
-        __extends(Heal, _super);
-        function Heal() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Heal.prototype.initParticleSystem = function () {
-            var scene = this.game.getScene();
-            var emitter = BABYLON.Mesh.CreateBox("emitter0", 0.1, scene);
-            emitter.isVisible = false;
-            emitter.parent = this.emitter;
-            var fireSystem = new BABYLON.ParticleSystem("particles", 1000, scene);
-            fireSystem.particleTexture = new BABYLON.Texture("assets/flare.png", scene);
-            fireSystem.minSize = 0.3;
-            fireSystem.maxSize = 0.3;
-            fireSystem.minEmitPower = 1.0;
-            fireSystem.maxEmitPower = 1;
-            fireSystem.minLifeTime = 1;
-            fireSystem.maxLifeTime = 1;
-            fireSystem.emitRate = 200;
-            fireSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
-            fireSystem.minEmitBox = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.maxEmitBox = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.gravity = new BABYLON.Vector3(0, 9, 0);
-            fireSystem.direction1 = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.direction2 = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
-            fireSystem.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
-            fireSystem.targetStopDuration = 0.8;
-            fireSystem.emitter = emitter;
-            this.particleSystem = fireSystem;
-        };
-        return Heal;
-    }(Particles.AbstractParticle));
-    Particles.Heal = Heal;
-})(Particles || (Particles = {}));
-var Particles;
-(function (Particles) {
-    var ShieldAttack = /** @class */ (function (_super) {
-        __extends(ShieldAttack, _super);
-        function ShieldAttack() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        ShieldAttack.prototype.initParticleSystem = function () {
-            var box = BABYLON.MeshBuilder.CreateBox("bx0", { size: 1 }, this.game.getScene());
-            box.visibility = 0;
-            box.scaling = new BABYLON.Vector3(1, 1, 0.1);
-            box.position = new BABYLON.Vector3(0, 0, 0.1);
-            box.parent = this.emitter;
-            box.attachToBone(this.emitter.skeleton.bones[13], this.emitter);
-            var fireSystem = new BABYLON.ParticleSystem("particles", 1000, this.game.getScene());
-            fireSystem.particleTexture = new BABYLON.Texture("assets/flare.png", this.game.getScene());
-            fireSystem.emitter = box;
-            fireSystem.minSize = 1;
-            fireSystem.maxSize = 1;
-            fireSystem.minEmitPower = 0;
-            fireSystem.maxEmitPower = 1;
-            fireSystem.minLifeTime = 0.2;
-            fireSystem.maxLifeTime = 0.2;
-            fireSystem.emitRate = 150;
-            fireSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
-            fireSystem.minEmitBox = new BABYLON.Vector3(-1, -1, -1);
-            fireSystem.maxEmitBox = new BABYLON.Vector3(1, 1, 1);
-            fireSystem.gravity = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.direction1 = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.direction2 = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.color1 = new BABYLON.Color4(1, 1, 1, 1);
-            fireSystem.color2 = new BABYLON.Color4(1, 1, 1, 1);
-            fireSystem.updateSpeed = 0.01;
-            this.particleSystem = fireSystem;
-        };
-        return ShieldAttack;
-    }(Particles.AbstractParticle));
-    Particles.ShieldAttack = ShieldAttack;
-})(Particles || (Particles = {}));
-var Particles;
-(function (Particles) {
-    var Tornado = /** @class */ (function (_super) {
-        __extends(Tornado, _super);
-        function Tornado() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        Tornado.prototype.initParticleSystem = function () {
-            var box = BABYLON.MeshBuilder.CreateBox("bx0", { size: 1 }, this.game.getScene());
-            box.visibility = 0;
-            box.scaling = new BABYLON.Vector3(1, 1, 1);
-            box.position = new BABYLON.Vector3(0, 0, 0);
-            box.parent = this.emitter;
-            box.attachToBone(this.emitter.skeleton.bones[13], this.emitter);
-            var fireSystem = new BABYLON.ParticleSystem("particles", 1000, this.game.getScene());
-            fireSystem.particleTexture = new BABYLON.Texture("assets/flare.png", this.game.getScene());
-            fireSystem.emitter = box;
-            fireSystem.minSize = 1;
-            fireSystem.maxSize = 1.5;
-            fireSystem.minEmitPower = 1;
-            fireSystem.maxEmitPower = 1;
-            fireSystem.minLifeTime = 0.2;
-            fireSystem.maxLifeTime = 0.2;
-            fireSystem.emitRate = 150;
-            fireSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
-            fireSystem.minEmitBox = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.maxEmitBox = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.gravity = new BABYLON.Vector3(0, -25, 0);
-            fireSystem.direction1 = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.direction2 = new BABYLON.Vector3(0, 0, 0);
-            fireSystem.color1 = new BABYLON.Color4(1, 1, 1, 1);
-            fireSystem.color2 = new BABYLON.Color4(1, 1, 1, 1);
-            fireSystem.updateSpeed = 0.01;
-            this.particleSystem = fireSystem;
-        };
-        return Tornado;
-    }(Particles.AbstractParticle));
-    Particles.Tornado = Tornado;
-})(Particles || (Particles = {}));
 var Particles;
 (function (Particles) {
     var SolidParticleSystem;
@@ -4897,6 +4744,159 @@ var Items;
     }());
     Items.ItemManager = ItemManager;
 })(Items || (Items = {}));
+var Particles;
+(function (Particles) {
+    var FastAttack = /** @class */ (function (_super) {
+        __extends(FastAttack, _super);
+        function FastAttack() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        FastAttack.prototype.initParticleSystem = function () {
+            var box = BABYLON.MeshBuilder.CreateBox("bx0", { size: 1 }, this.game.getScene());
+            box.visibility = 0;
+            box.scaling = new BABYLON.Vector3(1, 1, 0.1);
+            box.position = new BABYLON.Vector3(0, 0, 0.1);
+            box.parent = this.emitter;
+            box.attachToBone(this.emitter.skeleton.bones[25], this.emitter);
+            var fireSystem = new BABYLON.ParticleSystem("particles", 1000, this.game.getScene());
+            fireSystem.particleTexture = new BABYLON.Texture("assets/flare.png", this.game.getScene());
+            fireSystem.emitter = box;
+            fireSystem.minSize = 1;
+            fireSystem.maxSize = 1.5;
+            fireSystem.minEmitPower = 0;
+            fireSystem.maxEmitPower = 1;
+            fireSystem.minLifeTime = 0.15;
+            fireSystem.maxLifeTime = 0.25;
+            fireSystem.emitRate = 150;
+            fireSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+            fireSystem.minEmitBox = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.maxEmitBox = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.gravity = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.direction1 = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.direction2 = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.color1 = new BABYLON.Color4(1, 1, 1, 1);
+            fireSystem.color2 = new BABYLON.Color4(1, 1, 1, 1);
+            this.particleSystem = fireSystem;
+        };
+        return FastAttack;
+    }(Particles.AbstractParticle));
+    Particles.FastAttack = FastAttack;
+})(Particles || (Particles = {}));
+var Particles;
+(function (Particles) {
+    var Heal = /** @class */ (function (_super) {
+        __extends(Heal, _super);
+        function Heal() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Heal.prototype.initParticleSystem = function () {
+            var scene = this.game.getScene();
+            var emitter = BABYLON.Mesh.CreateBox("emitter0", 0.1, scene);
+            emitter.isVisible = false;
+            emitter.parent = this.emitter;
+            var fireSystem = new BABYLON.ParticleSystem("particles", 1000, scene);
+            fireSystem.particleTexture = new BABYLON.Texture("assets/flare.png", scene);
+            fireSystem.minSize = 0.3;
+            fireSystem.maxSize = 0.3;
+            fireSystem.minEmitPower = 1.0;
+            fireSystem.maxEmitPower = 1;
+            fireSystem.minLifeTime = 1;
+            fireSystem.maxLifeTime = 1;
+            fireSystem.emitRate = 200;
+            fireSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+            fireSystem.minEmitBox = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.maxEmitBox = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.gravity = new BABYLON.Vector3(0, 9, 0);
+            fireSystem.direction1 = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.direction2 = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
+            fireSystem.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 1.0);
+            fireSystem.targetStopDuration = 0.8;
+            fireSystem.emitter = emitter;
+            this.particleSystem = fireSystem;
+        };
+        return Heal;
+    }(Particles.AbstractParticle));
+    Particles.Heal = Heal;
+})(Particles || (Particles = {}));
+var Particles;
+(function (Particles) {
+    var ShieldAttack = /** @class */ (function (_super) {
+        __extends(ShieldAttack, _super);
+        function ShieldAttack() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        ShieldAttack.prototype.initParticleSystem = function () {
+            var box = BABYLON.MeshBuilder.CreateBox("bx0", { size: 1 }, this.game.getScene());
+            box.visibility = 0;
+            box.scaling = new BABYLON.Vector3(1, 1, 0.1);
+            box.position = new BABYLON.Vector3(0, 0, 0.1);
+            box.parent = this.emitter;
+            box.attachToBone(this.emitter.skeleton.bones[13], this.emitter);
+            var fireSystem = new BABYLON.ParticleSystem("particles", 1000, this.game.getScene());
+            fireSystem.particleTexture = new BABYLON.Texture("assets/flare.png", this.game.getScene());
+            fireSystem.emitter = box;
+            fireSystem.minSize = 1;
+            fireSystem.maxSize = 1;
+            fireSystem.minEmitPower = 0;
+            fireSystem.maxEmitPower = 1;
+            fireSystem.minLifeTime = 0.2;
+            fireSystem.maxLifeTime = 0.2;
+            fireSystem.emitRate = 150;
+            fireSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+            fireSystem.minEmitBox = new BABYLON.Vector3(-1, -1, -1);
+            fireSystem.maxEmitBox = new BABYLON.Vector3(1, 1, 1);
+            fireSystem.gravity = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.direction1 = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.direction2 = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.color1 = new BABYLON.Color4(1, 1, 1, 1);
+            fireSystem.color2 = new BABYLON.Color4(1, 1, 1, 1);
+            fireSystem.updateSpeed = 0.01;
+            this.particleSystem = fireSystem;
+        };
+        return ShieldAttack;
+    }(Particles.AbstractParticle));
+    Particles.ShieldAttack = ShieldAttack;
+})(Particles || (Particles = {}));
+var Particles;
+(function (Particles) {
+    var Tornado = /** @class */ (function (_super) {
+        __extends(Tornado, _super);
+        function Tornado() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Tornado.prototype.initParticleSystem = function () {
+            var box = BABYLON.MeshBuilder.CreateBox("bx0", { size: 1 }, this.game.getScene());
+            box.visibility = 0;
+            box.scaling = new BABYLON.Vector3(1, 1, 1);
+            box.position = new BABYLON.Vector3(0, 0, 0);
+            box.parent = this.emitter;
+            box.attachToBone(this.emitter.skeleton.bones[13], this.emitter);
+            var fireSystem = new BABYLON.ParticleSystem("particles", 1000, this.game.getScene());
+            fireSystem.particleTexture = new BABYLON.Texture("assets/flare.png", this.game.getScene());
+            fireSystem.emitter = box;
+            fireSystem.minSize = 1;
+            fireSystem.maxSize = 1.5;
+            fireSystem.minEmitPower = 1;
+            fireSystem.maxEmitPower = 1;
+            fireSystem.minLifeTime = 0.2;
+            fireSystem.maxLifeTime = 0.2;
+            fireSystem.emitRate = 150;
+            fireSystem.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE;
+            fireSystem.minEmitBox = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.maxEmitBox = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.gravity = new BABYLON.Vector3(0, -25, 0);
+            fireSystem.direction1 = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.direction2 = new BABYLON.Vector3(0, 0, 0);
+            fireSystem.color1 = new BABYLON.Color4(1, 1, 1, 1);
+            fireSystem.color2 = new BABYLON.Color4(1, 1, 1, 1);
+            fireSystem.updateSpeed = 0.01;
+            this.particleSystem = fireSystem;
+        };
+        return Tornado;
+    }(Particles.AbstractParticle));
+    Particles.Tornado = Tornado;
+})(Particles || (Particles = {}));
 var Character;
 (function (Character) {
     var Skills;
@@ -5864,62 +5864,6 @@ var Arena = /** @class */ (function (_super) {
     Arena.TYPE = 98;
     return Arena;
 }(Scene));
-var OnOpenChest = /** @class */ (function (_super) {
-    __extends(OnOpenChest, _super);
-    function OnOpenChest() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * @returns {SocketIOClient}
-     */
-    OnOpenChest.prototype.listen = function () {
-        var game = this.game;
-        this.socket.on('openChest', function (data) {
-            var opened = data.chest.opened;
-            if (!opened) {
-                game.gui.playerLogsQuests.addText('You do not have key to open chest', 'red');
-            }
-            else {
-                game.gui.playerLogsQuests.addText('Chest has been opened', 'orange');
-                game.player.keys -= 1;
-                if (game.gui.inventory.opened) {
-                    game.gui.inventory.refreshPopup();
-                }
-                var chest_1 = game.chests[data.chestKey];
-                chest_1.hightlightLayer.dispose();
-                chest_1.mesh.skeleton.beginAnimation('action', false);
-                chest_1.mesh.actionManager.actions.forEach(function (action) {
-                    chest_1.mesh.actionManager.unregisterAction(action);
-                });
-            }
-        });
-        return this;
-    };
-    return OnOpenChest;
-}(SocketEvent));
-var OnRefreshChest = /** @class */ (function (_super) {
-    __extends(OnRefreshChest, _super);
-    function OnRefreshChest() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * @returns {SocketIOClient}
-     */
-    OnRefreshChest.prototype.listen = function () {
-        var game = this.game;
-        this.socket.on('refreshChests', function (chests) {
-            game.chests.forEach(function (chest) {
-                chest.hightlightLayer.dispose();
-            });
-            game.chests = [];
-            chests.forEach(function (chest, chestKey) {
-                game.chests.push(new Chest(game, chest, chestKey));
-            });
-        });
-        return this;
-    };
-    return OnRefreshChest;
-}(SocketEvent));
 var OnAddSpecialItem = /** @class */ (function (_super) {
     __extends(OnAddSpecialItem, _super);
     function OnAddSpecialItem() {
@@ -5979,6 +5923,62 @@ var OnShowDroppedItem = /** @class */ (function (_super) {
         return this;
     };
     return OnShowDroppedItem;
+}(SocketEvent));
+var OnOpenChest = /** @class */ (function (_super) {
+    __extends(OnOpenChest, _super);
+    function OnOpenChest() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * @returns {SocketIOClient}
+     */
+    OnOpenChest.prototype.listen = function () {
+        var game = this.game;
+        this.socket.on('openChest', function (data) {
+            var opened = data.chest.opened;
+            if (!opened) {
+                game.gui.playerLogsQuests.addText('You do not have key to open chest', 'red');
+            }
+            else {
+                game.gui.playerLogsQuests.addText('Chest has been opened', 'orange');
+                game.player.keys -= 1;
+                if (game.gui.inventory.opened) {
+                    game.gui.inventory.refreshPopup();
+                }
+                var chest_1 = game.chests[data.chestKey];
+                chest_1.hightlightLayer.dispose();
+                chest_1.mesh.skeleton.beginAnimation('action', false);
+                chest_1.mesh.actionManager.actions.forEach(function (action) {
+                    chest_1.mesh.actionManager.unregisterAction(action);
+                });
+            }
+        });
+        return this;
+    };
+    return OnOpenChest;
+}(SocketEvent));
+var OnRefreshChest = /** @class */ (function (_super) {
+    __extends(OnRefreshChest, _super);
+    function OnRefreshChest() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * @returns {SocketIOClient}
+     */
+    OnRefreshChest.prototype.listen = function () {
+        var game = this.game;
+        this.socket.on('refreshChests', function (chests) {
+            game.chests.forEach(function (chest) {
+                chest.hightlightLayer.dispose();
+            });
+            game.chests = [];
+            chests.forEach(function (chest, chestKey) {
+                game.chests.push(new Chest(game, chest, chestKey));
+            });
+        });
+        return this;
+    };
+    return OnRefreshChest;
 }(SocketEvent));
 var OnQuestRequirementDoneInformation = /** @class */ (function (_super) {
     __extends(OnQuestRequirementDoneInformation, _super);
