@@ -1,7 +1,7 @@
 {% trans_default_domain 'UserBundle' %}
 <div class="text-center">
 
-    <h1 class="my-5 header-ruslan">Play the game</h1>
+    <h1 class="header-ruslan">Play the game</h1>
     {% if error %}
         <div class="alert alert-danger" role="alert">
             {{ error.messageKey|trans(error.messageData, 'security') }}
@@ -12,6 +12,25 @@
         {% if csrf_token %}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
         {% endif %}
+        <div class="row justify-content-center my-2">
+            <div class="col-md-4">
+                <a href="{{ path('play_game', { 'mobile': 1 }) }}" class="d-lg-none btn button-background-slavs button-background-slavs-red">
+                    <i class="fab fa-game"></i>Play as anonymous
+                    <br>
+                </a>
+                <a href="{{ path('play_game') }}" class="d-none d-lg-block btn button-background-slavs button-background-slavs-red">
+                    <i class="fab fa-game"></i>Play as anonymous
+                    <br>
+                </a>
+            </div>
+        </div>
+
+        {{ include('FrontendBundle::social_media.html.twig') }}
+
+        <div class="col-md-12 my-4">
+            <h3 class="header-ruslan">Login</h3>
+        </div>
+
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="input-group">
@@ -40,10 +59,9 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h2><a class="btn button-background-slavs button-background-slavs-red"
-                       href="{{ path("fos_user_registration_register") }}">Create new account</a></h2>
+                <a class="btn button-background-slavs button-background-slavs-red"
+                       href="{{ path("fos_user_registration_register") }}">Create new account</a>
             </div>
         </div>
-        {{ include('FrontendBundle::social_media.html.twig') }}
     </form>
 </div>
