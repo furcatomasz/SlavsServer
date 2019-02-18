@@ -3,6 +3,7 @@
 namespace FrontendBundle\Controller;
 
 use AppBundle\Manager\GameTokenSessionManager;
+use AppBundle\Manager\UserManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,13 @@ use UserBundle\Entity\User;
 
 class GameController extends Controller
 {
+
+    /**
+     * @DI\Inject("manager.user")
+     *
+     * @var UserManager
+     */
+    public $userManager;
 
     /**
      * @DI\Inject("manager.game_token_session")
@@ -45,10 +53,14 @@ class GameController extends Controller
         $gameTokenSessionManager = $this->gameTokenSessionManager;
         /** @var User $user */
         $user                    = $this->getUser();
-//        if(!$user->isAllowedToPlay()) {
-//            $this->addFlash('error', 'You do not have access to alpha test');
-//            return $this->redirect('/');
-//        }
+        if(!$user) {
+            $user = (new User())
+                ->setUsername(uniqid('anonymous'))
+                ->setPlainPassword("AbcAbc123!")
+                ->setEmail(uniqid('anonymous').'@anonymous.com');
+            $this->userManager->persist($user);
+        }
+
         $generatedToken          = $gameTokenSessionManager->generateToken();
         $gameTokenSessionManager->clearOldTokens($user);
 

@@ -91,10 +91,25 @@ input[type='text']:focus, input[type='password']:focus {
 }
 
 .button-background-slavs-red {
+    color: rgba(255,255,255,.5) !important;
     background-image: url('../images/layout/button.png') !important;
+    background-repeat: no-repeat;
+    background-size:     100% 100%;
+    background-position: center top;
+    font-family: RuslanDisplay;
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border: 0px;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 
-.button-background-slavs:hover {
+.button-background-slavs:hover,
+.button-background-slavs-red:hover{
     color: rgba(255,255,255,.75) !important;
     text-decoration: none;
 }
@@ -137,12 +152,10 @@ input[type='text']:focus, input[type='password']:focus {
 
 .container-banners {
     margin-top: 61px;
-    height: 271px;
     width: 100%;
     text-align: center;
 }
 .container-banners img {
-    height: 80%;
     width: 80%;
 }
 
