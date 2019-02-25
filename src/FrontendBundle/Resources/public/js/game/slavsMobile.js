@@ -1048,9 +1048,9 @@ var AbstractEnvironment = /** @class */ (function () {
             var sceneMesh = scene.meshes[i];
             sceneMesh.freezeWorldMatrix();
             sceneMesh.cullingStrategy = BABYLON.AbstractMesh.CULLINGSTRATEGY_OPTIMISTIC_INCLUSION_THEN_BSPHERE_ONLY;
-            if (sceneMesh.material) {
-                sceneMesh.material.freeze();
-            }
+            // if (sceneMesh.material) {
+            //     sceneMesh.material.freeze();
+            // }
         }
     };
     return AbstractEnvironment;
