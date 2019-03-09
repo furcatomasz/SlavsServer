@@ -196,12 +196,14 @@ class OnAttack extends AbstractEvent
                     }
 
                 }
+                $normalizedData = $self->serializer->normalize($socketSessionData, 'array');
+                $socket->emit('updatePlayer', $normalizedData);
                 $socket
-//                    ->to($roomId)
-                    ->emit('updatePlayer', $self->serializer->normalize($socketSessionData, 'array'));
+                    ->in($roomId)
+                    ->emit('updatePlayer', $normalizedData);
                 $socket
                     ->to($self->socketIOServer->monsterServerId)
-                    ->emit('updatePlayer', $self->serializer->normalize($socketSessionData, 'array'));
+                    ->emit('updatePlayer', $normalizedData);
 
                 $socketSessionData
                     ->setAttack(null);

@@ -40,6 +40,9 @@ class Factory
             case CaveExit::TYPE:
                 $scene = new CaveExit();
                 break;
+            case Arena::TYPE:
+                $scene = new Arena();
+                break;
 
         }
 
