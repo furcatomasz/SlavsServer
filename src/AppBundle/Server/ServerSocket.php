@@ -2,8 +2,8 @@
 
 namespace AppBundle\Server;
 
+use AppBundle\Storage\Rooms;
 use Doctrine\ORM\EntityManager;
-use GameBundle\Rooms\Room;
 use JMS\DiExtraBundle\Annotation as DI;
 use PHPSocketIO\Socket;
 use PHPSocketIO\SocketIO as PHPSocketIO;
@@ -37,7 +37,9 @@ class ServerSocket
     public $entityManager;
 
     /**
-     * @var array
+     * @DI\Inject("app.server.rooms")
+     *
+     * @var Rooms
      */
     public $rooms;
 

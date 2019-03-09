@@ -30,7 +30,7 @@ class OnRefreshMushrooms extends AbstractEvent
             'refreshRandomSpecialItems',
             function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $scene             = $socketSessionData->getActiveScene();
+                $scene             = $socketSessionData->getActiveRoom()->getActiveScene();
 
                 $socket->emit(
                     'refreshRandomSpecialItems',

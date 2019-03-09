@@ -55,8 +55,9 @@ class OnOpenChest extends AbstractEvent
             'openChest',
             function ($chestKey) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $scene             = $socketSessionData->getActiveScene();
+                $room              = $socketSessionData->getActiveRoom();
                 $player            = $socketSessionData->getActivePlayer();
+                $scene             = $room->getActiveScene();
                 $self->managerSpecialItem->refresh($player);
 
                 /** @var AbstractChest $chest */
@@ -75,6 +76,10 @@ class OnOpenChest extends AbstractEvent
 //                }
 
                 $chest->openChest($player, $self->managerSpecialItem);
+                $chestData = [
+                    'chest'    => $self->serializer->normalize($chest, 'array'),
+                    'chestKey' => $chestKey
+                ];
                 if ($chest->opened) {
                     foreach($chest->awards as $award) {
                         if($award instanceof AbstractItem) {
@@ -96,15 +101,10 @@ class OnOpenChest extends AbstractEvent
                             $socket->emit('addSpecialItem', $award);
                         }
                     }
+                    $socket->in($room->getId())->emit('openChest', $chestData);
                 }
 
-                $socket->emit(
-                    'openChest',
-                    [
-                        'chest'    => $self->serializer->normalize($chest, 'array'),
-                        'chestKey' => $chestKey
-                    ]
-                );
+                $socket->emit('openChest', $chestData);
             }
         );
 

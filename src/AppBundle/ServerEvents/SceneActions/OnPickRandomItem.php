@@ -55,7 +55,7 @@ class OnPickRandomItem extends AbstractEvent
             'pickRandomItem',
             function ($specialItemKey) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $scene             = $socketSessionData->getActiveScene();
+                $scene             = $socketSessionData->getActiveRoom()->getActiveScene();
                 $player            = $socketSessionData->getActivePlayer();
                 $self->managerSpecialItem->refresh($player);
 
@@ -85,6 +85,9 @@ class OnPickRandomItem extends AbstractEvent
                     'refreshRandomSpecialItems',
                     $self->serializer->normalize($scene->randomSpecialItems, 'array')
                 );
+                $socket
+                    ->in($socketSessionData->getActiveRoom()->getId())
+                    ->emit('refreshRandomSpecialItems', $self->serializer->normalize($scene->randomSpecialItems, 'array'));
             }
         );
 

@@ -88,8 +88,8 @@ abstract class AbstractScene
      *
      * @return array
      */
-    public function getPlayerLocation(AbstractScene $oldScene): array {
-        if(array_key_exists($oldScene->getType(), static::ENTRANCE_POSITION)) {
+    public function getPlayerLocation(?AbstractScene $oldScene): array {
+        if($oldScene && array_key_exists($oldScene->getType(), static::ENTRANCE_POSITION)) {
             return static::ENTRANCE_POSITION[$oldScene->getType()];
         }
 

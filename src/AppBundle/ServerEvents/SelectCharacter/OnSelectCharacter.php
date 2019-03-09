@@ -53,27 +53,32 @@ class OnSelectCharacter extends AbstractEvent
                     $activePlayer->statistics = null;
                 }
 
-                $startScene = new ForestHouseStart();
-                $scene      = Factory::createSceneByType($startScene::TYPE);
-
                 //TODO: ROOMS
-                $newRoom    = (new Room())
-                    ->setId('RoomTest')
-                    ->setName('RoomTest')
-                    ->setPlayers([$activePlayer->getId() => $socketSessionData]);
-                $socket->join('RoomTest');
+                $roomName = 'RoomTest';
+                $room = $self->socketIOServer->rooms->getRoom($roomName);
+                if(!$room) {
+                    $room    = (new Room())
+                        ->setId('RoomTest')
+                        ->setName('RoomTest')
+                        ->setPlayers([$activePlayer->getId() => $socketSessionData]);
+
+                    $self->socketIOServer->rooms->addRoom($room);
+                    $socket
+                        ->to($self->socketIOServer->monsterServerId)
+                        ->emit('createRoom', $room->getId());
+                } else {
+                    $newPlayerList = $room->getPlayers();
+                    $newPlayerList[$activePlayer->getId()] = $socketSessionData;
+                    $room->setPlayers($newPlayerList);
+                }
+                $socket->join($roomName);
+
                 $socketSessionData
-                    ->setActiveScene($scene)
-                    ->setActiveRoom($newRoom)
+                    ->setActiveRoom($room)
                     ->setActivePlayer($activePlayer);
 
-                $self->socketIOServer->rooms[$newRoom->getId()] = $newRoom;
-                $socketSessionData->setPosition($startScene::START_POSITION);
 
-                $socket
-                    ->to($self->socketIOServer->monsterServerId)
-                    ->emit('createRoom', $newRoom->getId());
-
+                $scene = Factory::setNewActiveScene($socketSessionData, ForestHouseStart::TYPE);
                 $socket->emit('changeScene', $scene->type);
             }
         );

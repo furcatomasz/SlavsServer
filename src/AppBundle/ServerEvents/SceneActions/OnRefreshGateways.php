@@ -30,7 +30,7 @@ class OnRefreshGateways extends AbstractEvent
             'refreshGateways',
             function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $scene             = $socketSessionData->getActiveScene();
+                $scene             = $socketSessionData->getActiveRoom()->getActiveScene();
                 $scene->refreshGatewaysData($socketSessionData);
 
                 $socket->emit(

@@ -35,7 +35,7 @@ class OnSetEnemyTargetPoint extends AbstractEvent
             function ($data) use ($self, $event, $socket) {
                 /** @var Room $room */
                 $roomId = $data['roomId'];
-                $room   = $self->socketIOServer->rooms[$roomId];
+                $room   = $self->socketIOServer->rooms->getRoom($roomId);
                 /** @var AbstractMonster $enemy */
                 $enemy = $room->getMonsters()[$data['enemyKey']];
                 $attackIsDone = false;

@@ -40,7 +40,7 @@ class OnChangeScenePre extends AbstractEvent
             function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
                 $playerSessionData = $self->serializer->normalize($socketSessionData, 'array');
-                $scene             = $socketSessionData->getActiveScene();
+                $scene             = $socketSessionData->getActiveRoom()->getActiveScene();
 
                 if ($scene::TYPE == SelectCharacter::TYPE) {
                     $user              = $socketSessionData->getUser();
@@ -54,7 +54,6 @@ class OnChangeScenePre extends AbstractEvent
 
                     $socket->emit('showPlayer', $playerSessionData);
 
-                    ///Call to monster server about create enemies
                     $socket
                         ->to($self->socketIOServer->monsterServerId)
                         ->emit(

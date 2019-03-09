@@ -40,8 +40,7 @@ class OnChangeScene extends AbstractEvent
             'changeScene',
             function ($sceneType) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $scene             = Factory::getExistingSceneOrCreateNew($socketSessionData, $sceneType);
-                $socketSessionData->setActiveScene($scene);
+                $scene = Factory::setNewActiveScene($socketSessionData, $sceneType);
 
                 $socket->emit('changeScene', $scene->type);
             }

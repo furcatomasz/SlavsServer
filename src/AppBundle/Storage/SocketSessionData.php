@@ -27,16 +27,6 @@ class SocketSessionData
     public $connectionId;
 
     /**
-     * @var AbstractScene
-     */
-    public $activeScene;
-
-    /**
-     * @var AbstractScene[]|null
-     */
-    public $stateScenes = [];
-
-    /**
      * @var float
      */
     public $lastPlayerAttack;
@@ -87,26 +77,6 @@ class SocketSessionData
     public function setActivePlayer(Player $activePlayer): SocketSessionData
     {
         $this->activePlayer = $activePlayer;
-
-        return $this;
-    }
-
-    /**
-     * @return AbstractScene|null
-     */
-    public function getActiveScene(): ?AbstractScene
-    {
-        return $this->activeScene;
-    }
-
-    /**
-     * @param AbstractScene $activeScene
-     *
-     * @return SocketSessionData
-     */
-    public function setActiveScene(AbstractScene $activeScene): SocketSessionData
-    {
-        $this->activeScene = $activeScene;
 
         return $this;
     }
@@ -290,27 +260,5 @@ class SocketSessionData
 
         return $this;
     }
-
-    /**
-     * @return AbstractScene[]|null
-     */
-    public function getStateScenes(): ?array
-    {
-        return $this->stateScenes;
-    }
-
-    /**
-     * @param AbstractScene[] $stateScenes
-     *
-     * @return SocketSessionData|null
-     */
-    public function setStateScenes(array $stateScenes): ?SocketSessionData
-    {
-        $this->stateScenes = $stateScenes;
-
-        return $this;
-    }
-
-
 
 }

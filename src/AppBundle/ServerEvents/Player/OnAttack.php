@@ -64,7 +64,7 @@ class OnAttack extends AbstractEvent
                 $roomId            = $socketSessionData->getActiveRoom()->getId();
                 $player            = $socketSessionData->getActivePlayer();
                 $playerEnergy      = $socketSessionData->getActivePlayer()->getStatistics()->getEnergy();
-                $scene             = $socketSessionData->getActiveScene();
+                $scene             = $socketSessionData->getActiveRoom()->getActiveScene();
                 $monsterKey        = null;
 
                 if($socketSessionData->getActiveSkill() && !$socketSessionData->getActiveSkill()->used) {
@@ -119,9 +119,8 @@ class OnAttack extends AbstractEvent
                             'roomId'   => $roomId,
                         ];
 
-                        $socket
-//                                ->in($roomId)
-                            ->emit('updateEnemy', $emitData);
+                        $socket->emit('updateEnemy', $emitData);
+                        $socket->in($roomId)->emit('updateEnemy', $emitData);
                         $socket->to($self->socketIOServer->monsterServerId)->emit('updateEnemy', $emitData);
 
                         if ($monster->getStatistics()->getHp() <= 0) {
@@ -150,14 +149,12 @@ class OnAttack extends AbstractEvent
                                 $droppedItem = $randomItem['item'];
                                 $chance      = $randomItem['chance'];
                                 if (random_int(1, 100) < $chance) {
-                                    $socket->emit(
-                                        'showDroppedItem',
-                                        [
-                                            'item'     => $self->serializer->normalize($droppedItem, 'array'),
-                                            'itemKey'  => DropItem::addDropItemToScene($scene, $droppedItem),
-                                            'position' => $monster->getPosition(),
-                                        ]
-                                    );
+                                    $showDroppedItemData = [
+                                        'item'     => $self->serializer->normalize($droppedItem, 'array'),
+                                        'itemKey'  => DropItem::addDropItemToScene($scene, $droppedItem),
+                                        'position' => $monster->getPosition(),
+                                    ];
+                                    $socket->emit('showDroppedItem', $showDroppedItemData);
                                 }
                             }
 
@@ -183,13 +180,12 @@ class OnAttack extends AbstractEvent
 
                                 if($quest->isFinished) {
                                     $socketSessionData->getActiveRoom()->setActiveQuest(new SkeletonCamp());
-                                    $socket->emit(
-                                        'refreshQuests',
-                                        [
-                                            'quests'      => $self->serializer->normalize($scene->quests, 'array'),
-                                            'sessionData' => $self->serializer->normalize($socketSessionData, 'array'),
-                                        ]
-                                    );
+                                    $questData = [
+                                        'quests'      => $self->serializer->normalize($scene->quests, 'array'),
+                                        'sessionData' => $self->serializer->normalize($socketSessionData, 'array'),
+                                    ];
+                                    $socket->emit('refreshQuests', $questData);
+                                    $socket->in($roomId)->emit('refreshQuests', $questData);
                                 }
                             }
                         }

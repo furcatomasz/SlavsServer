@@ -41,8 +41,15 @@ class DropItem
     public static function getDroppedItem(AbstractScene $scene, Int $itemKey): ?AbstractItem
     {
         $droppedItems = $scene->getItemsToDrop();
+        $item = null;
 
-        return ($droppedItems && array_key_exists($itemKey, $droppedItems)) ? $droppedItems[$itemKey] : null;
+        if($droppedItems && array_key_exists($itemKey, $droppedItems)) {
+            $item = $droppedItems[$itemKey];
+            unset($droppedItems[$itemKey]);
+            $scene->setItemsToDrop($droppedItems);
+        }
+
+        return $item;
     }
 
 }

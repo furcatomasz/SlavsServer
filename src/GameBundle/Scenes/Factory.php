@@ -3,7 +3,7 @@
 namespace GameBundle\Scenes;
 
 use AppBundle\Storage\SocketSessionData;
-use GameBundle\Gateways\EntraceHouse;
+use GameBundle\Scenes\Town\Arena;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 class Factory
@@ -63,7 +63,7 @@ class Factory
      */
     static public function getExistingScene(SocketSessionData $socketSessionData, int $type): ?AbstractScene
     {
-        $scenes   = $socketSessionData->getStateScenes();
+        $scenes   = $socketSessionData->getActiveRoom()->getStateScenes();
         $newScene = null;
 
         array_map(
@@ -95,5 +95,33 @@ class Factory
 
         return $newScene;
     }
+
+    /**
+     * @param SocketSessionData $socketSessionData
+     * @param int               $newSceneType
+     *
+     * @return AbstractScene
+     * @throws \Exception
+     */
+    static public function setNewActiveScene(
+        SocketSessionData $socketSessionData,
+        int $newSceneType
+    ): AbstractScene {
+        $scene = Factory::getExistingSceneOrCreateNew($socketSessionData, $newSceneType);
+
+        if ($oldScene = $socketSessionData->getActiveRoom()->getActiveScene()) {
+            $stateScenes                  = $socketSessionData->getActiveRoom()->getStateScenes();
+            $stateScenes[$oldScene::TYPE] = $oldScene;
+        } else {
+            $stateScenes = [$scene::TYPE => $scene];
+        }
+
+        $socketSessionData->getActiveRoom()->setStateScenes($stateScenes);
+        $socketSessionData->getActiveRoom()->setActiveScene($scene);
+        $socketSessionData->setPosition($scene->getPlayerLocation($oldScene));
+
+        return $scene;
+    }
+
 
 }

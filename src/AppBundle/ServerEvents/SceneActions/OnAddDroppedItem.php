@@ -55,7 +55,7 @@ class OnAddDroppedItem extends AbstractEvent
             'addDroppedItem',
             function ($itemKey) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $droppedItem      = DropItem::getDroppedItem($socketSessionData->getActiveScene(), $itemKey);
+                $droppedItem      = DropItem::getDroppedItem($socketSessionData->getActiveRoom()->getActiveScene(), $itemKey);
 
                 if ($droppedItem) {
                     $player  = $socketSessionData->getActivePlayer();

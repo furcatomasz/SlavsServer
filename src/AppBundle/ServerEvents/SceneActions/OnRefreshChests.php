@@ -30,7 +30,7 @@ class OnRefreshChests extends AbstractEvent
             'refreshChests',
             function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $scene             = $socketSessionData->getActiveScene();
+                $scene             = $socketSessionData->getActiveRoom()->getActiveScene();
 
                 $socket->emit(
                     'refreshChests',

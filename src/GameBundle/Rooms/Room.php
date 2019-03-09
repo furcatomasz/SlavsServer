@@ -3,6 +3,7 @@
 namespace GameBundle\Rooms;
 
 use GameBundle\Quests\AbstractQuest;
+use GameBundle\Scenes\AbstractScene;
 
 class Room
 {
@@ -27,6 +28,16 @@ class Room
      * @var AbstractQuest
      */
     protected $activeQuest;
+
+    /**
+     * @var AbstractScene[]|null
+     */
+    protected $stateScenes = [];
+
+    /**
+     * @var AbstractScene
+     */
+    protected $activeScene;
 
     /**
      * @return string
@@ -128,4 +139,43 @@ class Room
         return $this;
     }
 
+    /**
+     * @return AbstractScene[]|null
+     */
+    public function getStateScenes(): ?array
+    {
+        return $this->stateScenes;
+    }
+
+    /**
+     * @param AbstractScene[] $stateScenes
+     *
+     * @return Room
+     */
+    public function setStateScenes(array $stateScenes): Room
+    {
+        $this->stateScenes = $stateScenes;
+
+        return $this;
+    }
+
+    /**
+     * @return AbstractScene|null
+     */
+    public function getActiveScene(): ?AbstractScene
+    {
+        return $this->activeScene;
+    }
+
+    /**
+     * @param AbstractScene $activeScene
+     *
+     * @return Room
+     */
+    public function setActiveScene(AbstractScene $activeScene): Room
+    {
+        $this->activeScene = $activeScene;
+
+        return $this;
+    }
 }

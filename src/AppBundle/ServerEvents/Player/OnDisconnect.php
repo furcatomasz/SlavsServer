@@ -43,9 +43,11 @@ class OnDisconnect extends AbstractEvent
                         $socketSessionData->getConnectionId()
                     );
 
-                    $socket
-                        ->in($socketSessionData->getActiveRoom()->getId())
-                        ->emit('removePlayer', $socketSessionData->getActivePlayer()->getId());
+                    if($socketSessionData->getActiveRoom()) {
+                        $socket
+                            ->in($socketSessionData->getActiveRoom()->getId())
+                            ->emit('removePlayer', $socketSessionData->getActivePlayer()->getId());
+                    }
                 }
             }
         );
