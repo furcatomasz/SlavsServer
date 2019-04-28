@@ -52,4 +52,21 @@ class Rooms
     {
         return (array_key_exists($roomId, $this->rooms)) ? $this->rooms[$roomId] : null;
     }
+
+    /**
+     * @param string $roomId
+     *
+     * @return bool
+     * @throws \Exception
+     */
+    public function deleteRoom(string $roomId): bool
+    {
+        if($this->getRoom($roomId)) {
+            unset($this->rooms[$roomId]);
+
+            return true;
+        }
+
+        return false;
+    }
 }

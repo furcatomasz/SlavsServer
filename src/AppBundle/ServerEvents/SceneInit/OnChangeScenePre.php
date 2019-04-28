@@ -53,6 +53,9 @@ class OnChangeScenePre extends AbstractEvent
                     $room->setMonsters($scene->monsters);
 
                     $socket->emit('showPlayer', $playerSessionData);
+                    $socket
+                        ->in($socketSessionData->getActiveRoom()->getId())
+                        ->emit('updatePlayer', $playerSessionData);
 
                     $socket
                         ->to($self->socketIOServer->monsterServerId)

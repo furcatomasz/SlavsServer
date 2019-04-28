@@ -45,7 +45,17 @@ class OnAccepctQuest extends AbstractEvent
                     'refreshQuests',
                     [
                         'quests'      => $self->serializer->normalize($scene->quests, 'array'),
-                        'sessionData' => $self->serializer->normalize($socketSessionData, 'array'),
+                        'activeQuest' => $self->serializer->normalize($selectedQuest, 'array'),
+                    ]
+                );
+
+                $socket
+                    ->in($socketSessionData->getActiveRoom()->getId())
+                    ->emit(
+                    'refreshQuests',
+                    [
+                        'quests'      => $self->serializer->normalize($scene->quests, 'array'),
+                        'activeQuest' => $self->serializer->normalize($selectedQuest, 'array'),
                     ]
                 );
             }

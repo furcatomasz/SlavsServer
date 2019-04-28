@@ -66,19 +66,20 @@ class OnSelectCharacter extends AbstractEvent
                     $socket
                         ->to($self->socketIOServer->monsterServerId)
                         ->emit('createRoom', $room->getId());
+                    $newSceneType = ForestHouseStart::TYPE;
                 } else {
                     $newPlayerList = $room->getPlayers();
                     $newPlayerList[$activePlayer->getId()] = $socketSessionData;
                     $room->setPlayers($newPlayerList);
+
+                    $newSceneType = $room->getActiveScene()->getType();
                 }
                 $socket->join($roomName);
-
                 $socketSessionData
                     ->setActiveRoom($room)
                     ->setActivePlayer($activePlayer);
 
-
-                $scene = Factory::setNewActiveScene($socketSessionData, ForestHouseStart::TYPE);
+                $scene = Factory::setNewActiveScene($socketSessionData, $newSceneType);
                 $socket->emit('changeScene', $scene->type);
             }
         );

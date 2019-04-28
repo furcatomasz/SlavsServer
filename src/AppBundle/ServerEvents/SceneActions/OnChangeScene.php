@@ -32,10 +32,10 @@ class OnChangeScene extends AbstractEvent
                 $socketSessionData = $event->getSocketSessionData();
                 Factory::setNewActiveScene($socketSessionData, $sceneType);
 
-                $socket->emit(
-                    'changeScene',
-                    $sceneType
-                );
+                $socket->emit('changeScene', $sceneType);
+                $socket
+                    ->in($socketSessionData->getActiveRoom()->getId())
+                    ->emit('changeScene', $sceneType);
 
                 $socket->to($self->socketIOServer->monsterServerId)->emit(
                     'removePlayer',
