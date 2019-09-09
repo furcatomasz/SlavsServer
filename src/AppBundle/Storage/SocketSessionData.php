@@ -62,6 +62,15 @@ class SocketSessionData
     public $activeRoom;
 
     /**
+     * SocketSessionData constructor.
+     */
+    public function __construct()
+    {
+        $this->activeRoom = (new Room())->setId('RoomTest')->setName('RoomTest')->setPlayers([]);
+    }
+
+
+    /**
      * @return Player|null
      */
     public function getActivePlayer(): ?Player
