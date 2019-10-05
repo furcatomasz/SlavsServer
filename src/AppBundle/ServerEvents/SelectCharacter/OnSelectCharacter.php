@@ -45,8 +45,8 @@ class OnSelectCharacter extends AbstractEvent
             'selectCharacter',
             function ($playerId) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-//                $activePlayer      = $self->playerManager->getRepo()->find($playerId);
-                $activePlayer      = $self->playerManager->getRepo()->find(rand(1,4));
+                $activePlayer      = $self->playerManager->getRepo()->find($playerId);
+//                $activePlayer      = $self->playerManager->getRepo()->find(rand(1,4));
 
                 //Reset stats after login
                 if($activePlayer->statistics) {
@@ -54,19 +54,20 @@ class OnSelectCharacter extends AbstractEvent
                 }
 
                 //TODO: ROOMS
-                $roomName = 'RoomTest';
+                $roomName = (string) rand(1,1000);
                 $room = $self->socketIOServer->rooms->getRoom($roomName);
                 if(!$room) {
                     $room    = (new Room())
-                        ->setId('RoomTest')
-                        ->setName('RoomTest')
+                        ->setId($roomName)
+                        ->setName($roomName)
                         ->setPlayers([$activePlayer->getId() => $socketSessionData]);
 
                     $self->socketIOServer->rooms->addRoom($room);
                     $socket
                         ->to($self->socketIOServer->monsterServerId)
                         ->emit('createRoom', $room->getId());
-                    $newSceneType = ForestHouseStart::TYPE;
+//                    $newSceneType = ForestHouseStart::TYPE;
+                    $newSceneType = Battleground::TYPE;
                 } else {
                     $newPlayerList = $room->getPlayers();
                     $newPlayerList[$activePlayer->getId()] = $socketSessionData;

@@ -36,6 +36,11 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                 /** @var Room $room */
                 $roomId = $data['roomId'];
                 $room   = $self->socketIOServer->rooms->getRoom($roomId);
+
+                if(!$room) {
+                    return;
+                }
+
                 /** @var AbstractMonster $enemy */
                 $enemy = $room->getMonsters()[$data['enemyKey']];
                 $attackIsDone = false;
@@ -75,10 +80,6 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                                 ->to($roomId)
                                 ->emit('updatePlayer', $self->serializer->normalize($playerSession, 'array'));
                         }
-                    }
-                } else {
-                    if (array_key_exists($data['target'], $enemy->availableAttacksFromCharacters)) {
-                        unset($enemy->availableAttacksFromCharacters[$data['target']]);
                     }
                 }
 

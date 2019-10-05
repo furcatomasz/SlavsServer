@@ -182,7 +182,7 @@ class OnAttack extends AbstractEvent
                                     $socketSessionData->getActiveRoom()->setActiveQuest(new SkeletonCamp());
                                     $questData = [
                                         'quests'      => $self->serializer->normalize($scene->quests, 'array'),
-                                        'sessionData' => $self->serializer->normalize($socketSessionData, 'array'),
+                                        'activeQuest' => $self->serializer->normalize($socketSessionData->getActiveRoom()->getActiveQuest(), 'array'),
                                     ];
                                     $socket->emit('refreshQuests', $questData);
                                     $socket->in($roomId)->emit('refreshQuests', $questData);
