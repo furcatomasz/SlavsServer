@@ -55,14 +55,17 @@ class OnAddAttribute extends AbstractEvent
                 $socketSessionData = $event->getSocketSessionData();
                 $player            = $socketSessionData->getActivePlayer();
                 $type              = $attribute['type'];
-                $self->playerAttributesManager->addAttribute($player->getAttributes(), $type);
 
-                $player->setFreeAttributesPoints($player->getFreeAttributesPoints() - 1);
-                $self->playerManager
-                    ->update($player)
-                    ->refreshStatistics($player);
+                if($player->getFreeAttributesPoints()) {
+                    $self->playerAttributesManager->addAttribute($player->getAttributes(), $type);
 
-                $socket->emit('attributeAdded', $self->serializer->normalize($socketSessionData, 'array'));
+                    $player->setFreeAttributesPoints($player->getFreeAttributesPoints() - 1);
+                    $self->playerManager
+                        ->update($player)
+                        ->refreshStatistics($player);
+
+                    $socket->emit('attributeAdded', $self->serializer->normalize($socketSessionData, 'array'));
+                }
             }
         );
 

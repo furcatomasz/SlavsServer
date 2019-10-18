@@ -4,6 +4,8 @@ services:
     db:
         container_name: slavsServer_db
         image: mysql:5.7
+        ports:
+            - "3306:3306"
         volumes:
             - ${DATABASE_PATH}:/var/lib/mysql
         environment:
@@ -39,29 +41,29 @@ services:
     redis:
         container_name: slavsServer_redis
         image: redis:alpine
-    php-socket:
-        container_name: slavsServer_php_socket
-        command: php /var/www/app/bin/console app:server-start
-        build:
-            context: php7-cli
-            args:
-                TIMEZONE: ${TIMEZONE}
-        volumes:
-            - ${APP_PATH}:/var/www/app
-        ports:
-            - "5000:5000"
-        links:
-          - "db"
-          - "redis"
-        environment:
-            XDEBUG_CONFIG: "idekey=PHPSTORM"
-            PHP_IDE_CONFIG: "serverName=SlavsServer"
-    node:
-        command: node /var/www/app/AIServer/server.js
-        container_name: slavsServer_node
-        build:
-            context: node
-        volumes:
-            - ${APP_PATH}:/var/www/app
-        depends_on:
-            - php-socket
+#    php-socket:
+#        container_name: slavsServer_php_socket
+#        command: php /var/www/app/bin/console app:server-start
+#        build:
+#            context: php7-cli
+#            args:
+#                TIMEZONE: ${TIMEZONE}
+#        volumes:
+#            - ${APP_PATH}:/var/www/app
+#        ports:
+#            - "5000:5000"
+#        links:
+#          - "db"
+#          - "redis"
+#        environment:
+#            XDEBUG_CONFIG: "idekey=PHPSTORM"
+#            PHP_IDE_CONFIG: "serverName=SlavsServer"
+#    node:
+#        command: node /var/www/app/AIServer/server.js
+#        container_name: slavsServer_node
+#        build:
+#            context: node
+#        volumes:
+#            - ${APP_PATH}:/var/www/app
+#        depends_on:
+#            - php-socket
