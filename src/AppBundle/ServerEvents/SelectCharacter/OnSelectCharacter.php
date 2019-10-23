@@ -74,8 +74,8 @@ class OnSelectCharacter extends AbstractEvent
                     $socket
                         ->to($self->socketIOServer->monsterServerId)
                         ->emit('createRoom', $room->getId());
-//                    $newSceneType = ForestHouseStart::TYPE;
-                    $newSceneType = ForestHouse::TYPE;
+                    $newSceneType = ForestHouseStart::TYPE;
+//                    $newSceneType = Battleground::TYPE;
                 } else {
                     $newPlayerList = $room->getPlayers();
                     $newPlayerList[$activePlayer->getId()] = $socketSessionData;

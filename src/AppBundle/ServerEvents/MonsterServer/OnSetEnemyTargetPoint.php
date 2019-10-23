@@ -43,6 +43,9 @@ class OnSetEnemyTargetPoint extends AbstractEvent
 
                 /** @var AbstractMonster $enemy */
                 $enemy = $room->getMonsters()[$data['enemyKey']];
+                if(!$enemy) {
+                    return;
+                }
                 $attackIsDone = false;
 
                 $enemy

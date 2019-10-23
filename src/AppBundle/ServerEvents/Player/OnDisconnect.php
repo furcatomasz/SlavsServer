@@ -44,9 +44,10 @@ class OnDisconnect extends AbstractEvent
                     );
 
                     $room = $socketSessionData->getActiveRoom();
-                    if($room) {
+                    $player      = $socketSessionData->getActivePlayer();
+                    if($room && $player) {
                         $roomPlayers = $room->getPlayers();
-                        unset($roomPlayers[$socketSessionData->getActivePlayer()->getId()]);
+                        unset($roomPlayers[$player->getId()]);
                         $room->setPlayers($roomPlayers);
 
                         if(!count($roomPlayers)) {
@@ -55,7 +56,7 @@ class OnDisconnect extends AbstractEvent
 
                         $socket
                             ->in($room->getId())
-                            ->emit('removePlayer', $socketSessionData->getActivePlayer()->getId());
+                            ->emit('removePlayer', $player->getId());
                     }
 
 
