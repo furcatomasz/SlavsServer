@@ -51,39 +51,34 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                 $enemy
                     ->setPosition($data['position'])
                     ->setTarget($data['target'])
-                    ->setAttack($data['attack']);
+                    ->setAttack($data['attack'])
+                    ->setAvailableAttacksFromCharacters($data['availableCharactersToAttack']);
 
                 if ($enemy->isAttack()) {
-                    $enemy->availableAttacksFromCharacters[$data['target']] = $data['attack'];
-                    if ($enemy->getLastAttack() < (time() - 1)) {
-                        $enemy->setLastAttack(time());
-                        $attackIsDone = true;
-                        $players = $room->getPlayers();
-                        foreach ($enemy->availableAttacksFromCharacters as $playerId => $attack) {
-                            /** @var SocketSessionData $playerSession */
-                            $playerSession = $players[$playerId];
-                            /** @var Player $player */
-                            $player = $playerSession->getActivePlayer();
+                    $attackIsDone = true;
+                    $players = $room->getPlayers();
+                    $attackPlayerId = $enemy->getAvailableAttacksFromCharacters()[$enemy->getTarget()];
 
-                            $randomDamage = random_int($enemy->getStatistics()->getDamageMin(), $enemy->getStatistics()->getDamageMax());
-                            $damage = $randomDamage-$player->getAllStatistics()->getArmor();
-                            ///
-                            ///Block skill
-                            ///
-                            if($playerSession->getActiveSkill() instanceof Block) {
-                                $playerSession->getActiveSkill()->useSkill($damage, $enemy, $player);
-                            }
+                    /** @var SocketSessionData $playerSession */
+                    $playerSession = $players[$attackPlayerId];
+                    /** @var Player $player */
+                    $player = $playerSession->getActivePlayer();
 
-                            if($damage < 1) {
-                                $damage = 1;
-                            }
+                    $randomDamage = random_int($enemy->getStatistics()->getDamageMin(), $enemy->getStatistics()->getDamageMax());
+                    $damage = $randomDamage-$player->getAllStatistics()->getArmor();
 
-                            $player->getStatistics()->setHp($player->getStatistics()->getHp() - $damage);
-                            $socket
-                                ->to($roomId)
-                                ->emit('updatePlayer', $self->serializer->normalize($playerSession, 'array'));
-                        }
+                    if($playerSession->getActiveSkill() instanceof Block) {
+                        $playerSession->getActiveSkill()->useSkill($damage, $enemy, $player);
                     }
+
+                    if($damage < 1) {
+                        $damage = 1;
+                    }
+
+                    $player->getStatistics()->setHp($player->getStatistics()->getHp() - $damage);
+                    $socket
+                        ->to($roomId)
+                        ->emit('updatePlayer', $self->serializer->normalize($playerSession, 'array'));
                 }
 
                 //emit for update enemy

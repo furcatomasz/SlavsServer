@@ -99,6 +99,7 @@ class OnAttack extends AbstractEvent
 
                 $monster    = $socketSessionData->getActiveRoom()->getMonsters()[$monsterKey];
                 /** @var AbstractMonster $monster */
+                var_dump($monster->getAvailableAttacksFromCharacters());
                 foreach ($monster->getAvailableAttacksFromCharacters() as $attackedPlayerId => $isAttacked) {
                     if ($player->getId() == $attackedPlayerId) {
                         $randomDamage = random_int($player->getAllStatistics()->getDamageMin(), $player->getAllStatistics()->getDamageMax());
