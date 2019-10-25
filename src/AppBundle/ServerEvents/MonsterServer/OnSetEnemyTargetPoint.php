@@ -10,7 +10,6 @@ use AppBundle\Storage\SocketSessionData;
 use GameBundle\Monsters\AbstractMonster;
 use GameBundle\Rooms\Room;
 use GameBundle\Skills\Block;
-use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 
 
@@ -29,25 +28,17 @@ class OnSetEnemyTargetPoint extends AbstractEvent
     public function registerEvent(Event $event): AbstractEvent
     {
         $socket = $event->getSocket();
-        $self   = $this;
+        $self = $this;
         $socket->on(
             'setEnemyTarget',
             function ($data) use ($self, $event, $socket) {
                 /** @var Room $room */
                 $roomId = $data['roomId'];
-                $room   = $self->socketIOServer->rooms->getRoom($roomId);
-
-                if(!$room) {
-                    return;
-                }
+                $room = $self->socketIOServer->rooms->getRoom($roomId);
+                $attackIsDone = false;
 
                 /** @var AbstractMonster $enemy */
                 $enemy = $room->getMonsters()[$data['enemyKey']];
-                if(!$enemy) {
-                    return;
-                }
-                $attackIsDone = false;
-
                 $enemy
                     ->setPosition($data['position'])
                     ->setTarget($data['target'])
@@ -57,7 +48,7 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                 if ($enemy->isAttack()) {
                     $attackIsDone = true;
                     $players = $room->getPlayers();
-                    $attackPlayerId = $enemy->getAvailableAttacksFromCharacters()[$enemy->getTarget()];
+                    $attackPlayerId = $enemy->getTarget();
 
                     /** @var SocketSessionData $playerSession */
                     $playerSession = $players[$attackPlayerId];
@@ -65,13 +56,13 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                     $player = $playerSession->getActivePlayer();
 
                     $randomDamage = random_int($enemy->getStatistics()->getDamageMin(), $enemy->getStatistics()->getDamageMax());
-                    $damage = $randomDamage-$player->getAllStatistics()->getArmor();
+                    $damage = $randomDamage - $player->getAllStatistics()->getArmor();
 
-                    if($playerSession->getActiveSkill() instanceof Block) {
+                    if ($playerSession->getActiveSkill() instanceof Block) {
                         $playerSession->getActiveSkill()->useSkill($damage, $enemy, $player);
                     }
 
-                    if($damage < 1) {
+                    if ($damage < 1) {
                         $damage = 1;
                     }
 
@@ -87,12 +78,12 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                     ->emit(
                         'updateEnemy',
                         [
-                            'enemy'          => $self->serializer->normalize($enemy, 'array'),
+                            'enemy' => $self->serializer->normalize($enemy, 'array'),
                             'collisionEvent' => $data['collisionEvent'],
-                            'enemyKey'       => $data['enemyKey'],
-                            'attackIsDone'  => $attackIsDone,
+                            'enemyKey' => $data['enemyKey'],
+                            'attackIsDone' => $attackIsDone,
 
-                ]
+                        ]
                     );
 
                 $enemy->setAttack(false);
