@@ -88,6 +88,10 @@ class Battleground extends AbstractScene
         $this->monsters = [
             new SkeletonWarrior(0, ['x' => 17, 'y' => 0, 'z' => 17], $itemsToDrop, []),
             new Skeleton(0, ['x' => 36, 'y' => 0, 'z' => -35], $itemsToDrop, []),
+            new Skeleton(0, ['x' => 136, 'y' => 0, 'z' => -35], $itemsToDrop, []),
+            new Skeleton(0, ['x' => 56, 'y' => 0, 'z' => -35], $itemsToDrop, []),
+            new Skeleton(0, ['x' => 0, 'y' => 0, 'z' => -45], $itemsToDrop, []),
+            new Skeleton(0, ['x' => 0, 'y' => 0, 'z' => -35], $itemsToDrop, []),
             new SkeletonWarrior(0, ['x' => 38, 'y' => 0, 'z' => -44], $itemsToDrop, []),
         ];
 
@@ -117,6 +121,7 @@ class Battleground extends AbstractScene
                 50
             )
         );
+        $this->randomSpecialItems = [];
     }
 
 }
