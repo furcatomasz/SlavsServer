@@ -63,7 +63,7 @@ class OnAttack extends AbstractEvent
                 $socketSessionData = $event->getSocketSessionData();
                 $roomId            = $socketSessionData->getActiveRoom()->getId();
                 $player            = $socketSessionData->getActivePlayer();
-                $playerEnergy      = $socketSessionData->getActivePlayer()->getStatistics()->getEnergy();
+                $playerEnergy      = $player->getStatistics()->getEnergy();
                 $scene             = $socketSessionData->getActiveRoom()->getActiveScene();
                 $monsterKey        = null;
 
@@ -99,19 +99,19 @@ class OnAttack extends AbstractEvent
 
                 $monster    = $socketSessionData->getActiveRoom()->getMonsters()[$monsterKey];
                 /** @var AbstractMonster $monster */
-                var_dump($monster->getAvailableAttacksFromCharacters());
                 foreach ($monster->getAvailableAttacksFromCharacters() as $attackedPlayerId => $isAttacked) {
                     if ($player->getId() == $attackedPlayerId) {
                         $randomDamage = random_int($player->getAllStatistics()->getDamageMin(), $player->getAllStatistics()->getDamageMax());
                         $damage = $randomDamage - $monster->getStatistics()->getArmor();
+                        if ($damage < 1) {
+                            $damage = 1;
+                        }
+
                         if($socketSessionData->getActiveSkill() && !$socketSessionData->getActiveSkill()->used) {
                             $socketSessionData->getActiveSkill()->useSkill($damage, $monster, $player);
                             $socketSessionData->setActiveSkill(null);
                         }
 
-                        if ($damage < 1) {
-                            $damage = 1;
-                        }
                         $monster->getStatistics()->setHp($monster->getStatistics()->getHp() - $damage);
 
                         $emitData = [

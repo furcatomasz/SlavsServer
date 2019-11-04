@@ -16,8 +16,8 @@ class StrongAttack extends AbstractSkill
     {
         $this->activeTime   = time();
         $this->duration     = 1;
-        $this->cooldownTime = 5;
-        $this->power        = 2;
+        $this->cooldownTime = 10;
+        $this->power        = 5;
         $this->instant      = false;
         $this->energy       = 5;
         $this->used         = false;
