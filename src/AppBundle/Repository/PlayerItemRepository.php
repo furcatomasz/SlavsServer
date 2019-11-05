@@ -26,7 +26,7 @@ class PlayerItemRepository extends AbstractRepository
 
     /**
      * @param Player $player
-     * @param int    $id
+     * @param int $id
      *
      * @return PlayerItem|object|null
      */
@@ -35,8 +35,23 @@ class PlayerItemRepository extends AbstractRepository
         return $this->findOneBy(
             [
                 'player' => $player,
-                'id'     => $id,
+                'id' => $id,
             ]
         );
+    }
+
+    /**
+     * @param Player $player
+     * @param bool $equiped
+     * @return ArrayCollection
+     */
+    public function findByPlayerId(Player $player, bool $equiped): ArrayCollection
+    {
+        return new ArrayCollection($this->findBy(
+            [
+                'player' => $player,
+                'equip' => $equiped,
+            ]
+        ));
     }
 }

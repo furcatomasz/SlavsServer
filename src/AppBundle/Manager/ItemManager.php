@@ -15,6 +15,8 @@ use JMS\DiExtraBundle\Annotation as DI;
 class ItemManager extends AbstractManager
 {
 
+    const MAX_ITEMS = 32;
+
     /**
      * @return EntityRepository|PlayerItemRepository
      */
@@ -52,6 +54,12 @@ class ItemManager extends AbstractManager
         }
 
         $this->update($itemToEquip->getEntity());
+    }
+
+    public function isPlayerHaveMaxItemsInInventory(Player $player) {
+        $nonEquipedItems = $this->getRepo()->findByPlayerId($player, false);
+
+        return $nonEquipedItems->count() >= self::MAX_ITEMS;
     }
 
 

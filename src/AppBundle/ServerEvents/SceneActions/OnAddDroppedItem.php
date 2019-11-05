@@ -8,9 +8,7 @@ use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\ServerSocket;
 use AppBundle\ServerEvents\AbstractEvent;
-use GameBundle\Items\AbstractItem;
 use GameBundle\Items\DropItem;
-use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 
 
@@ -50,15 +48,22 @@ class OnAddDroppedItem extends AbstractEvent
     public function registerEvent(Event $event): AbstractEvent
     {
         $socket = $event->getSocket();
-        $self   = $this;
+        $self = $this;
         $socket->on(
             'addDroppedItem',
             function ($itemKey) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $droppedItem      = DropItem::getDroppedItem($socketSessionData->getActiveRoom()->getActiveScene(), $itemKey);
-
+                $droppedItem = DropItem::getDroppedItem($socketSessionData->getActiveRoom()->getActiveScene(), $itemKey);
                 if ($droppedItem) {
-                    $player  = $socketSessionData->getActivePlayer();
+                    $player = $socketSessionData->getActivePlayer();
+
+                    if ($this->itemManager->isPlayerHaveMaxItemsInInventory($player)) {
+                        return $socket->emit('addDroppedItem', $self->serializer->normalize([
+                            'itemKey' => null
+                        ], 'array'));
+
+                    }
+
                     $newItem = $self->itemManager->create()
                         ->setPlayer($player)
                         ->setItemId($droppedItem->getItemId())
@@ -68,6 +73,9 @@ class OnAddDroppedItem extends AbstractEvent
                     $self->playerManager->refresh($socketSessionData->getActivePlayer());
 
                     $socket->emit('updatePlayerEquip', $self->serializer->normalize($socketSessionData, 'array'));
+                    $socket->emit('addDroppedItem', $self->serializer->normalize([
+                        'itemKey' => $itemKey
+                    ], 'array'));
                 }
             }
         );
