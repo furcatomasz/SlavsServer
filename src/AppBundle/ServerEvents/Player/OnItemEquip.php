@@ -57,6 +57,13 @@ class OnItemEquip extends AbstractEvent
                 $itemId            = $data['id'];
                 $item              = $self->itemManager->getRepo()->findbyPlayerAndId($player, $itemId);
 
+                if ($item->getEquip() && $this->itemManager->isPlayerHaveMaxItemsInInventory($player)) {
+                    return $socket->emit('addDroppedItem', $self->serializer->normalize([
+                        'itemKey' => null
+                    ], 'array'));
+
+                }
+
                 $self->itemManager->equipItem($player, ItemFactory::create($item));
 
                 $normalize = $self->serializer->normalize($socketSessionData, 'array');
