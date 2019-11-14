@@ -5,6 +5,7 @@ namespace GameBundle\Scenes;
 use AppBundle\Entity\PlayerItem;
 use GameBundle\BabylonObjects\Vector3;
 use GameBundle\Chests\WoodChest;
+use GameBundle\Gateways\EntraceBattleground;
 use GameBundle\Gateways\ForestHouseTombExit;
 use GameBundle\Items\Armors\LeatherArmor;
 use GameBundle\Items\Boots\LeatherBoots;
@@ -39,7 +40,9 @@ class Battleground extends AbstractScene
     public function __construct()
     {
         parent::__construct();
-        $this->gateways = [];
+        $this->gateways = [
+            new EntraceBattleground()
+        ];
         $this->chests   = [
             new WoodChest(
                 new Vector3(-19, 0, 20),

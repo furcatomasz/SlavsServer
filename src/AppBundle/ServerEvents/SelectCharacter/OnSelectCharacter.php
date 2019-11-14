@@ -31,8 +31,6 @@ class OnSelectCharacter extends AbstractEvent
      */
     public $playerManager;
 
-    public $socketPlayer = null;
-
     /**
      * @DI\Observe("connection.established.event")
      * @param Event|ConnectionEstablishedEvent $event
@@ -47,13 +45,16 @@ class OnSelectCharacter extends AbstractEvent
             'selectCharacter',
             function ($playerId) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
+                $player = 1;
+                //TODO: ROOMS
+                $roomName = (string) 'RoomTest';
+                $room = $self->socketIOServer->rooms->getRoom($roomName);
 
-                if(!$self->socketPlayer) {
-                    $self->socketPlayer = 2;
+                if($room && reset($room->getPlayers())->getActivePlayer()->getId() == 1) {
+                    $player = 2;
                 }
 
-                $activePlayer      = $self->playerManager->getRepo()->find($self->socketPlayer);
-                $self->socketPlayer -= 1;
+                $activePlayer      = $self->playerManager->getRepo()->find($player);
 //                $activePlayer      = $self->playerManager->getRepo()->find($playerId);
 
                 //Reset stats after login
@@ -61,9 +62,6 @@ class OnSelectCharacter extends AbstractEvent
                     $activePlayer->statistics = null;
                 }
 
-                //TODO: ROOMS
-                $roomName = (string) 'RoomTest';
-                $room = $self->socketIOServer->rooms->getRoom($roomName);
                 if(!$room) {
                     $room    = (new Room())
                         ->setId($roomName)

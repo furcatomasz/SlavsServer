@@ -11,6 +11,7 @@ use GameBundle\Monsters\AbstractMonster;
 use GameBundle\Rooms\Room;
 use GameBundle\Skills\Block;
 use Symfony\Component\EventDispatcher\Event;
+use JMS\DiExtraBundle\Annotation as DI;
 
 
 /**
@@ -35,10 +36,17 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                 /** @var Room $room */
                 $roomId = $data['roomId'];
                 $room = $self->socketIOServer->rooms->getRoom($roomId);
+                if(!$room) {
+                    return;
+                }
+                $enemy = $room->getMonsters()[$data['enemyKey']];
+                if(!$enemy) {
+                    return;
+                }
+
                 $attackIsDone = false;
 
                 /** @var AbstractMonster $enemy */
-                $enemy = $room->getMonsters()[$data['enemyKey']];
                 $enemy
                     ->setPosition($data['position'])
                     ->setTarget($data['target'])

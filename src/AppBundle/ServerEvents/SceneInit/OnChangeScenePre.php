@@ -6,6 +6,7 @@ namespace AppBundle\ServerEvents\SceneInit;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\ServerEvents\AbstractEvent;
+use AppBundle\Storage\SocketSessionData;
 use GameBundle\Scenes\Factory;
 use GameBundle\Scenes\SelectCharacter;
 use JMS\DiExtraBundle\Annotation as DI;
@@ -53,6 +54,11 @@ class OnChangeScenePre extends AbstractEvent
                     $room->setMonsters($scene->monsters);
 
                     $socket->emit('showPlayer', $playerSessionData);
+                    foreach($room->getPlayers() as $playerSession) {
+                        /** @var SocketSessionData $playerSession */
+                        $socket->emit('updatePlayer',  $self->serializer->normalize($playerSession, 'array'));
+                    };
+
                     $socket
                         ->in($socketSessionData->getActiveRoom()->getId())
                         ->emit('updatePlayer', $playerSessionData);

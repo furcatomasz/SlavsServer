@@ -163,7 +163,7 @@ class SocketSessionData
      *
      * @return SocketSessionData
      */
-    public function setTargetPoint(array $targetPoint): SocketSessionData
+    public function setTargetPoint(?array $targetPoint): SocketSessionData
     {
         $this->targetPoint = $targetPoint;
 
