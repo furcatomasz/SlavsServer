@@ -20,7 +20,7 @@ abstract class AbstractEvent
     public $socketIOServer;
 
     /**
-     * @var \JMS\Serializer\Serializer
+     * @var Serializer
      */
     protected $serializer;
 
