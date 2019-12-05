@@ -48,15 +48,15 @@ class OnAddAttribute extends AbstractEvent
     public function registerEvent(Event $event): AbstractEvent
     {
         $socket = $event->getSocket();
-        $self   = $this;
+        $self = $this;
         $socket->on(
             'addAttribute',
             function ($attribute) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $player            = $socketSessionData->getActivePlayer();
-                $type              = $attribute['type'];
+                $player = $socketSessionData->getActivePlayer();
+                $type = $attribute['type'];
 
-                if($player->getFreeAttributesPoints()) {
+                if ($player->getFreeAttributesPoints()) {
                     $self->playerAttributesManager->addAttribute($player->getAttributes(), $type);
 
                     $player->setFreeAttributesPoints($player->getFreeAttributesPoints() - 1);
@@ -64,7 +64,14 @@ class OnAddAttribute extends AbstractEvent
                         ->update($player)
                         ->refreshStatistics($player);
 
-                    $socket->emit('attributeAdded', $self->serializer->normalize($socketSessionData, 'array'));
+                    $socket->emit('attributeAdded', $self->serializer->normalize([
+                        'activePlayer' => [
+                            'freeAttributesPoints' => $socketSessionData->getActivePlayer()->getFreeAttributesPoints(),
+                            'statistics' => $socketSessionData->getActivePlayer()->getStatistics(),
+                            'allStatistics' => $socketSessionData->getActivePlayer()->getAllStatistics(),
+                            'attributes' => $socketSessionData->getActivePlayer()->getAttributes(),
+                        ]
+                    ], 'array'));
                 }
             }
         );

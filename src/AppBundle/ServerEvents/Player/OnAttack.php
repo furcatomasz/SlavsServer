@@ -193,14 +193,29 @@ class OnAttack extends AbstractEvent
                     }
 
                 }
-                $normalizedData = $self->serializer->normalize($socketSessionData, 'array');
-                $socket->emit('updatePlayer', $normalizedData);
+                $updatePlayerResponse = [
+                    'attack' => $socketSessionData->getAttack(),
+                    'targetPoint' => $socketSessionData->getTargetPoint(),
+                    'activePlayer' => [
+                        'id' => $socketSessionData->getActivePlayer()->getId(),
+                        'statistics' => [
+                            'hp' => $socketSessionData->getActivePlayer()->getStatistics()->getHp(),
+                            'energy' => $socketSessionData->getActivePlayer()->getStatistics()->getEnergy()
+                        ]
+                    ],
+                ];
+                $socket->emit('updatePlayer', $updatePlayerResponse);
                 $socket
                     ->in($roomId)
-                    ->emit('updatePlayer', $normalizedData);
+                    ->emit('updatePlayer', $updatePlayerResponse);
                 $socket
                     ->to($self->socketIOServer->monsterServerId)
-                    ->emit('updatePlayer', $normalizedData);
+                    ->emit('updatePlayer', [
+                        'activePlayerId' => $socketSessionData->getActivePlayer()->getId(),
+                        'activePlayerAttack' => $socketSessionData->getAttack(),
+                        'activeRoomId' => $socketSessionData->getActiveRoom()->getId(),
+                        'targetPoint' => $socketSessionData->getTargetPoint()
+                    ]);
 
                 $socketSessionData
                     ->setAttack(null);

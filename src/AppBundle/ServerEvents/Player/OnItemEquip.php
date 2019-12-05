@@ -8,8 +8,8 @@ use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\ServerSocket;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Items\ItemFactory;
-use Symfony\Component\EventDispatcher\Event;
 use JMS\DiExtraBundle\Annotation as DI;
+use Symfony\Component\EventDispatcher\Event;
 
 
 /**
@@ -48,29 +48,40 @@ class OnItemEquip extends AbstractEvent
     public function registerEvent(Event $event): AbstractEvent
     {
         $socket = $event->getSocket();
-        $self   = $this;
+        $self = $this;
         $socket->on(
             'itemEquip',
             function ($data) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $player            = $socketSessionData->getActivePlayer();
-                $itemId            = $data['id'];
-                $item              = $self->itemManager->getRepo()->findbyPlayerAndId($player, $itemId);
+                $player = $socketSessionData->getActivePlayer();
+                $itemId = $data['id'];
+                $item = $self->itemManager->getRepo()->findbyPlayerAndId($player, $itemId);
 
                 if ($item->getEquip() && $this->itemManager->isPlayerHaveMaxItemsInInventory($player)) {
-                    return $socket->emit('addDroppedItem', $self->serializer->normalize([
+                    return $socket->emit('addDroppedItem', [
                         'itemKey' => null
-                    ], 'array'));
+                    ]);
 
                 }
 
                 $self->itemManager->equipItem($player, ItemFactory::create($item));
 
-                $normalize = $self->serializer->normalize($socketSessionData, 'array');
-                $socket->emit('updatePlayerEquip', $normalize);
+                $collection = $socketSessionData->getActivePlayer()->getItems();
+                $updatePlayerEquipResponse = $self->serializer->normalize([
+                    'activePlayer' => [
+                        'id' => $socketSessionData->getActivePlayer()->getId(),
+                        'statistics' => $socketSessionData->getActivePlayer()->getStatistics(),
+                        'allStatistics' => $socketSessionData->getActivePlayer()->getAllStatistics(),
+                        'attributes' => $socketSessionData->getActivePlayer()->getAttributes(),
+                        'items' => $collection,
+                    ]
+                ], 'array');
+                var_dump(4);
+
+                $socket->emit('updatePlayerEquip', $updatePlayerEquipResponse);
                 $socket
                     ->in($socketSessionData->getActiveRoom()->getId())
-                    ->emit('updatePlayerEquip', $normalize);
+                    ->emit('updatePlayerEquip', $updatePlayerEquipResponse);
 
 
             }

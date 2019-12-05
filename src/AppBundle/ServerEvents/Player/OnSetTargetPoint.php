@@ -24,22 +24,35 @@ class OnSetTargetPoint extends AbstractEvent
     public function registerEvent(Event $event): AbstractEvent
     {
         $socket = $event->getSocket();
-        $self   = $this;
+        $self = $this;
         $socket->on(
             'setTargetPoint',
             function ($data) use ($self, $event, $socket) {
-
                 $socketSessionData = $event->getSocketSessionData();
                 $socketSessionData
                     ->setAttack(null)
                     ->setTargetPoint($data['position']);
-                $emitData = $self->serializer->normalize($socketSessionData, 'array');
 
-                $socket->to($self->socketIOServer->monsterServerId)->emit('updatePlayer', $emitData);
+                $socket->to($self->socketIOServer->monsterServerId)->emit('updatePlayer', [
+                    'activePlayerId' => $socketSessionData->getActivePlayer()->getId(),
+                    'activePlayerAttack' => $socketSessionData->getAttack(),
+                    'activeRoomId' => $socketSessionData->getActiveRoom()->getId(),
+                    'targetPoint' => $socketSessionData->getTargetPoint()
+                ]);
+
                 $socket
                     ->in($socketSessionData->getActiveRoom()->getId())
-                    ->emit('updatePlayer', $emitData);
-
+                    ->emit('updatePlayer', [
+                        'attack' => $socketSessionData->getAttack(),
+                        'targetPoint' => $socketSessionData->getTargetPoint(),
+                        'activePlayer' => [
+                            'id' => $socketSessionData->getActivePlayer()->getId(),
+                            'statistics' => [
+                                'hp' => $socketSessionData->getActivePlayer()->getStatistics()->getHp(),
+                                'energy' => $socketSessionData->getActivePlayer()->getStatistics()->getEnergy()
+                            ]
+                        ],
+                    ]);
             }
         );
 

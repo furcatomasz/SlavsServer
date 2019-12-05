@@ -7,6 +7,9 @@ use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Serializer\Serializer;
 use JMS\DiExtraBundle\Annotation as DI;
 
+/**
+ * @DI\Service()
+ */
 abstract class AbstractEvent
 {
     /**
@@ -17,7 +20,7 @@ abstract class AbstractEvent
     public $socketIOServer;
 
     /**
-     * @var Serializer
+     * @var \JMS\Serializer\Serializer
      */
     protected $serializer;
 

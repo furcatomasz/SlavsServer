@@ -41,14 +41,14 @@ class Player
     protected $attributes;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerSpecialItems", mappedBy="player", fetch="EAGER", orphanRemoval=true, cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerSpecialItems", mappedBy="player", fetch="EXTRA_LAZY", orphanRemoval=true, cascade={"remove"})
      *
      * @var Collection|PlayerSpecialItems
      */
     protected $specialItems;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerItem", mappedBy="player", fetch="EAGER", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerItem", mappedBy="player", fetch="EXTRA_LAZY", cascade={"remove"})
      *
      * @var Collection|PlayerItem
      */

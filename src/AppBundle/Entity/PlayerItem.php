@@ -2,7 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Annotations\Annotation\IgnoreAnnotation;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PlayerItemRepository")
@@ -19,6 +22,7 @@ class PlayerItem
     protected $id;
     /**
      **
+     * @Groups({"all"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Player", inversedBy="items")
      *
      * @var Player

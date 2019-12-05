@@ -53,7 +53,6 @@ class OnSelectCharacter extends AbstractEvent
                 if($room && reset($room->getPlayers())->getActivePlayer()->getId() == 1) {
                     $player = 2;
                 }
-
                 $activePlayer      = $self->playerManager->getRepo()->find($player);
 //                $activePlayer      = $self->playerManager->getRepo()->find($playerId);
 
@@ -74,6 +73,8 @@ class OnSelectCharacter extends AbstractEvent
                         ->emit('createRoom', $room->getId());
                     $newSceneType = ForestHouseStart::TYPE;
                     $newSceneType = Battleground::TYPE;
+//                    $newSceneType = ForestHouse::TYPE;
+
                 } else {
                     $newPlayerList = $room->getPlayers();
                     $newPlayerList[$activePlayer->getId()] = $socketSessionData;

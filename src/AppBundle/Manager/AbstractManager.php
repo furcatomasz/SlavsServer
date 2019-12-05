@@ -6,6 +6,9 @@ use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManager;
 use JMS\DiExtraBundle\Annotation as DI;
 
+/**
+ * @DI\Service("manager.abstract")
+ */
 abstract class AbstractManager
 {
 

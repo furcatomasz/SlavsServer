@@ -77,7 +77,17 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                     $player->getStatistics()->setHp($player->getStatistics()->getHp() - $damage);
                     $socket
                         ->to($roomId)
-                        ->emit('updatePlayer', $self->serializer->normalize($playerSession, 'array'));
+                        ->emit('updatePlayer', [
+                            'attack' => $playerSession->getAttack(),
+                            'targetPoint' => $playerSession->getTargetPoint(),
+                            'activePlayer' => [
+                                'id' => $playerSession->getActivePlayer()->getId(),
+                                'statistics' => [
+                                    'hp' => $playerSession->getActivePlayer()->getStatistics()->getHp(),
+                                    'energy' => $playerSession->getActivePlayer()->getStatistics()->getEnergy()
+                                ]
+                            ],
+                        ]);
                 }
 
                 //emit for update enemy

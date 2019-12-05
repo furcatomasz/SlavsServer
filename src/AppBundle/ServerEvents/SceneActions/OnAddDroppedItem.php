@@ -10,7 +10,7 @@ use AppBundle\Server\ServerSocket;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Items\DropItem;
 use Symfony\Component\EventDispatcher\Event;
-
+use JMS\DiExtraBundle\Annotation as DI;
 
 /**
  * @DI\Service
@@ -58,10 +58,9 @@ class OnAddDroppedItem extends AbstractEvent
                     $player = $socketSessionData->getActivePlayer();
 
                     if ($this->itemManager->isPlayerHaveMaxItemsInInventory($player)) {
-                        return $socket->emit('addDroppedItem', $self->serializer->normalize([
+                        return $socket->emit('addDroppedItem', [
                             'itemKey' => null
-                        ], 'array'));
-
+                        ]);
                     }
 
                     $newItem = $self->itemManager->create()
@@ -69,13 +68,22 @@ class OnAddDroppedItem extends AbstractEvent
                         ->setItemId($droppedItem->getItemId())
                         ->setEquip(0)
                         ->setImprovement($droppedItem->getImprovement());
+
                     $self->itemManager->update($newItem);
                     $self->playerManager->refresh($socketSessionData->getActivePlayer());
 
-                    $socket->emit('updatePlayerEquip', $self->serializer->normalize($socketSessionData, 'array'));
-                    $socket->emit('addDroppedItem', $self->serializer->normalize([
-                        'itemKey' => $itemKey
+                    $socket->emit('updatePlayerEquip', $self->serializer->normalize([
+                        'activePlayer' => [
+                            'id' => $socketSessionData->getActivePlayer()->getId(),
+                            'statistics' => $socketSessionData->getActivePlayer()->getStatistics(),
+                            'allStatistics' => $socketSessionData->getActivePlayer()->getAllStatistics(),
+                            'attributes' => $socketSessionData->getActivePlayer()->getAttributes(),
+                            'items' => $socketSessionData->getActivePlayer()->getItems(),
+                        ]
                     ], 'array'));
+                    $socket->emit('addDroppedItem', [
+                        'itemKey' => $itemKey
+                    ]);
                 }
             }
         );

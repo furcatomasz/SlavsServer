@@ -45,8 +45,7 @@ class OnUpdatePlayerPosition extends AbstractEvent
                 }
 
                 /** @var SocketSessionData $player */
-                $player
-                    ->setPosition($position);
+                $player->setPosition($position);
 
             }
         );

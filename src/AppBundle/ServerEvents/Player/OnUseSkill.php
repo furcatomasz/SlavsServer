@@ -9,7 +9,6 @@ use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\Server\ServerSocket;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Skills\Factory;
-use GameBundle\Skills\Heal;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -50,34 +49,42 @@ class OnUseSkill extends AbstractEvent
     public function registerEvent(Event $event): AbstractEvent
     {
         $socket = $event->getSocket();
-        $self   = $this;
+        $self = $this;
         $socket->on(
             'useSkill',
             function ($skillType) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $playerEnergy      = $socketSessionData->getActivePlayer()->getStatistics()->getEnergy();
-                $skill             = ($skillType) ? Factory::getSkillByType($skillType) : null;
+                $playerEnergy = $socketSessionData->getActivePlayer()->getStatistics()->getEnergy();
+                $skill = ($skillType) ? Factory::getSkillByType($skillType) : null;
                 if ($playerEnergy - $skill->energy >= 0) {
-                        $socketSessionData
-                            ->setActiveSkill($skill)
-                            ->setAttack(null)
-                            ->getActivePlayer()->getStatistics()->setEnergy($playerEnergy - $skill->energy);
+                    $socketSessionData
+                        ->setActiveSkill($skill)
+                        ->setAttack(null)
+                        ->getActivePlayer()->getStatistics()->setEnergy($playerEnergy - $skill->energy);
 
-                    $normalizedData = $self->serializer->normalize($socketSessionData, 'array');
-                    if($skill->getType() == Heal::TYPE) {
-                            $damage = 0;
-                            $skill->useSkill($damage, null, $socketSessionData->getActivePlayer());
-                        $socket->emit('updatePlayer', $normalizedData);
-                        $socket
-                            ->broadcast
-                            ->in($socketSessionData->getActiveRoom()->getId())
-                            ->emit('updatePlayer', $normalizedData);
-                    }
+//                    if($skill->getType() == Heal::TYPE) {
+//                            $damage = 0;
+//                            $skill->useSkill($damage, null, $socketSessionData->getActivePlayer());
+//                        $socket->emit('updatePlayer', $normalizedData);
+//                        $socket
+//                            ->broadcast
+//                            ->in($socketSessionData->getActiveRoom()->getId())
+//                            ->emit('updatePlayer', $normalizedData);
+//                    }
 
-                    $socket->emit('updatePlayerSkill', $normalizedData);
+                    $updatePlayerSkillResponse = [
+                        'activePlayer' => [
+                            'id' => $socketSessionData->getActivePlayer()->getId(),
+                            'statistics' => [
+                                'energy' => $socketSessionData->getActivePlayer()->getStatistics()->getEnergy()
+                            ]
+                        ],
+                        'activeSkill' => $self->serializer->normalize($socketSessionData->getActiveSkill(), 'array')
+                    ];
+                    $socket->emit('updatePlayerSkill', $updatePlayerSkillResponse);
                     $socket
                         ->in($socketSessionData->getActiveRoom()->getId())
-                        ->emit('updatePlayerSkill', $normalizedData);
+                        ->emit('updatePlayerSkill', $updatePlayerSkillResponse);
                 }
             }
         );
