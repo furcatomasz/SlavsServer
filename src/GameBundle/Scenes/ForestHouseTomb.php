@@ -19,7 +19,7 @@ class ForestHouseTomb extends AbstractScene
         'z' => 0,
     ];
 
-    /**createEnemies
+    /**
      * AbstractScene constructor.
      */
     public function __construct()

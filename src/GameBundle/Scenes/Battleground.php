@@ -34,7 +34,7 @@ class Battleground extends AbstractScene
         'z' => 0,
     ];
 
-    /**createEnemies
+    /**
      * AbstractScene constructor.
      */
     public function __construct()

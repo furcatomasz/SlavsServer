@@ -68,6 +68,7 @@ class OnChangeScenePre extends AbstractEvent
                         ->emit(
                             'createEnemies',
                             [
+                                'sceneType' => $scene::TYPE,
                                 'enemies' => $self->serializer->normalize($room->getMonsters(), 'array'),
                                 'roomId'  => $room->getId()
                             ]
