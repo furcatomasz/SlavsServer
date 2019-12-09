@@ -3,8 +3,8 @@
 namespace AppBundle\ServerEvents;
 
 use AppBundle\Server\ServerSocket;
+use JMS\Serializer\Serializer;
 use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\Serializer\Serializer;
 use JMS\DiExtraBundle\Annotation as DI;
 
 /**
@@ -20,17 +20,11 @@ abstract class AbstractEvent
     public $socketIOServer;
 
     /**
+     * @DI\Inject("jms_serializer")
+     *
      * @var Serializer
      */
-    protected $serializer;
-
-    /**
-     * AbstractEvent constructor.
-     */
-    public function __construct()
-    {
-        $this->serializer = \AppBundle\Helper\Serializer::getSerializerWithNormalizer();
-    }
+    public $serializer;
 
     /**
      * @param Event $event

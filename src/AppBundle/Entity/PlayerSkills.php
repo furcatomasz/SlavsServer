@@ -17,8 +17,11 @@ class PlayerSkills
      * @var int
      */
     protected $id;
+
     /**
      **
+     * @Serializer\Exclude()
+     *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Player", inversedBy="skills")
      *
      * @var Player

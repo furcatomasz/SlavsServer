@@ -19,6 +19,7 @@ class PlayerSpecialItems
     protected $id;
 
     /**
+     * @Serializer\Exclude()
      **
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Player", inversedBy="specialItems")
      *

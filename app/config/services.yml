@@ -1,3 +1,19 @@
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
-parameters:
+services:
+  array_serialization_visitor:
+    class: AppBundle\Helper\ArraySerializationVisitor
+    arguments:
+      - '@jms_serializer.naming_strategy'
+      - '@jms_serializer.accessor_strategy'
+    tags:
+      - { name: 'jms_serializer.serialization_visitor', format: 'array' }
+
+#  <service id="jms_serializer.json_serialization_visitor" class="%jms_serializer.json_serialization_visitor.class%" public="true">
+#  <argument type="service" id="jms_serializer.naming_strategy" />
+#  <argument type="service" id="jms_serializer.accessor_strategy"/>
+#  <call method="setOptions">
+#  <argument>%jms_serializer.json_serialization_visitor.options%</argument>
+#  </call>
+#  <tag name="jms_serializer.serialization_visitor" format="json" />
+#  </service>

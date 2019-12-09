@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle(),
             new JMS\AopBundle\JMSAopBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
             new GameBundle\GameBundle(),
             new \FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),

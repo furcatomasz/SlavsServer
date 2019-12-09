@@ -17,7 +17,7 @@ class Sword extends Weapon
      * @param PlayerItem|null $entity
      * @param Int             $improvement
      */
-    public function __construct(?PlayerItem $entity = null, Int $improvement = 0)
+    public function __construct(?PlayerItem $entity = null, int $improvement = 0)
     {
         parent::__construct($entity);
         $itemImprovement = ($entity) ? $entity->getImprovement() : $improvement;
