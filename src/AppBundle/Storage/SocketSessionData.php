@@ -6,6 +6,7 @@ use AppBundle\Entity\Player;
 use GameBundle\Rooms\Room;
 use GameBundle\Scenes\AbstractScene;
 use GameBundle\Skills\AbstractSkill;
+use JMS\Serializer\Annotation as Serializer;
 use UserBundle\Entity\User;
 
 class SocketSessionData

@@ -9,6 +9,8 @@ use GameBundle\Items\AbstractItem;
 use GameBundle\Items\ItemFactory;
 use GameBundle\Lvls\Lvls;
 use GameBundle\Statistics\Statistics;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Trait PlayerTrait
@@ -20,6 +22,8 @@ use GameBundle\Statistics\Statistics;
 trait PlayerTrait
 {
     /**
+     * @Serializer\Accessor(getter="getStatistics")
+     *
      * @var Statistics
      */
     public $statistics;
@@ -47,6 +51,8 @@ trait PlayerTrait
     }
 
     /**
+     * @Serializer\VirtualProperty()
+     *
      * @return Statistics
      */
     public function getAllStatistics(): Statistics

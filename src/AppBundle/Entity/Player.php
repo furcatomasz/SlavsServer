@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\Collection;
 use GameBundle\Player\PlayerTrait;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use UserBundle\Entity\User;
 
 /**
@@ -23,6 +24,8 @@ class Player
     protected $id;
 
     /**
+     * @Serializer\Exclude()
+     *
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      *
      * @var User
@@ -37,6 +40,8 @@ class Player
     protected $attributes;
 
     /**
+     * @Serializer\Type("array")
+     *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerSpecialItems", mappedBy="player", fetch="EXTRA_LAZY", orphanRemoval=true, cascade={"remove"})
      *
      * @var Collection|PlayerSpecialItems
@@ -44,6 +49,9 @@ class Player
     protected $specialItems;
 
     /**
+     * @Serializer\Type("array")
+     * @Serializer\Accessor(getter="getItems")
+     *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerItem", mappedBy="player", fetch="EXTRA_LAZY", cascade={"remove"})
      *
      * @var Collection|PlayerItem
@@ -303,7 +311,7 @@ class Player
     /**
      * @return Collection|PlayerSpecialItems
      */
-    public function getSpecialItems(): Collection
+    public function getSpecialItems()
     {
         return $this->specialItems;
     }
