@@ -32,11 +32,11 @@ class OnChangeScenePost extends AbstractEvent
 
                 $socket->to($self->socketIOServer->monsterServerId)->emit(
                     'showPlayer',
-                    $self->serializer->normalize($socketSessionData, 'array')
+                    $self->serializer->serialize($socketSessionData, 'array')
                 );
                 $socket->emit(
                     'showEnemies',
-                    $self->serializer->normalize($monsters, 'array')
+                    $self->serializer->serialize($monsters, 'array')
                 );
 
             }

@@ -64,7 +64,7 @@ class OnCharacterCreate extends AbstractEvent
                         $players = $self->playerManager->getRepo()->findByUser($user);
                     }
 
-                    $playersNormalized = $self->serializer->normalize($players, 'array');
+                    $playersNormalized = $self->serializer->serialize($players, 'array');
                     $socket->emit('showPlayersToSelect', $playersNormalized);
                 }
             }

@@ -44,8 +44,8 @@ class OnAccepctQuest extends AbstractEvent
                 $socket->emit(
                     'refreshQuests',
                     [
-                        'quests'      => $self->serializer->normalize($scene->quests, 'array'),
-                        'activeQuest' => $self->serializer->normalize($selectedQuest, 'array'),
+                        'quests'      => $self->serializer->serialize($scene->quests, 'array'),
+                        'activeQuest' => $self->serializer->serialize($selectedQuest, 'array'),
                     ]
                 );
 
@@ -54,8 +54,8 @@ class OnAccepctQuest extends AbstractEvent
                     ->emit(
                     'refreshQuests',
                     [
-                        'quests'      => $self->serializer->normalize($scene->quests, 'array'),
-                        'activeQuest' => $self->serializer->normalize($selectedQuest, 'array'),
+                        'quests'      => $self->serializer->serialize($scene->quests, 'array'),
+                        'activeQuest' => $self->serializer->serialize($selectedQuest, 'array'),
                     ]
                 );
             }

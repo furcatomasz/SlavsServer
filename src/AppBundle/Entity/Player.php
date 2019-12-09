@@ -3,13 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
-use GameBundle\Items\AbstractItem;
-use GameBundle\Items\ItemFactory;
-use GameBundle\Lvls\Lvls;
 use GameBundle\Player\PlayerTrait;
-use GameBundle\Statistics\Statistics;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 use UserBundle\Entity\User;
 
 /**

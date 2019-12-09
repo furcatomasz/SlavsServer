@@ -67,7 +67,7 @@ class OnItemEquip extends AbstractEvent
                 $self->itemManager->equipItem($player, ItemFactory::create($item));
 
                 $collection = $socketSessionData->getActivePlayer()->getItems();
-                $updatePlayerEquipResponse = $self->serializer->normalize([
+                $updatePlayerEquipResponse = $self->serializer->serialize([
                     'activePlayer' => [
                         'id' => $socketSessionData->getActivePlayer()->getId(),
                         'statistics' => $socketSessionData->getActivePlayer()->getStatistics(),

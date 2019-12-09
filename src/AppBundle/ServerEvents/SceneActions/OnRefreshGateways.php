@@ -35,7 +35,7 @@ class OnRefreshGateways extends AbstractEvent
 
                 $socket->emit(
                     'refreshGateways',
-                    $self->serializer->normalize($scene, 'array')
+                    $self->serializer->serialize($scene, 'array')
                 );
 
             }

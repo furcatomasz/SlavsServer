@@ -35,8 +35,8 @@ class OnRefreshQuests extends AbstractEvent
                 $socket->emit(
                     'refreshQuests',
                     [
-                        'quests'      => $self->serializer->normalize($scene->quests, 'array'),
-                        'activeQuest' => $self->serializer->normalize($socketSessionData->getActiveRoom()->getActiveQuest(), 'array'),
+                        'quests'      => $self->serializer->serialize($scene->quests, 'array'),
+                        'activeQuest' => $self->serializer->serialize($socketSessionData->getActiveRoom()->getActiveQuest(), 'array'),
                     ]
                 );
 

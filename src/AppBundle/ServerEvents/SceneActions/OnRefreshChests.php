@@ -34,7 +34,7 @@ class OnRefreshChests extends AbstractEvent
 
                 $socket->emit(
                     'refreshChests',
-                    $self->serializer->normalize($scene->chests, 'array')
+                    $self->serializer->serialize($scene->chests, 'array')
                 );
             }
         );

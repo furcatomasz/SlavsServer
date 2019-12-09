@@ -77,14 +77,14 @@ class OnOpenChest extends AbstractEvent
 
                 $chest->openChest($player, $self->managerSpecialItem);
                 $chestData = [
-                    'chest'    => $self->serializer->normalize($chest, 'array'),
+                    'chest'    => $self->serializer->serialize($chest, 'array'),
                     'chestKey' => $chestKey
                 ];
                 if ($chest->opened) {
                     foreach($chest->awards as $award) {
                         if($award instanceof AbstractItem) {
                             $socket->emit('showDroppedItem', [
-                                'item' => $self->serializer->normalize($award, 'array'),
+                                'item' => $self->serializer->serialize($award, 'array'),
                                 'itemKey' => DropItem::addDropItemToScene($scene, $award),
                                 'position' => $chest->awardsPosition
                             ]);

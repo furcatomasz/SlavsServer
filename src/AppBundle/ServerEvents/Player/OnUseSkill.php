@@ -79,7 +79,7 @@ class OnUseSkill extends AbstractEvent
                                 'energy' => $socketSessionData->getActivePlayer()->getStatistics()->getEnergy()
                             ]
                         ],
-                        'activeSkill' => $self->serializer->normalize($socketSessionData->getActiveSkill(), 'array')
+                        'activeSkill' => $self->serializer->serialize($socketSessionData->getActiveSkill(), 'array')
                     ];
                     $socket->emit('updatePlayerSkill', $updatePlayerSkillResponse);
                     $socket

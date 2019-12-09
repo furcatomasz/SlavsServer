@@ -40,13 +40,13 @@ class OnChangeScenePre extends AbstractEvent
             'changeScenePre',
             function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $playerSessionData = $self->serializer->normalize($socketSessionData, 'array');
+                $playerSessionData = $self->serializer->serialize($socketSessionData, 'array');
                 $scene             = $socketSessionData->getActiveRoom()->getActiveScene();
 
                 if ($scene::TYPE == SelectCharacter::TYPE) {
                     $user              = $socketSessionData->getUser();
                     $players           = $self->playerManager->getRepo()->findByUser($user);
-                    $playersNormalized = $self->serializer->normalize($players, 'array');
+                    $playersNormalized = $self->serializer->serialize($players, 'array');
 
                     $socket->emit('showPlayersToSelect', $playersNormalized);
                 } else {
@@ -56,7 +56,7 @@ class OnChangeScenePre extends AbstractEvent
                     $socket->emit('showPlayer', $playerSessionData);
                     /** @var SocketSessionData $playerSession */
                     foreach($room->getPlayers() as $playerSession) {
-                        $remotePlayerSessionData = $self->serializer->normalize($playerSession, 'array');
+                        $remotePlayerSessionData = $self->serializer->serialize($playerSession, 'array');
                         $socket->emit('showRoomPlayer', $remotePlayerSessionData);
                         $socket
                             ->in($socketSessionData->getActiveRoom()->getId())
@@ -69,7 +69,7 @@ class OnChangeScenePre extends AbstractEvent
                             'createEnemies',
                             [
                                 'sceneType' => $scene::TYPE,
-                                'enemies' => $self->serializer->normalize($room->getMonsters(), 'array'),
+                                'enemies' => $self->serializer->serialize($room->getMonsters(), 'array'),
                                 'roomId'  => $room->getId()
                             ]
                         );

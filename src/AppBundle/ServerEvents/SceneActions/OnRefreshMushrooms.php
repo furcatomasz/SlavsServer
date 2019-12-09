@@ -34,7 +34,7 @@ class OnRefreshMushrooms extends AbstractEvent
 
                 $socket->emit(
                     'refreshRandomSpecialItems',
-                    $self->serializer->normalize($scene->randomSpecialItems, 'array')
+                    $self->serializer->serialize($scene->randomSpecialItems, 'array')
                 );
             }
         );

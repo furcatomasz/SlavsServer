@@ -115,7 +115,7 @@ class OnAttack extends AbstractEvent
                         $monster->getStatistics()->setHp($monster->getStatistics()->getHp() - $damage);
 
                         $emitData = [
-                            'enemy'    => $self->serializer->normalize($monster),
+                            'enemy'    => $self->serializer->serialize($monster),
                             'enemyKey' => $monsterKey,
                             'roomId'   => $roomId,
                         ];
@@ -151,7 +151,7 @@ class OnAttack extends AbstractEvent
                                 $chance      = $randomItem['chance'];
                                 if (random_int(1, 100) < $chance) {
                                     $showDroppedItemData = [
-                                        'item'     => $self->serializer->normalize($droppedItem, 'array'),
+                                        'item'     => $self->serializer->serialize($droppedItem, 'array'),
                                         'itemKey'  => DropItem::addDropItemToScene($scene, $droppedItem),
                                         'position' => $monster->getPosition(),
                                     ];
@@ -182,8 +182,8 @@ class OnAttack extends AbstractEvent
                                 if($quest->isFinished) {
                                     $socketSessionData->getActiveRoom()->setActiveQuest(new SkeletonCamp());
                                     $questData = [
-                                        'quests'      => $self->serializer->normalize($scene->quests, 'array'),
-                                        'activeQuest' => $self->serializer->normalize($socketSessionData->getActiveRoom()->getActiveQuest(), 'array'),
+                                        'quests'      => $self->serializer->serialize($scene->quests, 'array'),
+                                        'activeQuest' => $self->serializer->serialize($socketSessionData->getActiveRoom()->getActiveQuest(), 'array'),
                                     ];
                                     $socket->emit('refreshQuests', $questData);
                                     $socket->in($roomId)->emit('refreshQuests', $questData);

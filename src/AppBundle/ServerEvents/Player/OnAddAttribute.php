@@ -64,7 +64,7 @@ class OnAddAttribute extends AbstractEvent
                         ->update($player)
                         ->refreshStatistics($player);
 
-                    $socket->emit('attributeAdded', $self->serializer->normalize([
+                    $socket->emit('attributeAdded', $self->serializer->serialize([
                         'activePlayer' => [
                             'freeAttributesPoints' => $socketSessionData->getActivePlayer()->getFreeAttributesPoints(),
                             'statistics' => $socketSessionData->getActivePlayer()->getStatistics(),

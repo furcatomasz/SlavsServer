@@ -97,6 +97,9 @@ class ArraySerializationVisitor extends GenericSerializationVisitor
 
         $isList = isset($type['params'][0]) && !isset($type['params'][1]);
 
+        if(!is_array($data))
+            return;
+
         foreach ($data as $k => $v) {
             $v = $this->navigator->accept($v, $this->getElementType($type), $context);
 

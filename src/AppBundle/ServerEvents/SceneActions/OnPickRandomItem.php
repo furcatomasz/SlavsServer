@@ -83,11 +83,11 @@ class OnPickRandomItem extends AbstractEvent
                 $socket->emit('addSpecialItem', $randomSpecialItem->getSpecialItem());
                 $socket->emit(
                     'refreshRandomSpecialItems',
-                    $self->serializer->normalize($scene->randomSpecialItems, 'array')
+                    $self->serializer->serialize($scene->randomSpecialItems, 'array')
                 );
                 $socket
                     ->in($socketSessionData->getActiveRoom()->getId())
-                    ->emit('refreshRandomSpecialItems', $self->serializer->normalize($scene->randomSpecialItems, 'array'));
+                    ->emit('refreshRandomSpecialItems', $self->serializer->serialize($scene->randomSpecialItems, 'array'));
             }
         );
 

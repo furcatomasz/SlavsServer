@@ -96,7 +96,7 @@ class OnSetEnemyTargetPoint extends AbstractEvent
                     ->emit(
                         'updateEnemy',
                         [
-                            'enemy' => $self->serializer->normalize($enemy, 'array'),
+                            'enemy' => $self->serializer->serialize($enemy, 'array'),
                             'collisionEvent' => $data['collisionEvent'],
                             'enemyKey' => $data['enemyKey'],
                             'attackIsDone' => $attackIsDone,

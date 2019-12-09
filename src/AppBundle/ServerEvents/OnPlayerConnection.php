@@ -74,7 +74,7 @@ class OnPlayerConnection extends AbstractEvent
                         ->setMonsterServerId($event->getMonsterServerId())
                         ->setUser($user);
 
-                    $playerSessionData = $this->serializer->normalize($playerSession, 'array');
+                    $playerSessionData = $this->serializer->serialize($playerSession, 'array');
 
                     $socket->emit('clientConnected', $playerSessionData);
                 }
