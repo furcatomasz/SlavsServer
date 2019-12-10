@@ -4,6 +4,7 @@ namespace GameBundle\Player;
 
 use AppBundle\Entity\PlayerAttributes;
 use AppBundle\Entity\PlayerItem;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use GameBundle\Items\AbstractItem;
 use GameBundle\Items\ItemFactory;
@@ -87,6 +88,10 @@ trait PlayerTrait
      */
     public function getItems(): Collection
     {
+        if($this->items == null) {
+            return new ArrayCollection();
+        }
+
         return $this->items->map(
             function (PlayerItem $playerItem) {
                 return ItemFactory::create($playerItem);

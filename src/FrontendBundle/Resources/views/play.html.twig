@@ -99,38 +99,37 @@
         </div>
     </div>
     <canvas id="renderCanvas"></canvas>
+    <script src="{{ asset('bundles/frontend/js/vendors.bundle.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/main.bundle.js') }}"></script>
 
-    <script src="{{ asset('bundles/frontend/js/babylon/babylon.js') }}"></script>
-    <script src="{{ asset('bundles/frontend/js/babylon/babylon.inspector.bundle.js') }}"></script>
-    <script src="{{ asset('bundles/frontend/js/babylon/babylon.gui.min.js') }}"></script>
-    <script src="{{ asset('bundles/frontend/js/babylon/materialsLibrary/babylon.terrainMaterial.min.js') }}"></script>
-    <script src="{{ asset('bundles/frontend/js/socket.io.js') }}"></script>
-    {% if mobile %}
-    <script src="{{ asset('bundles/frontend/js/game/slavsMobile.js') }}"></script>
-    {% else %}
-    <script src="{{ asset('bundles/frontend/js/game/slavs.js') }}"></script>
-    {% endif %}
+{#    {% if mobile %}#}
+{#    <script src="{{ asset('bundles/frontend/js/game/slavsMobile.js') }}"></script>#}
+{#    {% else %}#}
+{#    <script src="{{ asset('bundles/frontend/js/game/slavs.js') }}"></script>#}
+{#    {% endif %}#}
+
 
     <script>
         let SESSION_TOKEN = '{{ sessionToken }}';
-
-        {% if debug %}
-        let DEBUG = true;
-        {% else %}
-        let DEBUG = false;
-        {% endif %}
-
-        document.onreadystatechange = () => {
-            if (document.readyState === 'complete') {
-                if (BABYLON.Engine.isSupported()) {
-                    let htmlElement = document.getElementById('renderCanvas');
-                    let serverUrl = window.location.hostname+':5000';
-                    document.getElementsByTagName("body")[0].setAttribute("oncontextmenu", "return false");
-
-                    new Game(htmlElement, serverUrl, SESSION_TOKEN, false, DEBUG);
-                }
-            }
-        }
     </script>
+
+{#        {% if debug %}#}
+{#        let DEBUG = true;#}
+{#        {% else %}#}
+{#        let DEBUG = false;#}
+{#        {% endif %}#}
+
+{#        document.onreadystatechange = () => {#}
+{#            if (document.readyState === 'complete') {#}
+{#                if (BABYLON.Engine.isSupported()) {#}
+{#                    let htmlElement = document.getElementById('renderCanvas');#}
+{#                    let serverUrl = window.location.hostname+':5000';#}
+{#                    document.getElementsByTagName("body")[0].setAttribute("oncontextmenu", "return false");#}
+
+{#                    new Game(htmlElement, serverUrl, SESSION_TOKEN, false, DEBUG);#}
+{#                }#}
+{#            }#}
+{#        }#}
+{#    </script>#}
 </body>
 </html>

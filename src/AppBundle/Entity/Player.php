@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use GameBundle\Player\PlayerTrait;
 use Doctrine\ORM\Mapping as ORM;
@@ -41,8 +42,9 @@ class Player
 
     /**
      * @Serializer\Type("array")
+     * @Serializer\Accessor(getter="getSpecialItems")`
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerSpecialItems", mappedBy="player", fetch="EXTRA_LAZY", orphanRemoval=true, cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerSpecialItems", mappedBy="player", fetch="EAGER", orphanRemoval=true, cascade={"remove"})
      *
      * @var Collection|PlayerSpecialItems
      */
@@ -52,7 +54,7 @@ class Player
      * @Serializer\Type("array")
      * @Serializer\Accessor(getter="getItems")
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerItem", mappedBy="player", fetch="EXTRA_LAZY", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PlayerItem", mappedBy="player", fetch="EAGER", cascade={"remove"})
      *
      * @var Collection|PlayerItem
      */
