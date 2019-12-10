@@ -115,7 +115,7 @@ class OnAttack extends AbstractEvent
                         $monster->getStatistics()->setHp($monster->getStatistics()->getHp() - $damage);
 
                         $emitData = [
-                            'enemy'    => $self->serializer->serialize($monster),
+                            'enemy'    => $self->serializer->serialize($monster, 'array'),
                             'enemyKey' => $monsterKey,
                             'roomId'   => $roomId,
                         ];

@@ -13,6 +13,8 @@ class SocketSessionData
 {
 
     /**
+     * @Serializer\Exclude()
+     *
      * @var User
      */
     public $user;

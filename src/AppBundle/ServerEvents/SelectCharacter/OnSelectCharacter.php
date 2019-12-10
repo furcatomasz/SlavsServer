@@ -72,7 +72,7 @@ class OnSelectCharacter extends AbstractEvent
                         ->to($self->socketIOServer->monsterServerId)
                         ->emit('createRoom', $room->getId());
                     $newSceneType = ForestHouseStart::TYPE;
-//                    $newSceneType = Battleground::TYPE;
+                    $newSceneType = Battleground::TYPE;
 //                    $newSceneType = ForestHouse::TYPE;
 
                 } else {

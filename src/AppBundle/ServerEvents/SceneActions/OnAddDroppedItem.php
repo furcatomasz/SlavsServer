@@ -73,13 +73,7 @@ class OnAddDroppedItem extends AbstractEvent
                     $self->playerManager->refresh($socketSessionData->getActivePlayer());
 
                     $socket->emit('updatePlayerEquip', $self->serializer->serialize([
-                        'activePlayer' => [
-                            'id' => $socketSessionData->getActivePlayer()->getId(),
-                            'statistics' => $socketSessionData->getActivePlayer()->getStatistics(),
-                            'allStatistics' => $socketSessionData->getActivePlayer()->getAllStatistics(),
-                            'attributes' => $socketSessionData->getActivePlayer()->getAttributes(),
-                            'items' => $socketSessionData->getActivePlayer()->getItems(),
-                        ]
+                        'activePlayer' => $socketSessionData->getActivePlayer()
                     ], 'array'));
                     $socket->emit('addDroppedItem', [
                         'itemKey' => $itemKey

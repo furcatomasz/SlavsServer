@@ -4,6 +4,7 @@ namespace GameBundle\Items;
 
 use AppBundle\Entity\PlayerItem;
 use GameBundle\Statistics\Statistics;
+use JMS\Serializer\Annotation as Serializer;
 
 abstract class AbstractItem
 {
@@ -46,6 +47,8 @@ abstract class AbstractItem
     }
 
     /**
+     * @Serializer\VirtualProperty()
+     *
      * @return int
      */
     public function getType(): int
@@ -54,6 +57,8 @@ abstract class AbstractItem
     }
 
     /**
+     * @Serializer\VirtualProperty()
+     *
      * @return int
      */
     public function getItemId(): int

@@ -7,7 +7,6 @@ use AppBundle\Manager\PlayerManager;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\ServerEvents\AbstractEvent;
 use AppBundle\Storage\SocketSessionData;
-use GameBundle\Scenes\Factory;
 use GameBundle\Scenes\SelectCharacter;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Component\EventDispatcher\Event;
@@ -35,17 +34,16 @@ class OnChangeScenePre extends AbstractEvent
     public function registerEvent(Event $event): AbstractEvent
     {
         $socket = $event->getSocket();
-        $self   = $this;
+        $self = $this;
         $socket->on(
             'changeScenePre',
             function () use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                $playerSessionData = $self->serializer->serialize($socketSessionData, 'array');
-                $scene             = $socketSessionData->getActiveRoom()->getActiveScene();
+                $scene = $socketSessionData->getActiveRoom()->getActiveScene();
 
                 if ($scene::TYPE == SelectCharacter::TYPE) {
-                    $user              = $socketSessionData->getUser();
-                    $players           = $self->playerManager->getRepo()->findByUser($user);
+                    $user = $socketSessionData->getUser();
+                    $players = $self->playerManager->getRepo()->findByUser($user);
                     $playersNormalized = $self->serializer->serialize($players, 'array');
 
                     $socket->emit('showPlayersToSelect', $playersNormalized);
@@ -53,10 +51,17 @@ class OnChangeScenePre extends AbstractEvent
                     $room = $socketSessionData->getActiveRoom();
                     $room->setMonsters($scene->monsters);
 
-                    $socket->emit('showPlayer', $playerSessionData);
+                    $socket->emit('showPlayer', $self->serializer->serialize([
+                        'activePlayer' => $socketSessionData->getActivePlayer(),
+                        'position' => $socketSessionData->getPosition()
+                    ], 'array'));
+
                     /** @var SocketSessionData $playerSession */
-                    foreach($room->getPlayers() as $playerSession) {
-                        $remotePlayerSessionData = $self->serializer->serialize($playerSession, 'array');
+                    foreach ($room->getPlayers() as $playerSession) {
+                        $remotePlayerSessionData = $self->serializer->serialize([
+                            'activePlayer' => $playerSession->getActivePlayer(),
+                            'position' => $playerSession->getPosition()
+                        ], 'array');
                         $socket->emit('showRoomPlayer', $remotePlayerSessionData);
                         $socket
                             ->in($socketSessionData->getActiveRoom()->getId())
@@ -70,7 +75,7 @@ class OnChangeScenePre extends AbstractEvent
                             [
                                 'sceneType' => $scene::TYPE,
                                 'enemies' => $self->serializer->serialize($room->getMonsters(), 'array'),
-                                'roomId'  => $room->getId()
+                                'roomId' => $room->getId()
                             ]
                         );
                 }

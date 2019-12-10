@@ -4,6 +4,7 @@ namespace GameBundle\Skills;
 
 use AppBundle\Entity\Player;
 use GameBundle\Monsters\AbstractMonster;
+use JMS\Serializer\Annotation as Serializer;
 
 abstract class AbstractSkill
 {
@@ -52,6 +53,8 @@ abstract class AbstractSkill
     abstract public function useSkill(?int &$damage, ?AbstractMonster $monster, ?Player $player): void;
 
     /**
+     * @Serializer\VirtualProperty()
+     *
      * @return int
      */
     public function getType(): int

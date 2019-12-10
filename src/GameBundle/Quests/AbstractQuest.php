@@ -3,6 +3,7 @@
 namespace GameBundle\Quests;
 
 use AppBundle\Storage\SocketSessionData;
+use JMS\Serializer\Annotation as Serializer;
 use PHPSocketIO\Socket;
 
 abstract class AbstractQuest
@@ -40,6 +41,8 @@ abstract class AbstractQuest
     public $isFinished;
 
     /**
+     * @Serializer\VirtualProperty()
+     *
      * @return int
      */
     public function getQuestId(): int
