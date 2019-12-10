@@ -48,17 +48,17 @@ class OnPlayerConnection extends AbstractEvent
     {
         $socket        = $event->getSocket();
 
-            $user          = $this->userManager->findUserByEmail('furcatomasz@gmail.com');
-            $playerSession = $event->getSocketSessionData();
-            $playerSession
-                ->setConnectionId($event->getSocket()->id)
-                ->setMonsterServerId($event->getMonsterServerId())
-                ->setUser($user);
-
-            $socket->emit('clientConnected', [
-                'connectionId' => $playerSession->getConnectionId()
-            ]);
-        return $this;
+//            $user          = $this->userManager->findUserByEmail('furcatomasz@gmail.com');
+//            $playerSession = $event->getSocketSessionData();
+//            $playerSession
+//                ->setConnectionId($event->getSocket()->id)
+//                ->setMonsterServerId($event->getMonsterServerId())
+//                ->setUser($user);
+//
+//            $socket->emit('clientConnected', [
+//                'connectionId' => $playerSession->getConnectionId()
+//            ]);
+//        return $this;
 
         if(array_key_exists('gameToken', $socket->handshake['query'])) {
             $token = $socket->handshake['query']['gameToken'];
