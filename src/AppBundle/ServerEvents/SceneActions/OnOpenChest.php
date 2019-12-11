@@ -58,7 +58,6 @@ class OnOpenChest extends AbstractEvent
                 $room              = $socketSessionData->getActiveRoom();
                 $player            = $socketSessionData->getActivePlayer();
                 $scene             = $room->getActiveScene();
-                $self->managerSpecialItem->refresh($player);
 
                 /** @var AbstractChest $chest */
                 $chest = $scene->chests[$chestKey];

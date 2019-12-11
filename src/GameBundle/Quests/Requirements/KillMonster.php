@@ -41,9 +41,14 @@ class KillMonster extends AbstractRequirement
         if ($this->requiredValue <= $this->actualValue) {
             $this->isFinished = true;
         }
-
         $message = 'Killed ' . $this->actualValue . '/' . $this->requiredValue . ' ' . $this->monsterToKill->getName();
         $socket->emit(
+            'questRequirementInformation',
+            $message
+        );
+        $socket
+            ->in($sessionData->getActiveRoom()->getId())
+            ->emit(
             'questRequirementInformation',
             $message
         );

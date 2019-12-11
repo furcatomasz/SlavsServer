@@ -91,6 +91,12 @@ class Chapter
                     'questRequirementDoneInformation',
                     'Quest requrement complete'
                 );
+                $socket
+                    ->in($sessionData->getActiveRoom()->getId())
+                    ->emit(
+                    'questRequirementDoneInformation',
+                    'Quest requrement complete'
+                );
             }
         }
 

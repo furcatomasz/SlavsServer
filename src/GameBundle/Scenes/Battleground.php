@@ -18,6 +18,7 @@ use GameBundle\Items\Weapons\Sword;
 use GameBundle\Monsters\Skeleton;
 use GameBundle\Monsters\SkeletonBoss;
 use GameBundle\Monsters\SkeletonWarrior;
+use GameBundle\Quests\SkeletonKing;
 use GameBundle\SpecialItems\Gold;
 use GameBundle\SpecialItems\Herbs;
 use GameBundle\SpecialItems\KeyToChest;
@@ -43,6 +44,11 @@ class Battleground extends AbstractScene
         $this->gateways = [
             new EntraceBattleground()
         ];
+
+        $this->quests = [
+            new SkeletonKing(),
+        ];
+
         $this->chests   = [
             new WoodChest(
                 new Vector3(-19, 0, 20),
@@ -52,7 +58,7 @@ class Battleground extends AbstractScene
                     new Gold(50),
                     new KeyToChest(1),
                     new Potion(1),
-                    new LongSword(null, +3)
+                    new LongSword(null, 3)
                 ]
             ),
         ];
@@ -89,7 +95,6 @@ class Battleground extends AbstractScene
         ];
 
         $this->monsters = [
-            new SkeletonWarrior(0, ['x' => 17, 'y' => 0, 'z' => 17], $itemsToDrop, []),
             new Skeleton(0, ['x' => 36, 'y' => 0, 'z' => -35], $itemsToDrop, []),
             new Skeleton(0, ['x' => 136, 'y' => 0, 'z' => -35], $itemsToDrop, []),
             new Skeleton(0, ['x' => 56, 'y' => 0, 'z' => -35], $itemsToDrop, []),
@@ -109,7 +114,7 @@ class Battleground extends AbstractScene
                     new Vector3(0, 0, 20),
                     new Vector3(0, 0, 30),
                 ],
-                50
+                100
             ),
             Randomizer::createSpecialItem(
                 new Herbs(1),
@@ -121,7 +126,7 @@ class Battleground extends AbstractScene
                     new Vector3(0, 0, 25),
                     new Vector3(0, 0, 35),
                 ],
-                50
+                100
             )
         );
         $this->randomSpecialItems = [];

@@ -57,7 +57,6 @@ class OnPickRandomItem extends AbstractEvent
                 $socketSessionData = $event->getSocketSessionData();
                 $scene             = $socketSessionData->getActiveRoom()->getActiveScene();
                 $player            = $socketSessionData->getActivePlayer();
-                $self->managerSpecialItem->refresh($player);
 
                 /** @var RandomSpecialItem $randomSpecialItem */
                 if (!array_key_exists($specialItemKey, $scene->randomSpecialItems)) {

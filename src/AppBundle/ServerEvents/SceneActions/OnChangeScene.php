@@ -2,7 +2,6 @@
 
 namespace AppBundle\ServerEvents\SceneActions;
 
-use AppBundle\Entity\Player;
 use AppBundle\Server\ConnectionEstablishedEvent;
 use AppBundle\ServerEvents\AbstractEvent;
 use GameBundle\Scenes\Factory;
@@ -30,7 +29,7 @@ class OnChangeScene extends AbstractEvent
             'changeSceneTrigger',
             function ($sceneType) use ($self, $event, $socket) {
                 $socketSessionData = $event->getSocketSessionData();
-                Factory::setNewActiveScene($socketSessionData, $sceneType);
+                Factory::setNewActiveScene($socketSessionData, $sceneType, true);
 
                 $socket->emit('changeScene', $sceneType);
                 $socket

@@ -98,14 +98,16 @@ class Factory
 
     /**
      * @param SocketSessionData $socketSessionData
-     * @param int               $newSceneType
+     * @param int $newSceneType
      *
+     * @param bool $resetPlayerPositions
      * @return AbstractScene
      * @throws \Exception
      */
     static public function setNewActiveScene(
         SocketSessionData $socketSessionData,
-        int $newSceneType
+        int $newSceneType,
+        bool $resetPlayerPositions = false
     ): AbstractScene {
         $scene = Factory::getExistingSceneOrCreateNew($socketSessionData, $newSceneType);
 
@@ -118,7 +120,16 @@ class Factory
 
         $socketSessionData->getActiveRoom()->setStateScenes($stateScenes);
         $socketSessionData->getActiveRoom()->setActiveScene($scene);
-        $socketSessionData->setPosition($scene->getPlayerLocation($oldScene));
+
+        if($resetPlayerPositions) {
+            /** @var SocketSessionData $player */
+            foreach ($socketSessionData->getActiveRoom()->getPlayers() as $player) {
+                $player->setPosition($scene->getPlayerLocation($oldScene));
+            }
+        } else {
+            $socketSessionData->setPosition($scene->getPlayerLocation($oldScene));
+        }
+
 
         return $scene;
     }

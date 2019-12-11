@@ -2,7 +2,6 @@
 
 namespace AppBundle\Server;
 
-use AppBundle\Helper\Serializer;
 use AppBundle\Manager\PlayerManager;
 use AppBundle\Storage\Rooms;
 use Doctrine\ORM\EntityManager;
@@ -10,7 +9,6 @@ use JMS\DiExtraBundle\Annotation as DI;
 use PHPSocketIO\Socket;
 use PHPSocketIO\SocketIO as PHPSocketIO;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\Serializer\SerializerInterface;
 use Workerman\Worker;
 use AppBundle\Storage\SocketSessionData;
 
