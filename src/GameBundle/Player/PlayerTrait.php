@@ -100,6 +100,8 @@ trait PlayerTrait
     }
 
     /**
+     * @Serializer\VirtualProperty()
+     *
      * @return float
      */
     public function getExperiencePercentages(): float {

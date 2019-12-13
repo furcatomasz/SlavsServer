@@ -25,7 +25,7 @@ class SkeletonKing extends AbstractQuest
             ->addRequrement(
                 new KillMonster(
                     new Skeleton(),
-                    1
+                    10
                 )
             );
 
