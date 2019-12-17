@@ -3,7 +3,7 @@ SlavsServer
 
 Socket and database server for RPG game slavsgame.com.
 
-##Full stack init
+## Full stack init
 
 If you want run complete game (client prod version, AI server, socket server and frontend) just use docker compose. 
 
@@ -57,7 +57,7 @@ Next steps:
 More info in repository: https://github.com/furcatomasz/SlavsGame
 
 
-##Problems
+## Problems
 
 If you have problems with files permissions just set chmods 777 for every folder and file in var path using command:
 
