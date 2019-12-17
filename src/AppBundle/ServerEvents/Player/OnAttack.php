@@ -98,6 +98,9 @@ class OnAttack extends AbstractEvent
                 }
 
                 $monster    = $socketSessionData->getActiveRoom()->getMonsters()[$monsterKey];
+                if(!$monster) {
+                    return;
+                }
                 /** @var AbstractMonster $monster */
                 foreach ($monster->getAvailableAttacksFromCharacters() as $attackedPlayerId => $isAttacked) {
                     if ($player->getId() == $attackedPlayerId) {
